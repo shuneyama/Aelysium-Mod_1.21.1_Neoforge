@@ -3,8 +3,9 @@ package net.aelysium.aelysiummod;
 import com.natamus.collective_common_neoforge.check.ShouldLoadCheck;
 
 import net.aelysium.aelysiummod.block.ModBlocks;
-import net.aelysium.aelysiummod.command.Deus;
-import net.aelysium.aelysiummod.command.Deus_Config;
+import net.aelysium.aelysiummod.command.*;
+import net.aelysium.aelysiummod.command.racas.Deus_Config;
+import net.aelysium.aelysiummod.events.*;
 import net.aelysium.aelysiummod.item.ModItems;
 
 import net.aelysium.aelysiummod.particle.DamaDaNoiteParticula;
@@ -17,7 +18,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
@@ -45,12 +45,17 @@ public class AelysiumMod {
         modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.register(ServerEvents.class);
 
-
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        NeoForge.EVENT_BUS.register(new DeusEfeito());
+        NeoForge.EVENT_BUS.register(new DraconoEfeito());
+        NeoForge.EVENT_BUS.register(new ElvarinEfeito());
+        NeoForge.EVENT_BUS.register(new HumanoEfeito());
+        NeoForge.EVENT_BUS.register(new TieflingEfeito());
+        NeoForge.EVENT_BUS.register(new UndyneEfeito());
+        NeoForge.EVENT_BUS.register(new ValkyriaEfeito());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        NeoForge.EVENT_BUS.register(new Deus());
+        NeoForge.EVENT_BUS.register(new Aelysium());
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {}

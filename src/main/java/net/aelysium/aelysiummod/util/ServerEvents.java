@@ -1,6 +1,6 @@
 package net.aelysium.aelysiummod.util;
 
-import net.aelysium.aelysiummod.command.Deus_Config;
+import net.aelysium.aelysiummod.command.racas.Deus_Config;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 

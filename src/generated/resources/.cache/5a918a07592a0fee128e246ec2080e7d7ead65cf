@@ -1,0 +1,5 @@
+// 1.21.1	2025-11-04T02:14:42.475215971	Tags for minecraft:block mod id aelysiummod
+6a08a060bb8aaafc00ae3ceff34207a6ffc3fe4e data/aelysiummod/tags/block/incorrect_ciane_tool.json
+a249c46329a41538f49a564e1f14338aaf1be5a0 data/aelysiummod/tags/block/needs_ciane_tool.json
+09bfcf71325d0628f0f1347b79f09951c743b047 data/minecraft/tags/block/mineable/pickaxe.json
+09bfcf71325d0628f0f1347b79f09951c743b047 data/minecraft/tags/block/needs_diamond_tool.json

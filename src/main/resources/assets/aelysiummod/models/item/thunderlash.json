@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"2": "aelysiummod:item/thunderlash",
@@ -2021,8 +2022,8 @@
 			"scale": [3, 3, 3]
 		},
 		"fixed": {
-			"rotation": [0, 180, -46],
-			"translation": [-2, 0.25, 0.75],
+			"rotation": [0, -180, -46],
+			"translation": [-2, 0.25, -0.5],
 			"scale": [2, 2, 2]
 		}
 	},

@@ -1074,13 +1074,13 @@
 			"scale": [1.4, 1.4, 1]
 		},
 		"head": {
-			"rotation": [0, 0, 180],
+			"rotation": [0, 0, -180],
 			"translation": [0.25, -0.5, 0],
 			"scale": [2, 2, 2]
 		},
 		"fixed": {
 			"rotation": [0, 0, 46],
-			"translation": [-0.5, 0.75, 0.5],
+			"translation": [-0.5, 0.75, -0.25],
 			"scale": [1.51367, 1.44531, 4]
 		}
 	},

@@ -1,13 +1,13 @@
-package net.aelysium.aelysiummod.command;
+package net.aelysium.aelysiummod.command.racas;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 
 import java.io.File;
@@ -15,15 +15,15 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class Deus_Config {
+public class Tiefling_Config {
 
     public static ConfigData DATA;
 
     public static class ConfigData {
         public Team team;
+        public Attributes status;
         public Attributes attributes;
         public Effects effects;
-        public Abilities abilities;
     }
 
     public static class Team {
@@ -49,8 +49,6 @@ public class Deus_Config {
     public static class Effects {
         public boolean enabled;
         public List<EffectEntry> list;
-        public boolean enable_darkness = true;
-        public boolean enable_heal = true;
     }
 
     public static class EffectEntry {
@@ -65,13 +63,9 @@ public class Deus_Config {
         }
     }
 
-    public static class Abilities {
-        public boolean allow_flight;
-    }
-
     public static void load(MinecraftServer server) {
         try {
-            File file = new File(server.getServerDirectory().toFile(), "config/aelysium/deus.json");
+            File file = new File(server.getServerDirectory().toFile(), "config/aelysium/tiefling.json");
 
             if (!file.exists()) {
                 generateDefault(file);
@@ -86,7 +80,7 @@ public class Deus_Config {
 
     public static void loadClient() {
         try {
-            File file = new File("config/aelysium/deus.json");
+            File file = new File("config/aelysium/tiefling.json");
 
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
@@ -108,31 +102,38 @@ public class Deus_Config {
             ConfigData defaultConfig = new ConfigData();
             defaultConfig.team = new Team();
             defaultConfig.team.enabled = true;
-            defaultConfig.team.name = "deuses";
+            defaultConfig.team.name = "tieflings";
+
+            defaultConfig.status = new Attributes();
+            defaultConfig.status.enabled = true;
+            defaultConfig.status.list = List.of(
+                    new AttributeEntry("minecraft:generic.max_health", 16.0),
+                    new AttributeEntry("minecraft:generic.armor", 4.0),
+                    new AttributeEntry("irons_spellbooks:fire_spell_power", 1.075),
+                    new AttributeEntry("minecraft:generic.attack_damage", -1.0)
+            );
 
             defaultConfig.attributes = new Attributes();
             defaultConfig.attributes.enabled = true;
             defaultConfig.attributes.list = List.of(
-                    new AttributeEntry("minecraft:generic.attack_damage", 100.0)
+                    new AttributeEntry("irons_spellbooks:mana_regen", 2.0),
+                    new AttributeEntry("minecraft:generic.burning_time", 0.5),
+                    new AttributeEntry("irons_spellbooks:fire_magic_resist", 1.05),
+                    new AttributeEntry("irons_spellbooks:ice_magic_resist", 0.95)
             );
-
 
             defaultConfig.effects = new Effects();
             defaultConfig.effects.enabled = true;
             defaultConfig.effects.list = List.of(
-                    new EffectEntry("minecraft:strength", 120, 10),
-                    new EffectEntry("minecraft:resistance", 120, 10)
+                    new EffectEntry("minecraft:night_vision", 120, 0)
             );
-
-            defaultConfig.abilities = new Abilities();
-            defaultConfig.abilities.allow_flight = true;
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             try (var writer = new java.io.FileWriter(file)) {
                 writer.write(gson.toJson(defaultConfig));
             }
 
-            System.out.println("[Aelysium] Config criado em " + file.getAbsolutePath());
+            System.out.println("[Aelysium] Config criada em " + file.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -144,18 +145,18 @@ public class Deus_Config {
                     .getHolder(ResourceLocation.parse(id))
                     .orElse(null);
         } catch (Exception e) {
-            System.out.println("[Aelysium] Efeito inválido no config: " + id);
+            System.out.println("[Aelysium] Efeito inválido na config: " + id);
             return null;
         }
     }
 
     public static Holder<Attribute> getAttribute(String id) {
         try {
-            return net.minecraft.core.registries.BuiltInRegistries.ATTRIBUTE
-                    .getHolder(net.minecraft.resources.ResourceLocation.parse(id))
+            return BuiltInRegistries.ATTRIBUTE
+                    .getHolder(ResourceLocation.parse(id))
                     .orElse(null);
         } catch (Exception e) {
-            System.out.println("[Aelysium] Atributo inválido no config: " + id);
+            System.out.println("[Aelysium] Atributo inválido na config: " + id);
             return null;
         }
     }

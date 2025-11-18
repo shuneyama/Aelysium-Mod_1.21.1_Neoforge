@@ -1,43 +1,17 @@
-package net.aelysium.aelysiummod.command;
+package net.aelysium.aelysiummod.command.racas;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 public class Deus {
 
-    @SubscribeEvent
-    public void registerCommands(RegisterCommandsEvent event) {
-        event.getDispatcher().register(
-                Commands.literal("aelysium")
-                        .then(Commands.literal("reload")
-                                .executes(ctx -> {
-                                    Deus_Config.load(ctx.getSource().getServer());
-                                    ctx.getSource().sendSuccess(() -> Component.literal("Config recarregada!"), true);
-                                    return 1;
-                                }))
-
-
-                        .then(Commands.literal("deus")
-                                .then(Commands.argument("player", EntityArgument.player())
-                                        .executes(ctx -> {
-                                            if (Deus_Config.DATA == null)
-                                                Deus_Config.load(ctx.getSource().getServer());
-
-                                            return DIVINDADE(ctx);
-                                        })))
-        );
-    }
-
-    private int DIVINDADE(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    public static int aplicar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer p = EntityArgument.getPlayer(ctx, "player");
         var cfg = Deus_Config.DATA;
 
@@ -71,7 +45,7 @@ public class Deus {
         }
 
         if (cfg.effects.enable_heal) {
-            p.addEffect(new MobEffectInstance(MobEffects.HEAL, 60, 10));
+            p.addEffect(new MobEffectInstance(MobEffects.HEAL, 100, 10));
         }
 
         // Efeitos

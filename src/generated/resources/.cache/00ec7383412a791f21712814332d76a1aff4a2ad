@@ -1,0 +1,10 @@
+// 1.21.1	2025-11-04T02:14:42.47661842	Tags for minecraft:item mod id aelysiummod
+4475cc02762e60692270b8904c29a98e01b9973f data/minecraft/tags/item/axes.json
+ab18b4656b9d51ac48d6667647f11b15f31339f1 data/minecraft/tags/item/chest_armor.json
+dd7093402cf6422540b5f00889a7bf9b778649f9 data/minecraft/tags/item/foot_armor.json
+65662add21e2415bd8cf279562c0208c3ed8c360 data/minecraft/tags/item/head_armor.json
+776a8c8f05cc4606c5a92f1ee2a302cbee3346aa data/minecraft/tags/item/hoes.json
+6a5b628b8c8aa5dc6f6dced60385ad600bf25d79 data/minecraft/tags/item/leg_armor.json
+dfda38b1166045e4e61f48237ac2156bd6ac4585 data/minecraft/tags/item/pickaxes.json
+819891ef1b2ee8a8a3d0ef9ab35eabfa612373d2 data/minecraft/tags/item/shovels.json
+d3c6c02d8cbda96631bbc45c9b640ca6bc0ccc6f data/minecraft/tags/item/swords.json
