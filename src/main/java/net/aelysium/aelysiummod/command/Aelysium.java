@@ -1,11 +1,14 @@
 package net.aelysium.aelysiummod.command;
 
 import net.aelysium.aelysiummod.command.racas.*;
+import net.aelysium.aelysiummod.network.LuaVemelhaServidor;
+import net.aelysium.aelysiummod.system.LuaEstado;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class Aelysium {
 
@@ -13,6 +16,20 @@ public class Aelysium {
     public void registerCommands(RegisterCommandsEvent event) {
         event.getDispatcher().register(
                 Commands.literal("aelysium")
+                        .then(Commands.literal("lua")
+                                .executes(ctx -> {
+                                    LuaEstado.bloodMoon = !LuaEstado.bloodMoon;
+
+                                    LuaVemelhaServidor packet = new LuaVemelhaServidor(LuaEstado.bloodMoon);
+                                    PacketDistributor.sendToAllPlayers(packet);
+
+                                    ctx.getSource().sendSuccess(
+                                            () -> Component.literal("Lua de Sangue: " + LuaEstado.bloodMoon),
+                                            true
+                                    );
+                                    return 1;
+                                }))
+
                         .then(Commands.literal("dimensão")
                                 .then(Commands.literal("superplano")
                                         .executes(ctx -> {
@@ -54,7 +71,6 @@ public class Aelysium {
                                             return 1;
                                         })
                                 )
-
                         )
 
                         .then(Commands.literal("raças")

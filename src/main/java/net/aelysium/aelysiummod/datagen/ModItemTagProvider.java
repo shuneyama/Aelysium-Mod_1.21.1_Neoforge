@@ -1,7 +1,7 @@
 package net.aelysium.aelysiummod.datagen;
 
 import net.aelysium.aelysiummod.AelysiumMod;
-import net.aelysium.aelysiummod.item.ModItems;
+import net.aelysium.aelysiummod.item.ModItens;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -22,25 +22,25 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(ItemTags.PICKAXES)
-                .add(ModItems.CIANE_PICARETA.get());
+                .add(ModItens.CIANE_PICARETA.get());
         tag(ItemTags.AXES)
-                .add(ModItems.CIANE_MACHADO.get());
+                .add(ModItens.CIANE_MACHADO.get());
         tag(ItemTags.SHOVELS)
-                .add(ModItems.CIANE_PA.get());
+                .add(ModItens.CIANE_PA.get());
         tag(ItemTags.HOES)
-                .add(ModItems.CIANE_ENXADA.get());
+                .add(ModItens.CIANE_ENXADA.get());
         tag(ItemTags.SWORDS)
-                .add(ModItems.CIANE_ESPADA.get())
-                .add(ModItems.ESPADA_ESPECIAL.get())
-                .add(ModItems.PARAR.get())
-                .add(ModItems.CANO.get());
+                .add(ModItens.CIANE_ESPADA.get())
+                .add(ModItens.ESPADA_ESPECIAL.get())
+                .add(ModItens.PARAR.get())
+                .add(ModItens.CANO.get());
         tag(ItemTags.HEAD_ARMOR)
-                .add(ModItems.CIANE_CAPACETE.get());
+                .add(ModItens.CIANE_CAPACETE.get());
         tag(ItemTags.CHEST_ARMOR)
-                .add(ModItems.CIANE_PEITORAL.get());
+                .add(ModItens.CIANE_PEITORAL.get());
         tag(ItemTags.LEG_ARMOR)
-                .add(ModItems.CIANE_CALCINHA.get());
+                .add(ModItens.CIANE_CALCINHA.get());
         tag(ItemTags.FOOT_ARMOR)
-                .add(ModItems.CIANE_BOTAS.get());
+                .add(ModItens.CIANE_BOTAS.get());
     }
 }

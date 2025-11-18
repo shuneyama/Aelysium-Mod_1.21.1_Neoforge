@@ -11,15 +11,15 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
 
-public class ModItems {
+public class ModItens {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AelysiumMod.MOD_ID);
 
 
 
 // espadinhas :3 =======================================================================================================
     public static final DeferredItem<SwordItem> ESPADA_ADM = ITEMS.register("espada_adm",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 124, 60f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 124, 60f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -31,8 +31,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> ESPADA_ESPECIAL = ITEMS.register("espada_especial",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 9, -2.6f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 9, -2.6f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -44,8 +44,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> CANO = ITEMS.register("cano",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1).durability(0)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 10, -1.8f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1).durability(0)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 10, -1.8f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -57,8 +57,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> PARAR = ITEMS.register("parar",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 124, 60f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 124, 60f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -70,8 +70,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> EXPERIMENTO_646 = ITEMS.register("experimento_646",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 14, -2.2f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 14, -2.2f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -83,8 +83,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> CRIMSON_WHISPER = ITEMS.register("crimson_whisper",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 26, -1.5f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 26, -1.5f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -96,8 +96,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> AURORA_HIBERNA = ITEMS.register("aurora_hiberna",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -109,8 +109,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> LUZ_DA_ULTIMA_FENIX = ITEMS.register("luz_da_ultima_fenix",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -122,8 +122,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> FULMENS_FANG = ITEMS.register("fulmens_fang",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -135,8 +135,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> DARK_JUDGMENT = ITEMS.register("dark_judgment",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -148,8 +148,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> DIVINE_SILENCE = ITEMS.register("divine_silence",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -161,8 +161,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> ALVORADA_CELESTE = ITEMS.register("alvorada_celeste",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -174,8 +174,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> PROTOCOLO_GENESIS = ITEMS.register("protocolo_genesis",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 24, -1.7f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 24, -1.7f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -187,8 +187,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> THUNDERLASH = ITEMS.register("thunderlash",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 15, -1.7f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 15, -1.7f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -200,8 +200,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> BLOOD_REGRET = ITEMS.register("blood_regret",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 4, -2.4f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 4, -2.4f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -213,8 +213,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> AEON = ITEMS.register("aeon",
-            () -> new SwordItem(ModToolTiers.ADM, new Item.Properties().stacksTo(1)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))) {
+            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
@@ -226,8 +226,8 @@ public class ModItems {
                 }
             });
     public static final DeferredItem<SwordItem> KLAUS_SWORD = ITEMS.register("klaus_sword",
-            () -> new Espada_Klaus(ModToolTiers.ADM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)
-                    .attributes(SwordItem.createAttributes(ModToolTiers.ADM, 96, 1f))));
+            () -> new Espada_Klaus(ModTiers.ADM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)
+                    .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))));
 
 // moedas <3 ===========================================================================================================
     public static final DeferredItem<Item> AEDA_COBRE = ITEMS.register("aeda_cobre",
@@ -286,33 +286,33 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(64)));
 
     public static final DeferredItem<ArmorItem> CIANE_CAPACETE = ITEMS.register("ciane_capacete",
-            () -> new ArmorItem(ModArmorMaterials.CIANE_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties()
+            () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties()
                     .stacksTo(1).fireResistant().durability(ArmorItem.Type.HELMET.getDurability(50))));
     public static final DeferredItem<ArmorItem> CIANE_PEITORAL = ITEMS.register("ciane_peitoral",
-            () -> new ArmorItem(ModArmorMaterials.CIANE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties()
+            () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties()
                     .stacksTo(1).fireResistant().durability(ArmorItem.Type.CHESTPLATE.getDurability(40))));
     public static final DeferredItem<ArmorItem> CIANE_CALCINHA = ITEMS.register("ciane_calcinha",
-            () -> new ArmorItem(ModArmorMaterials.CIANE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties()
+            () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties()
                     .stacksTo(1).fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(40))));
     public static final DeferredItem<ArmorItem> CIANE_BOTAS = ITEMS.register("ciane_botas",
-            () -> new ArmorItem(ModArmorMaterials.CIANE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties()
+            () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties()
                     .stacksTo(1).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(40))));
 
     public static final DeferredItem<PickaxeItem> CIANE_PICARETA = ITEMS.register("ciane_picareta",
-            () -> new PickaxeItem(ModToolTiers.CIANE, new Item.Properties()
-                    .stacksTo(1).attributes(PickaxeItem.createAttributes(ModToolTiers.CIANE, 5, -3f))));
+            () -> new PickaxeItem(ModTiers.CIANE, new Item.Properties()
+                    .stacksTo(1).attributes(PickaxeItem.createAttributes(ModTiers.CIANE, 5, -3f))));
     public static final DeferredItem<ShovelItem> CIANE_PA = ITEMS.register("ciane_pa",
-            () -> new ShovelItem(ModToolTiers.CIANE, new Item.Properties()
-                    .stacksTo(1).attributes(ShovelItem.createAttributes(ModToolTiers.CIANE, 5.5F, -3f))));
+            () -> new ShovelItem(ModTiers.CIANE, new Item.Properties()
+                    .stacksTo(1).attributes(ShovelItem.createAttributes(ModTiers.CIANE, 5.5F, -3f))));
     public static final DeferredItem<HoeItem> CIANE_ENXADA = ITEMS.register("ciane_enxada",
-            () -> new HoeItem(ModToolTiers.CIANE, new Item.Properties()
-                    .stacksTo(1).attributes(HoeItem.createAttributes(ModToolTiers.CIANE, 0, -3f))));
+            () -> new HoeItem(ModTiers.CIANE, new Item.Properties()
+                    .stacksTo(1).attributes(HoeItem.createAttributes(ModTiers.CIANE, 0, -3f))));
     public static final DeferredItem<AxeItem> CIANE_MACHADO = ITEMS.register("ciane_machado",
-            () -> new AxeItem(ModToolTiers.CIANE, new Item.Properties()
-                    .stacksTo(1).attributes(AxeItem.createAttributes(ModToolTiers.CIANE, 9, -3f))));
+            () -> new AxeItem(ModTiers.CIANE, new Item.Properties()
+                    .stacksTo(1).attributes(AxeItem.createAttributes(ModTiers.CIANE, 9, -3f))));
     public static final DeferredItem<SwordItem> CIANE_ESPADA = ITEMS.register("ciane_espada",
-            () -> new SwordItem(ModToolTiers.CIANE, new Item.Properties()
-                    .stacksTo(1).attributes(SwordItem.createAttributes(ModToolTiers.ADM, 7, -2.2f))));
+            () -> new SwordItem(ModTiers.CIANE, new Item.Properties()
+                    .stacksTo(1).attributes(SwordItem.createAttributes(ModTiers.ADM, 7, -2.2f))));
 
 // itens !! ============================================================================================================
     public static final DeferredItem<Item> POEIRA_LUNAR = ITEMS.register("poeira_lunar",

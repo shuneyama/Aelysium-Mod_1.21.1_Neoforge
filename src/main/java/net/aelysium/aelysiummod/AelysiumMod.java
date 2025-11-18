@@ -6,12 +6,12 @@ import net.aelysium.aelysiummod.block.ModBlocks;
 import net.aelysium.aelysiummod.command.*;
 import net.aelysium.aelysiummod.command.racas.Deus_Config;
 import net.aelysium.aelysiummod.events.*;
-import net.aelysium.aelysiummod.item.ModItems;
+import net.aelysium.aelysiummod.item.ModItens;
 
 import net.aelysium.aelysiummod.particle.DamaDaNoiteParticula;
 import net.aelysium.aelysiummod.particle.DamaVermelhaDaNoiteParticula;
 import net.aelysium.aelysiummod.particle.ModParticles;
-import net.aelysium.aelysiummod.util.ServerEvents;
+import net.aelysium.aelysiummod.util.ServidorEventos;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -38,12 +38,12 @@ public class AelysiumMod {
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
 
-        ModCreativeModeTabs.register(modEventBus);
-        ModItems.register(modEventBus);
+        AbaCriativo.register(modEventBus);
+        ModItens.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModParticles.register(modEventBus);
         modEventBus.addListener(this::addCreative);
-        NeoForge.EVENT_BUS.register(ServerEvents.class);
+        NeoForge.EVENT_BUS.register(ServidorEventos.class);
 
         NeoForge.EVENT_BUS.register(new DeusEfeito());
         NeoForge.EVENT_BUS.register(new DraconoEfeito());
@@ -68,6 +68,7 @@ public class AelysiumMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             Deus_Config.loadClient();
+
         }
         @SubscribeEvent
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {

@@ -1,7 +1,7 @@
 package net.aelysium.aelysiummod.datagen;
 
 import net.aelysium.aelysiummod.block.ModBlocks;
-import net.aelysium.aelysiummod.item.ModItems;
+import net.aelysium.aelysiummod.item.ModItens;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -19,7 +19,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
 
         add(ModBlocks.CIANE_MINERIO.get(),
-                block -> createOreDrop(ModBlocks.CIANE_MINERIO.get(), ModItems.CIANE_CRU.get()));
+                block -> createOreDrop(ModBlocks.CIANE_MINERIO.get(), ModItens.CIANE_CRU.get()));
         add(ModBlocks.DAMA_DA_NOITE.get(),
                 block -> createSingleItemTable(ModBlocks.DAMA_DA_NOITE.get()));
         add(ModBlocks.DAMA_VERMELHA_DA_NOITE.get(),

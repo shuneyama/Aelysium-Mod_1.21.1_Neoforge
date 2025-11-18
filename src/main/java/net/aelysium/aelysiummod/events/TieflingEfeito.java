@@ -1,7 +1,7 @@
 package net.aelysium.aelysiummod.events;
 
 import net.aelysium.aelysiummod.command.racas.Dracono_Config;
-import net.aelysium.aelysiummod.system.EffectTicker;
+import net.aelysium.aelysiummod.system.EfeitosTick;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -20,7 +20,7 @@ public class TieflingEfeito {
 
             if (p.getTeam() != draconoTeam) continue;
 
-            if (!EffectTicker.shouldTrigger(p, 60)) continue;
+            if (!EfeitosTick.shouldTrigger(p, 60)) continue;
 
             var cfg = Dracono_Config.DATA;
             if (cfg == null || !cfg.effects.enabled) continue;

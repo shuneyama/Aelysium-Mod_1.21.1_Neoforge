@@ -5,7 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class EffectTicker {
+public class EfeitosTick {
 
     private static final HashMap<UUID, Integer> timers = new HashMap<>();
 

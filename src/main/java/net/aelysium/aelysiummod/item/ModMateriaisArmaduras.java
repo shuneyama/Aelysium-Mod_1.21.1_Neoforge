@@ -17,7 +17,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ModArmorMaterials {
+public class ModMateriaisArmaduras {
     public static final Holder<ArmorMaterial> CIANE_ARMOR_MATERIAL = register("ciane",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
                 attribute.put(ArmorItem.Type.BOOTS, 5);
@@ -25,7 +25,7 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.CHESTPLATE, 10);
                 attribute.put(ArmorItem.Type.HELMET, 5);
                 attribute.put(ArmorItem.Type.BODY, 15);
-            }), 16, 3.5f, 0.15f, () -> ModItems.CIANE_BARRA.get());
+            }), 16, 3.5f, 0.15f, () -> ModItens.CIANE_BARRA.get());
 
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
