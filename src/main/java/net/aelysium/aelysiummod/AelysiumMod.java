@@ -4,7 +4,7 @@ import com.natamus.collective_common_neoforge.check.ShouldLoadCheck;
 
 import net.aelysium.aelysiummod.block.ModBlocks;
 import net.aelysium.aelysiummod.command.*;
-import net.aelysium.aelysiummod.command.racas.Deus_Config;
+import net.aelysium.aelysiummod.command.racas.*;
 import net.aelysium.aelysiummod.events.*;
 import net.aelysium.aelysiummod.item.ModItens;
 
@@ -68,7 +68,12 @@ public class AelysiumMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             Deus_Config.loadClient();
-
+            Dracono_Config.loadClient();
+            Elvarin_Config.loadClient();
+            Humano_Config.loadClient();
+            Tiefling_Config.loadClient();
+            Undyne_Config.loadClient();
+            Valkyria_Config.loadClient();
         }
         @SubscribeEvent
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
