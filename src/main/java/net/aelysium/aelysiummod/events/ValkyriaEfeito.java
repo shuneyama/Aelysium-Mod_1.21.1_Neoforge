@@ -1,6 +1,6 @@
 package net.aelysium.aelysiummod.events;
 
-import net.aelysium.aelysiummod.command.racas.Dracono_Config;
+import net.aelysium.aelysiummod.command.racas.Valkyria_Config;
 import net.aelysium.aelysiummod.system.EfeitosTick;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -12,21 +12,21 @@ public class ValkyriaEfeito {
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Post event) {
         var server = event.getServer();
-        var draconoTeam = server.getScoreboard().getPlayerTeam("valkyrias");
+        var valkyriaTeam = server.getScoreboard().getPlayerTeam("valkyrias");
 
-        if (draconoTeam == null) return;
+        if (valkyriaTeam == null) return;
 
         for (ServerPlayer p : server.getPlayerList().getPlayers()) {
 
-            if (p.getTeam() != draconoTeam) continue;
+            if (p.getTeam() != valkyriaTeam) continue;
 
             if (!EfeitosTick.shouldTrigger(p, 60)) continue;
 
-            var cfg = Dracono_Config.DATA;
+            var cfg = Valkyria_Config.DATA;
             if (cfg == null || !cfg.effects.enabled) continue;
 
             for (var e : cfg.effects.list) {
-                var effectHolder = Dracono_Config.getEffect(e.effect);
+                var effectHolder = Valkyria_Config.getEffect(e.effect);
                 if (effectHolder != null) {
                     p.addEffect(new MobEffectInstance(effectHolder, e.duration * 20, e.amplifier));
                 }

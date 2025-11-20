@@ -26,7 +26,6 @@ public class Deus_Config {
         public Team team;
         public Attributes attributes;
         public Effects effects;
-        public Abilities abilities;
     }
 
     public static class Team {
@@ -66,10 +65,6 @@ public class Deus_Config {
             this.duration = duration;
             this.amplifier = amplifier;
         }
-    }
-
-    public static class Abilities {
-        public boolean allow_flight;
     }
 
     public static void load(MinecraftServer server) {
@@ -127,7 +122,8 @@ public class Deus_Config {
                     new AttributeEntry("minecraft:generic.armor", 100.0),
                     new AttributeEntry("minecraft:generic.armor_toughness", 100.0),
                     new AttributeEntry("irons_spellbooks:spell_power", 0.05),
-                    new AttributeEntry("minecraft:generic.attack_damage", 100.0)
+                    new AttributeEntry("minecraft:generic.attack_damage", 100.0),
+                    new AttributeEntry("neoforge:creative_flight", 1.0)
             );
 
             defaultConfig.effects = new Effects();
@@ -135,9 +131,6 @@ public class Deus_Config {
             defaultConfig.effects.list = List.of(
                     new EffectEntry("minecraft:resistance", 120, 4)
             );
-
-            defaultConfig.abilities = new Abilities();
-            defaultConfig.abilities.allow_flight = true;
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             try (FileWriter writer = new FileWriter(file)) {

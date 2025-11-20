@@ -36,10 +36,6 @@ public class Deus {
             }
         }
 
-        // Efeitos Extras
-        p.getAbilities().mayfly = cfg.abilities.allow_flight;
-        p.onUpdateAbilities();
-
         if (cfg.effects.enable_darkness) {
             p.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 100, 0));
         }

@@ -15,9 +15,6 @@ public class Resetar {
 
         p.removeAllEffects();
 
-        p.getAbilities().mayfly = false;
-        p.onUpdateAbilities();
-
         String[] comandos = {
                 "team leave " + player,
                 "attribute " + player + " apothic_attributes:experience_gained base set 1",
@@ -37,6 +34,7 @@ public class Resetar {
                 "attribute " + player + " minecraft:generic.max_health base set 20",
                 "attribute " + player + " minecraft:generic.movement_speed base set 0.1",
                 "attribute " + player + " minecraft:player.submerged_mining_speed base set 0.2",
+                "attribute " + player + " neoforge:creative_flight set 0",
                 "attribute " + player + " neoforge:swim_speed base set 1"
         };
 

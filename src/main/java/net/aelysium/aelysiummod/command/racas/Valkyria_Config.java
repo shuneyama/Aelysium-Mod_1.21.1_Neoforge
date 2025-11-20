@@ -27,7 +27,6 @@ public class Valkyria_Config {
         public Attributes status;
         public Attributes attributes;
         public Effects effects;
-        public Abilities abilities;
     }
 
     public static class Team {
@@ -47,10 +46,6 @@ public class Valkyria_Config {
             this.attribute = attribute;
             this.value = value;
         }
-    }
-
-    public static class Abilities {
-        public boolean allow_flight;
     }
 
     public static class Effects {
@@ -121,7 +116,8 @@ public class Valkyria_Config {
                     new AttributeEntry("minecraft:generic.max_health", 20.0),
                     new AttributeEntry("minecraft:generic.armor", -2.0),
                     new AttributeEntry("irons_spellbooks:holy_spell_power", 1.0),
-                    new AttributeEntry("minecraft:generic.attack_damage", 4.0)
+                    new AttributeEntry("minecraft:generic.attack_damage", 4.0),
+                    new AttributeEntry("neoforge:creative_flight", 1.0)
             );
 
             defaultConfig.attributes = new Attributes();
@@ -133,9 +129,6 @@ public class Valkyria_Config {
             defaultConfig.effects.list = List.of(
                     new EffectEntry("minecraft:night_vision", 120, 0)
             );
-
-            defaultConfig.abilities = new Abilities();
-            defaultConfig.abilities.allow_flight = true;
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             try (FileWriter writer = new FileWriter(file)) {

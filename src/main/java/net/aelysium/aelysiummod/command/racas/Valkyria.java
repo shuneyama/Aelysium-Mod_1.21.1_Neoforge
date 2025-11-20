@@ -45,10 +45,6 @@ public class Valkyria {
             }
         }
 
-        // Efeitos Extras
-        p.getAbilities().mayfly = cfg.abilities.allow_flight;
-        p.onUpdateAbilities();
-
         // Efeitos
         if (cfg.effects.enabled) {
             for (var e : cfg.effects.list) {
