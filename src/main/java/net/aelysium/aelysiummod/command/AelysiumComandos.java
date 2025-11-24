@@ -1,21 +1,84 @@
 package net.aelysium.aelysiummod.command;
 
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import net.aelysium.aelysiummod.command.chat.CorTimes;
 import net.aelysium.aelysiummod.command.racas.*;
+import net.aelysium.aelysiummod.config.ModConfig;
 import net.aelysium.aelysiummod.network.LuaVemelhaServidor;
 import net.aelysium.aelysiummod.system.LuaEstado;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.arguments.TeamArgument;
 import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-public class Aelysium {
+public class AelysiumComandos {
 
     @SubscribeEvent
     public void registerCommands(RegisterCommandsEvent event) {
         event.getDispatcher().register(
                 Commands.literal("aelysium")
+                        .then(Commands.literal("chat")
+                                .then(Commands.literal("ligar")
+                                        .executes(ctx -> {
+                                            ModConfig.setJoinLeaveMessagesEnabled(true);
+                                            ctx.getSource().sendSuccess(
+                                                    () -> Component.literal("§aMensagens de entrada/saída ATIVADAS"),
+                                                    true
+                                            );
+                                            return 1;
+                                        })
+                                )
+                                .then(Commands.literal("desligar")
+                                        .executes(ctx -> {
+                                            ModConfig.setJoinLeaveMessagesEnabled(false);
+                                            ctx.getSource().sendSuccess(
+                                                    () -> Component.literal("§cMensagens de entrada/saída DESATIVADAS"),
+                                                    true
+                                            );
+                                            return 1;
+                                        })
+                                )
+                                .then(Commands.literal("status")
+                                        .executes(ctx -> {
+                                            boolean enabled = ModConfig.areJoinLeaveMessagesEnabled();
+                                            String status = enabled ? "§aATIVADAS" : "§cDESATIVADAS";
+                                            ctx.getSource().sendSuccess(
+                                                    () -> Component.literal("Mensagens de entrada/saída estão: " + status),
+                                                    false
+                                            );
+                                            return 1;
+                                        })
+                                )
+                        )
+
+                        .then(Commands.literal("teamcolor")
+                                .then(Commands.argument("team", TeamArgument.team())
+                                        .then(Commands.literal("rgb")
+                                                .then(Commands.argument("red", IntegerArgumentType.integer(0, 255))
+                                                        .then(Commands.argument("green", IntegerArgumentType.integer(0, 255))
+                                                                .then(Commands.argument("blue", IntegerArgumentType.integer(0, 255))
+                                                                        .executes(CorTimes::setRgbColor)
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                        .then(Commands.literal("hex")
+                                                .then(Commands.argument("hexcode", StringArgumentType.string())
+                                                        .executes(CorTimes::setHexColor)
+                                                )
+                                        )
+                                )
+                                .then(Commands.literal("remove")
+                                        .then(Commands.argument("team", TeamArgument.team())
+                                                .executes(CorTimes::removeColor)
+                                        )
+                                )
+                        )
+
                         .then(Commands.literal("lua")
                                 .executes(ctx -> {
                                     LuaEstado.bloodMoon = !LuaEstado.bloodMoon;

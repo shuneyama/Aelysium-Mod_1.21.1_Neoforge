@@ -55,7 +55,7 @@ public class AelysiumMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        NeoForge.EVENT_BUS.register(new Aelysium());
+        NeoForge.EVENT_BUS.register(new AelysiumComandos());
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {}
