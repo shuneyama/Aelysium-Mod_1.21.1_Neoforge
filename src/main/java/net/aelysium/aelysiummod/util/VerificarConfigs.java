@@ -5,7 +5,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ConfigHelper {
+public class VerificarConfigs {
 
     /**
      * Retorna o caminho correto da config independente do ambiente

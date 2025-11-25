@@ -5,13 +5,14 @@ import com.natamus.collective_common_neoforge.check.ShouldLoadCheck;
 import net.aelysium.aelysiummod.block.ModBlocks;
 import net.aelysium.aelysiummod.command.*;
 import net.aelysium.aelysiummod.command.racas.*;
+import net.aelysium.aelysiummod.effect.ModEfeitos;
 import net.aelysium.aelysiummod.events.*;
 import net.aelysium.aelysiummod.item.ModItens;
 
 import net.aelysium.aelysiummod.particle.DamaDaNoiteParticula;
 import net.aelysium.aelysiummod.particle.DamaVermelhaDaNoiteParticula;
 import net.aelysium.aelysiummod.particle.ModParticles;
-import net.aelysium.aelysiummod.util.ServidorEventos;
+import net.aelysium.aelysiummod.util.CarregarConfigs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -42,8 +43,9 @@ public class AelysiumMod {
         ModItens.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModParticles.register(modEventBus);
+        ModEfeitos.register(modEventBus);
         modEventBus.addListener(this::addCreative);
-        NeoForge.EVENT_BUS.register(ServidorEventos.class);
+        NeoForge.EVENT_BUS.register(CarregarConfigs.class);
 
         NeoForge.EVENT_BUS.register(new DeusEfeito());
         NeoForge.EVENT_BUS.register(new DraconoEfeito());

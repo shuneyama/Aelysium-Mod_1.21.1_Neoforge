@@ -4,7 +4,7 @@ import net.aelysium.aelysiummod.command.racas.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 
-public class ServidorEventos {
+public class CarregarConfigs {
 
     @SubscribeEvent
     public static void onServerStart(ServerStartedEvent event) {

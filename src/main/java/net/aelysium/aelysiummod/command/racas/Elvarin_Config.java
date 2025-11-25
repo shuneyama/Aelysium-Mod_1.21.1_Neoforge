@@ -3,7 +3,7 @@ package net.aelysium.aelysiummod.command.racas;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import net.aelysium.aelysiummod.util.ConfigHelper;
+import net.aelysium.aelysiummod.util.VerificarConfigs;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -67,9 +67,9 @@ public class Elvarin_Config {
     public static void load(MinecraftServer server) {
         System.out.println("[Aelysium] === Carregando ELVARIN ===");
         try {
-            File file = ConfigHelper.getConfigFile(server, CONFIG_NAME);
+            File file = VerificarConfigs.getConfigFile(server, CONFIG_NAME);
             if (!file.exists()) {
-                ConfigHelper.ensureConfigDirectory(file);
+                VerificarConfigs.ensureConfigDirectory(file);
                 generateDefault(file);
             }
             if (file.exists()) {

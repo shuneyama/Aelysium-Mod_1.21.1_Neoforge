@@ -1,7 +1,8 @@
 package net.aelysium.aelysiummod.item;
 
 import net.aelysium.aelysiummod.AelysiumMod;
-import net.aelysium.aelysiummod.item.custom.Espada_Klaus;
+import net.aelysium.aelysiummod.item.custom.Arma_Aeon;
+import net.aelysium.aelysiummod.item.custom.Arma_Klaus;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -213,7 +214,7 @@ public class ModItens {
                 }
             });
     public static final DeferredItem<SwordItem> AEON = ITEMS.register("aeon",
-            () -> new SwordItem(ModTiers.ADM, new Item.Properties().stacksTo(1)
+            () -> new Arma_Aeon(ModTiers.ADM, new Item.Properties().stacksTo(1)
                     .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
@@ -226,7 +227,7 @@ public class ModItens {
                 }
             });
     public static final DeferredItem<SwordItem> KLAUS_SWORD = ITEMS.register("klaus_sword",
-            () -> new Espada_Klaus(ModTiers.ADM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)
+            () -> new Arma_Klaus(ModTiers.ADM, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)
                     .attributes(SwordItem.createAttributes(ModTiers.ADM, 96, 1f))));
 
 // moedas <3 ===========================================================================================================
