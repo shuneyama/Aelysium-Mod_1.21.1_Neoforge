@@ -1,7 +1,6 @@
 package net.aelysium.aelysiummod.mixin;
 
-import com.mojang.blaze3d.vertex.*;
-import net.aelysium.aelysiummod.system.LuaEstado;
+import net.aelysium.aelysiummod.eventos.LuaEstado;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.resources.ResourceLocation;

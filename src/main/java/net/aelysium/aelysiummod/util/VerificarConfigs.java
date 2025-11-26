@@ -7,23 +7,15 @@ import java.nio.file.Paths;
 
 public class VerificarConfigs {
 
-    /**
-     * Retorna o caminho correto da config independente do ambiente
-     */
     public static File getConfigFile(MinecraftServer server, String fileName) {
-        // Tenta vários caminhos possíveis
         Path[] possiblePaths = {
-                // Caminho 1: Relativo ao diretório do servidor
                 server.getServerDirectory().resolve("config/aelysium/" + fileName),
 
-                // Caminho 2: Absoluto na pasta do jogo
                 Paths.get("config/aelysium/" + fileName),
 
-                // Caminho 3: No diretório de trabalho atual
                 Paths.get(System.getProperty("user.dir"), "config/aelysium/" + fileName)
         };
 
-        // Verifica qual caminho já tem arquivo
         for (Path path : possiblePaths) {
             File file = path.toFile();
             if (file.exists()) {
@@ -32,15 +24,11 @@ public class VerificarConfigs {
             }
         }
 
-        // Se nenhum existir, usa o primeiro caminho e cria
         File file = possiblePaths[0].toFile();
         System.out.println("[Aelysium] Usando caminho de config: " + file.getAbsolutePath());
         return file;
     }
 
-    /**
-     * Garante que o diretório de configs existe
-     */
     public static boolean ensureConfigDirectory(File configFile) {
         File parentDir = configFile.getParentFile();
         if (!parentDir.exists()) {

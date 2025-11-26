@@ -1,6 +1,6 @@
 package net.aelysium.aelysiummod.block.custom;
 
-import net.aelysium.aelysiummod.particle.ModParticles;
+import net.aelysium.aelysiummod.particula.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;

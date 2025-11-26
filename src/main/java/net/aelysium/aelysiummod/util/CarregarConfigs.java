@@ -1,6 +1,6 @@
 package net.aelysium.aelysiummod.util;
 
-import net.aelysium.aelysiummod.command.racas.*;
+import net.aelysium.aelysiummod.comandos.racas.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 
@@ -8,7 +8,6 @@ public class CarregarConfigs {
 
     @SubscribeEvent
     public static void onServerStart(ServerStartedEvent event) {
-        // Carrega todas as configs primeiro
         Deus_Config.load(event.getServer());
         Dracono_Config.load(event.getServer());
         Elvarin_Config.load(event.getServer());
@@ -17,7 +16,6 @@ public class CarregarConfigs {
         Undyne_Config.load(event.getServer());
         Valkyria_Config.load(event.getServer());
 
-        // Depois verifica se alguma é null e cria
         if (Deus_Config.DATA == null) {
             System.out.println("[Aelysium] Config Deus não existia — criando...");
             Deus_Config.generateDefault(new java.io.File(

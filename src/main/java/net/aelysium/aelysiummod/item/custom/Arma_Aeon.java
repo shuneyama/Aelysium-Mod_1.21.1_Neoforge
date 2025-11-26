@@ -1,6 +1,6 @@
 package net.aelysium.aelysiummod.item.custom;
 
-import net.aelysium.aelysiummod.effect.ModEfeitos;
+import net.aelysium.aelysiummod.efeitos.ModEfeitos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;

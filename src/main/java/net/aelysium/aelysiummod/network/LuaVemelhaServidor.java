@@ -4,7 +4,7 @@
 package net.aelysium.aelysiummod.network;
 
 import io.netty.buffer.ByteBuf;
-import net.aelysium.aelysiummod.system.LuaEstado;
+import net.aelysium.aelysiummod.eventos.LuaEstado;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;

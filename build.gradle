@@ -24,6 +24,7 @@ repositories {
     maven {
         url = "https://cursemaven.com"
     }
+    maven { url = "https://api.modrinth.com/maven" }
 }
 
 base {
@@ -120,6 +121,7 @@ configurations {
 dependencies {
 
     runtimeOnly "curse.maven:collective-342584:6429221"
+    implementation "maven.modrinth:jade:15.7.1+neoforge"
     compileOnly "curse.maven:collective-342584:6429221"
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

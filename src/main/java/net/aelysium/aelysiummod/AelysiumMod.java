@@ -3,15 +3,15 @@ package net.aelysium.aelysiummod;
 import com.natamus.collective_common_neoforge.check.ShouldLoadCheck;
 
 import net.aelysium.aelysiummod.block.ModBlocks;
-import net.aelysium.aelysiummod.command.*;
-import net.aelysium.aelysiummod.command.racas.*;
-import net.aelysium.aelysiummod.effect.ModEfeitos;
-import net.aelysium.aelysiummod.events.*;
+import net.aelysium.aelysiummod.comandos.*;
+import net.aelysium.aelysiummod.comandos.racas.*;
+import net.aelysium.aelysiummod.efeitos.ModEfeitos;
+import net.aelysium.aelysiummod.eventos.racas.*;
 import net.aelysium.aelysiummod.item.ModItens;
 
-import net.aelysium.aelysiummod.particle.DamaDaNoiteParticula;
-import net.aelysium.aelysiummod.particle.DamaVermelhaDaNoiteParticula;
-import net.aelysium.aelysiummod.particle.ModParticles;
+import net.aelysium.aelysiummod.particula.DamaDaNoiteParticula;
+import net.aelysium.aelysiummod.particula.DamaVermelhaDaNoiteParticula;
+import net.aelysium.aelysiummod.particula.ModParticles;
 import net.aelysium.aelysiummod.util.CarregarConfigs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
