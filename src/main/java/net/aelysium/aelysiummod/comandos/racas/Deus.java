@@ -2,6 +2,7 @@ package net.aelysium.aelysiummod.comandos.racas;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.aelysium.aelysiummod.config.racas.Deus_Config;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;

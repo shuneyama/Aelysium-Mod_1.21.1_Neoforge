@@ -1,9 +1,9 @@
-package net.aelysium.aelysiummod.comandos.racas;
+package net.aelysium.aelysiummod.config.racas;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import net.aelysium.aelysiummod.util.VerificarConfigs;
+import net.aelysium.aelysiummod.config.VerificarConfigs;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -17,10 +17,10 @@ import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class Undyne_Config {
+public class Humano_Config {
 
     public static ConfigData DATA;
-    private static final String CONFIG_NAME = "undyne.json";
+    private static final String CONFIG_NAME = "humano.json";
 
     public static class ConfigData {
         public Team team;
@@ -65,7 +65,7 @@ public class Undyne_Config {
     }
 
     public static void load(MinecraftServer server) {
-        System.out.println("[Aelysium] === Carregando UNDYNE ===");
+        System.out.println("[Aelysium] === Carregando HUMANO ===");
         try {
             File file = VerificarConfigs.getConfigFile(server, CONFIG_NAME);
             if (!file.exists()) {
@@ -108,32 +108,28 @@ public class Undyne_Config {
             ConfigData defaultConfig = new ConfigData();
             defaultConfig.team = new Team();
             defaultConfig.team.enabled = true;
-            defaultConfig.team.name = "undynes";
+            defaultConfig.team.name = "humanos";
 
             defaultConfig.status = new Attributes();
             defaultConfig.status.enabled = true;
             defaultConfig.status.list = List.of(
-                    new AttributeEntry("minecraft:generic.max_health", 16.0),
-                    new AttributeEntry("minecraft:generic.armor", 0.0),
-                    new AttributeEntry("irons_spellbooks:ice_spell_power", 1.05),
-                    new AttributeEntry("minecraft:generic.attack_damage", 2.0)
+                    new AttributeEntry("minecraft:generic.max_health", 20.0),
+                    new AttributeEntry("minecraft:generic.armor", -2.0),
+                    new AttributeEntry("minecraft:generic.attack_damage", 1.0)
             );
 
             defaultConfig.attributes = new Attributes();
             defaultConfig.attributes.enabled = true;
             defaultConfig.attributes.list = List.of(
+                    new AttributeEntry("minecraft:generic.armor_toughness", 4.0),
+                    new AttributeEntry("minecraft:generic.luck", 4.0),
                     new AttributeEntry("minecraft:generic.attack_speed", 4.5),
-                    new AttributeEntry("neoforge:swim_speed", 1.5),
-                    new AttributeEntry("minecraft:player.submerged_mining_speed", 1.0),
-                    new AttributeEntry("irons_spellbooks:ice_magic_resist", 1.05),
-                    new AttributeEntry("irons_spellbooks:lightning_magic_resist", 0.95)
+                    new AttributeEntry("apothic_attributes:experience_gained", 2.0)
             );
 
             defaultConfig.effects = new Effects();
             defaultConfig.effects.enabled = true;
-            defaultConfig.effects.list = List.of(
-                    new EffectEntry("minecraft:water_breathing", 120, 0)
-            );
+            defaultConfig.effects.list = List.of();
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             try (FileWriter writer = new FileWriter(file)) {

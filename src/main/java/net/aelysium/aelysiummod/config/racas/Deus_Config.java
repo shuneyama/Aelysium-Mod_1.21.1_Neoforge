@@ -1,14 +1,14 @@
-package net.aelysium.aelysiummod.comandos.racas;
+package net.aelysium.aelysiummod.config.racas;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import net.aelysium.aelysiummod.util.VerificarConfigs;
+import net.aelysium.aelysiummod.config.VerificarConfigs;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 
 import java.io.File;
@@ -17,14 +17,13 @@ import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class Dracono_Config {
+public class Deus_Config {
 
     public static ConfigData DATA;
-    private static final String CONFIG_NAME = "dracono.json";
+    private static final String CONFIG_NAME = "deus.json";
 
     public static class ConfigData {
         public Team team;
-        public Attributes status;
         public Attributes attributes;
         public Effects effects;
     }
@@ -52,6 +51,8 @@ public class Dracono_Config {
     public static class Effects {
         public boolean enabled;
         public List<EffectEntry> list;
+        public boolean enable_darkness = true;
+        public boolean enable_heal = true;
     }
 
     public static class EffectEntry {
@@ -67,7 +68,7 @@ public class Dracono_Config {
     }
 
     public static void load(MinecraftServer server) {
-        System.out.println("[Aelysium] === Carregando DRACONO ===");
+        System.out.println("[Aelysium] === Carregando DEUS ===");
         try {
             File file = VerificarConfigs.getConfigFile(server, CONFIG_NAME);
 
@@ -103,7 +104,6 @@ public class Dracono_Config {
                 DATA = gson.fromJson(new FileReader(file), type);
             }
         } catch (Exception e) {
-            System.out.println("[Aelysium Client] ERRO:");
             e.printStackTrace();
         }
     }
@@ -113,30 +113,23 @@ public class Dracono_Config {
             ConfigData defaultConfig = new ConfigData();
             defaultConfig.team = new Team();
             defaultConfig.team.enabled = true;
-            defaultConfig.team.name = "draconos";
-
-            defaultConfig.status = new Attributes();
-            defaultConfig.status.enabled = true;
-            defaultConfig.status.list = List.of(
-                    new AttributeEntry("minecraft:generic.max_health", 16.0),
-                    new AttributeEntry("minecraft:generic.armor", 6.0),
-                    new AttributeEntry("irons_spellbooks:lightning_spell_power", 1.0),
-                    new AttributeEntry("minecraft:generic.attack_damage", 3.0)
-            );
+            defaultConfig.team.name = "deuses";
 
             defaultConfig.attributes = new Attributes();
             defaultConfig.attributes.enabled = true;
             defaultConfig.attributes.list = List.of(
-                    new AttributeEntry("minecraft:generic.fall_damage_multiplier", 0.0),
-                    new AttributeEntry("minecraft:generic.attack_speed", 4.5),
-                    new AttributeEntry("irons_spellbooks:lightning_magic_resist", 1.05),
-                    new AttributeEntry("irons_spellbooks:nature_magic_resist", 0.95)
+                    new AttributeEntry("minecraft:generic.max_health", 2000.0),
+                    new AttributeEntry("minecraft:generic.armor", 100.0),
+                    new AttributeEntry("minecraft:generic.armor_toughness", 100.0),
+                    new AttributeEntry("irons_spellbooks:spell_power", 0.05),
+                    new AttributeEntry("minecraft:generic.attack_damage", 100.0),
+                    new AttributeEntry("neoforge:creative_flight", 1.0)
             );
 
             defaultConfig.effects = new Effects();
             defaultConfig.effects.enabled = true;
             defaultConfig.effects.list = List.of(
-                    new EffectEntry("minecraft:night_vision", 120, 0)
+                    new EffectEntry("minecraft:resistance", 120, 4)
             );
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -158,7 +151,7 @@ public class Dracono_Config {
                     .getHolder(ResourceLocation.parse(id))
                     .orElse(null);
         } catch (Exception e) {
-            System.out.println("[Aelysium] Efeito inválido na config: " + id);
+            System.out.println("[Aelysium] Efeito inválido: " + id);
             return null;
         }
     }
@@ -169,7 +162,7 @@ public class Dracono_Config {
                     .getHolder(ResourceLocation.parse(id))
                     .orElse(null);
         } catch (Exception e) {
-            System.out.println("[Aelysium] Atributo inválido na config: " + id);
+            System.out.println("[Aelysium] Atributo inválido: " + id);
             return null;
         }
     }

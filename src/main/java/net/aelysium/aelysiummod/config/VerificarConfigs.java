@@ -1,18 +1,16 @@
-package net.aelysium.aelysiummod.util;
+package net.aelysium.aelysiummod.config;
 
-import net.minecraft.server.MinecraftServer;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import net.minecraft.server.MinecraftServer;
 
 public class VerificarConfigs {
 
     public static File getConfigFile(MinecraftServer server, String fileName) {
         Path[] possiblePaths = {
                 server.getServerDirectory().resolve("config/aelysium/" + fileName),
-
                 Paths.get("config/aelysium/" + fileName),
-
                 Paths.get(System.getProperty("user.dir"), "config/aelysium/" + fileName)
         };
 
@@ -24,6 +22,7 @@ public class VerificarConfigs {
             }
         }
 
+        // Se não encontrou, usa o primeiro caminho como padrão
         File file = possiblePaths[0].toFile();
         System.out.println("[Aelysium] Usando caminho de config: " + file.getAbsolutePath());
         return file;

@@ -19,7 +19,6 @@ public class JadeIntegration implements IWailaPlugin {
 
     @Override
     public void registerClient(IWailaClientRegistration registration) {
-        // Registra o provider para jogadores
         registration.registerEntityComponent(
                 PlayerNameHider.INSTANCE,
                 Player.class
@@ -31,22 +30,36 @@ public class JadeIntegration implements IWailaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-            if (accessor.getEntity() instanceof Player player) {
-                PlayerTeam team = player.getTeam();
+            if (accessor.getEntity() instanceof Player targetPlayer) {
+                PlayerTeam team = targetPlayer.getTeam();
 
                 if (team != null && TimeCorGerenciador.isTeamHidden(team.getName())) {
-                    // Remove o nome original e substitui por "???"
-                    tooltip.clear();
-                    tooltip.add(Component.literal("???")
-                            .withStyle(ChatFormatting.OBFUSCATED)
-                            .withStyle(ChatFormatting.GRAY));
+                    Player viewer = accessor.getPlayer();
+                    boolean viewerHasOp = viewer != null && OpPlayersManager.isOp(viewer.getUUID());
+
+                    if (!viewerHasOp) {
+                        tooltip.clear();
+                        tooltip.add(Component.literal("???")
+                                .withStyle(ChatFormatting.OBFUSCATED)
+                                .withStyle(ChatFormatting.DARK_GRAY));
+                    }
                 }
             }
         }
 
         @Override
         public ResourceLocation getUid() {
-            return ResourceLocation.fromNamespaceAndPath("aelysiummod", "player_name_hider");
+            return ResourceLocation.fromNamespaceAndPath("aelysiummod", "internal_hidden");
+        }
+
+        @Override
+        public boolean isRequired() {
+            return true;
+        }
+
+        @Override
+        public int getDefaultPriority() {
+            return Integer.MAX_VALUE;
         }
     }
 }

@@ -1,6 +1,3 @@
-// ========================================
-// 1. BloodMoonPacket.java
-// ========================================
 package net.aelysium.aelysiummod.network;
 
 import io.netty.buffer.ByteBuf;
@@ -32,7 +29,7 @@ public record LuaVemelhaServidor(boolean isBloodMoon) implements CustomPacketPay
 
     public static void handle(LuaVemelhaServidor packet, IPayloadContext context) {
         context.enqueueWork(() -> {
-            // Atualiza o estado no cliente
+            // Atualiza o estado da lua vermelha no cliente
             LuaEstado.bloodMoon = packet.isBloodMoon();
         });
     }

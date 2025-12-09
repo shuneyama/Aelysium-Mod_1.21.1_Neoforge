@@ -8,6 +8,7 @@ public class CustomTimeCor {
     private final int rgb;
     private final String name;
     private final TextColor textColor;
+
     private boolean bold = false;
     private boolean italic = false;
     private boolean underlined = false;
@@ -27,35 +28,35 @@ public class CustomTimeCor {
     }
 
     public int getRgb() {
-        return rgb;
+        return this.rgb;
     }
 
     public int getRed() {
-        return FastColor.ARGB32.red(rgb);
+        return FastColor.ARGB32.red(this.rgb);
     }
 
     public int getGreen() {
-        return FastColor.ARGB32.green(rgb);
+        return FastColor.ARGB32.green(this.rgb);
     }
 
     public int getBlue() {
-        return FastColor.ARGB32.blue(rgb);
+        return FastColor.ARGB32.blue(this.rgb);
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public TextColor getTextColor() {
-        return textColor;
+        return this.textColor;
     }
 
     public int getColorValue() {
-        return rgb & 0xFFFFFF;
+        return this.rgb & 0xFFFFFF;
     }
 
     public String toHexString() {
-        return String.format("#%06X", rgb & 0xFFFFFF);
+        return String.format("#%06X", this.rgb & 0xFFFFFF);
     }
 
     public static CustomTimeCor fromHex(String name, String hex) {
@@ -90,43 +91,43 @@ public class CustomTimeCor {
     }
 
     public boolean isBold() {
-        return bold;
+        return this.bold;
     }
 
     public boolean isItalic() {
-        return italic;
+        return this.italic;
     }
 
     public boolean isUnderlined() {
-        return underlined;
+        return this.underlined;
     }
 
     public boolean isStrikethrough() {
-        return strikethrough;
+        return this.strikethrough;
     }
 
     public boolean isObfuscated() {
-        return obfuscated;
+        return this.obfuscated;
     }
 
     public Style getStyle() {
         return Style.EMPTY
-                .withColor(textColor)
-                .withBold(bold)
-                .withItalic(italic)
-                .withUnderlined(underlined)
-                .withStrikethrough(strikethrough)
-                .withObfuscated(obfuscated);
+                .withColor(this.textColor)
+                .withBold(this.bold)
+                .withItalic(this.italic)
+                .withUnderlined(this.underlined)
+                .withStrikethrough(this.strikethrough)
+                .withObfuscated(this.obfuscated);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(name + " (" + toHexString());
-        if (bold) sb.append(" Negrito");
-        if (italic) sb.append(" Itálico");
-        if (underlined) sb.append(" Sublinhado");
-        if (strikethrough) sb.append(" Riscado");
-        if (obfuscated) sb.append(" Ofuscado");
+        StringBuilder sb = new StringBuilder(this.name + " (" + toHexString());
+        if (this.bold) sb.append(" Negrito");
+        if (this.italic) sb.append(" Itálico");
+        if (this.underlined) sb.append(" Sublinhado");
+        if (this.strikethrough) sb.append(" Riscado");
+        if (this.obfuscated) sb.append(" Ofuscado");
         sb.append(")");
         return sb.toString();
     }

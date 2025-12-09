@@ -1,9 +1,9 @@
-package net.aelysium.aelysiummod.comandos.racas;
+package net.aelysium.aelysiummod.config.racas;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import net.aelysium.aelysiummod.util.VerificarConfigs;
+import net.aelysium.aelysiummod.config.VerificarConfigs;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -17,10 +17,10 @@ import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class Tiefling_Config {
+public class Valkyria_Config {
 
     public static ConfigData DATA;
-    private static final String CONFIG_NAME = "tiefling.json";
+    private static final String CONFIG_NAME = "valkyria.json";
 
     public static class ConfigData {
         public Team team;
@@ -65,7 +65,7 @@ public class Tiefling_Config {
     }
 
     public static void load(MinecraftServer server) {
-        System.out.println("[Aelysium] === Carregando TIEFLING ===");
+        System.out.println("[Aelysium] === Carregando VALKYRIA ===");
         try {
             File file = VerificarConfigs.getConfigFile(server, CONFIG_NAME);
             if (!file.exists()) {
@@ -108,25 +108,21 @@ public class Tiefling_Config {
             ConfigData defaultConfig = new ConfigData();
             defaultConfig.team = new Team();
             defaultConfig.team.enabled = true;
-            defaultConfig.team.name = "tieflings";
+            defaultConfig.team.name = "valkyrias";
 
             defaultConfig.status = new Attributes();
             defaultConfig.status.enabled = true;
             defaultConfig.status.list = List.of(
-                    new AttributeEntry("minecraft:generic.max_health", 16.0),
-                    new AttributeEntry("minecraft:generic.armor", 4.0),
-                    new AttributeEntry("irons_spellbooks:fire_spell_power", 1.075),
-                    new AttributeEntry("minecraft:generic.attack_damage", -1.0)
+                    new AttributeEntry("minecraft:generic.max_health", 20.0),
+                    new AttributeEntry("minecraft:generic.armor", -2.0),
+                    new AttributeEntry("irons_spellbooks:holy_spell_power", 1.0),
+                    new AttributeEntry("minecraft:generic.attack_damage", 4.0),
+                    new AttributeEntry("neoforge:creative_flight", 1.0)
             );
 
             defaultConfig.attributes = new Attributes();
             defaultConfig.attributes.enabled = true;
-            defaultConfig.attributes.list = List.of(
-                    new AttributeEntry("irons_spellbooks:mana_regen", 2.0),
-                    new AttributeEntry("minecraft:generic.burning_time", 0.5),
-                    new AttributeEntry("irons_spellbooks:fire_magic_resist", 1.05),
-                    new AttributeEntry("irons_spellbooks:ice_magic_resist", 0.95)
-            );
+            defaultConfig.attributes.list = List.of();
 
             defaultConfig.effects = new Effects();
             defaultConfig.effects.enabled = true;

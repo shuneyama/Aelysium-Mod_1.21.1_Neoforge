@@ -1,53 +1,37 @@
-package net.aelysium.aelysiummod.time;
+package net.aelysium.aelysiummod.comandos.chat;
 
-import java.util.List;
-import net.aelysium.aelysiummod.config.ChatConfig;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import net.aelysium.aelysiummod.time.TimeCorGerenciador;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.PlayerTeam;
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.ServerChatEvent;
 
-@EventBusSubscriber(modid = "aelysiummod", bus = EventBusSubscriber.Bus.GAME)
-public class ChatCor {
+public class GlobalChatCommand {
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onServerChat(ServerChatEvent event) {
-        ServerPlayer player = event.getPlayer();
+    public static int sendGlobalMessage(CommandContext<CommandSourceStack> context) {
+        try {
+            ServerPlayer player = context.getSource().getPlayerOrException();
+            String message = StringArgumentType.getString(context, "mensagem");
+
+            MutableComponent messageComponent = Component.literal(message);
+            MutableComponent finalMessage = buildChatMessage(player, messageComponent);
+
+            context.getSource().getServer().getPlayerList().broadcastSystemMessage(finalMessage, false);
+            return 1;
+        } catch (Exception e) {
+            context.getSource().sendFailure(
+                    Component.literal("Erro ao enviar mensagem global: " + e.getMessage())
+            );
+            return 0;
+        }
+    }
+
+    private static MutableComponent buildChatMessage(ServerPlayer player, Component originalMessage) {
         PlayerTeam team = player.getTeam();
 
-        event.setCanceled(true);
-
-        Component originalMessage = event.getMessage();
-        List<ServerPlayer> recipients = getRecipients(player);
-        MutableComponent finalMessage = buildChatMessage(player, team, originalMessage);
-
-        for (ServerPlayer recipient : recipients) {
-            recipient.sendSystemMessage(finalMessage);
-        }
-    }
-
-    private static List<ServerPlayer> getRecipients(ServerPlayer sender) {
-        if (!ChatConfig.isLocalChatEnabled()) {
-            return sender.getServer().getPlayerList().getPlayers();
-        }
-
-        double radius = ChatConfig.getLocalChatRadius();
-        return sender.getServer().getPlayerList().getPlayers().stream()
-                .filter(player -> {
-                    if (player.level().dimension() != sender.level().dimension()) {
-                        return false;
-                    }
-                    double distance = player.distanceTo(sender);
-                    return distance <= radius;
-                })
-                .toList();
-    }
-
-    private static MutableComponent buildChatMessage(ServerPlayer player, PlayerTeam team, Component originalMessage) {
         // Se o jogador não está em um time, usa formato padrão
         if (team == null) {
             return Component.literal("<")

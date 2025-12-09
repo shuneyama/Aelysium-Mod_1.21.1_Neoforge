@@ -1,6 +1,6 @@
 package net.aelysium.aelysiummod.eventos.racas;
 
-import net.aelysium.aelysiummod.comandos.racas.Dracono_Config;
+import net.aelysium.aelysiummod.config.racas.Dracono_Config;
 import net.aelysium.aelysiummod.eventos.EfeitosTick;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;

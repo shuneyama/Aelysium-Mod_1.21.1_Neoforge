@@ -1,33 +1,30 @@
 package net.aelysium.aelysiummod.time;
 
+import java.util.HashMap;
+import java.util.Map;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class TimeCorData extends SavedData {
     private static final String DATA_NAME = "custom_team_colors";
+
     private final Map<String, Integer> teamColors = new HashMap<>();
 
     public TimeCorData() {
-        super();
     }
 
     public TimeCorData(CompoundTag tag, HolderLookup.Provider provider) {
-        super();
         loadFromNBT(tag);
     }
 
     @Override
-    public @NotNull CompoundTag save(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider provider) {
+    @NotNull
+    public CompoundTag save(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         CompoundTag colorsTag = new CompoundTag();
-        teamColors.forEach((teamName, color) -> {
-            colorsTag.putInt(teamName, color);
-        });
+        teamColors.forEach((teamName, color) -> colorsTag.putInt(teamName, color));
         tag.put("TeamColors", colorsTag);
         return tag;
     }
@@ -54,14 +51,13 @@ public class TimeCorData extends SavedData {
     }
 
     public static TimeCorData get(MinecraftServer server) {
-        return server.overworld().getDataStorage()
-                .computeIfAbsent(
-                        new SavedData.Factory<TimeCorData>(
-                                TimeCorData::new,
-                                (tag, provider) -> new TimeCorData(tag, provider)
-                        ),
-                        DATA_NAME
-                );
+        return server.overworld().getDataStorage().computeIfAbsent(
+                new SavedData.Factory<>(
+                        TimeCorData::new,
+                        (tag, provider) -> new TimeCorData(tag, provider)
+                ),
+                DATA_NAME
+        );
     }
 
     public static void saveTeamColor(MinecraftServer server, String teamName, CustomTimeCor color) {
