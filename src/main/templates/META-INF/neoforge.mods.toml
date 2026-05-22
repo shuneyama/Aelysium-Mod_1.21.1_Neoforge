@@ -23,7 +23,7 @@ license="MIT License"
 modId="aelysiummod" #mandatory
 
 # The version number of the mod
-version="0.6.7" #mandatory
+version="1.0-b" #mandatory
 
 # A display name for the mod
 displayName="Aelysium Mod" #mandatory
@@ -41,7 +41,7 @@ logoFile="icon.png" #optional
 #credits="" #optional
 
 # A text field displayed in the mod UI
-authors="Yuna, Shune, Raven, Lilith, Gusta" #optional
+authors="Shune, Yuna, Raven, Lilith, Gusta" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''Quem escreve e apaga depois, serve o bumbum com batata e arroz'''

@@ -4,17 +4,23 @@
   "creativetab.aelysiummod.aelysium_armas": "Aelysium Weapons",
 
   "effect.aelysiummod.congelamento": "Freeze",
+  "effect.aelysiummod.cegueira_abissal": "Abyssal Blindness",
+  "effect.aelysiummod.caecitas": "Caecitas",
 
-  "item.aelysiummod.klaus_sword": "§0§kT§r§0§kT",
+  "key.categories.aelysiummod": "Aelysium",
+  "key.aelysiummod.forma_divina": "Divine Form",
+  "key.aelysiummod.vanish": "Vanish",
+
+  "item.aelysiummod.klaus_staff": "§8§kilj §3§kTTTTT §8§kilj",
   "item.aelysiummod.espada_adm": "Espada dos Adm's",
   "tooltip.aelysiummod.espada_adm.shift_down": "§7§om's.§r",
   "tooltip.aelysiummod.espada_adm": "§7§oAd§r",
 
-  "item.aelysiummod.espada_especial": "Espada Especial",
-  "tooltip.aelysiummod.espada_especial.shift_down": "§7§oIts blade chooses the warrior — and refuses to be wielded by those without the soul of legend.§r",
+  "item.aelysiummod.espada_especial": "Lunar Blood",
+  "tooltip.aelysiummod.espada_especial.shift_down": "§7§oIts blade chooses the warrior, and refuses to be wielded by those without the soul of legend.§r",
   "tooltip.aelysiummod.espada_especial": "§7§oForged for rare hands...§r",
 
-  "item.aelysiummod.cano": "Cano",
+  "item.aelysiummod.cano": "Pipe",
   "tooltip.aelysiummod.cano.shift_down": "§7§oOne fine day someone was walking down the street and saw a pipe, and picked up this pipe.§r",
   "tooltip.aelysiummod.cano": "§7§oIt's just a pipe.§r",
 
@@ -39,7 +45,7 @@
   "tooltip.aelysiummod.luz_da_ultima_fenix": "§6§oAn inner light§r that never fades.§r",
 
   "item.aelysiummod.fulmens_fang": "§f§kilj §3§lFulmen's Fang§r §f§kilj§r",
-  "tooltip.aelysiummod.fulmens_fang.shift_down": "§3§oWho wields the Sword dances with thunder - for within its blade sleeps the storm, dreaming fiercely in the silence of steel.§r",
+  "tooltip.aelysiummod.fulmens_fang.shift_down": "§3§oWho wields the Sword dances with thunder, for within its blade sleeps the storm, dreaming fiercely in the silence of steel.§r",
   "tooltip.aelysiummod.fulmens_fang": "§oFrom the storm comes thunder, and from it comes the cut that tears the heavens.§r",
 
   "item.aelysiummod.dark_judgment": "§8§kiii §4§lDark Judgment §8§kiii§r",
@@ -47,7 +53,7 @@
   "tooltip.aelysiummod.dark_judgment": "§4§lDark Judgment §r§4§odoes not reap out of anger, but out of necessity. It rightes what has been twisted, it ends what is past its time, and it tears from existence all that refuses to accept the end.§r",
 
   "item.aelysiummod.divine_silence": "§8§kiii §5§lDivine Silence §8§kiii§r",
-  "tooltip.aelysiummod.divine_silence.shift_down": "§5§oBefore light, before even the concept of creation, there was the Void—not as absence, but as will. And from that will, a weapon was born. It was not forged by hands, nor summoned by ritual. Divine Silence simply came into being, as if the universe itself had made a mistake.§r",
+  "tooltip.aelysiummod.divine_silence.shift_down": "§5§oBefore light, before even the concept of creation, there was the Voi,not as absence, but as will. And from that will, a weapon was born. It was not forged by hands, nor summoned by ritual. Divine Silence simply came into being, as if the universe itself had made a mistake.§r",
   "tooltip.aelysiummod.divine_silence": "§5§oWhere §5§lDivine Silence §r§5§oplays, even time hesitates, for before the Void, even the gods are silent.§r",
 
   "item.aelysiummod.thyrsus": "§a§kilj §2§lThyrsus§r §a§kilj§r",
@@ -62,16 +68,12 @@
   "tooltip.aelysiummod.protocolo_genesis.shift_down": "§7§oUsed once to begin the age of machines. It will be used again to end it.§r",
   "tooltip.aelysiummod.protocolo_genesis": "§c§She doesn't cut. It erases. And replaces.§r",
 
-  "item.aelysiummod.thunderlash": "§f§kilj §3Thunderlash§r §f§kilj§r",
-  "tooltip.aelysiummod.thunderlash.shift_down": "§3§kaksjdaasdasd  dasdasasd§3§k",
-  "tooltip.aelysiummod.thunderlash": "§3§oThe legendary scythe that summons the fury of the heavens with every swing.§r",
-
   "item.aelysiummod.blood_regret": "Blood Regret",
   "tooltip.aelysiummod.blood_regret.shift_down": "Its liquid is as vivid as blood in the light. It bears a small skull that watches silently, a still reminder that the sword's true weight lies in what it demands of its wielder.",
   "tooltip.aelysiummod.blood_regret": "A sword with a crimson blade that responds to the emotions of its wielder. On the hilt, a skull symbolizes the burden it represents.",
 
   "item.aelysiummod.aeon": "§6§kT §r§6§lAeon §r§6§kT",
-  "tooltip.aelysiummod.aeon.shift_down": "§6§oUnlike mortal weapons, Aeon doesn't just cut flesh or steel — it sunders timelines, shreds unlived possibilities, and seals destinies with a single blow.",
+  "tooltip.aelysiummod.aeon.shift_down": "§6§oUnlike mortal weapons, Aeon doesn't just cut flesh or steel, it sunders timelines, shreds unlived possibilities, and seals destinies with a single blow.",
   "tooltip.aelysiummod.aeon": "§6§oForged in the confines where time took its first breath.",
 
 
@@ -118,5 +120,10 @@
 
   "block.aelysiummod.bloco_ar": "Air Block",
   "block.aelysiummod.dama_da_noite": "Lady of the Night",
-  "block.aelysiummod.dama_vermelha_da_noite": "Lady of the Red Night"
+  "block.aelysiummod.dama_vermelha_da_noite": "Lady of the Red Night",
+
+  "item.aelysiummod.criador_npc": "§e✦ NPC Creator",
+  "item.aelysiummod.registro_npc": "§e✦ Sales Log Book",
+  "item.aelysiummod.varinha_protecao": "§a✦ Wand Protect",
+  "entity.aelysiummod.custom_npc": "Custom NPC"
 }

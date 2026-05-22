@@ -2,60 +2,48 @@ package net.aelysium.aelysiummod.comandos;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import net.aelysium.aelysiummod.comandos.chat.GlobalChatCommand;
-import net.aelysium.aelysiummod.comandos.racas.Deus;
-import net.aelysium.aelysiummod.comandos.racas.Dracono;
-import net.aelysium.aelysiummod.comandos.racas.Elvarin;
-import net.aelysium.aelysiummod.comandos.racas.Humano;
-import net.aelysium.aelysiummod.comandos.racas.Resetar;
-import net.aelysium.aelysiummod.comandos.racas.Tiefling;
-import net.aelysium.aelysiummod.comandos.racas.Undyne;
-import net.aelysium.aelysiummod.comandos.racas.Valkyria;
-import net.aelysium.aelysiummod.config.ChatConfig;
-import net.aelysium.aelysiummod.config.ModConfig;
-import net.aelysium.aelysiummod.config.racas.Deus_Config;
-import net.aelysium.aelysiummod.config.racas.Dracono_Config;
-import net.aelysium.aelysiummod.config.racas.Elvarin_Config;
-import net.aelysium.aelysiummod.config.racas.Humano_Config;
-import net.aelysium.aelysiummod.config.racas.Tiefling_Config;
-import net.aelysium.aelysiummod.config.racas.Undyne_Config;
-import net.aelysium.aelysiummod.config.racas.Valkyria_Config;
-import net.aelysium.aelysiummod.eventos.LuaEstado;
-import net.aelysium.aelysiummod.network.LuaVemelhaServidor;
-import net.aelysium.aelysiummod.time.CorTimes;
-import net.minecraft.commands.CommandSourceStack;
+import net.aelysium.aelysiummod.banlist.command.BanlistCommands;
+import net.aelysium.aelysiummod.chat.ChatManager;
+import net.aelysium.aelysiummod.util.ChatConfig;
+import net.aelysium.aelysiummod.util.ModConfig;
+import net.aelysium.aelysiummod.deus.DeusCommand;
+import net.aelysium.aelysiummod.deus.VanishCommand;
+import net.aelysium.aelysiummod.lua.LuaManager;
+import net.aelysium.aelysiummod.lua.TipoLua;
+import net.aelysium.aelysiummod.network.AelysiumNetwork;
+import net.aelysium.aelysiummod.socialspy.SocialSpyManager;
+import net.aelysium.aelysiummod.whitelist.WhitelistOfflineManager;
+import net.aelysium.aelysiummod.habilidade.HabilidadeManager;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.DimensionArgument;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.commands.arguments.TeamArgument;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
+
+import java.util.Collection;
+import java.util.UUID;
 
 public class AelysiumComandos {
 
     @SubscribeEvent
     public void registerCommands(RegisterCommandsEvent event) {
-        // Comando principal /aelysium
         event.getDispatcher().register(
                 Commands.literal("aelysium")
                         .requires(source -> source.hasPermission(2))
 
-                        // ==================== /aelysium chat ====================
+                        .then(NickCommand.build())
+
+                        .then(BanlistCommands.build())
+
+                        .then(NpcCommand.build())
+
                         .then(Commands.literal("chat")
-                                // /aelysium chat raio
                                 .then(Commands.literal("raio")
-                                        .then(Commands.literal("verificar")
-                                                .executes(ctx -> {
-                                                    int radius = ChatConfig.getLocalChatRadius();
-                                                    ctx.getSource().sendSuccess(() ->
-                                                                    Component.literal("O raio do chat local é de " + radius + " blocos."),
-                                                            false
-                                                    );
-                                                    return 1;
-                                                })
-                                        )
                                         .then(Commands.literal("definir")
                                                 .then(Commands.argument("blocos", IntegerArgumentType.integer(1, 1000))
                                                         .executes(ctx -> {
@@ -70,7 +58,6 @@ public class AelysiumComandos {
                                                 )
                                         )
                                 )
-                                // /aelysium chat login
                                 .then(Commands.literal("login")
                                         .then(Commands.literal("ligar")
                                                 .executes(ctx -> {
@@ -92,311 +79,190 @@ public class AelysiumComandos {
                                                     return 1;
                                                 })
                                         )
-                                        .then(Commands.literal("status")
+                                )
+                        )
+
+                        .then(Commands.literal("balao")
+                                .executes(ctx -> {
+                                    if (ctx.getSource().getEntity() instanceof ServerPlayer player) {
+                                        AelysiumNetwork.enviarAbrirBalloonGui(player);
+                                        return 1;
+                                    }
+                                    return 0;
+                                })
+                        )
+
+                        .then(Commands.literal("lua")
+                                .executes(ctx -> {
+                                    LuaManager.toggleLuaVermelha(ctx.getSource().getServer());
+                                    String status = LuaManager.luaAtual == TipoLua.VERMELHA
+                                            ? "§cLua Vermelha ativada!"
+                                            : "§7Lua voltou ao normal.";
+                                    ctx.getSource().sendSuccess(() -> Component.literal(status), true);
+                                    return 1;
+                                })
+                        )
+
+                        .then(Commands.literal("socialspy")
+                                .executes(ctx -> {
+                                    if (!(ctx.getSource().getEntity() instanceof ServerPlayer player)) {
+                                        ctx.getSource().sendFailure(Component.literal("§cApenas jogadores podem usar este comando."));
+                                        return 0;
+                                    }
+                                    boolean ativo = SocialSpyManager.toggle(player.getUUID());
+                                    String status = ativo ? "§aativado" : "§cdesativado";
+                                    ctx.getSource().sendSuccess(() -> Component.literal("§7SocialSpy " + status + "§7!"), false);
+                                    return 1;
+                                })
+                        )
+
+                        .then(Commands.literal("manutencao")
+                                .executes(ctx -> {
+                                    boolean ativo = HabilidadeManager.toggleManutencao();
+                                    if (ativo) {
+                                        int kickados = 0;
+                                        for (ServerPlayer player : new java.util.ArrayList<>(ctx.getSource().getServer().getPlayerList().getPlayers())) {
+                                            if (!player.hasPermissions(2)) {
+                                                player.connection.disconnect(Component.literal(
+                                                        "§c§lAelysium está em manutenção!\n\n§7Fique de olho nos avisos do servidor!"
+                                                ));
+                                                kickados++;
+                                            }
+                                        }
+                                        int finalKickados = kickados;
+                                        ctx.getSource().sendSuccess(() ->
+                                                Component.literal("§c§lManutenção ativada! §f" + finalKickados + " jogador(es) desconectado(s)."), true);
+                                    } else {
+                                        ctx.getSource().sendSuccess(() ->
+                                                Component.literal("§a§lManutenção desativada! §fJogadores podem entrar novamente."), true);
+                                    }
+                                    return 1;
+                                })
+                        )
+
+                        .then(Commands.literal("whitelist")
+                                .then(Commands.literal("adicionar")
+                                        .then(Commands.argument("nome", StringArgumentType.word())
                                                 .executes(ctx -> {
-                                                    boolean enabled = ModConfig.areJoinLeaveMessagesEnabled();
-                                                    String status = enabled ? "ativadas" : "desativadas";
-                                                    ctx.getSource().sendSuccess(() ->
-                                                                    Component.literal("Mensagens de login/logout estão " + status + "."),
-                                                            false
-                                                    );
+                                                    String nome = StringArgumentType.getString(ctx, "nome");
+                                                    if (WhitelistOfflineManager.adicionar(nome)) {
+                                                        UUID uuid = WhitelistOfflineManager.gerarUUIDOffline(nome);
+                                                        ctx.getSource().sendSuccess(() -> Component.literal(
+                                                                "§aJogador §f" + nome + " §aadicionado à whitelist! §7(UUID: " + uuid + ")"), true);
+                                                        return 1;
+                                                    } else {
+                                                        ctx.getSource().sendFailure(Component.literal(
+                                                                "§cJogador §f" + nome + " §cjá está na whitelist!"));
+                                                        return 0;
+                                                    }
+                                                })
+                                        )
+                                )
+                                .then(Commands.literal("remover")
+                                        .then(Commands.argument("nome", StringArgumentType.word())
+                                                .executes(ctx -> {
+                                                    String nome = StringArgumentType.getString(ctx, "nome");
+                                                    if (WhitelistOfflineManager.remover(nome)) {
+                                                        ctx.getSource().sendSuccess(() -> Component.literal(
+                                                                "§aJogador §f" + nome + " §aremovido da whitelist!"), true);
+                                                        return 1;
+                                                    } else {
+                                                        ctx.getSource().sendFailure(Component.literal(
+                                                                "§cJogador §f" + nome + " §cnão encontrado na whitelist!"));
+                                                        return 0;
+                                                    }
+                                                })
+                                        )
+                                )
+                                .then(Commands.literal("procurar")
+                                        .then(Commands.argument("nome", StringArgumentType.word())
+                                                .executes(ctx -> {
+                                                    String nome = StringArgumentType.getString(ctx, "nome");
+                                                    String info = WhitelistOfflineManager.getInfo(nome);
+                                                    if (info == null) {
+                                                        ctx.getSource().sendFailure(Component.literal(
+                                                                "§cJogador §f" + nome + " §cnão encontrado na whitelist!"));
+                                                        return 0;
+                                                    }
+                                                    UUID uuid = WhitelistOfflineManager.gerarUUIDOffline(nome);
+                                                    ctx.getSource().sendSuccess(() -> Component.literal(
+                                                            "§e=== Whitelist ===\n§fNome: " + nome + "\n§fUUID Offline: " + uuid), false);
                                                     return 1;
                                                 })
                                         )
                                 )
-                                // /aelysium chat time
-                                .then(Commands.literal("time")
-                                        .then(Commands.argument("time", TeamArgument.team())
-                                                // Jade integration
-                                                .then(Commands.literal("jade")
-                                                        .then(Commands.literal("ocultar")
-                                                                .executes(CorTimes::hideTeamInJade)
-                                                        )
-                                                        .then(Commands.literal("mostrar")
-                                                                .executes(CorTimes::showTeamInJade)
-                                                        )
-                                                        .then(Commands.literal("listar")
-                                                                .executes(CorTimes::listHiddenTeams)
-                                                        )
-                                                )
-                                                // Nome do time
-                                                .then(Commands.literal("nome")
-                                                        .then(Commands.literal("rgb")
-                                                                .then(Commands.argument("vermelho", IntegerArgumentType.integer(0, 255))
-                                                                        .then(Commands.argument("verde", IntegerArgumentType.integer(0, 255))
-                                                                                .then(Commands.argument("azul", IntegerArgumentType.integer(0, 255))
-                                                                                        .executes(CorTimes::setRgbColor)
-                                                                                )
-                                                                        )
-                                                                )
-                                                        )
-                                                        .then(Commands.literal("hex")
-                                                                .then(Commands.argument("hexcode", StringArgumentType.string())
-                                                                        .executes(CorTimes::setHexColor)
-                                                                )
-                                                        )
-                                                        .then(Commands.literal("remover")
-                                                                .executes(CorTimes::removeColor)
-                                                        )
-                                                        .then(Commands.literal("formatar")
-                                                                .then(Commands.literal("negrito")
-                                                                        .executes(CorTimes::toggleNameBold)
-                                                                )
-                                                                .then(Commands.literal("italico")
-                                                                        .executes(CorTimes::toggleNameItalic)
-                                                                )
-                                                                .then(Commands.literal("sublinhado")
-                                                                        .executes(CorTimes::toggleNameUnderlined)
-                                                                )
-                                                                .then(Commands.literal("riscado")
-                                                                        .executes(CorTimes::toggleNameStrikethrough)
-                                                                )
-                                                                .then(Commands.literal("zalgo")
-                                                                        .executes(CorTimes::toggleNameObfuscated)
-                                                                )
-                                                        )
-                                                )
-                                                // Prefixo do time
-                                                .then(Commands.literal("prefixo")
-                                                        .then(Commands.literal("rgb")
-                                                                .then(Commands.argument("vermelho", IntegerArgumentType.integer(0, 255))
-                                                                        .then(Commands.argument("verde", IntegerArgumentType.integer(0, 255))
-                                                                                .then(Commands.argument("azul", IntegerArgumentType.integer(0, 255))
-                                                                                        .executes(CorTimes::setPrefixRgbColor)
-                                                                                )
-                                                                        )
-                                                                )
-                                                        )
-                                                        .then(Commands.literal("hex")
-                                                                .then(Commands.argument("hexcode", StringArgumentType.string())
-                                                                        .executes(CorTimes::setPrefixHexColor)
-                                                                )
-                                                        )
-                                                        .then(Commands.literal("remover")
-                                                                .executes(CorTimes::removePrefixColor)
-                                                        )
-                                                        .then(Commands.literal("formatar")
-                                                                .then(Commands.literal("negrito")
-                                                                        .executes(CorTimes::togglePrefixBold)
-                                                                )
-                                                                .then(Commands.literal("italico")
-                                                                        .executes(CorTimes::togglePrefixItalic)
-                                                                )
-                                                                .then(Commands.literal("sublinhado")
-                                                                        .executes(CorTimes::togglePrefixUnderlined)
-                                                                )
-                                                                .then(Commands.literal("riscado")
-                                                                        .executes(CorTimes::togglePrefixStrikethrough)
-                                                                )
-                                                                .then(Commands.literal("zalgo")
-                                                                        .executes(CorTimes::togglePrefixObfuscated)
-                                                                )
-                                                        )
-                                                )
-                                                // Sufixo do time
-                                                .then(Commands.literal("sufixo")
-                                                        .then(Commands.literal("rgb")
-                                                                .then(Commands.argument("vermelho", IntegerArgumentType.integer(0, 255))
-                                                                        .then(Commands.argument("verde", IntegerArgumentType.integer(0, 255))
-                                                                                .then(Commands.argument("azul", IntegerArgumentType.integer(0, 255))
-                                                                                        .executes(CorTimes::setSuffixRgbColor)
-                                                                                )
-                                                                        )
-                                                                )
-                                                        )
-                                                        .then(Commands.literal("hex")
-                                                                .then(Commands.argument("hexcode", StringArgumentType.string())
-                                                                        .executes(CorTimes::setSuffixHexColor)
-                                                                )
-                                                        )
-                                                        .then(Commands.literal("remover")
-                                                                .executes(CorTimes::removeSuffixColor)
-                                                        )
-                                                        .then(Commands.literal("formatar")
-                                                                .then(Commands.literal("negrito")
-                                                                        .executes(CorTimes::toggleSuffixBold)
-                                                                )
-                                                                .then(Commands.literal("italico")
-                                                                        .executes(CorTimes::toggleSuffixItalic)
-                                                                )
-                                                                .then(Commands.literal("sublinhado")
-                                                                        .executes(CorTimes::toggleSuffixUnderlined)
-                                                                )
-                                                                .then(Commands.literal("riscado")
-                                                                        .executes(CorTimes::toggleSuffixStrikethrough)
-                                                                )
-                                                                .then(Commands.literal("zalgo")
-                                                                        .executes(CorTimes::toggleSuffixObfuscated)
-                                                                )
-                                                        )
-                                                )
+                        )
+
+                        .then(Commands.literal("anunciar")
+                                .then(Commands.argument("alvos", EntityArgument.players())
+                                        .then(Commands.argument("mensagem", StringArgumentType.greedyString())
+                                                .executes(ctx -> {
+                                                    Collection<ServerPlayer> alvos = EntityArgument.getPlayers(ctx, "alvos");
+                                                    String mensagem = StringArgumentType.getString(ctx, "mensagem");
+                                                    String mensagemFormatada = mensagem.replace("&", "\u00a7");
+                                                    Component componente = Component.literal(mensagemFormatada);
+
+                                                    for (ServerPlayer player : alvos) {
+                                                        player.sendSystemMessage(componente);
+                                                    }
+                                                    return alvos.size();
+                                                })
                                         )
                                 )
                         )
 
-                        // ==================== /aelysium lua ====================
-                        .then(Commands.literal("lua")
-                                .then(Commands.literal("alternar")
-                                        .executes(ctx -> {
-                                            LuaEstado.bloodMoon = !LuaEstado.bloodMoon;
-                                            LuaVemelhaServidor packet = new LuaVemelhaServidor(LuaEstado.bloodMoon);
-                                            PacketDistributor.sendToAllPlayers(packet);
-                                            String status = LuaEstado.bloodMoon ? "ativada" : "desativada";
-                                            ctx.getSource().sendSuccess(() ->
-                                                            Component.literal("Lua vermelha " + status + "!"),
-                                                    true
-                                            );
-                                            return 1;
-                                        })
-                                )
-                        )
-
-                        // ==================== /aelysium dimensao ====================
                         .then(Commands.literal("dimensao")
-                                .then(Commands.literal("superplano")
+                                .then(Commands.argument("dimensao", DimensionArgument.dimension())
                                         .executes(ctx -> {
-                                            MinecraftServer server = ctx.getSource().getServer();
-                                            server.getCommands().performPrefixedCommand(
-                                                    ctx.getSource(),
-                                                    "execute in aelysium:superplano run tp @s 0 16 0 180 0"
-                                            );
-                                            return 1;
-                                        })
-                                )
-                                .then(Commands.literal("the_nether")
-                                        .executes(ctx -> {
-                                            MinecraftServer server = ctx.getSource().getServer();
-                                            server.getCommands().performPrefixedCommand(
-                                                    ctx.getSource(),
-                                                    "execute in minecraft:the_nether run tp @s 0 128 0 180 0"
-                                            );
-                                            return 1;
-                                        })
-                                )
-                                .then(Commands.literal("overworld")
-                                        .executes(ctx -> {
-                                            MinecraftServer server = ctx.getSource().getServer();
-                                            server.getCommands().performPrefixedCommand(
-                                                    ctx.getSource(),
-                                                    "execute in minecraft:overworld run tp @s 0 128 0 180 0"
-                                            );
-                                            return 1;
-                                        })
-                                )
-                                .then(Commands.literal("the_end")
-                                        .executes(ctx -> {
-                                            MinecraftServer server = ctx.getSource().getServer();
-                                            server.getCommands().performPrefixedCommand(
-                                                    ctx.getSource(),
-                                                    "execute in minecraft:the_end run tp @s 0 64 68 180 0"
-                                            );
-                                            return 1;
-                                        })
-                                )
-                        )
+                                            ServerLevel targetLevel = DimensionArgument.getDimension(ctx, "dimensao");
+                                            ResourceKey<?> dimKey = targetLevel.dimension();
+                                            String dimId = dimKey.location().toString();
 
-                        // ==================== /aelysium raca ====================
-                        .then(Commands.literal("raca")
-                                .then(Commands.literal("recarregar")
-                                        .executes(ctx -> {
-                                            Deus_Config.load(ctx.getSource().getServer());
-                                            Dracono_Config.load(ctx.getSource().getServer());
-                                            Elvarin_Config.load(ctx.getSource().getServer());
-                                            Tiefling_Config.load(ctx.getSource().getServer());
-                                            Undyne_Config.load(ctx.getSource().getServer());
-                                            Humano_Config.load(ctx.getSource().getServer());
-                                            Valkyria_Config.load(ctx.getSource().getServer());
-                                            ctx.getSource().sendSuccess(() ->
-                                                            Component.literal("Configurações de raças recarregadas!"),
-                                                    true
+                                            MinecraftServer server = ctx.getSource().getServer();
+                                            server.getCommands().performPrefixedCommand(
+                                                    ctx.getSource(),
+                                                    "execute in " + dimId + " run tp @s 0 128 0 180 0"
                                             );
                                             return 1;
                                         })
-                                )
-                                .then(Commands.literal("deus")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(ctx -> {
-                                                    if (Deus_Config.DATA == null) {
-                                                        Deus_Config.load(ctx.getSource().getServer());
-                                                    }
-                                                    return Deus.aplicar(ctx);
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("dracono")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(ctx -> {
-                                                    if (Dracono_Config.DATA == null) {
-                                                        Dracono_Config.load(ctx.getSource().getServer());
-                                                    }
-                                                    return Dracono.aplicar(ctx);
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("elvarin")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(ctx -> {
-                                                    if (Elvarin_Config.DATA == null) {
-                                                        Elvarin_Config.load(ctx.getSource().getServer());
-                                                    }
-                                                    return Elvarin.aplicar(ctx);
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("tiefling")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(ctx -> {
-                                                    if (Tiefling_Config.DATA == null) {
-                                                        Tiefling_Config.load(ctx.getSource().getServer());
-                                                    }
-                                                    return Tiefling.aplicar(ctx);
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("undyne")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(ctx -> {
-                                                    if (Undyne_Config.DATA == null) {
-                                                        Undyne_Config.load(ctx.getSource().getServer());
-                                                    }
-                                                    return Undyne.aplicar(ctx);
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("humano")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(ctx -> {
-                                                    if (Humano_Config.DATA == null) {
-                                                        Humano_Config.load(ctx.getSource().getServer());
-                                                    }
-                                                    return Humano.aplicar(ctx);
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("valkyria")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(ctx -> {
-                                                    if (Valkyria_Config.DATA == null) {
-                                                        Valkyria_Config.load(ctx.getSource().getServer());
-                                                    }
-                                                    return Valkyria.aplicar(ctx);
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("resetar")
-                                        .then(Commands.argument("player", EntityArgument.player())
-                                                .executes(Resetar::aplicar)
-                                        )
                                 )
                         )
         );
 
-        // ==================== /global ====================
+        event.getDispatcher().register(
+                Commands.literal("g")
+                        .then(Commands.argument("mensagem", StringArgumentType.greedyString())
+                                .executes(ctx -> {
+                                    if (ctx.getSource().getEntity() instanceof ServerPlayer player) {
+                                        ChatManager.enviarMensagemGlobal(player, StringArgumentType.getString(ctx, "mensagem"));
+                                        return 1;
+                                    }
+                                    return 0;
+                                })
+                        )
+        );
+
         event.getDispatcher().register(
                 Commands.literal("global")
                         .then(Commands.argument("mensagem", StringArgumentType.greedyString())
-                                .executes(GlobalChatCommand::sendGlobalMessage)
+                                .executes(ctx -> {
+                                    if (ctx.getSource().getEntity() instanceof ServerPlayer player) {
+                                        ChatManager.enviarMensagemGlobal(player, StringArgumentType.getString(ctx, "mensagem"));
+                                        return 1;
+                                    }
+                                    return 0;
+                                })
                         )
         );
+
+        HologramaCommand.register(event.getDispatcher());
+        TeleportCommand.register(event.getDispatcher());
+        ProtecaoCommand.registrar(event.getDispatcher());
+        ProtecaoCommand.registrarSubComandosLista(event.getDispatcher());
+        VanishCommand.register(event.getDispatcher());
+        RacaCommand.register(event.getDispatcher());
+        DeusCommand.register(event.getDispatcher());
+        AtributosCommand.registrar(event.getDispatcher());
+        HabilidadeCommand.registrar(event.getDispatcher());
     }
 }

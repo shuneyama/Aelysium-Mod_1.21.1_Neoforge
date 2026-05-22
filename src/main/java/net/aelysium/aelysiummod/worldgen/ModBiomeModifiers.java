@@ -28,7 +28,11 @@ public class ModBiomeModifiers {
         context.register(ADD_OVERWORLD_DN_FLOR, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
                         biomes.getOrThrow(Biomes.PLAINS),
-                        biomes.getOrThrow(Biomes.DARK_FOREST)
+                        biomes.getOrThrow(Biomes.DARK_FOREST),
+                        biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.MEADOW)
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.OVERWORLD_DN_FLOR_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION

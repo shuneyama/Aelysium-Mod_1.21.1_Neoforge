@@ -1,6 +1,6 @@
 package net.aelysium.aelysiummod.mixin;
 
-import net.aelysium.aelysiummod.config.ModConfig;
+import net.aelysium.aelysiummod.util.ModConfig;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.players.PlayerList;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,6 @@ public class PlayerListMixin {
         if (!ModConfig.areJoinLeaveMessagesEnabled()) {
             String text = message.getString();
 
-            // Verifica se é uma mensagem de join/leave (inglês e português)
             if (text.contains("joined the game") ||
                     text.contains("left the game") ||
                     text.contains("entrou no jogo") ||

@@ -5,10 +5,20 @@
   "minVersion": "0.8",
   "refmap": "aelysiummod.refmap.json",
   "client": [
-    "LevelRendererMixin"
+    "LuaSkyMixin",
+    "AbstractClientPlayerMixin",
+    "nick.PlayerDisplayNameMixin",
+    "nick.ClientSuggestionProviderMixin",
+    "MixinPlayerRendererDivina",
+    "MixinFormaDivinaEntity",
+    "GlitchSkyMixin"
   ],
   "mixins": [
-    "PlayerListMixin"
+    "PlayerListMixin",
+    "ServerPlayNetworkMixin",
+    "PrivateMessageMixin",
+    "nick.PlayerNameMixin",
+    "nick.ServerPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

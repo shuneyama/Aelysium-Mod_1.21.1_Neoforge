@@ -15,14 +15,12 @@ import java.util.UUID;
 @EventBusSubscriber(modid = "aelysiummod", bus = EventBusSubscriber.Bus.GAME)
 public class OpSyncHandler {
 
-    // Contador de ticks para sincronização periódica (100 ticks = 5 segundos)
     private static int tickCounter = 0;
     private static final int SYNC_INTERVAL = 100; // 5 segundos em ticks
 
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            // Delay de 1 tick para garantir que o jogador está completamente conectado
             player.getServer().execute(() -> syncOpPlayers(player));
         }
     }

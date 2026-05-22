@@ -1,11 +1,9 @@
 package net.aelysium.aelysiummod.jade;
 
-import net.aelysium.aelysiummod.time.TimeCorGerenciador;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.scores.PlayerTeam;
 import snownee.jade.api.EntityAccessor;
 import snownee.jade.api.IEntityComponentProvider;
 import snownee.jade.api.ITooltip;
@@ -30,19 +28,17 @@ public class JadeIntegration implements IWailaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
-            if (accessor.getEntity() instanceof Player targetPlayer) {
-                PlayerTeam team = targetPlayer.getTeam();
+            if (accessor.getEntity() instanceof Player) {
+                Player viewer = accessor.getPlayer();
 
-                if (team != null && TimeCorGerenciador.isTeamHidden(team.getName())) {
-                    Player viewer = accessor.getPlayer();
-                    boolean viewerHasOp = viewer != null && OpPlayersManager.isOp(viewer.getUUID());
+                // Se o viewer NÃO é OP, esconde o nome de TODOS os jogadores
+                boolean viewerHasOp = viewer != null && OpPlayersManager.isOp(viewer.getUUID());
 
-                    if (!viewerHasOp) {
-                        tooltip.clear();
-                        tooltip.add(Component.literal("???")
-                                .withStyle(ChatFormatting.OBFUSCATED)
-                                .withStyle(ChatFormatting.DARK_GRAY));
-                    }
+                if (!viewerHasOp) {
+                    tooltip.clear();
+                    tooltip.add(Component.literal("???")
+                            .withStyle(ChatFormatting.OBFUSCATED)
+                            .withStyle(ChatFormatting.DARK_GRAY));
                 }
             }
         }

@@ -42,7 +42,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> DAMA_VERMELHA_DA_NOITE = registerBlock("dama_vermelha_da_noite",
             () -> new DamaNoiteVermelha(MobEffects.HEALTH_BOOST, 0.35F, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> POTTED_DAMA_DA_NOITE = BLOCKS.register("potted_dama_da_noite",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, DAMA_DA_NOITE,
+                    BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
 
+    public static final DeferredBlock<Block> POTTED_DAMA_VERMELHA_DA_NOITE = BLOCKS.register("potted_dama_vermelha_da_noite",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, DAMA_VERMELHA_DA_NOITE,
+                    BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
 
 
 

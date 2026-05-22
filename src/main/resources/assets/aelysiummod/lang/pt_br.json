@@ -4,14 +4,20 @@
   "creativetab.aelysiummod.aelysium_armas": "Aelysium Armas",
 
   "effect.aelysiummod.congelamento": "Congelamento",
+  "effect.aelysiummod.cegueira_abissal": "Cegueira Abissal",
+  "effect.aelysiummod.caecitas": "Caecitas",
 
-  "item.aelysiummod.klaus_sword": "§0§kT§r§0§kT",
+  "key.aelysiummod.forma_divina": "Forma Divina",
+  "key.aelysiummod.vanish": "Vanish",
+  "key.categories.aelysiummod": "Aelysium",
+
+  "item.aelysiummod.klaus_staff": "§8§kilj §3§kTTTTT §8§kilj",
   "item.aelysiummod.espada_adm": "Espada dos Adm's",
   "tooltip.aelysiummod.espada_adm.shift_down": "§7§om's.§r",
   "tooltip.aelysiummod.espada_adm": "§7§oAd§r",
 
-  "item.aelysiummod.espada_especial": "Espada Especial",
-  "tooltip.aelysiummod.espada_especial.shift_down": "§7§oSua lâmina escolhe o guerreiro — e recusa ser empunhada por quem não tem alma de lenda.§r",
+  "item.aelysiummod.espada_especial": "Sangue Lunar",
+  "tooltip.aelysiummod.espada_especial.shift_down": "§7§oSua lâmina escolhe o guerreiro, e recusa ser empunhada por quem não tem alma de lenda.§r",
   "tooltip.aelysiummod.espada_especial": "§7§oForjada para mãos raras...§r",
 
   "item.aelysiummod.cano": "Cano",
@@ -39,7 +45,7 @@
   "tooltip.aelysiummod.luz_da_ultima_fenix": "§6§oUma luz interior§r que jamais se apaga.§r",
 
   "item.aelysiummod.fulmens_fang": "§f§kilj §3§lFulmen's Fang§r §f§kilj§r",
-  "tooltip.aelysiummod.fulmens_fang.shift_down": "§3§oQuem empunha a Espada dança com o trovão - pois em sua lâmina dorme a tempestade, sonhando furiosa no silêncio do aço.§r",
+  "tooltip.aelysiummod.fulmens_fang.shift_down": "§3§oQuem empunha a Espada dança com o trovão, pois em sua lâmina dorme a tempestade, sonhando furiosa no silêncio do aço.§r",
   "tooltip.aelysiummod.fulmens_fang": "§oDa tormenta veio o trovão, e dele nasceu o corte que rasga os céus.§r",
 
   "item.aelysiummod.dark_judgment": "§8§kiii §4§lDark Judgment §8§kiii§r",
@@ -47,7 +53,7 @@
   "tooltip.aelysiummod.dark_judgment": "§4§lDark Judgment §r§4§onão ceifa por raiva, mas por necessidade. Ela corrige o que foi distorcido, encerra o que já passou da hora, e arranca da existência tudo o que se recusa a aceitar o fim.§r",
 
   "item.aelysiummod.divine_silence": "§8§kiii §5§lDivine Silence §8§kiii§r",
-  "tooltip.aelysiummod.divine_silence.shift_down": "§5§oAntes da luz, antes mesmo do conceito de criação, havia o Vazio - não como ausência, mas como vontade. E dessa vontade, nasceu uma arma. Não foi forjada por mãos, nem invocada por rituais. A Divine Silence simplesmente passou a existir, como se o próprio universo tivesse cometido um erro.§r",
+  "tooltip.aelysiummod.divine_silence.shift_down": "§5§oAntes da luz, antes mesmo do conceito de criação, havia o Vazio, não como ausência, mas como vontade. E dessa vontade, nasceu uma arma. Não foi forjada por mãos, nem invocada por rituais. A Divine Silence simplesmente passou a existir, como se o próprio universo tivesse cometido um erro.§r",
   "tooltip.aelysiummod.divine_silence": "§5§oOnde §5§lDivine Silence §r§5§otoca até o tempo hesita, pois diante do Vazio, até os deuses se calam.§r",
 
   "item.aelysiummod.thyrsus": "§a§kilj §2§lThyrsus§r §a§kilj§r",
@@ -62,16 +68,12 @@
   "tooltip.aelysiummod.protocolo_genesis.shift_down": "§7§oUsada uma vez para iniciar a era das máquinas. Será usada novamente para encerrá-la.§r",
   "tooltip.aelysiummod.protocolo_genesis": "§c§oEla não corta. Ela apaga. E substitui.§r",
 
-  "item.aelysiummod.thunderlash": "§f§kilj §3Thunderlash§r §f§kilj§r",
-  "tooltip.aelysiummod.thunderlash.shift_down": "§3§kaksjdaasdasd  dasdasasd§3§k",
-  "tooltip.aelysiummod.thunderlash": "§3§oA foice lendária que invoca a fúria dos céus a cada balanço.§r",
-
   "item.aelysiummod.blood_regret": "Blood Regret",
   "tooltip.aelysiummod.blood_regret.shift_down": "Seu líquido é vivo como sangue sob a luz. Possui um pequeno crânio que observa em silêncio, como um lembrete imóvel de que o verdadeiro peso da espada está no no que ela exige de quem a carrega.",
   "tooltip.aelysiummod.blood_regret": "Uma espada de lâmina carmesim que responde à emoção de quem a empunha. Na empunhadura, um crânio simboliza o fardo que ela representa.",
 
   "item.aelysiummod.aeon": "§6§kT §r§6§lAeon §r§6§kT",
-  "tooltip.aelysiummod.aeon.shift_down": "§6§oDiferente das armas mortais, Aeon não corta apenas carne ou aço — ela fende linhas temporais, retalha possibilidades não vividas e sela destinos com um único golpe.",
+  "tooltip.aelysiummod.aeon.shift_down": "§6§oDiferente das armas mortais, Aeon não corta apenas carne ou aço, ela fende linhas temporais, retalha possibilidades não vividas e sela destinos com um único golpe.",
   "tooltip.aelysiummod.aeon": "§6§oForjada nos confins onde o tempo teve seu primeiro suspiro.",
 
 
@@ -118,5 +120,10 @@
 
   "block.aelysiummod.bloco_ar": "Bloco de Ar",
   "block.aelysiummod.dama_da_noite": "Dama da Noite",
-  "block.aelysiummod.dama_vermelha_da_noite": "Dama da Noite Vermelho"
+  "block.aelysiummod.dama_vermelha_da_noite": "Dama da Noite Vermelho",
+
+  "item.aelysiummod.criador_npc": "§e✦ Criador de NPC",
+  "item.aelysiummod.registro_npc": "§e✦ Registro de Vendas de NPC",
+  "item.aelysiummod.varinha_protecao": "§a✦ Varinha de Proteção",
+  "entity.aelysiummod.custom_npc": "NPC Customizado"
 }

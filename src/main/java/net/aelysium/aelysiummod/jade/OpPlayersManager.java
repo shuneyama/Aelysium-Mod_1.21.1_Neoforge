@@ -4,10 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * Gerencia a lista de jogadores OP no lado do cliente.
- * Usado para ocultar informações no Jade para jogadores não-OP.
- */
 public class OpPlayersManager {
     private static Set<UUID> opPlayers = new HashSet<>();
 
