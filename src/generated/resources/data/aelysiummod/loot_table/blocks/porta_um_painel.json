@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "aelysiummod:porta_um_painel",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "aelysiummod:porta_um_painel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "aelysiummod:blocks/porta_um_painel"
+}

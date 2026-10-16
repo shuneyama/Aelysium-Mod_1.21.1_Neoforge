@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.sistemas.social.apelido.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "aelysiummod.refmap.json",
+  "client": [
+    "LinhaChatSemSombraMixin",
+    "NomeExibicaoJogadorMixin",
+    "OrdemListaJogadoresMixin",
+    "ProvedorSugestoesClienteMixin"
+  ],
+  "mixins": [
+    "NomeJogadorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

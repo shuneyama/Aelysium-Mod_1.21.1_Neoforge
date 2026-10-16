@@ -1,0 +1,29 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "srcalpha",
+    "dstrgb": "one",
+    "srcalpha": "one",
+    "dstalpha": "one"
+  },
+  "vertex": "aelysiummod:domo_regiao",
+  "fragment": "aelysiummod:domo_regiao",
+  "attributes": ["Position", "UV0", "Color"],
+  "samplers": [],
+  "uniforms": [
+    {
+      "name": "ModelViewMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+    },
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+    },
+    { "name": "DistanciaFade", "type": "float", "count": 1, "values": [80.0] },
+    { "name": "BaseColor", "type": "float", "count": 3, "values": [0.35, 0.75, 1.0] }
+  ]
+}

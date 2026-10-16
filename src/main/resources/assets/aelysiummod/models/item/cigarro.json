@@ -1,0 +1,45 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:builtin/entity",
+	"textures": {
+		"particle": "aelysiummod:item/cigarro_novo_item"
+	},
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-180, 0, 0],
+			"translation": [0, -2.75, 0.75],
+			"scale": [0.5, 0.6, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-180, 0, 0],
+			"translation": [0, -2.75, 0.75],
+			"scale": [0.5, 0.6, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [-170, 0, 0],
+			"translation": [0, -3.25, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-170, 0, 0],
+			"translation": [0, -3.25, 1]
+		},
+		"ground": {
+			"translation": [0, 4.25, 0]
+		},
+		"gui": {
+			"rotation": [-180, 20, 33],
+			"translation": [-12.75, -21, -0.5],
+			"scale": [3.5, 4, 3.5]
+		},
+		"fixed": {
+			"translation": [0, 12.75, -0.5],
+			"scale": [2, 2, 2]
+		},
+		"on_shelf": {
+			"translation": [1, 26.5, -0.5],
+			"scale": [3, 3, 3]
+		}
+	}
+}

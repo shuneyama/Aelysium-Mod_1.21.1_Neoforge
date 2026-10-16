@@ -1,0 +1,18 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "io.github.kosmx.bendylib.compat.cpm",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "CPMRedirectModelPartMixin",
+    "RedirectModelRendererBaseAccessor",
+    "CPMBendContextMixin",
+    "CPMQuadMeshMixin",
+    "QuadAccessor",
+    "VertexAccessor"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

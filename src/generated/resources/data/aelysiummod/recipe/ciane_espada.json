@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "aelysiummod:ciane_barra"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "pattern": [
+    "NCN",
+    " N ",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "aelysiummod:ciane_espada"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=south,half=lower": { "model": "aelysiummod:block/fenda_kairos_lower" },
+    "facing=south,half=upper": { "model": "aelysiummod:block/fenda_kairos_upper" },
+    "facing=west,half=lower": { "model": "aelysiummod:block/fenda_kairos_lower", "y": 90 },
+    "facing=west,half=upper": { "model": "aelysiummod:block/fenda_kairos_upper", "y": 90 },
+    "facing=north,half=lower": { "model": "aelysiummod:block/fenda_kairos_lower", "y": 180 },
+    "facing=north,half=upper": { "model": "aelysiummod:block/fenda_kairos_upper", "y": 180 },
+    "facing=east,half=lower": { "model": "aelysiummod:block/fenda_kairos_lower", "y": 270 },
+    "facing=east,half=upper": { "model": "aelysiummod:block/fenda_kairos_upper", "y": 270 }
+  }
+}

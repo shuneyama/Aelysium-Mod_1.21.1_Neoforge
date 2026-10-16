@@ -1,0 +1,98 @@
+{
+  "providers": [
+    {
+      "type": "space",
+      "advances": { "\ue100": 1, "\ue101": 1, "\ue102": 1, "\ue103": 1, "\ue104": 1, "\ue105": 1, "\ue106": 1, "\ue107": 1, "\ue108": 1, "\ue109": 1, "\ue10a": 1, "\ue10b": 1, "\ue10c": 1, "\ue10d": 1, "\ue10e": 1, "\ue10f": 1, "\ue110": 1, "\ue111": 1, "\ue112": 1, "\ue113": 1, "\ue114": 1, "\ue115": 1, "\ue116": 1, "\ue117": 1, "\ue118": 1, "\ue119": 1, "\ue11a": 1, "\ue11b": 1, "\ue11c": 1, "\ue11d": 1, "\ue11e": 1, "\ue11f": 1, "\ue120": 1, "\ue121": 1, "\ue122": 1, "\ue123": 1, "\ue124": 1, "\ue125": 1, "\ue126": 1, "\ue127": 1, "\ue128": 1, "\ue129": 1, "\ue12a": 1, "\ue12b": 1, "\ue12c": 1, "\ue12d": 1, "\ue12e": 1, "\ue12f": 1, "\ue130": 1, "\ue131": 1, "\ue132": 1, "\ue133": 1, "\ue134": 1, "\ue135": 1, "\ue136": 1, "\ue137": 1, "\ue138": 1, "\ue139": 1, "\ue13a": 1, "\ue13b": 1, "\ue13c": 1, "\ue13d": 1, "\ue13e": 1, "\ue13f": 1, "\ue140": 1, "\ue141": 1, "\ue142": 1, "\ue143": 1, "\ue144": 1, "\ue145": 1, "\ue146": 1, "\ue147": 1, "\ue148": 1, "\ue149": 1, "\ue14a": 1, "\ue14b": 1, "\ue14c": 1, "\ue14d": 1, "\ue14e": 1, "\ue14f": 1, "\ue150": 1, "\ue151": 1, "\ue152": 1, "\ue153": 1, "\ue154": 1, "\ue155": 1, "\ue156": 1, "\ue157": 1, "\ue158": 1, "\ue159": 1, "\ue15a": 1, "\ue15b": 1, "\ue15c": 1, "\ue15d": 1, "\ue15e": 1, "\ue15f": 1, "\ue160": 1, "\ue161": 1, "\ue162": 1, "\ue163": 1, "\ue164": 1, "\ue165": 1, "\ue166": 1, "\ue167": 1, "\ue168": 1, "\ue169": 1, "\ue16a": 1, "\ue16b": 1, "\ue16c": 1, "\ue16d": 1, "\ue16e": 1, "\ue16f": 1, "\ue170": 1, "\ue171": 1, "\ue172": 1, "\ue173": 1, "\ue174": 1, "\ue175": 1, "\ue176": 1, "\ue177": 1, "\ue178": 1, "\ue179": 1, "\ue17a": 1, "\ue17b": 1, "\ue17c": 1, "\ue17d": 1, "\ue17e": 1, "\ue17f": 1, "\ue180": 1, "\ue181": 1, "\ue182": 1, "\ue183": 1, "\ue184": 1, "\ue185": 1, "\ue186": 1, "\ue187": 1, "\ue188": 1, "\ue189": 1, "\ue18a": 1, "\ue18b": 1, "\ue18c": 1, "\ue18d": 1, "\ue18e": 1, "\ue18f": 1, "\ue190": 1, "\ue191": 1, "\ue192": 1, "\ue193": 1, "\ue194": 1, "\ue195": 1, "\ue196": 1, "\ue197": 1, "\ue198": 1, "\ue199": 1, "\ue19a": 1, "\ue19b": 1, "\ue19c": 1, "\ue19d": 1, "\ue19e": 1, "\ue19f": 1, "\ue1a0": 1, "\ue1a1": 1, "\ue1a2": 1, "\ue1a3": 1, "\ue1a4": 1, "\ue1a5": 1, "\ue1a6": 1, "\ue1a7": 1, "\ue1a8": 1, "\ue1a9": 1, "\ue1aa": 1, "\ue1ab": 1, "\ue1ac": 1, "\ue1ad": 1, "\ue1ae": 1, "\ue1af": 1, "\ue1b0": 1, "\ue1b1": 1, "\ue1b2": 1, "\ue1b3": 1, "\ue1b4": 1, "\ue1b5": 1, "\ue1b6": 1, "\ue1b7": 1, "\ue1b8": 1, "\ue1b9": 1, "\ue1ba": 1, "\ue1bb": 1, "\ue1bc": 1, "\ue1bd": 1, "\ue1be": 1, "\ue1bf": 1, "\ue1c0": 1, "\ue1c1": 1, "\ue1c2": 1, "\ue1c3": 1, "\ue1c4": 1, "\ue1c5": 1, "\ue1c6": 1, "\ue1c7": 1, "\ue1c8": 1, "\ue1c9": 1, "\ue1ca": 1, "\ue1cb": 1, "\ue1cc": 1, "\ue1cd": 1, "\ue1ce": 1, "\ue1cf": 1, "\ue1d0": 1, "\ue1d1": 1, "\ue1d2": 1, "\ue1d3": 1, "\ue1d4": 1, "\ue1d5": 1, "\ue1d6": 1, "\ue1d7": 1, "\ue1d8": 1, "\ue1d9": 1, "\ue1da": 1, "\ue1db": 1, "\ue1dc": 1, "\ue1dd": 1, "\ue1de": 1, "\ue1df": 1, "\ue1e0": 1, "\ue1e1": 1, "\ue1e2": 1, "\ue1e3": 1, "\ue1e4": 1, "\ue1e5": 1, "\ue1e6": 1, "\ue1e7": 1, "\ue1e8": 1, "\ue1e9": 1, "\ue1ea": 1, "\ue1eb": 1, "\ue1ec": 1, "\ue1ed": 1, "\ue1ee": 1, "\ue1ef": 1, "\ue1f0": 1, "\ue1f1": 1, "\ue1f2": 1, "\ue1f3": 1, "\ue1f4": 1, "\ue1f5": 1, "\ue1f6": 1, "\ue1f7": 1, "\ue1f8": 1, "\ue1f9": 1, "\ue1fa": 1, "\ue1fb": 1, "\ue1fc": 1, "\ue1fd": 1, "\ue1fe": 1, "\ue1ff": 1 }
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/admin.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/deus.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/dracono.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/elvarin.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/humano.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/tiefling.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/undyne.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/valkyria.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/robo2.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "aelysiummod:font/badges/cientista.png",
+      "ascent": 9,
+      "height": 10,
+      "chars": [
+        ""
+      ]
+    }
+  ]
+}

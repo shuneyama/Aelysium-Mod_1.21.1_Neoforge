@@ -1,0 +1,20 @@
+{
+	"parent": "aelysiummod:item/escudo_abismo",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 180, 0],
+			"translation": [2.5, 0, 4]
+		},
+		"thirdperson_lefthand": {
+			"translation": [2.5, 0, 0]
+		},
+		"firstperson_righthand": {
+			"rotation": [68.18, -84.64, 68.26],
+			"translation": [0.75, 0.5, 1.25]
+		},
+		"firstperson_lefthand": {
+			"rotation": [68.18, -84.64, 68.26],
+			"translation": [0.75, 0.5, 1.25]
+		}
+	}
+}

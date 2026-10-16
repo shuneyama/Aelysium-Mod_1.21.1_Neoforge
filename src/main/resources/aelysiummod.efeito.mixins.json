@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.conteudo.efeito.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "aelysiummod.refmap.json",
+  "client": [
+    "CeuGlitchMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

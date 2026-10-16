@@ -1,0 +1,47 @@
+{
+	"format_version": "26.3",
+	"credit": "Feito por Shune :D",
+	"parent": "minecraft:builtin/entity",
+	"textures": {
+		"particle": "aelysiummod:item/isqueiro_capa"
+	},
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [46, 20, 0],
+			"translation": [-0.5, 2.75, 2.25],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [46, -160, 0],
+			"translation": [-0.5, 2.75, 2.25],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 20, 0],
+			"translation": [-2, 10, 2.25],
+			"scale": [1.5, 1.5, 1.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -160, 0],
+			"translation": [-2, 10, 2.25],
+			"scale": [1.5, 1.5, 1.5]
+		},
+		"ground": {
+			"translation": [0, 4.25, 0]
+		},
+		"gui": {
+			"rotation": [30, 46, 0],
+			"translation": [-1.75, 7.75, -2.25],
+			"scale": [2, 2, 2]
+		},
+		"fixed": {
+			"translation": [-1, 10, -2.25],
+			"scale": [2, 2, 2]
+		},
+		"on_shelf": {
+			"translation": [-3, 19.5, -2.25],
+			"scale": [2, 2, 2]
+		}
+	}
+}

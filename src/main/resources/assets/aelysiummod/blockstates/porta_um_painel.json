@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing\u003deast,half\u003dlower,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left_closed",
+      "y": 270
+    },
+    "facing\u003deast,half\u003dlower,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left"
+    },
+    "facing\u003deast,half\u003dlower,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right_closed",
+      "y": 270
+    },
+    "facing\u003deast,half\u003dlower,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right",
+      "y": 180
+    },
+    "facing\u003deast,half\u003dupper,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_left_closed",
+      "y": 270
+    },
+    "facing\u003deast,half\u003dupper,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_left"
+    },
+    "facing\u003deast,half\u003dupper,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_right_closed",
+      "y": 270
+    },
+    "facing\u003deast,half\u003dupper,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_right",
+      "y": 180
+    },
+    "facing\u003dnorth,half\u003dlower,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left_closed",
+      "y": 180
+    },
+    "facing\u003dnorth,half\u003dlower,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left",
+      "y": 270
+    },
+    "facing\u003dnorth,half\u003dlower,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right_closed",
+      "y": 180
+    },
+    "facing\u003dnorth,half\u003dlower,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right",
+      "y": 90
+    },
+    "facing\u003dnorth,half\u003dupper,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_left_closed",
+      "y": 180
+    },
+    "facing\u003dnorth,half\u003dupper,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_left",
+      "y": 270
+    },
+    "facing\u003dnorth,half\u003dupper,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_right_closed",
+      "y": 180
+    },
+    "facing\u003dnorth,half\u003dupper,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_right",
+      "y": 90
+    },
+    "facing\u003dsouth,half\u003dlower,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left_closed"
+    },
+    "facing\u003dsouth,half\u003dlower,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left",
+      "y": 90
+    },
+    "facing\u003dsouth,half\u003dlower,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right_closed"
+    },
+    "facing\u003dsouth,half\u003dlower,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right",
+      "y": 270
+    },
+    "facing\u003dsouth,half\u003dupper,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_left_closed"
+    },
+    "facing\u003dsouth,half\u003dupper,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_left",
+      "y": 90
+    },
+    "facing\u003dsouth,half\u003dupper,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_right_closed"
+    },
+    "facing\u003dsouth,half\u003dupper,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_right",
+      "y": 270
+    },
+    "facing\u003dwest,half\u003dlower,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left_closed",
+      "y": 90
+    },
+    "facing\u003dwest,half\u003dlower,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_left",
+      "y": 180
+    },
+    "facing\u003dwest,half\u003dlower,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right_closed",
+      "y": 90
+    },
+    "facing\u003dwest,half\u003dlower,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_bottom_right"
+    },
+    "facing\u003dwest,half\u003dupper,hinge\u003dleft,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_left_closed",
+      "y": 90
+    },
+    "facing\u003dwest,half\u003dupper,hinge\u003dleft,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_left",
+      "y": 180
+    },
+    "facing\u003dwest,half\u003dupper,hinge\u003dright,open\u003dfalse": {
+      "model": "aelysiummod:block/porta_um_painel_top_right_closed",
+      "y": 90
+    },
+    "facing\u003dwest,half\u003dupper,hinge\u003dright,open\u003dtrue": {
+      "model": "aelysiummod:block/porta_um_painel_top_right"
+    }
+  }
+}

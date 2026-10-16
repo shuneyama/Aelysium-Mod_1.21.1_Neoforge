@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.sistemas.social.chat.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "aelysiummod.refmap.json",
+  "client": [
+    "JogadorClienteAbstratoMixin"
+  ],
+  "mixins": [
+    "ListaJogadoresMixin",
+    "RedeJogadorServidorMixin",
+    "MensagemPrivadaMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "ambientocclusion": false,
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "particle": "aelysiummod:block/fenda_kairos",
+    "all": "aelysiummod:block/fenda_kairos"
+  },
+  "elements": [
+    {
+      "from": [-3, -6, 8],
+      "to": [19, 16, 8],
+      "shade": false,
+      "faces": {
+        "north": { "uv": [0, 8, 16, 16], "texture": "#all" },
+        "south": { "uv": [0, 8, 16, 16], "texture": "#all" }
+      }
+    }
+  ]
+}

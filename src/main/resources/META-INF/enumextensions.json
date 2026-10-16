@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "AELYSIUMMOD_SABRE_CORTE",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "net/aelysium/aelysiummod/conteudo/item/arma/cliente/PoseSabre",
+        "field": "POSE_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "AELYSIUMMOD_BATERIA_COMER",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "net/aelysium/aelysiummod/sistemas/rp/raca/cliente/PoseBateria",
+        "field": "POSE_PROXY"
+      }
+    }
+  ]
+}

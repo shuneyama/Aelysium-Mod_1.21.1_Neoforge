@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "aelysiummod:dama_da_noite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "aelysiummod:poeira_lunar"
+  }
+}

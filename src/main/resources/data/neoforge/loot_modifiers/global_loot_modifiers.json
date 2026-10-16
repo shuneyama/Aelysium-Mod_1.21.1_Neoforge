@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "entries": [
+    "aelysiummod:banned_item_reducer",
+    "aelysiummod:mod_cap_loot_reducer"
+  ]
+}

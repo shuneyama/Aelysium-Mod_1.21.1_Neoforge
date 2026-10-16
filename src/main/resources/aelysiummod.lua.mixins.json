@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.sistemas.mundo.lua.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "aelysiummod.refmap.json",
+  "client": [
+    "CeuLuaMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

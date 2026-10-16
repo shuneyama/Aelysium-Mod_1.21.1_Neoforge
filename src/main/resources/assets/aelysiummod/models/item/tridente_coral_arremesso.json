@@ -1,0 +1,17 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "aelysiummod:item/tridente_coral",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-180, -90, 0],
+			"translation": [0, 4, 0.25],
+			"scale": [1.5, 1.5, 1.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-180, -90, 0],
+			"translation": [0, 7, 0.25],
+			"scale": [1.5, 1.5, 1.5]
+		}
+	}
+}

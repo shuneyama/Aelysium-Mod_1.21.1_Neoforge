@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.3,
+  "group": "ciane",
+  "ingredient": {
+    "item": "aelysiummod:ciane_cru"
+  },
+  "result": {
+    "count": 1,
+    "id": "aelysiummod:ciane_fragmento"
+  }
+}

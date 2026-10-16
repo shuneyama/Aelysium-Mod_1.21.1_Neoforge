@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=up,rotacao=0": { "model": "aelysiummod:block/sangue_4_r0" },
+    "facing=up,rotacao=1": { "model": "aelysiummod:block/sangue_4_r1" },
+    "facing=up,rotacao=2": { "model": "aelysiummod:block/sangue_4_r2" },
+    "facing=up,rotacao=3": { "model": "aelysiummod:block/sangue_4_r3" },
+    "facing=down,rotacao=0": { "model": "aelysiummod:block/sangue_4_r0", "x": 180 },
+    "facing=down,rotacao=1": { "model": "aelysiummod:block/sangue_4_r1", "x": 180 },
+    "facing=down,rotacao=2": { "model": "aelysiummod:block/sangue_4_r2", "x": 180 },
+    "facing=down,rotacao=3": { "model": "aelysiummod:block/sangue_4_r3", "x": 180 },
+    "facing=north,rotacao=0": { "model": "aelysiummod:block/sangue_4_r0", "x": 90 },
+    "facing=north,rotacao=1": { "model": "aelysiummod:block/sangue_4_r1", "x": 90 },
+    "facing=north,rotacao=2": { "model": "aelysiummod:block/sangue_4_r2", "x": 90 },
+    "facing=north,rotacao=3": { "model": "aelysiummod:block/sangue_4_r3", "x": 90 },
+    "facing=east,rotacao=0": { "model": "aelysiummod:block/sangue_4_r0", "x": 90, "y": 90 },
+    "facing=east,rotacao=1": { "model": "aelysiummod:block/sangue_4_r1", "x": 90, "y": 90 },
+    "facing=east,rotacao=2": { "model": "aelysiummod:block/sangue_4_r2", "x": 90, "y": 90 },
+    "facing=east,rotacao=3": { "model": "aelysiummod:block/sangue_4_r3", "x": 90, "y": 90 },
+    "facing=south,rotacao=0": { "model": "aelysiummod:block/sangue_4_r0", "x": 90, "y": 180 },
+    "facing=south,rotacao=1": { "model": "aelysiummod:block/sangue_4_r1", "x": 90, "y": 180 },
+    "facing=south,rotacao=2": { "model": "aelysiummod:block/sangue_4_r2", "x": 90, "y": 180 },
+    "facing=south,rotacao=3": { "model": "aelysiummod:block/sangue_4_r3", "x": 90, "y": 180 },
+    "facing=west,rotacao=0": { "model": "aelysiummod:block/sangue_4_r0", "x": 90, "y": 270 },
+    "facing=west,rotacao=1": { "model": "aelysiummod:block/sangue_4_r1", "x": 90, "y": 270 },
+    "facing=west,rotacao=2": { "model": "aelysiummod:block/sangue_4_r2", "x": 90, "y": 270 },
+    "facing=west,rotacao=3": { "model": "aelysiummod:block/sangue_4_r3", "x": 90, "y": 270 }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.sistemas.rp.raca.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "aelysiummod.refmap.json",
+  "client": [
+    "BateriaItemMaoMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

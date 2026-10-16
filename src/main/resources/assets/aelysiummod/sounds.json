@@ -1,0 +1,25 @@
+{
+  "morte.downer": {
+    "sounds": [
+      "aelysiummod:morte/downer_morte"
+    ]
+  },
+  "silencio": {
+    "sounds": []
+  },
+  "bateria.choque": {
+    "sounds": [
+      "aelysiummod:bateria/choque"
+    ]
+  },
+  "glock.tiro": {
+    "sounds": [
+      "aelysiummod:glock/tiro"
+    ]
+  },
+  "glock.pegando": {
+    "sounds": [
+      "aelysiummod:glock/pegando"
+    ]
+  }
+}

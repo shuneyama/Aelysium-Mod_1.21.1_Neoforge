@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "aelysiummod:ciane_fragmento"
+    },
+    {
+      "item": "aelysiummod:ciane_fragmento"
+    },
+    {
+      "item": "aelysiummod:ciane_fragmento"
+    },
+    {
+      "item": "aelysiummod:ciane_fragmento"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "aelysiummod:ciane_barra"
+  }
+}

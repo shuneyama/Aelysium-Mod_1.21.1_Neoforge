@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "aelysiummod:block/cofre_painel" },
+    "facing=east": { "model": "aelysiummod:block/cofre_painel", "y": 90 },
+    "facing=south": { "model": "aelysiummod:block/cofre_painel", "y": 180 },
+    "facing=west": { "model": "aelysiummod:block/cofre_painel", "y": 270 }
+  }
+}

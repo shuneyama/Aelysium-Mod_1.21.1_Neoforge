@@ -1,0 +1,7 @@
+{
+	"parent": "aelysiummod:item/triforme_espada",
+	"overrides": [
+		{"predicate": {"custom_model_data": 1}, "model": "aelysiummod:item/triforme_katana"},
+		{"predicate": {"custom_model_data": 2}, "model": "aelysiummod:item/triforme_adaga"}
+	]
+}

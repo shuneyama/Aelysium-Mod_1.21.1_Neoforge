@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:add",
+    "argument1": 0.45,
+    "argument2": {
+      "type": "minecraft:shifted_noise",
+      "noise": "minecraft:vegetation",
+      "shift_x": "minecraft:shift_x",
+      "shift_y": 0.0,
+      "shift_z": "minecraft:shift_z",
+      "xz_scale": 0.25,
+      "y_scale": 0.0
+    }
+  },
+  "min": -1.0,
+  "max": 1.0
+}

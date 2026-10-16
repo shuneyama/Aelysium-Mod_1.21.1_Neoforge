@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/ciane_minerio"
+  }
+}

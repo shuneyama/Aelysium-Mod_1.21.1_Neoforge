@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "aelysiummod:ciane_barra"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " C ",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "aelysiummod:ciane_pa"
+  }
+}

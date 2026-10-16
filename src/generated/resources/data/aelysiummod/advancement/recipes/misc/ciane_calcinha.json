@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ciane_barra": {
+      "conditions": {
+        "items": [
+          {
+            "items": "aelysiummod:ciane_barra"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "aelysiummod:ciane_calcinha"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ciane_barra"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "aelysiummod:ciane_calcinha"
+    ]
+  }
+}

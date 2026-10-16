@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dama_da_noite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "aelysiummod:dama_da_noite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "aelysiummod:poeira_lunar"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dama_da_noite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "aelysiummod:poeira_lunar"
+    ]
+  }
+}

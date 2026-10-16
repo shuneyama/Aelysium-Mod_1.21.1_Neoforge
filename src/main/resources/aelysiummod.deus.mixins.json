@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.sistemas.rp.deus.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "aelysiummod.refmap.json",
+  "client": [
+    "MixinRenderizadorJogadorDivina",
+    "MixinEntidadeFormaDivina"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

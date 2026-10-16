@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "aelysiummod:bloco/bloco_ar"
+  }
+}
