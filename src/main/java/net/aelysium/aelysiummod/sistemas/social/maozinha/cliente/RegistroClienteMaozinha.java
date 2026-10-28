@@ -16,6 +16,7 @@ public class RegistroClienteMaozinha {
         NeoForge.EVENT_BUS.register(new OrientacaoLiderMaozinha());
         NeoForge.EVENT_BUS.register(new ManipuladorPuxaoCliente());
         NeoForge.EVENT_BUS.register(new ManipuladorArrastoLiderCliente());
+        NeoForge.EVENT_BUS.register(new ManipuladorVooLiderCliente());
         NeoForge.EVENT_BUS.register(new SuavizadorPosicaoMaozinha());
         NeoForge.EVENT_BUS.addListener(RegistroClienteMaozinha::aoSairDoMundo);
     }

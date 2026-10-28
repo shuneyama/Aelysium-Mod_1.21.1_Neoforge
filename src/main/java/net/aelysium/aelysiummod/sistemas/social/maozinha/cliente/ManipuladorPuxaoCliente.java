@@ -19,6 +19,7 @@ import java.util.UUID;
 public class ManipuladorPuxaoCliente {
 
     private static int ticksPuloSolicitado = 0;
+    private static boolean liderVoando = false;
 
     private boolean pulouNesteSalto = false;
     private boolean saltoEspelhado = false;
@@ -28,16 +29,24 @@ public class ManipuladorPuxaoCliente {
     private double alturaRelativaNoChao = 0.0;
     private long ultimoQuadro = 0L;
 
+    public static void definirLiderVoando(boolean voando) {
+        liderVoando = voando;
+    }
+
     public static void solicitarPulo() {
         ticksPuloSolicitado = ConstantesMaozinha.VALIDADE_PULO_SOLICITADO_TICKS;
     }
 
     @SubscribeEvent
     public void aoAtualizarMovimento(MovementInputUpdateEvent event) {
-        if (!(event.getEntity() instanceof LocalPlayer jogador) || liderDe(jogador) == null) return;
+        if (!(event.getEntity() instanceof LocalPlayer jogador)) return;
+        Player lider = liderDe(jogador);
+        if (lider == null) return;
+
+        boolean nadar = lider.isSwimming() && jogador.isInWater();
 
         Input entrada = event.getInput();
-        entrada.forwardImpulse = 0.0F;
+        entrada.forwardImpulse = nadar ? ConstantesMaozinha.IMPULSO_MINIMO_NADO : 0.0F;
         entrada.leftImpulse = 0.0F;
         entrada.up = false;
         entrada.down = false;
@@ -45,7 +54,7 @@ public class ManipuladorPuxaoCliente {
         entrada.right = false;
         entrada.jumping = false;
         entrada.shiftKeyDown = false;
-        jogador.setSprinting(false);
+        jogador.setSprinting(nadar);
     }
 
     @SubscribeEvent
@@ -61,6 +70,7 @@ public class ManipuladorPuxaoCliente {
             ticksNoChao = 0;
             ticksPuloSolicitado = 0;
             ticksBloqueioDeteccao = 0;
+            if (lider == null) liderVoando = false;
             return;
         }
 
@@ -139,6 +149,11 @@ public class ManipuladorPuxaoCliente {
             ticksDesdePulo = 0;
             ticksPuloSolicitado = 0;
             if (saltoEspelhado) ticksBloqueioDeteccao = ConstantesMaozinha.TICKS_BLOQUEIO_APOS_PULO;
+        }
+
+        if ((jogador.isInWater() || liderVoando) && ticksDesdePulo > 0) {
+            passoY = Mth.clamp(diferenca.y * ConstantesMaozinha.FATOR_ALTURA_AGUA,
+                    -ConstantesMaozinha.VELOCIDADE_VERTICAL_AGUA, ConstantesMaozinha.VELOCIDADE_VERTICAL_AGUA);
         }
 
         jogador.setDeltaMovement(passoX, passoY, passoZ);

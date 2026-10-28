@@ -35,6 +35,15 @@ public class RegistroRedeMaozinha {
                     } catch (Exception e) { throw new RuntimeException(e); }
                 });
 
+        registrar.playToClient(PacoteVooMaozinha.TYPE, PacoteVooMaozinha.STREAM_CODEC,
+                (payload, ctx) -> {
+                    try {
+                        Class<?> h = Class.forName("net.aelysium.aelysiummod.sistemas.social.maozinha.cliente.ManipuladoresMaozinhaCliente");
+                        h.getMethod("handleVoo", PacoteVooMaozinha.class,
+                                net.neoforged.neoforge.network.handling.IPayloadContext.class).invoke(null, payload, ctx);
+                    } catch (Exception e) { throw new RuntimeException(e); }
+                });
+
         registrar.playBidirectional(PacoteDeslocamentoMaozinha.TYPE, PacoteDeslocamentoMaozinha.STREAM_CODEC,
                 (payload, ctx) -> {
                     if (ctx.flow() == PacketFlow.SERVERBOUND) {

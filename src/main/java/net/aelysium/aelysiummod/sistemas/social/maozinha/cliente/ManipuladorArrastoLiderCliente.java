@@ -15,6 +15,8 @@ import java.util.UUID;
 public class ManipuladorArrastoLiderCliente {
 
     private int ticksAbaixo = 0;
+    private int ticksArrastando = 0;
+    private double alturaInicialSeguidor = 0.0;
     private boolean arrastando = false;
 
     @SubscribeEvent
@@ -43,23 +45,44 @@ public class ManipuladorArrastoLiderCliente {
         }
 
         Player seguidor = seguidorDe(jogador);
-        if (seguidor == null || jogador.isSpectator() || jogador.isPassenger() || jogador.isFallFlying()) {
+        if (seguidor == null || jogador.isSpectator() || jogador.isPassenger() || jogador.isFallFlying()
+                || jogador.isInWater() || seguidor.isInWater() || jogador.getAbilities().flying) {
             parar();
             return;
         }
 
-        if (jogador.getY() - seguidor.getY() > ConstantesMaozinha.ALTURA_QUEDA_SEGUIDOR) {
-            ticksAbaixo++;
-        } else {
+        double queda = jogador.getY() - seguidor.getY();
+        boolean escalando = ticksAbaixo > 0
+                && seguidor.getY() - alturaInicialSeguidor > ConstantesMaozinha.SUBIDA_PARA_CANCELAR_ARRASTO;
+
+        if (arrastando) {
+            if (queda <= ConstantesMaozinha.ALTURA_QUEDA_SEGUIDOR || escalando) {
+                parar();
+                return;
+            }
+            ticksArrastando++;
+            arrastar(jogador, seguidor, ticksArrastando);
+            return;
+        }
+
+        double horizontal = Math.hypot(seguidor.getX() - jogador.getX(), seguidor.getZ() - jogador.getZ());
+        boolean preso = queda > ConstantesMaozinha.ALTURA_QUEDA_SEGUIDOR
+                && horizontal > ConstantesMaozinha.DISTANCIA_SEGUIDOR_PRESO
+                && !escalando;
+        if (!preso) {
             parar();
             return;
         }
 
-        arrastando = ticksAbaixo >= ConstantesMaozinha.TICKS_PARA_ARRASTAR_LIDER;
-        if (arrastando) arrastar(jogador, seguidor);
+        if (ticksAbaixo == 0) alturaInicialSeguidor = seguidor.getY();
+        ticksAbaixo++;
+        if (ticksAbaixo >= ConstantesMaozinha.TICKS_PARA_ARRASTAR_LIDER) {
+            arrastando = true;
+            ticksArrastando = 0;
+        }
     }
 
-    private static void arrastar(LocalPlayer jogador, Player seguidor) {
+    private static void arrastar(LocalPlayer jogador, Player seguidor, int ticksArrastando) {
         Vec3 movimento = jogador.getDeltaMovement();
         double dx = seguidor.getX() - jogador.getX();
         double dz = seguidor.getZ() - jogador.getZ();
@@ -70,12 +93,14 @@ public class ManipuladorArrastoLiderCliente {
             return;
         }
 
-        double velocidade = Math.min(ConstantesMaozinha.VELOCIDADE_ARRASTO, horizontal * ConstantesMaozinha.FATOR_ARRASTO);
+        double rampa = Math.min(1.0, ticksArrastando / (double) ConstantesMaozinha.TICKS_RAMPA_ARRASTO);
+        double velocidade = Math.min(ConstantesMaozinha.VELOCIDADE_ARRASTO, horizontal * ConstantesMaozinha.FATOR_ARRASTO) * rampa;
         jogador.setDeltaMovement(dx / horizontal * velocidade, movimento.y, dz / horizontal * velocidade);
     }
 
     private void parar() {
         ticksAbaixo = 0;
+        ticksArrastando = 0;
         arrastando = false;
     }
 

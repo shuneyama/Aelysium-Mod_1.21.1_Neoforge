@@ -29,8 +29,20 @@ public class ConstantesMaozinha {
     public static final double IMPULSO_PULO = 0.42;
     public static final int TICKS_BLOQUEIO_APOS_PULO = 16;
 
-    public static final double ALTURA_QUEDA_SEGUIDOR = 1.2;
-    public static final int TICKS_PARA_ARRASTAR_LIDER = 10;
+    public static final float IMPULSO_MINIMO_NADO = 0.001F;
+    public static final double FATOR_ALTURA_AGUA = 0.35;
+    public static final double VELOCIDADE_VERTICAL_AGUA = 0.3;
+
+    public static final float FATOR_VOO_PUXANDO = 0.3F;
+    public static final double SUBIDA_VOO_PUXANDO = 0.0675;
+    public static final double DESCIDA_LENTA_VOO_PUXANDO = 0.05;
+    public static final double DESCIDA_RAPIDA_VOO_PUXANDO = 0.12;
+
+    public static final double ALTURA_QUEDA_SEGUIDOR = 1.8;
+    public static final double DISTANCIA_SEGUIDOR_PRESO = 2.5;
+    public static final double SUBIDA_PARA_CANCELAR_ARRASTO = 0.5;
+    public static final int TICKS_PARA_ARRASTAR_LIDER = 20;
+    public static final int TICKS_RAMPA_ARRASTO = 6;
     public static final double DISTANCIA_ARRASTO_MINIMA = 0.4;
     public static final double VELOCIDADE_ARRASTO = 0.3;
     public static final double FATOR_ARRASTO = 0.5;

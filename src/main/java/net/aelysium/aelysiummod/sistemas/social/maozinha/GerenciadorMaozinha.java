@@ -4,6 +4,7 @@ import net.aelysium.aelysiummod.AelysiumMod;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteDeslocamentoMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteEstadoMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacotePuloMaozinha;
+import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteVooMaozinha;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -45,6 +46,7 @@ public class GerenciadorMaozinha {
     private static final Map<UUID, UUID> segurandoPorLider = new HashMap<>();
     private static final Map<UUID, UUID> liderPorSeguidor = new HashMap<>();
     private static final Set<UUID> teleportesPendentes = new HashSet<>();
+    private static final Map<UUID, Boolean> voandoPorLider = new HashMap<>();
 
     public static void acionar(ServerPlayer jogador, int alvoId) {
         UUID id = jogador.getUUID();
@@ -203,6 +205,7 @@ public class GerenciadorMaozinha {
         UUID seguidor = segurandoPorLider.remove(lider);
         if (seguidor == null) return;
         liderPorSeguidor.remove(seguidor);
+        voandoPorLider.remove(lider);
         transmitir(lider, seguidor, FaseMaozinha.DESFEITA);
 
         ServerPlayer jogadorLider = servidor.getPlayerList().getPlayer(lider);
@@ -239,6 +242,7 @@ public class GerenciadorMaozinha {
         segurandoPorLider.clear();
         liderPorSeguidor.clear();
         teleportesPendentes.clear();
+        voandoPorLider.clear();
     }
 
     public static void sincronizar(ServerPlayer jogador) {
@@ -381,7 +385,19 @@ public class GerenciadorMaozinha {
             double maxima = ConstantesMaozinha.DISTANCIA_MAXIMA;
             if (lider.distanceToSqr(seguidor) > maxima * maxima) {
                 desfazer(servidor, idLider, Motivo.DISTANCIA);
+                continue;
             }
+
+            seguidor.resetFallDistance();
+            sincronizarVoo(lider, seguidor);
+        }
+    }
+
+    private static void sincronizarVoo(ServerPlayer lider, ServerPlayer seguidor) {
+        boolean voando = lider.getAbilities().flying;
+        Boolean anterior = voandoPorLider.put(lider.getUUID(), voando);
+        if (anterior == null ? voando : anterior != voando) {
+            PacketDistributor.sendToPlayer(seguidor, new PacoteVooMaozinha(voando));
         }
     }
 

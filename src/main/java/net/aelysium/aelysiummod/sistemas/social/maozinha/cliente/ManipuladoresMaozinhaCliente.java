@@ -3,6 +3,7 @@ package net.aelysium.aelysiummod.sistemas.social.maozinha.cliente;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteDeslocamentoMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteEstadoMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacotePuloMaozinha;
+import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteVooMaozinha;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
@@ -20,6 +21,10 @@ public class ManipuladoresMaozinhaCliente {
 
     public static void handlePulo(PacotePuloMaozinha payload, IPayloadContext context) {
         context.enqueueWork(ManipuladorPuxaoCliente::solicitarPulo);
+    }
+
+    public static void handleVoo(PacoteVooMaozinha payload, IPayloadContext context) {
+        context.enqueueWork(() -> ManipuladorPuxaoCliente.definirLiderVoando(payload.voando()));
     }
 
     public static void handleDeslocamento(PacoteDeslocamentoMaozinha payload, IPayloadContext context) {

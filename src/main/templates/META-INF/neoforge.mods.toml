@@ -23,7 +23,7 @@ license="MIT License"
 modId="aelysiummod" #mandatory
 
 # The version number of the mod
-version="1.5-oficial" #mandatory
+version="1.5.1-oficial" #mandatory
 
 enumExtensions="META-INF/enumextensions.json"
 
