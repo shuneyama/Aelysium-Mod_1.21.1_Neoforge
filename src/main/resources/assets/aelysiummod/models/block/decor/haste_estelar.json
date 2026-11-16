@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/haste_estelar",
+  "textures": {
+    "all": "aelysiummod:block/decor/estelar_haste",
+    "particle": "aelysiummod:block/decor/estelar_haste",
+    "1": "aelysiummod:block/decor/estelar_haste"
+  },
+  "render_type": "cutout_mipped"
+}

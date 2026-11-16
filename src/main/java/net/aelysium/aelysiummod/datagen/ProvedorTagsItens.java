@@ -27,6 +27,18 @@ public class ProvedorTagsItens extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        for (net.aelysium.aelysiummod.registro.ModBlocosDecoracao.Entrada entrada : net.aelysium.aelysiummod.registro.ModBlocosDecoracao.ENTRADAS.values()) {
+            net.minecraft.world.item.Item item = entrada.bloco().get().asItem();
+            switch (entrada.categoria()) {
+                case LAJE -> tag(ItemTags.SLABS).add(item);
+                case ESCADA -> tag(ItemTags.STAIRS).add(item);
+                case MURO -> tag(ItemTags.WALLS).add(item);
+                case PORTA -> tag(ItemTags.DOORS).add(item);
+                case ALCAPAO -> tag(ItemTags.TRAPDOORS).add(item);
+                default -> {
+                }
+            }
+        }
         tag(ItemTags.PICKAXES)
                 .add(ModItens.CIANE_PICARETA.get());
         tag(ItemTags.AXES)

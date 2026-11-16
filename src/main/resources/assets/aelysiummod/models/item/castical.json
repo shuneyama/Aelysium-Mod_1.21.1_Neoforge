@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aelysiummod:item/decor/castical_icone"
+  },
+  "render_type": "translucent"
+}

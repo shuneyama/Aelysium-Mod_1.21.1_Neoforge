@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "experience": 0.2,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "aelysiummod:estrela_do_mar_laranja_2"
+  },
+  "result": {
+    "id": "aelysiummod:estrela_do_mar_seca_2"
+  }
+}

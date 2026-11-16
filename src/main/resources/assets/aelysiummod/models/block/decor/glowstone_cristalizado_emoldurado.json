@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/decor/emoldurado_glowstone_painel",
+    "particle": "aelysiummod:block/decor/emoldurado_glowstone_painel"
+  },
+  "render_type": "translucent"
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/flor_lampada_acesa",
+  "textures": {
+    "all": "aelysiummod:block/decor/flor_lampada_acesa",
+    "particle": "aelysiummod:block/decor/flor_lampada_acesa",
+    "1": "aelysiummod:block/decor/flor_lampada_acesa"
+  },
+  "render_type": "cutout_mipped"
+}

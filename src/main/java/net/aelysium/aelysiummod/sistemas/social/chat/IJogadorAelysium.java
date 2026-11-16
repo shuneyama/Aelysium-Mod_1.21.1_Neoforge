@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.social.chat;
 
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import java.util.List;
 
 public interface IJogadorAelysium {
@@ -32,7 +33,8 @@ public interface IJogadorAelysium {
                 }
             }
 
-            return fullText.substring(0, Math.min(visibleChars, fullText.length()));
+            if (visibleChars == 0) return "";
+            return CodigosEstilo.prefixoVisivel(fullText, visibleChars);
         }
 
         public boolean isFullyRevealed(long currentTime) {

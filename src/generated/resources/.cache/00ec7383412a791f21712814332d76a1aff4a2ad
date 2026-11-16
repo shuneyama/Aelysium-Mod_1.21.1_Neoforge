@@ -1,24 +1,29 @@
-// 1.21.1	2026-07-31T00:49:28.030632	Tags for minecraft:item mod id aelysiummod
+// 1.21.1	2026-11-08T15:40:50.1869519	Tags for minecraft:item mod id aelysiummod
+944bf4d1c8dae8ae0592c2344913235df182477d data/aelysiummod/tags/item/enchantable/looting.json
 4475cc02762e60692270b8904c29a98e01b9973f data/minecraft/tags/item/axes.json
 ab18b4656b9d51ac48d6667647f11b15f31339f1 data/minecraft/tags/item/chest_armor.json
 d231a6b88cb1440cadf671238fdb30d4378b7d71 data/minecraft/tags/item/enchantable/armor.json
 ab18b4656b9d51ac48d6667647f11b15f31339f1 data/minecraft/tags/item/enchantable/chest_armor.json
-c7ab79123e35bf460a8d8e551fc0685977e4d0de data/minecraft/tags/item/enchantable/durability.json
+3c4dc111ffbf681d39f68d3f3b353d65e0964242 data/minecraft/tags/item/enchantable/durability.json
 d231a6b88cb1440cadf671238fdb30d4378b7d71 data/minecraft/tags/item/enchantable/equippable.json
-403196e398d1ad005e453c2cb43c41cf2bb60bf7 data/minecraft/tags/item/enchantable/fire_aspect.json
+dfc0b24d8397404ee98caa9f2eca735ee2e95359 data/minecraft/tags/item/enchantable/fire_aspect.json
 dd7093402cf6422540b5f00889a7bf9b778649f9 data/minecraft/tags/item/enchantable/foot_armor.json
 65662add21e2415bd8cf279562c0208c3ed8c360 data/minecraft/tags/item/enchantable/head_armor.json
 6a5b628b8c8aa5dc6f6dced60385ad600bf25d79 data/minecraft/tags/item/enchantable/leg_armor.json
 84dd09e578e241f04168865a8de1159e63aa2b87 data/minecraft/tags/item/enchantable/mining.json
 3bf6081039cc33f5001b5dcad8855b2562a8238b data/minecraft/tags/item/enchantable/mining_loot.json
-0ac3ce6395e59bd01ebe0c443508c794e1f89aa6 data/minecraft/tags/item/enchantable/sharp_weapon.json
-403196e398d1ad005e453c2cb43c41cf2bb60bf7 data/minecraft/tags/item/enchantable/sword.json
+9f3c9f19617d5d2d7705f1422c52de70cc6a7107 data/minecraft/tags/item/enchantable/sharp_weapon.json
+dfc0b24d8397404ee98caa9f2eca735ee2e95359 data/minecraft/tags/item/enchantable/sword.json
+5c323c481442af02a97c649cd659333f54ecf1da data/minecraft/tags/item/enchantable/trident.json
 c7ab79123e35bf460a8d8e551fc0685977e4d0de data/minecraft/tags/item/enchantable/vanishing.json
-0ac3ce6395e59bd01ebe0c443508c794e1f89aa6 data/minecraft/tags/item/enchantable/weapon.json
+9f3c9f19617d5d2d7705f1422c52de70cc6a7107 data/minecraft/tags/item/enchantable/weapon.json
 dd7093402cf6422540b5f00889a7bf9b778649f9 data/minecraft/tags/item/foot_armor.json
 65662add21e2415bd8cf279562c0208c3ed8c360 data/minecraft/tags/item/head_armor.json
 776a8c8f05cc4606c5a92f1ee2a302cbee3346aa data/minecraft/tags/item/hoes.json
 6a5b628b8c8aa5dc6f6dced60385ad600bf25d79 data/minecraft/tags/item/leg_armor.json
 dfda38b1166045e4e61f48237ac2156bd6ac4585 data/minecraft/tags/item/pickaxes.json
 819891ef1b2ee8a8a3d0ef9ab35eabfa612373d2 data/minecraft/tags/item/shovels.json
-e2eb04b4064bf1854a656f2b6a6713c84831c380 data/minecraft/tags/item/swords.json
+d48da37923d11f1cb50db61e1747f9b9494b3d81 data/minecraft/tags/item/slabs.json
+0cb765bd9274d88f4c20ad9552acdd833f720323 data/minecraft/tags/item/stairs.json
+00b6745fcd27783daf1eb8a03b56edb655231736 data/minecraft/tags/item/swords.json
+d39addcc2578fc495b1d1d39c366a3f41c0db6dd data/minecraft/tags/item/walls.json

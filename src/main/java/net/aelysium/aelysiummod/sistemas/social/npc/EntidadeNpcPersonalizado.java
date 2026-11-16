@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.social.npc;
 
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import net.aelysium.aelysiummod.sistemas.social.npc.GerenciadorIdNpc;
 import net.aelysium.aelysiummod.registro.RegistroNpc;
 import net.aelysium.aelysiummod.sistemas.social.npc.item.CriadorNPC;
@@ -64,6 +65,8 @@ public class EntidadeNpcPersonalizado extends LivingEntity {
     final Map<String, Integer> tradeLog = new HashMap<>();
     final ItemStack[] equipment = new ItemStack[6];
     boolean idAssigned = false;
+    private String nomeExibicaoOrigem;
+    private Component nomeExibicaoCache;
 
     public static AttributeSupplier.Builder createAttributes() {
         return LivingEntity.createLivingAttributes();
@@ -247,7 +250,12 @@ public class EntidadeNpcPersonalizado extends LivingEntity {
     public Component getDisplayName() { return getDisplayNameComponent(); }
 
     public Component getDisplayNameComponent() {
-        return Component.literal(getNpcName().replace('&', '§'));
+        String nome = getNpcName();
+        if (nome != nomeExibicaoOrigem || nomeExibicaoCache == null) {
+            nomeExibicaoCache = CodigosEstilo.componente(nome);
+            nomeExibicaoOrigem = nome;
+        }
+        return nomeExibicaoCache;
     }
 
     @Override

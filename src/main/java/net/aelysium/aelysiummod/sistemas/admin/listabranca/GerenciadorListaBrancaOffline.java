@@ -35,7 +35,6 @@ public class GerenciadorListaBrancaOffline {
                 LOGGER.error("[Aelysium-Whitelist] Erro ao criar whitelist.json", e);
             }
         }
-        LOGGER.info("[Aelysium-Whitelist] Sistema de whitelist offline inicializado");
     }
 
     public static boolean adicionar(String nome) {

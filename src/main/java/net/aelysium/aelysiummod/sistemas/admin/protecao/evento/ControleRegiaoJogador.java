@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.admin.protecao.evento;
 
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.regiao.FlagRegiao;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.regiao.GerenciadorRegioes;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.regiao.Regiao;
@@ -170,10 +171,9 @@ public class ControleRegiaoJogador {
     private static void aoEntrarRegiao(ServerPlayer jogador, Regiao regiao) {
         if (!regiao.getMensagemEntrada().isEmpty()) {
             String mensagem = regiao.getMensagemEntrada()
-                    .replace("&", "§")
                     .replace("{jogador}", getNomeExibicao(jogador))
                     .replace("{regiao}", regiao.getNome());
-            jogador.connection.send(new ClientboundSetTitleTextPacket(Component.literal(mensagem)));
+            jogador.connection.send(new ClientboundSetTitleTextPacket(CodigosEstilo.componente(mensagem)));
         }
 
         if (regiao.getFlagValor(FlagRegiao.AVISAR_DONO_ENTRADA)) {
@@ -190,10 +190,9 @@ public class ControleRegiaoJogador {
     private static void aoSairRegiao(ServerPlayer jogador, Regiao regiao) {
         if (!regiao.getMensagemSaida().isEmpty()) {
             String mensagem = regiao.getMensagemSaida()
-                    .replace("&", "§")
                     .replace("{jogador}", getNomeExibicao(jogador))
                     .replace("{regiao}", regiao.getNome());
-            jogador.connection.send(new ClientboundSetTitleTextPacket(Component.literal(mensagem)));
+            jogador.connection.send(new ClientboundSetTitleTextPacket(CodigosEstilo.componente(mensagem)));
         }
 
         if (regiao.getFlagValor(FlagRegiao.AVISAR_DONO_SAIDA)) {

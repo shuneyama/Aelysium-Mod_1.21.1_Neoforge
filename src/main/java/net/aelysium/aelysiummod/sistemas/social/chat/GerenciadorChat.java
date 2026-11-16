@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.social.chat;
 
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import net.aelysium.aelysiummod.AelysiumMod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.aelysium.aelysiummod.nucleo.configuracao.ConfiguracaoChat;
@@ -36,7 +37,7 @@ public class GerenciadorChat {
         MutableComponent msgFormatada = Component.translatable("mensagem.aelysiummod.chat.local_2");
         MutableComponent badge = PerfilJogador.insignia().componente(remetente);
         if (badge != null) msgFormatada.append(badge).append(" ");
-        msgFormatada.append(getStyledName(remetente)).append(Component.literal("§r: " + mensagem));
+        msgFormatada.append(getStyledName(remetente)).append(Component.literal("§r: ")).append(CodigosEstilo.componente(mensagem));
 
         for (ServerPlayer receptor : receptores) {
             receptor.sendSystemMessage(msgFormatada);
@@ -66,7 +67,7 @@ public class GerenciadorChat {
         MutableComponent msgFormatada = Component.translatable("mensagem.aelysiummod.chat.global_2");
         MutableComponent badge = PerfilJogador.insignia().componente(remetente);
         if (badge != null) msgFormatada.append(badge).append(" ");
-        msgFormatada.append(getStyledName(remetente)).append(Component.literal("§r: " + mensagem));
+        msgFormatada.append(getStyledName(remetente)).append(Component.literal("§r: ")).append(CodigosEstilo.componente(mensagem));
 
         for (ServerPlayer receptor : receptores) {
             receptor.sendSystemMessage(msgFormatada);

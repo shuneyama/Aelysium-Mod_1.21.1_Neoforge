@@ -1,7 +1,10 @@
 package net.aelysium.aelysiummod.nucleo.comando;
 
+import net.aelysium.aelysiummod.nucleo.texto.SemConversao;
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import net.aelysium.aelysiummod.compatibilidade.voicechat.ComandoVoz;
 import net.aelysium.aelysiummod.sistemas.social.chat.GerenciadorChat;
 import net.aelysium.aelysiummod.sistemas.midia.cinematica.comando.ComandoCinematica;
 import net.aelysium.aelysiummod.sistemas.midia.tocar.comando.ComandoTocar;
@@ -59,6 +62,8 @@ public class AelysiumComandos {
         event.getDispatcher().register(
                 Commands.literal("aelysium")
                         .requires(source -> AelysiumGuarda.isAutorizado())
+
+                        .then(ComandoVoz.build())
 
                         .then(ComandoApelido.build())
 
@@ -269,8 +274,7 @@ public class AelysiumComandos {
                                                 .executes(ctx -> {
                                                     Collection<ServerPlayer> alvos = EntityArgument.getPlayers(ctx, "alvos");
                                                     String mensagem = StringArgumentType.getString(ctx, "mensagem");
-                                                    String mensagemFormatada = mensagem.replace("&", "\u00a7");
-                                                    Component componente = Component.literal(mensagemFormatada);
+                                                    Component componente = CodigosEstilo.componente(mensagem);
 
                                                     for (ServerPlayer player : alvos) {
                                                         player.sendSystemMessage(componente);
@@ -331,6 +335,11 @@ public class AelysiumComandos {
         net.aelysium.aelysiummod.sistemas.mundo.renascimento.ComandoSetWorldSpawn.registrar(event.getDispatcher());
         ComandoBanidos.registrarExtras(event);
         ComandoHistorico.registrarDebug(event);
+        com.mojang.brigadier.tree.CommandNode<net.minecraft.commands.CommandSourceStack> raizAelysium = event.getDispatcher().getRoot().getChild("aelysium");
+        if (raizAelysium != null) {
+            SemConversao.proteger(raizAelysium.getChild("lives"));
+            SemConversao.proteger(raizAelysium.getChild("sons"));
+        }
         ComandoHolograma.register(event.getDispatcher());
         ComandoProtecao.registrarSubComandosLista(event.getDispatcher());
         ComandoNpc.registrarSubComandosAcoes(event.getDispatcher());

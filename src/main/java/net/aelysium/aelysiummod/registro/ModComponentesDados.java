@@ -63,6 +63,9 @@ public class ModComponentesDados {
     public static final Supplier<DataComponentType<String>> SACOLA_VIP_NOME = DATA_COMPONENT_TYPES.register("sacola_vip_nome",
             () -> DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.STRING_UTF8).build());
 
+    public static final Supplier<DataComponentType<Boolean>> LANTERNA_LIGADA = DATA_COMPONENT_TYPES.register("lanterna_ligada",
+            () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL).build());
+
     public static void register(IEventBus eventBus) {
         DATA_COMPONENT_TYPES.register(eventBus);
     }

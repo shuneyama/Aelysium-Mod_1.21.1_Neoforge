@@ -27,7 +27,7 @@ public class BlocoPortalLar extends Block implements Portal {
     public static final MapCodec<BlocoPortalLar> CODEC = simpleCodec(BlocoPortalLar::new);
 
     public static final ResourceKey<Level> LAR_DOS_QUE_NAO_VAO = ResourceKey.create(
-            Registries.DIMENSION, ResourceLocation.fromNamespaceAndPath("aelysiummod", "lar_dos_que_nao_vao"));
+            Registries.DIMENSION, ResourceLocation.fromNamespaceAndPath("aelysium", "lar_dos_que_nao_vao"));
 
     private static final VoxelShape SHAPE = Block.box(0.0, 8.0, 0.0, 16.0, 9.0, 16.0);
 

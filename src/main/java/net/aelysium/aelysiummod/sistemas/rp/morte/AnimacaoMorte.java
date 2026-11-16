@@ -8,10 +8,12 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 public class AnimacaoMorte {
 
-    private static final int DURACAO_TICKS = 100;
+    private static final int DURACAO_TICKS_HABILITAR = 580;
+    private static final int DURACAO_TICKS_DESABILITAR = 420;
 
     private static boolean ativo = false;
     private static int tickCounter = 0;
+    private static int duracaoTicks = DURACAO_TICKS_DESABILITAR;
 
     public static boolean isRunning() {
         return ativo;
@@ -30,6 +32,7 @@ public class AnimacaoMorte {
 
         ativo = true;
         tickCounter = 0;
+        duracaoTicks = habilitando ? DURACAO_TICKS_HABILITAR : DURACAO_TICKS_DESABILITAR;
 
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             player.closeContainer();
@@ -48,7 +51,7 @@ public class AnimacaoMorte {
         if (!ativo) return;
 
         tickCounter++;
-        if (tickCounter >= DURACAO_TICKS) {
+        if (tickCounter >= duracaoTicks) {
             stop(server);
         }
     }

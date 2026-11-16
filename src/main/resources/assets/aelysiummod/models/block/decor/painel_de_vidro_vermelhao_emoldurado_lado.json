@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_side",
+  "textures": {
+    "particle": "aelysiummod:block/decor/emoldurado_vermelhao",
+    "pane": "aelysiummod:block/decor/emoldurado_vermelhao",
+    "edge": "aelysiummod:block/decor/vazia_textura_16_x_16"
+  },
+  "render_type": "translucent"
+}

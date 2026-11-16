@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:marmore_polido"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:muro_de_marmore_polido",
+    "count": 6
+  }
+}

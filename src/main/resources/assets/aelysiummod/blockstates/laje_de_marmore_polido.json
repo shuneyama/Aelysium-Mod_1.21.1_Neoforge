@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "aelysiummod:block/decor/laje_de_marmore_polido"
+    },
+    "type=top": {
+      "model": "aelysiummod:block/decor/laje_de_marmore_polido_topo"
+    },
+    "type=double": {
+      "model": "aelysiummod:block/decor/laje_de_marmore_polido_cheia"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/decor/fresnel_lado",
+    "particle": "aelysiummod:block/decor/fresnel_lado"
+  },
+  "render_type": "translucent"
+}

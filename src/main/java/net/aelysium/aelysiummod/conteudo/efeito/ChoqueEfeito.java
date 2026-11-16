@@ -7,7 +7,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
-public class ChoqueEfeito extends MobEffect {
+public class ChoqueEfeito extends EfeitoSemLeite {
 
     public ChoqueEfeito() {
         super(MobEffectCategory.HARMFUL, 0xF7E017);

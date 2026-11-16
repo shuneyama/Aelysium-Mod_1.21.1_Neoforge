@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "aelysiummod:block/decor/haste_solar"
+    },
+    "facing=east": {
+      "model": "aelysiummod:block/decor/haste_solar",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "aelysiummod:block/decor/haste_solar",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "aelysiummod:block/decor/haste_solar",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "aelysiummod:block/decor/haste_solar",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "aelysiummod:block/decor/haste_solar",
+      "x": 90
+    }
+  }
+}

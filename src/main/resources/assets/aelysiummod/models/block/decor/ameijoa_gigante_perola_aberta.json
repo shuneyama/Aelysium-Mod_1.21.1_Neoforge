@@ -1,0 +1,16 @@
+{
+  "parent": "aelysiummod:custom/decor/ameijoa_gigante_aberta",
+  "textures": {
+    "all": "aelysiummod:block/decor/ameijoa_aberta_frente",
+    "particle": "aelysiummod:block/decor/ameijoa_aberta_frente",
+    "1": "aelysiummod:block/decor/ameijoa_aberta_frente",
+    "3": "aelysiummod:block/decor/ameijoa_aberta_lado",
+    "4": "aelysiummod:block/decor/ameijoa_gigante_nadadeira",
+    "5": "aelysiummod:block/decor/ameijoa_gigante_topo",
+    "6": "aelysiummod:block/decor/ameijoa_gigante_costas",
+    "7": "aelysiummod:block/decor/ameijoa_gigante_interior_lado",
+    "8": "aelysiummod:block/decor/ameijoa_gigante_interior_base",
+    "9": "aelysiummod:block/decor/minuscula_branca_perola"
+  },
+  "render_type": "cutout_mipped"
+}

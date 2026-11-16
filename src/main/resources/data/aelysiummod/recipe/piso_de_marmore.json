@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab",
+    "ba"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:marmore_polido"
+    },
+    "b": {
+      "item": "aelysiummod:perola_negra"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:piso_de_marmore",
+    "count": 4
+  }
+}

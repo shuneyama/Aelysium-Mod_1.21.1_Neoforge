@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "aelysiummod:vidro_perolado"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    }
+  ],
+  "result": {
+    "id": "aelysiummod:vidro_perolado_ensolarado",
+    "count": 1
+  }
+}

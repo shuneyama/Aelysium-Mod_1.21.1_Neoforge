@@ -1,6 +1,5 @@
 package net.aelysium.aelysiummod.sistemas.midia.holograma;
 
-import com.mojang.logging.LogUtils;
 import net.aelysium.aelysiummod.nucleo.armazenamento.PastaDeEntidades;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -9,7 +8,6 @@ import net.minecraft.nbt.NbtIo;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.storage.LevelResource;
-import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class GerenciadorHologramas {
 
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static GerenciadorHologramas instance;
 
     private final Map<String, Holograma> hologramas = new ConcurrentHashMap<>();
@@ -142,7 +139,5 @@ public class GerenciadorHologramas {
             salvarHologramas();
             PastaDeEntidades.apagarDatMigrado(servidor.getWorldPath(LevelResource.ROOT).resolve(NOME_ARQUIVO), pasta(), tags.size());
         }
-
-        LOGGER.info("[AelysiumHolograma] {} hologramas carregados.", hologramas.size());
     }
 }

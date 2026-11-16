@@ -125,6 +125,14 @@ public class ModBlocos {
                     .noOcclusion()
                     .pushReaction(PushReaction.BLOCK)));
 
+    public static final DeferredBlock<net.aelysium.aelysiummod.sistemas.mundo.minifarol.BlocoMiniFarol> MINI_FAROL = registerBlock("mini_farol",
+            () -> new net.aelysium.aelysiummod.sistemas.mundo.minifarol.BlocoMiniFarol(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.DIAMOND)
+                    .strength(3.0F)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()
+                    .pushReaction(PushReaction.DESTROY)));
+
     public static final DeferredBlock<net.aelysium.aelysiummod.sistemas.mundo.porta.cofre.BlocoCofreComPainel> COFRE_COM_PAINEL = registerBlock("cofre_com_painel",
             () -> new net.aelysium.aelysiummod.sistemas.mundo.porta.cofre.BlocoCofreComPainel(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.METAL)

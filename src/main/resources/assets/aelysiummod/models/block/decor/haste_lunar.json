@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/haste_lunar",
+  "textures": {
+    "all": "aelysiummod:block/decor/profunda_haste",
+    "particle": "aelysiummod:block/decor/profunda_haste",
+    "2": "aelysiummod:block/decor/profunda_haste"
+  },
+  "render_type": "cutout_mipped"
+}

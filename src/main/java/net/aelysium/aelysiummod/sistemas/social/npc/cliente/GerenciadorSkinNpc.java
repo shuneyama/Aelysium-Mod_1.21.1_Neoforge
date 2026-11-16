@@ -1,6 +1,8 @@
 package net.aelysium.aelysiummod.sistemas.social.npc.cliente;
 
 import com.mojang.blaze3d.platform.NativeImage;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.ResourceLocation;
@@ -8,22 +10,18 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import java.io.ByteArrayInputStream;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @OnlyIn(Dist.CLIENT)
 public class GerenciadorSkinNpc {
 
-    private static final Map<Integer, ResourceLocation> skinCache      = new ConcurrentHashMap<>();
-    private static final Map<Integer, String>           modelTypeCache = new ConcurrentHashMap<>();
-    private static final Map<Integer, String>           skinModeCache  = new ConcurrentHashMap<>();
-    private static final Map<Integer, byte[]>           rawSkinDataCache = new ConcurrentHashMap<>();
+    private static final Int2ObjectMap<ResourceLocation> skinCache      = new Int2ObjectOpenHashMap<>();
+    private static final Int2ObjectMap<String>           modelTypeCache = new Int2ObjectOpenHashMap<>();
+    private static final Int2ObjectMap<String>           skinModeCache  = new Int2ObjectOpenHashMap<>();
+    private static final Int2ObjectMap<byte[]>           rawSkinDataCache = new Int2ObjectOpenHashMap<>();
+
+    private static Boolean cpmInstalado;
 
     public static void registerSkin(int entityId, byte[] data, String skinMode, String modelType) {
-        System.out.println("[NPC-SkinMgr] registerSkin: entityId=" + entityId
-                + " skinMode=" + skinMode + " modelType=" + modelType
-                + " dataSize=" + (data != null ? data.length : "null"));
-
         if (data == null || data.length == 0) {
             clearSkin(entityId);
             return;
@@ -50,7 +48,6 @@ public class GerenciadorSkinNpc {
             if (old != null) Minecraft.getInstance().getTextureManager().release(old);
             Minecraft.getInstance().getTextureManager().register(loc, texture);
             skinCache.put(entityId, loc);
-            System.out.println("[NPC-SkinMgr] Vanilla skin registered: " + loc);
         } catch (Exception e) {
             System.out.println("[NPC-SkinMgr] ERROR loading vanilla skin: " + e.getMessage());
             e.printStackTrace();
@@ -77,10 +74,24 @@ public class GerenciadorSkinNpc {
         return "cpm".equals(skinModeCache.get(entityId));
     }
 
+    public static boolean cpmInstalado() {
+        Boolean instalado = cpmInstalado;
+        if (instalado == null) {
+            instalado = net.neoforged.fml.ModList.get().isLoaded("cpm");
+            cpmInstalado = instalado;
+        }
+        return instalado;
+    }
+
+    public static boolean usaCpm(int entityId) {
+        return cpmInstalado() && isCpm(entityId);
+    }
+
     public static void sincronizarCpm(JogadorNpcFalso falso, int entityId) {
-        if (!net.neoforged.fml.ModList.get().isLoaded("cpm")) return;
+        if (!cpmInstalado()) return;
         byte[] bruto = isCpm(entityId) ? rawSkinDataCache.get(entityId) : null;
         CompatCpmNpc.sincronizar(falso.getGameProfile(), bruto);
+        falso.cpmAtivo = bruto != null;
     }
 
     public static boolean hasSkin(int entityId) {

@@ -40,7 +40,6 @@ public class GerenciadorFiltroReceitas {
             cachedOriginalRecipeMap = recipesField.get(rm);
             cachedRecipeManager = rm;
             applyFilterInternal(rm, cachedOriginalRecipeMap, registries, recipesField);
-            LOGGER.info("[AelysiumMod] Filtro de receitas aplicado: {} receitas após filtro.", lastFilteredList.size());
             if (currentServer != null) {
                 syncToAllPlayers(currentServer);
             }

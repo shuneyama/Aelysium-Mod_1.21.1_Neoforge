@@ -2,6 +2,7 @@ package net.aelysium.aelysiummod.sistemas.social.chat;
 
 import java.util.List;
 import net.aelysium.aelysiummod.nucleo.guarda.AelysiumGuarda;
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import net.aelysium.aelysiummod.nucleo.configuracao.ConfiguracaoChat;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -33,7 +34,8 @@ public class CorChat {
 
         event.setCanceled(true);
 
-        Component originalMessage = event.getMessage();
+        String textoCru = event.getRawText();
+        Component originalMessage = textoCru.indexOf('&') >= 0 ? CodigosEstilo.componente(textoCru) : event.getMessage();
         List<ServerPlayer> recipients = getRecipients(player);
         MutableComponent finalMessage = buildChatMessage(player, team, originalMessage);
 

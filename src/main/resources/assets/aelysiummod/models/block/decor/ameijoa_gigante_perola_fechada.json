@@ -1,0 +1,13 @@
+{
+  "parent": "aelysiummod:custom/decor/ameijoa_gigante_fechada",
+  "textures": {
+    "all": "aelysiummod:block/decor/ameijoa_gigante_frente",
+    "particle": "aelysiummod:block/decor/ameijoa_gigante_frente",
+    "0": "aelysiummod:block/decor/ameijoa_gigante_frente",
+    "1": "aelysiummod:block/decor/ameijoa_gigante_topo",
+    "2": "aelysiummod:block/decor/ameijoa_gigante_lado",
+    "3": "aelysiummod:block/decor/ameijoa_gigante_costas",
+    "4": "aelysiummod:block/decor/ameijoa_gigante_nadadeira"
+  },
+  "render_type": "cutout_mipped"
+}

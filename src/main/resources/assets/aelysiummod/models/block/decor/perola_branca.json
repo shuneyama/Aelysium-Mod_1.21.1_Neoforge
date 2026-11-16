@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/minuscula_branca_perola",
+  "textures": {
+    "all": "aelysiummod:block/decor/minuscula_branca_perola",
+    "particle": "aelysiummod:block/decor/minuscula_branca_perola",
+    "2": "aelysiummod:block/decor/minuscula_branca_perola"
+  },
+  "render_type": "solid"
+}

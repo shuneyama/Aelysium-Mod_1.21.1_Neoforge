@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_glass_pane_noside_alt",
+  "textures": {
+    "pane": "aelysiummod:block/decor/fresnel_lado",
+    "particle": "aelysiummod:block/decor/fresnel_lado"
+  },
+  "render_type": "translucent"
+}

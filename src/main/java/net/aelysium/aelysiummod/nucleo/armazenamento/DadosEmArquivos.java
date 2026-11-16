@@ -82,7 +82,6 @@ public abstract class DadosEmArquivos extends SavedData {
                 try {
                     Files.deleteIfExists(antigo);
                     Files.deleteIfExists(antigo.resolveSibling(antigo.getFileName() + "_old"));
-                    LOGGER.info("{} convertido para world/aelysium/{} e o .dat antigo foi apagado.", nomeDados, destino.pasta());
                 } catch (IOException e) {
                     LOGGER.error("Erro ao apagar {}: ", antigo, e);
                 }

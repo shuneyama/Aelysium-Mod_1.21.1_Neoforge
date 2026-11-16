@@ -2,11 +2,10 @@ package net.aelysium.aelysiummod.sistemas.social.npc.cliente;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.aelysium.aelysiummod.sistemas.social.npc.cliente.GerenciadorSkinNpc;
+import net.aelysium.aelysiummod.nucleo.cliente.VersaoFonteCliente;
 import net.aelysium.aelysiummod.sistemas.social.npc.EntidadeNpcPersonalizado;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,31 +16,47 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 
+import java.util.Map;
+import java.util.WeakHashMap;
+
 @OnlyIn(Dist.CLIENT)
 public class RenderizadorNpcPersonalizado extends EntityRenderer<EntidadeNpcPersonalizado> {
 
     private final PlayerRenderer wideRenderer;
     private final PlayerRenderer slimRenderer;
+    private final RenderizadorCorpoNpc corpoLargo;
+    private final RenderizadorCorpoNpc corpoFino;
+
+    private final Map<EntidadeNpcPersonalizado, CacheNome> cacheNomes = new WeakHashMap<>();
+
+    private static final class CacheNome {
+        Component componente;
+        int versaoFonte;
+        float metadeLargura;
+    }
 
     public RenderizadorNpcPersonalizado(EntityRendererProvider.Context ctx) {
         super(ctx);
         this.wideRenderer = new PlayerRenderer(ctx, false);
         this.slimRenderer = new PlayerRenderer(ctx, true);
+        this.corpoLargo = new RenderizadorCorpoNpc(ctx, false);
+        this.corpoFino = new RenderizadorCorpoNpc(ctx, true);
     }
 
     @Override
     public void render(EntidadeNpcPersonalizado npc, float entityYaw, float partialTick,
                        PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 
-        JogadorNpcFalso fakePlayer = JogadorNpcFalso.getOrCreate(npc);
-        if (fakePlayer == null) return;
-
-        ResourceLocation customSkin = GerenciadorSkinNpc.getSkinTexture(npc.getId());
-        fakePlayer.setCustomSkinTexture(customSkin);
+        JogadorNpcFalso fakePlayer = null;
+        if (GerenciadorSkinNpc.usaCpm(npc.getId())) {
+            fakePlayer = JogadorNpcFalso.getOrCreate(npc);
+            if (fakePlayer == null) return;
+            fakePlayer.setCustomSkinTexture(GerenciadorSkinNpc.getSkinTexture(npc.getId()));
+        } else {
+            JogadorNpcFalso.liberarCpm(npc);
+        }
 
         boolean isSlim = "slim".equals(npc.getModelType());
-        PlayerRenderer renderer = isSlim ? slimRenderer : wideRenderer;
-        enableOverlayLayers(renderer);
 
         float sx = npc.getScaleX();
         float sy = npc.getScaleY();
@@ -61,7 +76,11 @@ public class RenderizadorNpcPersonalizado extends EntityRenderer<EntidadeNpcPers
             poseStack.scale(sx, sy, sz);
         }
 
-        renderer.render(fakePlayer, entityYaw, partialTick, poseStack, buffer, packedLight);
+        if (fakePlayer != null) {
+            (isSlim ? slimRenderer : wideRenderer).render(fakePlayer, entityYaw, partialTick, poseStack, buffer, packedLight);
+        } else {
+            (isSlim ? corpoFino : corpoLargo).render(npc, entityYaw, partialTick, poseStack, buffer, packedLight);
+        }
 
         if (hasTransform) {
             poseStack.popPose();
@@ -73,12 +92,24 @@ public class RenderizadorNpcPersonalizado extends EntityRenderer<EntidadeNpcPers
         }
     }
 
-
     private void renderNpcNameTag(EntidadeNpcPersonalizado npc, PoseStack poseStack,
                                   MultiBufferSource buffer, int packedLight) {
-        Component displayName = npc.getDisplayName();
         String rawName = npc.getNpcName();
         if (rawName == null || rawName.isBlank()) return;
+
+        Component displayName = npc.getDisplayName();
+        Font font = Minecraft.getInstance().font;
+        CacheNome cache = cacheNomes.get(npc);
+        if (cache == null) {
+            cache = new CacheNome();
+            cacheNomes.put(npc, cache);
+        }
+        int versaoFonte = VersaoFonteCliente.atual();
+        if (cache.componente != displayName || cache.versaoFonte != versaoFonte) {
+            cache.componente = displayName;
+            cache.versaoFonte = versaoFonte;
+            cache.metadeLargura = font.width(displayName) / 2.0f;
+        }
 
         float sy = npc.getScaleY();
         float nameHeight = (npc.getBbHeight() * sy) + 0.5f;
@@ -86,12 +117,10 @@ public class RenderizadorNpcPersonalizado extends EntityRenderer<EntidadeNpcPers
         poseStack.pushPose();
         poseStack.translate(0.0, nameHeight, 0.0);
 
-        poseStack.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
+        poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
         poseStack.scale(0.025f, -0.025f, 0.025f);
 
-        Font font = Minecraft.getInstance().font;
-        float textWidth = font.width(displayName);
-        float x = -textWidth / 2.0f;
+        float x = -cache.metadeLargura;
 
         Matrix4f matrix = poseStack.last().pose();
 
@@ -105,18 +134,6 @@ public class RenderizadorNpcPersonalizado extends EntityRenderer<EntidadeNpcPers
                 matrix, buffer, Font.DisplayMode.NORMAL, 0, packedLight);
 
         poseStack.popPose();
-    }
-
-    private void enableOverlayLayers(PlayerRenderer renderer) {
-        try {
-            PlayerModel<?> model = renderer.getModel();
-            if (model.hat != null) model.hat.visible = true;
-            if (model.jacket != null) model.jacket.visible = true;
-            if (model.leftSleeve != null) model.leftSleeve.visible = true;
-            if (model.rightSleeve != null) model.rightSleeve.visible = true;
-            if (model.leftPants != null) model.leftPants.visible = true;
-            if (model.rightPants != null) model.rightPants.visible = true;
-        } catch (Exception ignored) {}
     }
 
     @Override

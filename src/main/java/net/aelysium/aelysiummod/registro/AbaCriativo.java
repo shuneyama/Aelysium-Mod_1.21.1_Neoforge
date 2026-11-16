@@ -71,6 +71,12 @@ public class AbaCriativo {
                         output.accept(ModItens.CARTAO_VERDE);
                         output.accept(ModItens.CARTAO_VERMELHO);
                         output.accept(ModItens.CARTAO_MESTRE);
+                        output.accept(ModItens.GAZUA);
+                        output.accept(ModItens.LANTERNA);
+                        output.accept(ModItens.MEDKIT);
+                        output.accept(ModItens.SERINGA);
+                        output.accept(ModItens.SERINGA_CURA);
+                        output.accept(ModItens.SERINGA_SANGUE);
                     }).build());
 
 
@@ -90,7 +96,16 @@ public class AbaCriativo {
                         output.accept(ModBlocos.FENDA_KAIROS);
                         output.accept(ModBlocos.PORTA_UM_PAINEL);
                         output.accept(ModBlocos.COFRE_COM_PAINEL);
+                        output.accept(ModBlocos.MINI_FAROL);
                     }).build());
+
+
+
+    public static final Supplier<CreativeModeTab> AELYSIUM_DECORACAO_TAB = CREATIVE_MODE_TAB.register("aelysium_decoracao_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocosDecoracao.ITENS.getEntries().iterator().next().get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "aelysium_blocos_tab"))
+                    .title(Component.translatable("creativetab.aelysiummod.aelysium_decoracao"))
+                    .displayItems((itemDisplayParameters, output) -> ModBlocosDecoracao.ITENS.getEntries().forEach(item -> output.accept(item.get()))).build());
 
 
 

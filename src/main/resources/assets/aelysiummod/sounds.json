@@ -1,9 +1,4 @@
 {
-  "morte.downer": {
-    "sounds": [
-      "aelysiummod:morte/downer_morte"
-    ]
-  },
   "silencio": {
     "sounds": []
   },

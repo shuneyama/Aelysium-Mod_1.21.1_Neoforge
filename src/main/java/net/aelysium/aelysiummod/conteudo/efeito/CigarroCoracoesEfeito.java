@@ -7,7 +7,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
-public class CigarroCoracoesEfeito extends MobEffect {
+public class CigarroCoracoesEfeito extends EfeitoSemLeite {
 
     public CigarroCoracoesEfeito() {
         super(MobEffectCategory.BENEFICIAL, 0xC77B4A);

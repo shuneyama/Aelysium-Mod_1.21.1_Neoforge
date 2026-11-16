@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "parte=solo": {
+      "model": "aelysiummod:block/decor/pilar_de_marmore"
+    },
+    "parte=base": {
+      "model": "aelysiummod:block/decor/pilar_de_marmore_base"
+    },
+    "parte=meio": {
+      "model": "aelysiummod:block/decor/pilar_de_marmore_meio"
+    },
+    "parte=topo": {
+      "model": "aelysiummod:block/decor/pilar_de_marmore_topo"
+    }
+  }
+}

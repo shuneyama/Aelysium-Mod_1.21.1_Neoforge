@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:bloco_de_perola_negra"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:laje_de_perola_negra",
+    "count": 6
+  }
+}

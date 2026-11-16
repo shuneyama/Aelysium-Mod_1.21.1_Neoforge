@@ -9,5 +9,6 @@ public class ConfiguracaoMorte {
 
     public static void setHabilitada(boolean valor) {
         habilitada = valor;
+        LimiteTotens.reiniciar();
     }
 }

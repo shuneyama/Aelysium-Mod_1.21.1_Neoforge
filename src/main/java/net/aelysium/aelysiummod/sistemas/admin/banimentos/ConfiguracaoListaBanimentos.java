@@ -65,7 +65,6 @@ public class ConfiguracaoListaBanimentos {
                     }
                 }
             }
-            LOGGER.info("[Banlist] Config carregada: {} itens banidos.", BANNED_ITEMS.size());
         } catch (Exception e) {
             LOGGER.error("[Banlist] Erro ao carregar config: {}", e.getMessage());
         }
@@ -93,7 +92,6 @@ public class ConfiguracaoListaBanimentos {
         if (Files.exists(toml) && Files.exists(getArquivo())) {
             try {
                 Files.delete(toml);
-                LOGGER.info("[Banlist] itens_banidos.toml convertido ({} itens banidos) e apagado.", BANNED_ITEMS.size());
             } catch (IOException e) {
                 LOGGER.error("[Banlist] Erro ao apagar itens_banidos.toml: {}", e.getMessage());
             }

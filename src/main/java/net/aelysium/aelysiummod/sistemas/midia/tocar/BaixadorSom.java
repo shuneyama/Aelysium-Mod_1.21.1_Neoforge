@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.midia.tocar;
 
+import net.aelysium.aelysiummod.nucleo.texto.SemConversao;
 import net.aelysium.aelysiummod.nucleo.armazenamento.PastaAelysium;
 import net.aelysium.aelysiummod.nucleo.configuracao.AelysiumDiretorioConfiguracao;
 import net.minecraft.commands.CommandSourceStack;
@@ -84,7 +85,7 @@ public class BaixadorSom {
         }
 
         private void enviarChat(String texto) {
-            servidor.execute(() -> origem.sendSuccess(() -> Component.literal(texto), false));
+            servidor.execute(() -> SemConversao.executar(() -> origem.sendSuccess(() -> Component.literal(texto), false)));
         }
     }
 
@@ -106,13 +107,13 @@ public class BaixadorSom {
         Thread fio = new Thread(() -> {
             try {
                 String nomeFinal = executar(uri, nomeEscolhido, progresso);
-                servidor.execute(() -> origem.sendSuccess(() -> Component.literal("§a[" + TOTAL_FASES + "/" + TOTAL_FASES + "] Pronto! Som salvo como §f" + nomeFinal
-                        + "§a. Use /aelysium sons tocar " + nomeFinal + " ..."), false));
+                servidor.execute(() -> SemConversao.executar(() -> origem.sendSuccess(() -> Component.literal("§a[" + TOTAL_FASES + "/" + TOTAL_FASES + "] Pronto! Som salvo como §f" + nomeFinal
+                        + "§a. Use /aelysium sons tocar " + nomeFinal + " ..."), false)));
             } catch (ErroBaixar e) {
-                servidor.execute(() -> origem.sendFailure(Component.literal("§c" + e.getMessage())));
+                servidor.execute(() -> SemConversao.executar(() -> origem.sendFailure(Component.literal("§c" + e.getMessage()))));
             } catch (Exception e) {
                 LOGGER.error("Falha ao baixar som: ", e);
-                servidor.execute(() -> origem.sendFailure(Component.literal("§cFalha inesperada ao baixar o som: " + e.getMessage())));
+                servidor.execute(() -> SemConversao.executar(() -> origem.sendFailure(Component.literal("§cFalha inesperada ao baixar o som: " + e.getMessage()))));
             } finally {
                 OCUPADO.set(false);
             }

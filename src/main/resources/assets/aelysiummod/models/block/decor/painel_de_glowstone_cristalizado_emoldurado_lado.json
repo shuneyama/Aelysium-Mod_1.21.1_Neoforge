@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_side",
+  "textures": {
+    "particle": "aelysiummod:block/decor/emoldurado_glowstone_painel_sem_ctm",
+    "pane": "aelysiummod:block/decor/emoldurado_glowstone_painel_sem_ctm",
+    "edge": "aelysiummod:block/decor/emoldurado_glowstone_painel_topo"
+  },
+  "render_type": "translucent"
+}

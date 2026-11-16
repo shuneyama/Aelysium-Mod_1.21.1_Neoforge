@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.midia.holograma;
 
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
@@ -156,11 +157,11 @@ public class AnalisadorCorHolograma {
                 switch (code) {
                     case '0','1','2','3','4','5','6','7','8','9' -> {
                         int idx = code - '0';
-                        estiloAtual = Style.EMPTY.withColor(TextColor.fromRgb(CORES_MINECRAFT[idx]));
+                        estiloAtual = CodigosEstilo.recomecar(estiloAtual).withColor(TextColor.fromRgb(CORES_MINECRAFT[idx]));
                     }
                     case 'a','b','c','d','e','f' -> {
                         int idx = 10 + (code - 'a');
-                        estiloAtual = Style.EMPTY.withColor(TextColor.fromRgb(CORES_MINECRAFT[idx]));
+                        estiloAtual = CodigosEstilo.recomecar(estiloAtual).withColor(TextColor.fromRgb(CORES_MINECRAFT[idx]));
                     }
                     case 'k' -> estiloAtual = estiloAtual.withObfuscated(true);
                     case 'l' -> estiloAtual = estiloAtual.withBold(true);
@@ -169,6 +170,11 @@ public class AnalisadorCorHolograma {
                     case 'o' -> estiloAtual = estiloAtual.withItalic(true);
                     case 'r' -> estiloAtual = Style.EMPTY;
                     default -> {
+                        if (CodigosEstilo.ehCodigoEstilo(code)) {
+                            estiloAtual = estiloAtual.withFont(CodigosEstilo.fonte(code));
+                            i += 2;
+                            continue;
+                        }
                         buffer.append('§').append(texto.charAt(i + 1));
                     }
                 }

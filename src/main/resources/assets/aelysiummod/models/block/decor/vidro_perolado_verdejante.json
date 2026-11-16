@@ -1,0 +1,11 @@
+{
+  "parent": "block/grass_block",
+  "textures": {
+    "bottom": "aelysiummod:block/decor/vidro_perolado_verdejante",
+    "top": "aelysiummod:block/decor/vidro_perolado_verdejante",
+    "side": "aelysiummod:block/decor/vidro_perolado_painel_verdejante",
+    "overlay": "aelysiummod:block/decor/vidro_perolado_painel_verdejante",
+    "particle": "aelysiummod:block/decor/vidro_perolado_verdejante"
+  },
+  "render_type": "solid"
+}

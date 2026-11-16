@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede"
+    },
+    "facing=east,lit=false": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede",
+      "y": 90
+    },
+    "facing=south,lit=false": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede",
+      "y": 270
+    },
+    "facing=north,lit=true": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede_ligada"
+    },
+    "facing=east,lit=true": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede_ligada",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede_ligada",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_parede_ligada",
+      "y": 270
+    }
+  }
+}

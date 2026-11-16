@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "aelysiummod:block/decor/perola_negra_pilar_topo",
+    "up": "aelysiummod:block/decor/perola_negra_pilar_topo",
+    "north": "aelysiummod:block/decor/perola_negra_pilar_lado",
+    "east": "aelysiummod:block/decor/perola_negra_pilar_lado",
+    "south": "aelysiummod:block/decor/perola_negra_pilar_lado_invertido",
+    "west": "aelysiummod:block/decor/perola_negra_pilar_lado_invertido",
+    "particle": "aelysiummod:block/decor/perola_negra_pilar_topo"
+  },
+  "render_type": "solid"
+}

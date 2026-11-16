@@ -1,0 +1,10 @@
+{
+  "parent": "aelysiummod:custom/decor/boia_salva_vidas",
+  "textures": {
+    "all": "aelysiummod:block/decor/boia_salva_vidas_1",
+    "particle": "aelysiummod:block/decor/boia_salva_vidas_1",
+    "0": "aelysiummod:block/decor/boia_salva_vidas_1",
+    "1": "aelysiummod:block/decor/boia_salva_vidas_2"
+  },
+  "render_type": "cutout_mipped"
+}

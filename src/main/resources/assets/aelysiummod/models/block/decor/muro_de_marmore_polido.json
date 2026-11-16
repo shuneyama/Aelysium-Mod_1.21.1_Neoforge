@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_wall_side",
+  "textures": {
+    "wall": "aelysiummod:block/decor/marmore_parede",
+    "particle": "aelysiummod:block/decor/marmore_parede"
+  },
+  "render_type": "solid"
+}

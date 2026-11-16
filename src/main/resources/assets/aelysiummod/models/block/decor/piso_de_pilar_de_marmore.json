@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "aelysiummod:block/decor/marmore_piso_pilar_topo",
+    "up": "aelysiummod:block/decor/marmore_piso_pilar_topo",
+    "north": "aelysiummod:block/decor/marmore_pilar_piso_lado",
+    "east": "aelysiummod:block/decor/marmore_pilar_piso_lado",
+    "south": "aelysiummod:block/decor/marmore_pilar_piso_lado",
+    "west": "aelysiummod:block/decor/marmore_pilar_piso_lado_invertido",
+    "particle": "aelysiummod:block/decor/marmore_piso_pilar_topo"
+  },
+  "render_type": "solid"
+}

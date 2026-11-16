@@ -39,7 +39,6 @@ public class AplicadorNerfs {
 
             manager.tree().remove(remover);
             campo.set(manager, restantes.build());
-            LOGGER.info("{} conquistas de mods nerfados removidas.", remover.size());
         } catch (Exception e) {
             LOGGER.error("Falha ao remover conquistas de mods nerfados: ", e);
         }

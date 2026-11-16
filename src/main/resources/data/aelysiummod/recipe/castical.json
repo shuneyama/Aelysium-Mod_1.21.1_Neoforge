@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    " b ",
+    " b "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:candle"
+    },
+    "b": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:castical",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "experience": 0.2,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "minecraft:calcite"
+  },
+  "result": {
+    "id": "aelysiummod:marmore_bruto"
+  }
+}

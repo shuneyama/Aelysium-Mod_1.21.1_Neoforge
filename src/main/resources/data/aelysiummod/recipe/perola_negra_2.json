@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "experience": 0.2,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "aelysiummod:perola_branca"
+  },
+  "result": {
+    "id": "aelysiummod:perola_negra"
+  }
+}

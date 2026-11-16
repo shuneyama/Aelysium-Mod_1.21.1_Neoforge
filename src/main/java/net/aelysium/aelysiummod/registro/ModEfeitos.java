@@ -21,6 +21,7 @@ import net.aelysium.aelysiummod.conteudo.efeito.ExaustaoAbismoEfeito;
 import net.aelysium.aelysiummod.conteudo.efeito.GenesisCarregadoEfeito;
 import net.aelysium.aelysiummod.conteudo.efeito.MorteCanonicaEfeito;
 import net.aelysium.aelysiummod.conteudo.efeito.MorteCanonicaEventoEfeito;
+import net.aelysium.aelysiummod.conteudo.efeito.TotemEsgotadoEfeito;
 
 public class ModEfeitos {
 
@@ -54,6 +55,9 @@ public class ModEfeitos {
 
     public static final DeferredHolder<MobEffect, MorteCanonicaEventoEfeito> MORTE_CANONICA_EVENTO =
             MOB_EFFECTS.register("morte_canonica_evento", MorteCanonicaEventoEfeito::new);
+
+    public static final DeferredHolder<MobEffect, TotemEsgotadoEfeito> TOTEM_ESGOTADO =
+            MOB_EFFECTS.register("totem_esgotado", TotemEsgotadoEfeito::new);
 
     public static final DeferredHolder<MobEffect, ChoqueEfeito> CHOQUE =
             MOB_EFFECTS.register("choque", ChoqueEfeito::new);

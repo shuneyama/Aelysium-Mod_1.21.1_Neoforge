@@ -10,7 +10,8 @@ public enum TipoDeus {
     ASHYRA("ashyra", "Ashyra", 0xFF8C00),
     EREBOS("erebos", "Erebos", 0x8B008B),
     PHANES("phanes", "Phanes", 0xF0F0F0),
-    KLAUS("klaus", "Klaus", 0x00CED1);
+    KLAUS("klaus", "Klaus", 0x00CED1),
+    FREYR("freyr", "Freyr", 0x32CD32);
 
     public final String id;
     public final String displayName;

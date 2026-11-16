@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:marmore_polido"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:laje_de_marmore_polido",
+    "count": 6
+  }
+}

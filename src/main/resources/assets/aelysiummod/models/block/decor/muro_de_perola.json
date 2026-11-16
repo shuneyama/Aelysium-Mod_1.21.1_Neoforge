@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_wall_side",
+  "textures": {
+    "wall": "aelysiummod:block/decor/perola_bloco_cortado",
+    "particle": "aelysiummod:block/decor/perola_bloco_cortado"
+  },
+  "render_type": "solid"
+}

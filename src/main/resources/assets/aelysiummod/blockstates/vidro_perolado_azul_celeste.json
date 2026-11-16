@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "aelysiummod:block/decor/vidro_perolado_azul_celeste",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "aelysiummod:block/decor/vidro_perolado_azul_celeste"
+    },
+    "axis=z": {
+      "model": "aelysiummod:block/decor/vidro_perolado_azul_celeste",
+      "x": 90
+    }
+  }
+}

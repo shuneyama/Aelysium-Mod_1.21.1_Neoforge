@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:vidro_perolado"
+    },
+    "b": {
+      "item": "minecraft:light_blue_dye"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:vidro_perolado_azul_celeste",
+    "count": 1
+  }
+}

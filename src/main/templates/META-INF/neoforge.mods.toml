@@ -7,11 +7,11 @@
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the FML version. This is currently 2.
-loaderVersion="[4,)" #mandatory
+loaderVersion="${loader_version_range}" #mandatory
 
 # The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
-license="MIT License"
+license="${mod_license}"
 
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
@@ -20,15 +20,15 @@ license="MIT License"
 [[mods]] #mandatory
 
 # The modid of the mod
-modId="aelysiummod" #mandatory
+modId="${mod_id}" #mandatory
 
 # The version number of the mod
-version="1.5.1-oficial" #mandatory
+version="${mod_version}" #mandatory
 
 enumExtensions="META-INF/enumextensions.json"
 
 # A display name for the mod
-displayName="Aelysium Mod" #mandatory
+displayName="${mod_name}" #mandatory
 
 # A URL to query for updates for this mod. See the JSON update specification https://docs.neoforged.net/docs/misc/updatechecker/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
@@ -43,20 +43,17 @@ logoFile="icon.png" #optional
 #credits="" #optional
 
 # A text field displayed in the mod UI
-authors="Shune, Yuna, Raven, Lilith, Gusta" #optional
+authors="${mod_authors}" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''Quem escreve e apaga depois, serve o bumbum com batata e arroz'''
+description='''${mod_description}'''
 
-# Second mod declared in this same jar: our own embedded port of BendyLib. Declaring it with the
-# same modid as the jar-in-jar copy other mods (Emotecraft/Player Animator) bring lets FML's
-# duplicate-modid resolution pick ours instead of double-loading both, since the two conflict.
 [[mods]]
 modId="bendylib"
 version="5.2"
-displayName="Bendy Lib"
-authors="KosmX (original), ported to NeoForge 1.21.1 by Shuneyama"
-description='''A mixin library to bend ModelParts. NeoForge 1.21.1 port of KosmX's bendy-lib.'''
+displayName="Articulacoes (CPMEC)"
+authors="Shuneyama"
+description='''Mod desenvolvido por Shuney >:D | Discord e Twitter: @shuneyama'''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 [[mixins]]
@@ -93,10 +90,19 @@ config="aelysiummod.bateria.mixins.json"
 config="aelysiummod.maozinha.mixins.json"
 
 [[mixins]]
-config="bendylib.mixins.json"
+config="aelysiummod.lanterna.mixins.json"
 
 [[mixins]]
-config="bendylib-cpm-compat.mixins.json"
+config="aelysiummod.texto.mixins.json"
+
+[[mixins]]
+config="aelysiummod.articulacoes.mixins.json"
+
+[[mixins]]
+config="aelysiummod.articulacoes.cpm.mixins.json"
+
+[[mixins]]
+config="aelysiummod.articulacoes.animador.mixins.json"
 
 # The [[accessTransformers]] block allows you to declare where your AT file is.
 # If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
@@ -106,7 +112,7 @@ config="bendylib-cpm-compat.mixins.json"
 # The coremods config file path is not configurable and is always loaded from META-INF/coremods.json
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.aelysiummod]] #optional
+[[dependencies.${mod_id}]] #optional
 # the modid of the dependency
 modId="neoforge" #mandatory
 # The type of the dependency. Can be one of "required", "optional", "incompatible" or "discouraged" (case insensitive).
@@ -116,7 +122,7 @@ type="required" #mandatory
 # Optional field describing why the dependency is required or why it is incompatible
 # reason="..."
 # The version range of the dependency
-versionRange="[21.1.0,)" #mandatory
+versionRange="${neo_version_range}" #mandatory
 # An ordering relationship for the dependency.
 # BEFORE - This mod is loaded BEFORE the dependency
 # AFTER - This mod is loaded AFTER the dependency
@@ -125,20 +131,20 @@ ordering="NONE"
 side="BOTH"
 
 # Here's another dependency
-[[dependencies.aelysiummod]]
+[[dependencies.${mod_id}]]
 modId="minecraft"
 type="required"
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-versionRange="[1.21.1, 1.22)"
+versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
-[[dependencies.aelysiummod]]
+[[dependencies.${mod_id}]]
 modId="collective"
 mandatory=true
 versionRange="[7.80,)"
 ordering="NONE"
 side="BOTH"
-[[dependencies.aelysiummod]]
+[[dependencies.${mod_id}]]
 modId="jade"
 type="optional"
 versionRange="[15.0.0,)"

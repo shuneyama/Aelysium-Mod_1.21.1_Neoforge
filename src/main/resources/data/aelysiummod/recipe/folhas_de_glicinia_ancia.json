@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:petalas_de_glicinia_ancia"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:folhas_de_glicinia_ancia",
+    "count": 2
+  }
+}

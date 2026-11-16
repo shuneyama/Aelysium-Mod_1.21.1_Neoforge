@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bbb",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:spruce_planks"
+    },
+    "b": {
+      "item": "aelysiummod:perola_branca"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:vidro_perolado",
+    "count": 6
+  }
+}

@@ -21,7 +21,7 @@ public class ItensVisiveisSemOp {
     );
 
     public static boolean estaLiberado(String path) {
-        return IDS.contains(path);
+        return IDS.contains(path) || net.aelysium.aelysiummod.registro.ModBlocosDecoracao.ENTRADAS.containsKey(path);
     }
 
     private ItensVisiveisSemOp() {

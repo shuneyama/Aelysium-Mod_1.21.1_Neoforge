@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_glass_pane_noside",
+  "textures": {
+    "pane": "aelysiummod:block/decor/vidro_perolado_painel_madeira_branca",
+    "particle": "aelysiummod:block/decor/vidro_perolado_painel_madeira_branca"
+  },
+  "render_type": "solid"
+}

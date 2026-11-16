@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:vidro_vermelhao"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:painel_de_vidro_vermelhao",
+    "count": 16
+  }
+}

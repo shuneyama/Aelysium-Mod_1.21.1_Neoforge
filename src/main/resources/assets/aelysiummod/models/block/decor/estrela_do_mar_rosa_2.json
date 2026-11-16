@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/estrela_do_mar_rosa_2",
+  "textures": {
+    "all": "aelysiummod:block/decor/estrela_do_mar_rosa_2",
+    "particle": "aelysiummod:block/decor/estrela_do_mar_rosa_2",
+    "0": "aelysiummod:block/decor/estrela_do_mar_rosa_2"
+  },
+  "render_type": "cutout_mipped"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aelysiummod:block/decor/prismarinho_cristal_bloco_liso_sem_ctm"
+  },
+  "render_type": "translucent"
+}

@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "aelysiummod:laje_de_tijolos_de_perola",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "add": false,
+              "count": 2.0,
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "aelysiummod:laje_de_tijolos_de_perola",
+                  "properties": {
+                    "type": "double"
+                  }
+                }
+              ]
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

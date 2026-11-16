@@ -66,7 +66,6 @@ public class ConfiguracaoDimensaoRenascimento {
                 save();
             }
             Files.deleteIfExists(arquivo);
-            LOGGER.info("spawn_mundo.json convertido para o regras_mods.json e apagado.");
         } catch (Exception e) {
             LOGGER.error("Erro ao migrar spawn_mundo.json: ", e);
         }
@@ -112,7 +111,6 @@ public class ConfiguracaoDimensaoRenascimento {
         }
         if (definido) {
             save();
-            LOGGER.info("Spawn antigo convertido para o regras_mods.json.");
         }
     }
 

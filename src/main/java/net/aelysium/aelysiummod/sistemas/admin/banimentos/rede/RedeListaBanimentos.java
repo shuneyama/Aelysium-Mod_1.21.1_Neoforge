@@ -1,6 +1,5 @@
 package net.aelysium.aelysiummod.sistemas.admin.banimentos.rede;
 
-import com.mojang.logging.LogUtils;
 import net.aelysium.aelysiummod.AelysiumMod;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -10,14 +9,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.ConfiguracaoListaBanimentos;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.DadosBanimentoJogador;
-import org.slf4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class RedeListaBanimentos {
-
-    private static final Logger LOGGER = LogUtils.getLogger();
 
     public static final ResourceLocation SYNC_BANNED_ID = ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "banlist_sync_banned");
     public static final ResourceLocation SYNC_ALLOWED_ID = ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "banlist_sync_allowed");
@@ -77,9 +73,6 @@ public class RedeListaBanimentos {
         DadosBanimentoJogador data = DadosBanimentoJogador.get(player.getServer());
         Set<ResourceLocation> allowed = data.getAllowedItems(player.getUUID());
         PacketDistributor.sendToPlayer(player, new PacoteSincItensPermitidos(allowed));
-
-        LOGGER.info("[Banlist] Enviando sync para {}: {} banidos, {} permitidos.",
-                player.getGameProfile().getName(), banned.size(), allowed.size());
     }
 
     public static void syncAllPlayers(net.minecraft.server.MinecraftServer server) {

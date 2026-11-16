@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "aelysiummod:block/decor/perola_negra_liso",
+    "bottom": "aelysiummod:block/decor/perola_negra_liso",
+    "top": "aelysiummod:block/decor/perola_negra_liso",
+    "side": "aelysiummod:block/decor/perola_negra_liso"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_side_alt",
+  "textures": {
+    "particle": "aelysiummod:block/decor/vidro_perolado_painel_ensolarado",
+    "pane": "aelysiummod:block/decor/vidro_perolado_painel_ensolarado",
+    "edge": "aelysiummod:block/decor/vidro_perolado_painel_ensolarado"
+  },
+  "render_type": "solid"
+}

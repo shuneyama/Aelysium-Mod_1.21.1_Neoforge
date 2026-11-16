@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "a",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:bloco_de_perola_negra"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:pilar_de_perola_negra",
+    "count": 3
+  }
+}

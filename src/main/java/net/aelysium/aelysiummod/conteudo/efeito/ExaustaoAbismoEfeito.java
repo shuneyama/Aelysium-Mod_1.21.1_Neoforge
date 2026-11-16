@@ -7,7 +7,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
-public class ExaustaoAbismoEfeito extends MobEffect {
+public class ExaustaoAbismoEfeito extends EfeitoSemLeite {
 
     public ExaustaoAbismoEfeito() {
         super(MobEffectCategory.HARMFUL, 0x0B3D5C);

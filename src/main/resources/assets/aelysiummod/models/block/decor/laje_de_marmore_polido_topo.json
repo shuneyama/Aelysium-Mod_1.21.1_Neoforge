@@ -1,0 +1,10 @@
+{
+  "parent": "block/slab_top",
+  "textures": {
+    "particle": "aelysiummod:block/decor/marmore_polido_2",
+    "bottom": "aelysiummod:block/decor/marmore_polido_2",
+    "top": "aelysiummod:block/decor/marmore_polido",
+    "side": "aelysiummod:block/decor/marmore_polido"
+  },
+  "render_type": "solid"
+}

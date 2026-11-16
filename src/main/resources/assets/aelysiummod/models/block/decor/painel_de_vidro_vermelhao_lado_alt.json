@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_side_alt",
+  "textures": {
+    "particle": "aelysiummod:block/decor/vermelhao_bloco",
+    "pane": "aelysiummod:block/decor/vermelhao_bloco",
+    "edge": "aelysiummod:block/decor/vermelhao_bloco"
+  },
+  "render_type": "translucent"
+}

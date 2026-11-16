@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/haste_solar",
+  "textures": {
+    "all": "aelysiummod:block/decor/solar_haste",
+    "particle": "aelysiummod:block/decor/solar_haste",
+    "1": "aelysiummod:block/decor/solar_haste"
+  },
+  "render_type": "cutout_mipped"
+}

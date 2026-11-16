@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "aelysiummod:seringa"
+    },
+    [
+      {
+        "type": "neoforge:components",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:healing"
+          }
+        },
+        "items": "minecraft:potion"
+      },
+      {
+        "type": "neoforge:components",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:strong_healing"
+          }
+        },
+        "items": "minecraft:potion"
+      }
+    ]
+  ],
+  "result": {
+    "count": 1,
+    "id": "aelysiummod:seringa_cura"
+  }
+}

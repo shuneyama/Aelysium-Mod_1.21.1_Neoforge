@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bbb",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "aelysiummod:perola_negra"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:vidro_perolado_ferro",
+    "count": 6
+  }
+}

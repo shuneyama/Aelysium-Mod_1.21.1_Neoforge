@@ -17,6 +17,10 @@ public class ModEntidadesBloco {
             BLOCK_ENTITIES.register("porta_senha", () -> BlockEntityType.Builder.of(
                     EntidadeBlocoPortaSenha::new, ModBlocos.PORTA_UM_PAINEL.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<net.aelysium.aelysiummod.sistemas.mundo.minifarol.EntidadeMiniFarol>> MINI_FAROL =
+            BLOCK_ENTITIES.register("mini_farol", () -> BlockEntityType.Builder.of(
+                    net.aelysium.aelysiummod.sistemas.mundo.minifarol.EntidadeMiniFarol::new, ModBlocos.MINI_FAROL.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

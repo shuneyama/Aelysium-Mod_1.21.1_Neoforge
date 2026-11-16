@@ -1,0 +1,11 @@
+{
+  "parent": "block/grass_block",
+  "textures": {
+    "bottom": "aelysiummod:block/decor/marmore_bruto_2",
+    "top": "aelysiummod:block/decor/marmore_bruto",
+    "side": "aelysiummod:block/decor/marmore_bruto_2",
+    "overlay": "aelysiummod:block/decor/marmore_bruto",
+    "particle": "aelysiummod:block/decor/marmore_bruto_2"
+  },
+  "render_type": "solid"
+}

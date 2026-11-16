@@ -24,6 +24,10 @@ public abstract class OrdemListaJogadoresMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ClientPacketListener;getListedOnlinePlayers()Ljava/util/Collection;")
     )
     private Collection<PlayerInfo> aelysium$semEspectadores(ClientPacketListener conexao) {
+        net.minecraft.world.entity.player.Player local = net.minecraft.client.Minecraft.getInstance().player;
+        if (local != null && net.aelysium.aelysiummod.compatibilidade.jade.GerenciadorJogadoresOp.isOp(local.getUUID())) {
+            return conexao.getListedOnlinePlayers();
+        }
         return conexao.getListedOnlinePlayers().stream()
                 .filter(info -> info.getGameMode() != GameType.SPECTATOR)
                 .toList();

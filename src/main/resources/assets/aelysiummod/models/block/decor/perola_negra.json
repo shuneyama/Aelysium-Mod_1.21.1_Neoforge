@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/perola_negra_colocada",
+  "textures": {
+    "all": "aelysiummod:block/decor/perola_negra_colocada",
+    "particle": "aelysiummod:block/decor/perola_negra_colocada",
+    "1": "aelysiummod:block/decor/perola_negra_colocada"
+  },
+  "render_type": "solid"
+}

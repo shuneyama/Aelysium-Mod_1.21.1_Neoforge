@@ -1,0 +1,22 @@
+{
+  "parent": "aelysiummod:block/decor/ameijoa_gigante_vazia_fechada",
+  "display": {
+    "thirdperson": {
+      "rotation": [
+        10,
+        -45,
+        170
+      ],
+      "translation": [
+        0,
+        1.5,
+        -2.75
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    }
+  }
+}

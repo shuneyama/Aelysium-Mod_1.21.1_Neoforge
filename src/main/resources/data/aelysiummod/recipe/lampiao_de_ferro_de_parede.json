@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a  ",
+    "a b",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_nugget"
+    },
+    "b": {
+      "item": "aelysiummod:lampada"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:lampiao_de_ferro_de_parede",
+    "count": 2
+  }
+}

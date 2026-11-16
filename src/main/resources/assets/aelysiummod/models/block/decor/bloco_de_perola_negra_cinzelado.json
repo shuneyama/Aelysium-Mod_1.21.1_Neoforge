@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/decor/perola_negra_cinzelado",
+    "particle": "aelysiummod:block/decor/perola_negra_cinzelado"
+  },
+  "render_type": "solid"
+}

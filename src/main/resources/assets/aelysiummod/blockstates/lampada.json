@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "aelysiummod:block/decor/lampada"
+    },
+    "facing=east,lit=false": {
+      "model": "aelysiummod:block/decor/lampada",
+      "y": 90
+    },
+    "facing=south,lit=false": {
+      "model": "aelysiummod:block/decor/lampada",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "aelysiummod:block/decor/lampada",
+      "y": 270
+    },
+    "facing=up,lit=false": {
+      "model": "aelysiummod:block/decor/lampada",
+      "x": 270
+    },
+    "facing=down,lit=false": {
+      "model": "aelysiummod:block/decor/lampada",
+      "x": 90
+    },
+    "facing=north,lit=true": {
+      "model": "aelysiummod:block/decor/lampada_acesa"
+    },
+    "facing=east,lit=true": {
+      "model": "aelysiummod:block/decor/lampada_acesa",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "aelysiummod:block/decor/lampada_acesa",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "aelysiummod:block/decor/lampada_acesa",
+      "y": 270
+    },
+    "facing=up,lit=true": {
+      "model": "aelysiummod:block/decor/lampada_acesa",
+      "x": 270
+    },
+    "facing=down,lit=true": {
+      "model": "aelysiummod:block/decor/lampada_acesa",
+      "x": 90
+    }
+  }
+}

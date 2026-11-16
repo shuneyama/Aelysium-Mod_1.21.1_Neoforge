@@ -45,6 +45,8 @@ public class ProvedorTabelaLootBlocos extends BlockLootSubProvider {
 
         add(ModBlocos.COFRE_COM_PAINEL.get(),
                 block -> createSingleItemTable(ModBlocos.COFRE_COM_PAINEL.get()));
+
+        dropSelf(ModBlocos.MINI_FAROL.get());
     }
 
     @Override

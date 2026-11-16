@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
-public class CongelamentoEfeito extends MobEffect {
+public class CongelamentoEfeito extends EfeitoSemLeite {
     public CongelamentoEfeito(MobEffectCategory category, int color) {
         super(category, color);
 

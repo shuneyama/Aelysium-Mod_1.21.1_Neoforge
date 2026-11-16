@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aelysiummod:block/decor/estrela_do_mar_seca_1"
+  },
+  "render_type": "translucent"
+}

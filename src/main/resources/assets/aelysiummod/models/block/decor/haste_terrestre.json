@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/terrestre_haste",
+  "textures": {
+    "all": "aelysiummod:block/decor/terrestre_haste",
+    "particle": "aelysiummod:block/decor/terrestre_haste",
+    "2": "aelysiummod:block/decor/terrestre_haste"
+  },
+  "render_type": "cutout_mipped"
+}

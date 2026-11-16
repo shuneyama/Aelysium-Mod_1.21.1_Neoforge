@@ -65,19 +65,9 @@ public class ManipuladoresNpcCliente {
 
     public static void handleSyncSkin(PacotesNpc.SincSkinNpcS2C packet, IPayloadContext ctx) {
         ctx.enqueueWork(() -> {
-            System.out.println("[NPC-Client] handleSyncSkin received:");
-            System.out.println("[NPC-Client]   entityId="  + packet.entityId());
-            System.out.println("[NPC-Client]   skinMode="  + packet.skinMode());
-            System.out.println("[NPC-Client]   modelType=" + packet.modelType());
-            System.out.println("[NPC-Client]   dataSize="  +
-                    (packet.skinBytes() != null ? packet.skinBytes().length : "null"));
-
             GerenciadorSkinNpc.registerSkin(
                     packet.entityId(), packet.skinBytes(),
                     "vanilla", packet.modelType());
-
-            System.out.println("[NPC-Client]   Skin registered. hasSkin="
-                    + GerenciadorSkinNpc.hasSkin(packet.entityId()));
         });
     }
 

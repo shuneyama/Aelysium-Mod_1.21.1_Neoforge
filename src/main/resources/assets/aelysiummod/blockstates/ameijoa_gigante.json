@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,open=false,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_fechada"
+    },
+    "facing=east,open=false,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_fechada",
+      "y": 90
+    },
+    "facing=south,open=false,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_fechada",
+      "y": 180
+    },
+    "facing=west,open=false,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_fechada",
+      "y": 270
+    },
+    "facing=north,open=true,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_aberta"
+    },
+    "facing=east,open=true,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_aberta",
+      "y": 90
+    },
+    "facing=south,open=true,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_aberta",
+      "y": 180
+    },
+    "facing=west,open=true,perola=false": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_vazia_aberta",
+      "y": 270
+    },
+    "facing=north,open=false,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_fechada"
+    },
+    "facing=east,open=false,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_fechada",
+      "y": 90
+    },
+    "facing=south,open=false,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_fechada",
+      "y": 180
+    },
+    "facing=west,open=false,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_fechada",
+      "y": 270
+    },
+    "facing=north,open=true,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_aberta"
+    },
+    "facing=east,open=true,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_aberta",
+      "y": 90
+    },
+    "facing=south,open=true,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_aberta",
+      "y": 180
+    },
+    "facing=west,open=true,perola=true": {
+      "model": "aelysiummod:block/decor/ameijoa_gigante_perola_aberta",
+      "y": 270
+    }
+  }
+}

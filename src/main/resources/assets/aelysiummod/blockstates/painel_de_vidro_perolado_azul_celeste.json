@@ -1,0 +1,77 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_poste"
+      }
+    },
+    {
+      "when": {
+        "north": true
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_lado"
+      }
+    },
+    {
+      "when": {
+        "east": true
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_lado",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": true
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_lado_alt"
+      }
+    },
+    {
+      "when": {
+        "west": true
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_lado_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": false
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_sem_lado"
+      }
+    },
+    {
+      "when": {
+        "east": false
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_sem_lado_alt"
+      }
+    },
+    {
+      "when": {
+        "south": false
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_sem_lado_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": false
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/painel_de_vidro_perolado_azul_celeste_sem_lado",
+        "y": 270
+      }
+    }
+  ]
+}

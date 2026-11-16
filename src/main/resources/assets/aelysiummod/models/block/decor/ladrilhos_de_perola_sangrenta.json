@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/decor/sangrenta_perola_ladrilhos",
+    "particle": "aelysiummod:block/decor/sangrenta_perola_ladrilhos"
+  },
+  "render_type": "solid"
+}

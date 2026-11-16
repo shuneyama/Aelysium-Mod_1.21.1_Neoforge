@@ -11,6 +11,10 @@ import net.aelysium.aelysiummod.sistemas.social.npc.item.CriadorNPC;
 import net.aelysium.aelysiummod.sistemas.social.npc.item.CriadorRegistro;
 import net.aelysium.aelysiummod.conteudo.item.escudo.EscudoAbismoItem;
 import net.aelysium.aelysiummod.conteudo.item.glock.GlockItem;
+import net.aelysium.aelysiummod.conteudo.item.lanterna.LanternaItem;
+import net.aelysium.aelysiummod.conteudo.item.medico.MedkitItem;
+import net.aelysium.aelysiummod.conteudo.item.medico.SeringaCuraItem;
+import net.aelysium.aelysiummod.conteudo.item.medico.SeringaItem;
 import net.aelysium.aelysiummod.conteudo.item.cigarro.IsqueiroItem;
 import net.aelysium.aelysiummod.conteudo.item.arma.ProtocoloGenesisItem;
 import net.aelysium.aelysiummod.conteudo.item.arma.TridenteConchasItem;
@@ -392,6 +396,20 @@ public class ModItens {
 
     public static final DeferredItem<EscudoAbismoItem> ESCUDO_ABISMO = ITEMS.register("escudo_abismo",
             () -> new EscudoAbismoItem(new Item.Properties().stacksTo(1).fireResistant().durability(Tiers.NETHERITE.getUses())));
+
+    public static final DeferredItem<LanternaItem> LANTERNA = ITEMS.register("lanterna",
+            () -> new LanternaItem(new Item.Properties().stacksTo(1)
+                    .component(ModComponentesDados.LANTERNA_LIGADA.get(), false)));
+    public static final DeferredItem<MedkitItem> MEDKIT = ITEMS.register("medkit",
+            () -> new MedkitItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<SeringaItem> SERINGA = ITEMS.register("seringa",
+            () -> new SeringaItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<SeringaCuraItem> SERINGA_CURA = ITEMS.register("seringa_cura",
+            () -> new SeringaCuraItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> SERINGA_SANGUE = ITEMS.register("seringa_sangue",
+            () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<net.aelysium.aelysiummod.sistemas.mundo.porta.item.GazuaItem> GAZUA = ITEMS.register("gazua",
+            () -> new net.aelysium.aelysiummod.sistemas.mundo.porta.item.GazuaItem(new Item.Properties().stacksTo(16)));
 
 
 

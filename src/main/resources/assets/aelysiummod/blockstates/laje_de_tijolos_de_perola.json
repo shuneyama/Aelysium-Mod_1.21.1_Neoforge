@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "aelysiummod:block/decor/laje_de_tijolos_de_perola"
+    },
+    "type=top": {
+      "model": "aelysiummod:block/decor/laje_de_tijolos_de_perola_topo"
+    },
+    "type=double": {
+      "model": "aelysiummod:block/decor/laje_de_tijolos_de_perola_cheia"
+    }
+  }
+}

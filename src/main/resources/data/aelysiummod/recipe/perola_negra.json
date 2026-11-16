@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "aelysiummod:bloco_de_perola_negra"
+    }
+  ],
+  "result": {
+    "id": "aelysiummod:perola_negra",
+    "count": 4
+  }
+}

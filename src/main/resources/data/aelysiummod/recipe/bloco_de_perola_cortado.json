@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "aelysiummod:bloco_de_perola_cinzelado"
+    }
+  ],
+  "result": {
+    "id": "aelysiummod:bloco_de_perola_cortado",
+    "count": 1
+  }
+}

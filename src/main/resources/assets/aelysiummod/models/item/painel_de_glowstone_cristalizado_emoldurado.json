@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aelysiummod:block/decor/emoldurado_glowstone_painel_sem_ctm"
+  },
+  "render_type": "translucent"
+}

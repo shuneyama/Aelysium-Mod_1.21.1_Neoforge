@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_wall_post",
+  "textures": {
+    "wall": "aelysiummod:block/decor/perola_negra_tijolos",
+    "particle": "aelysiummod:block/decor/perola_negra_tijolos"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:bloco_de_perola_negra_cinzelado"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:bloco_de_perola_negra_cortado",
+    "count": 1
+  }
+}

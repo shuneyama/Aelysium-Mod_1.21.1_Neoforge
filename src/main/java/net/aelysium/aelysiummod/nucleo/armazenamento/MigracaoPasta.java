@@ -24,7 +24,6 @@ public class MigracaoPasta {
             try {
                 Files.deleteIfExists(antiga);
             } catch (IOException ignored) {}
-            LOGGER.info("Pasta {} movida para {}.", antiga, nova);
         } catch (IOException e) {
             LOGGER.error("Erro ao mover {} para {}: ", antiga, nova, e);
         }
@@ -35,7 +34,6 @@ public class MigracaoPasta {
         try {
             Files.createDirectories(novo.getParent());
             Files.move(antigo, novo);
-            LOGGER.info("Arquivo {} movido para {}.", antigo, novo);
         } catch (IOException e) {
             LOGGER.error("Erro ao mover {} para {}: ", antigo, novo, e);
         }

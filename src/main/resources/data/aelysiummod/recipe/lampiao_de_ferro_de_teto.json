@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:chain"
+    },
+    "b": {
+      "item": "aelysiummod:lampada"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:lampiao_de_ferro_de_teto"
+  }
+}

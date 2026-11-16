@@ -1,0 +1,11 @@
+{
+  "parent": "block/grass_block",
+  "textures": {
+    "bottom": "aelysiummod:block/decor/vidro_perolado_madeira_negra",
+    "top": "aelysiummod:block/decor/vidro_perolado_madeira_negra",
+    "side": "aelysiummod:block/decor/vidro_perolado_painel_madeira_negra",
+    "overlay": "aelysiummod:block/decor/vidro_perolado_painel_madeira_negra",
+    "particle": "aelysiummod:block/decor/vidro_perolado_madeira_negra"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_post",
+  "textures": {
+    "particle": "aelysiummod:block/decor/fresnel_lado",
+    "pane": "aelysiummod:block/decor/fresnel_lado",
+    "edge": "aelysiummod:block/decor/fresnel_lado"
+  },
+  "render_type": "translucent"
+}

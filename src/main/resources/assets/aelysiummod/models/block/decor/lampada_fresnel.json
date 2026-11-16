@@ -1,0 +1,11 @@
+{
+  "parent": "aelysiummod:custom/decor/fresnel_lampada",
+  "textures": {
+    "all": "aelysiummod:block/decor/fresnel_lado",
+    "particle": "aelysiummod:block/decor/fresnel_lado",
+    "0": "aelysiummod:block/decor/fresnel_topo",
+    "1": "aelysiummod:block/decor/fresnel_lado",
+    "2": "aelysiummod:block/decor/fresnel_dentro"
+  },
+  "render_type": "translucent"
+}

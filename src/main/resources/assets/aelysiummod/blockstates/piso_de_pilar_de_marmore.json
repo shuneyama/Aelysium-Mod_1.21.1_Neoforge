@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "aelysiummod:block/decor/piso_de_pilar_de_marmore",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "aelysiummod:block/decor/piso_de_pilar_de_marmore"
+    },
+    "axis=z": {
+      "model": "aelysiummod:block/decor/piso_de_pilar_de_marmore",
+      "x": 90
+    }
+  }
+}

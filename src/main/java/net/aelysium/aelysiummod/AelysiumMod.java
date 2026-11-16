@@ -66,6 +66,7 @@ import net.aelysium.aelysiummod.sistemas.rp.raca.ProvedorConsultaRaca;
 import net.aelysium.aelysiummod.sistemas.rp.vidas.ProvedorConsultaVidas;
 import net.aelysium.aelysiummod.sistemas.social.apelido.ProvedorConsultaApelido;
 import net.aelysium.aelysiummod.sistemas.social.insignia.ProvedorConsultaInsignia;
+import net.aelysium.aelysiummod.compatibilidade.voicechat.ConfiguracaoVoz;
 import net.aelysium.aelysiummod.compatibilidade.waystones.IntegracaoWaystones;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.ManipuladorEventosMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.TemporizadorMaozinha;
@@ -89,6 +90,7 @@ public class AelysiumMod {
         net.aelysium.aelysiummod.registro.ModComponentesDados.register(modEventBus);
         ModItens.register(modEventBus);
         ModBlocos.register(modEventBus);
+        net.aelysium.aelysiummod.registro.ModBlocosDecoracao.registrar(modEventBus);
         net.aelysium.aelysiummod.registro.ModEntidadesBloco.register(modEventBus);
         net.aelysium.aelysiummod.registro.ModEntidadesBlocoCofre.register(modEventBus);
         ModParticulas.register(modEventBus);
@@ -121,9 +123,11 @@ public class AelysiumMod {
         NeoForge.EVENT_BUS.register(new TemporizadorTeleporte());
         NeoForge.EVENT_BUS.register(new TemporizadorHolograma());
         NeoForge.EVENT_BUS.register(new TemporizadorMaozinha());
+        NeoForge.EVENT_BUS.register(new ConfiguracaoVoz());
         NeoForge.EVENT_BUS.register(new ManipuladorEventosMaozinha());
         NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.sistemas.rp.morte.TemporizadorMorte());
         NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.sistemas.rp.morte.OuvinteMorte());
+        NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.sistemas.rp.morte.LimiteTotens());
         NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.conteudo.efeito.ManipuladorChoqueRestricao());
 
 

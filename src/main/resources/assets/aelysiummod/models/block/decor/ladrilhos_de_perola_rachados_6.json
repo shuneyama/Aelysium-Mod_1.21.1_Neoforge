@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/decor/rachado_perola_ladrilhos_6",
+    "particle": "aelysiummod:block/decor/rachado_perola_ladrilhos_6"
+  },
+  "render_type": "solid"
+}

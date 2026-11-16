@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aelysiummod:block/decor/vermelhao_bloco"
+  },
+  "render_type": "translucent"
+}

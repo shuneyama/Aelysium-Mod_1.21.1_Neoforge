@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "aelysiummod:block/decor/pilar_de_perola_negra",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "aelysiummod:block/decor/pilar_de_perola_negra"
+    },
+    "axis=z": {
+      "model": "aelysiummod:block/decor/pilar_de_perola_negra",
+      "x": 90
+    }
+  }
+}

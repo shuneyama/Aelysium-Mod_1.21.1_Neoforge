@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,14 +22,23 @@ import java.util.concurrent.ConcurrentHashMap;
 public class JogadorNpcFalso extends AbstractClientPlayer {
 
     private static final Map<UUID, JogadorNpcFalso> CACHE = new ConcurrentHashMap<>();
+    private static final EquipmentSlot[] SLOTS = EquipmentSlot.values();
+    private static final ResourceLocation TEXTURA_STEVE = ResourceLocation.withDefaultNamespace("textures/entity/player/wide/steve.png");
+    private static final ResourceLocation TEXTURA_ALEX = ResourceLocation.withDefaultNamespace("textures/entity/player/slim/alex.png");
 
-    private final EntidadeNpcPersonalizado npcEntity;
+    private EntidadeNpcPersonalizado npcEntity;
     private ResourceLocation customSkinTexture;
     private PlayerSkin.Model skinModel = PlayerSkin.Model.WIDE;
+    private PlayerSkin skinCache;
+    private final ItemStack[] equipamento = new ItemStack[SLOTS.length];
+    boolean cpmAtivo;
 
     private JogadorNpcFalso(ClientLevel level, GameProfile profile, EntidadeNpcPersonalizado npc) {
         super(level, profile);
         this.npcEntity = npc;
+        Arrays.fill(equipamento, ItemStack.EMPTY);
+        this.setCustomName(null);
+        this.setCustomNameVisible(false);
     }
 
     @Override
@@ -50,24 +60,28 @@ public class JogadorNpcFalso extends AbstractClientPlayer {
         ClientLevel level = Minecraft.getInstance().level;
         if (level == null) return null;
 
-        JogadorNpcFalso resultado = CACHE.compute(npc.getUUID(), (uuid, existing) -> {
-            if (existing != null && existing.level() == level) {
-                existing.syncFromNpc(npc);
-                return existing;
-            }
-            GameProfile profile = new GameProfile(npc.getUUID(), "");
-            JogadorNpcFalso fake = new JogadorNpcFalso(level, profile, npc);
-            fake.syncFromNpc(npc);
-            return fake;
-        });
+        JogadorNpcFalso resultado = CACHE.get(npc.getUUID());
+        if (resultado == null || resultado.level() != level) {
+            resultado = new JogadorNpcFalso(level, new GameProfile(npc.getUUID(), ""), npc);
+            CACHE.put(npc.getUUID(), resultado);
+        }
+        resultado.syncFromNpc(npc);
         ResourceLocation texturaPersonalizada = GerenciadorSkinNpc.getSkinTexture(npc.getId());
         if (texturaPersonalizada != null) resultado.setCustomSkinTexture(texturaPersonalizada);
         GerenciadorSkinNpc.sincronizarCpm(resultado, npc.getId());
         return resultado;
     }
 
+    public static void liberarCpm(EntidadeNpcPersonalizado npc) {
+        JogadorNpcFalso falso = CACHE.get(npc.getUUID());
+        if (falso != null && falso.cpmAtivo) GerenciadorSkinNpc.sincronizarCpm(falso, npc.getId());
+    }
+
     public void syncFromNpc(EntidadeNpcPersonalizado npc) {
-        this.setPos(npc.getX(), npc.getY(), npc.getZ());
+        this.npcEntity = npc;
+        if (this.getX() != npc.getX() || this.getY() != npc.getY() || this.getZ() != npc.getZ()) {
+            this.setPos(npc.getX(), npc.getY(), npc.getZ());
+        }
         this.setYRot(npc.getYRot());
         this.setXRot(npc.getXRot());
         this.yHeadRot = npc.yHeadRot;
@@ -77,24 +91,26 @@ public class JogadorNpcFalso extends AbstractClientPlayer {
         this.yRotO = npc.yRotO;
         this.xRotO = npc.xRotO;
 
-        this.skinModel = "slim".equals(npc.getModelType())
-                ? PlayerSkin.Model.SLIM : PlayerSkin.Model.WIDE;
+        syncModelType(npc.getModelType());
 
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            ItemStack npcItem = npc.getItemBySlot(slot);
-            this.setItemSlot(slot, npcItem);
+        for (EquipmentSlot slot : SLOTS) {
+            equipamento[slot.ordinal()] = npc.getItemBySlot(slot);
         }
-
-        this.setCustomName(null);
-        this.setCustomNameVisible(false);
     }
 
     public void syncModelType(String modelType) {
-        this.skinModel = "slim".equals(modelType) ? PlayerSkin.Model.SLIM : PlayerSkin.Model.WIDE;
+        PlayerSkin.Model novo = "slim".equals(modelType) ? PlayerSkin.Model.SLIM : PlayerSkin.Model.WIDE;
+        if (novo != skinModel) {
+            skinModel = novo;
+            skinCache = null;
+        }
     }
 
     public void setCustomSkinTexture(ResourceLocation texture) {
-        this.customSkinTexture = texture;
+        if (texture != customSkinTexture) {
+            customSkinTexture = texture;
+            skinCache = null;
+        }
     }
 
     public ResourceLocation getCustomSkinTexture() {
@@ -106,27 +122,32 @@ public class JogadorNpcFalso extends AbstractClientPlayer {
     }
 
     @Override
+    public ItemStack getItemBySlot(EquipmentSlot slot) {
+        return equipamento[slot.ordinal()];
+    }
+
+    @Override
+    public void setItemSlot(EquipmentSlot slot, ItemStack stack) {
+        equipamento[slot.ordinal()] = stack;
+    }
+
+    @Override
     public boolean isModelPartShown(PlayerModelPart part) {
         return true;
     }
 
     @Override
     public PlayerSkin getSkin() {
-        ResourceLocation skinTex = customSkinTexture;
-        if (skinTex == null) {
-            skinTex = skinModel == PlayerSkin.Model.SLIM
-                    ? ResourceLocation.withDefaultNamespace("textures/entity/player/slim/alex.png")
-                    : ResourceLocation.withDefaultNamespace("textures/entity/player/wide/steve.png");
+        PlayerSkin skin = skinCache;
+        if (skin == null) {
+            ResourceLocation skinTex = customSkinTexture;
+            if (skinTex == null) {
+                skinTex = skinModel == PlayerSkin.Model.SLIM ? TEXTURA_ALEX : TEXTURA_STEVE;
+            }
+            skin = new PlayerSkin(skinTex, null, null, null, skinModel, false);
+            skinCache = skin;
         }
-
-        return new PlayerSkin(
-                skinTex,
-                null,
-                null,
-                null,
-                skinModel,
-                false
-        );
+        return skin;
     }
 
     @Override

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:vidro_perolado_madeira_branca"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:painel_de_vidro_perolado_madeira_branca",
+    "count": 16
+  }
+}

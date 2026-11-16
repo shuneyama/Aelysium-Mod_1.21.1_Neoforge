@@ -24,6 +24,8 @@
       "values": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
     },
     { "name": "DistanciaFade", "type": "float", "count": 1, "values": [80.0] },
-    { "name": "BaseColor", "type": "float", "count": 3, "values": [0.35, 0.75, 1.0] }
+    { "name": "BaseColor", "type": "float", "count": 3, "values": [0.35, 0.75, 1.0] },
+    { "name": "Raio", "type": "float", "count": 1, "values": [1.0] },
+    { "name": "Deslocamento", "type": "float", "count": 3, "values": [0.0, 0.0, 0.0] }
   ]
 }

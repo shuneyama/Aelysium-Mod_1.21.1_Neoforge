@@ -51,6 +51,11 @@ public class ManipuladorApelidoCliente {
         CacheApelido c = NICKNAME_MAP.get(uuid);
         if (c == null) return null;
 
+        if (c.nomeMontado == null) c.nomeMontado = montarNome(c);
+        return c.nomeMontado.copy();
+    }
+
+    private static MutableComponent montarNome(CacheApelido c) {
         MutableComponent result = Component.empty();
         boolean hasPrefix = !c.prefix.isEmpty();
         boolean hasSuffix = !c.suffix.isEmpty();
@@ -97,6 +102,7 @@ public class ManipuladorApelidoCliente {
         final int nickCor, nickFormat;
         final String suffix;
         final int suffixCor1, suffixCor2, suffixFormat;
+        MutableComponent nomeMontado;
 
         CacheApelido(String prefix, int prefixCor1, int prefixCor2, int prefixFormat,
                       String nick, int nickCor, int nickFormat,

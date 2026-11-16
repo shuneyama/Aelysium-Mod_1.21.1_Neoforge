@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bcb",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:gold_nugget"
+    },
+    "b": {
+      "item": "minecraft:glass"
+    },
+    "c": {
+      "item": "minecraft:prismarine_crystals"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:vidro_fresnel",
+    "count": 8
+  }
+}

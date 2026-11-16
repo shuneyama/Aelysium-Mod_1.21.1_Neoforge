@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.social.chat.cliente;
 
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
@@ -53,7 +54,7 @@ public class RenderizadorBalao {
             poseStack.mulPose(rotation);
             poseStack.scale(-0.025F, -0.025F, 0.025F);
 
-            List<FormattedCharSequence> lines = font.split(FormattedText.of(visibleText), ConfiguracaoBalao.MAX_BALLOON_WIDTH);
+            List<FormattedCharSequence> lines = font.split(CodigosEstilo.componente(visibleText), ConfiguracaoBalao.MAX_BALLOON_WIDTH);
 
             int maxTextWidth = 0;
             for (FormattedCharSequence line : lines) {
@@ -121,7 +122,7 @@ public class RenderizadorBalao {
                     textY += 9;
                 }
             } else {
-                font.drawInBatch(visibleText, -maxTextWidth / 2.0f, baseY - balloonDistance + BALLOON_PADDING, msg.corTexto(), false,
+                font.drawInBatch(lines.get(0), -maxTextWidth / 2.0f, baseY - balloonDistance + BALLOON_PADDING, msg.corTexto(), false,
                         textMatrix, bufferSource, Font.DisplayMode.NORMAL, 0, 15728880);
             }
 

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:tijolos_de_perola_negra"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:muro_de_tijolos_de_perola_negra",
+    "count": 6
+  }
+}

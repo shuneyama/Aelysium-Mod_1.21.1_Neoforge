@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bab",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:vidro_vermelhao"
+    },
+    "b": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:vidro_vermelhao_emoldurado",
+    "count": 5
+  }
+}

@@ -46,6 +46,12 @@ public class SuavizadorPosicaoMaozinha {
             return;
         }
 
+        if (recebidos.isEmpty()) {
+            if (!suavizados.isEmpty()) suavizados.clear();
+            if (!deslocamentos.isEmpty()) deslocamentos.clear();
+            return;
+        }
+
         float parcial = event.getPartialTick().getGameTimeDeltaPartialTick(false);
         double fator = 1.0 - Math.exp(-ConstantesMaozinha.SUAVIZACAO_VISUAL_POR_SEGUNDO * segundos);
         Map<UUID, Vec3> novosSuavizados = new HashMap<>();

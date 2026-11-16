@@ -1,0 +1,10 @@
+{
+  "parent": "aelysiummod:custom/decor/ameijoa_vazia_aberta",
+  "textures": {
+    "all": "aelysiummod:block/decor/ameijoa_1",
+    "particle": "aelysiummod:block/decor/ameijoa_1",
+    "0": "aelysiummod:block/decor/ameijoa_1",
+    "1": "aelysiummod:block/decor/ameijoa_2"
+  },
+  "render_type": "cutout_mipped"
+}

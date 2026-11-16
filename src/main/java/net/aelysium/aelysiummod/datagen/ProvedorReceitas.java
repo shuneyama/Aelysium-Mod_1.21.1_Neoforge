@@ -6,10 +6,15 @@ import net.aelysium.aelysiummod.registro.ModItens;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import net.neoforged.neoforge.common.crafting.CompoundIngredient;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -104,6 +109,14 @@ ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItens.CIANE_BARRA.get()
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItens.POEIRA_LUNAR.get(), 1)
                 .requires(ModBlocos.DAMA_DA_NOITE)
                 .unlockedBy("has_dama_da_noite", has(ModBlocos.DAMA_DA_NOITE))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItens.SERINGA_CURA.get(), 1)
+                .requires(ModItens.SERINGA)
+                .requires(CompoundIngredient.of(
+                        DataComponentIngredient.of(false, DataComponents.POTION_CONTENTS, new PotionContents(Potions.HEALING), Items.POTION),
+                        DataComponentIngredient.of(false, DataComponents.POTION_CONTENTS, new PotionContents(Potions.STRONG_HEALING), Items.POTION)))
+                .unlockedBy("has_seringa", has(ModItens.SERINGA))
                 .save(recipeOutput);
 
     }

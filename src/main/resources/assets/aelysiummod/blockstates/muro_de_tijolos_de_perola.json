@@ -1,0 +1,90 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola_poste"
+      }
+    },
+    {
+      "when": {
+        "north": "low"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "low"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "low"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "low"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "tall"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola_lado_alto",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "tall"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola_lado_alto",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "tall"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola_lado_alto",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "tall"
+      },
+      "apply": {
+        "model": "aelysiummod:block/decor/muro_de_tijolos_de_perola_lado_alto",
+        "y": 270,
+        "uvlock": true
+      }
+    }
+  ]
+}

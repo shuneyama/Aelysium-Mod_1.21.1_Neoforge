@@ -51,5 +51,7 @@ public class ServidorMensagens {
         RegistroRedeTocar.registrar(registrar);
         RegistroRedePorta.registrar(registrar);
         RegistroRedeMaozinha.registrar(registrar);
+        net.aelysium.aelysiummod.sistemas.mundo.minifarol.rede.RegistroRedeMiniFarol.registrar(registrar);
+        net.aelysium.aelysiummod.sistemas.admin.cabeca.rede.RegistroRedeCabeca.registrar(registrar);
     }
 }

@@ -1,0 +1,10 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "aelysiummod:block/decor/perola_bloco_cortado",
+    "bottom": "aelysiummod:block/decor/perola_bloco_cortado",
+    "top": "aelysiummod:block/decor/perola_bloco_cortado",
+    "side": "aelysiummod:block/decor/perola_bloco_cortado"
+  },
+  "render_type": "solid"
+}

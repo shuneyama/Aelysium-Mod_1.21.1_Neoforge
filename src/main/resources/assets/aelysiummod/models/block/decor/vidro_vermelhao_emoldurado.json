@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/decor/emoldurado_vermelhao",
+    "particle": "aelysiummod:block/decor/emoldurado_vermelhao"
+  },
+  "render_type": "translucent"
+}

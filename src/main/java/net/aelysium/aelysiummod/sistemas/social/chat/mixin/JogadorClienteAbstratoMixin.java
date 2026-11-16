@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.social.chat.mixin;
 
+import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import com.mojang.authlib.GameProfile;
 import net.aelysium.aelysiummod.sistemas.social.chat.ConfiguracaoBalao;
 import net.aelysium.aelysiummod.sistemas.social.chat.EstiloBalao;
@@ -40,7 +41,7 @@ public abstract class JogadorClienteAbstratoMixin extends Player implements IJog
             aelysium$balloons = new ArrayList<>();
         }
 
-        int[] charDelays = aelysium$calculateCharDelays(text);
+        int[] charDelays = aelysium$calculateCharDelays(CodigosEstilo.semCodigos(text));
 
         long totalTypingTime = 0;
         for (int delay : charDelays) {

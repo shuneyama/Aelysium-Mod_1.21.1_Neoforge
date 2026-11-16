@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "net.aelysium.aelysiummod.compatibilidade.articulacoes.mixin.animador",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "MixinAjudanteDobra",
+    "MixinDobraVazia"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

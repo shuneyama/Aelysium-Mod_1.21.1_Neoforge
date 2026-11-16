@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:vidro_fresnel"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:painel_de_vidro_fresnel",
+    "count": 16
+  }
+}

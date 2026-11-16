@@ -14,6 +14,7 @@ public class TemporizadorMorte {
         if (event.getServer().getTickCount() % 20 == 0) {
             boolean habilitada = ConfiguracaoMorte.isHabilitada();
             for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+                LimiteTotens.sincronizarEfeito(player);
                 boolean tem = player.hasEffect(ModEfeitos.MORTE_CANONICA_EVENTO);
                 if (habilitada && !tem) {
                     UtilitariosEfeitoMorte.aplicar(player);

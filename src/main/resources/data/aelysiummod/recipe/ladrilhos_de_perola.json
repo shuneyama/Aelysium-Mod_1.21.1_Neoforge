@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:tijolos_de_perola"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:ladrilhos_de_perola",
+    "count": 8
+  }
+}

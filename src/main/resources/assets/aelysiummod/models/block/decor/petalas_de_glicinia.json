@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "aelysiummod:block/decor/glicinia_petalas",
+    "particle": "aelysiummod:block/decor/glicinia_petalas"
+  }
+}

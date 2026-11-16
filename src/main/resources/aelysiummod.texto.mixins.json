@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.nucleo.texto.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "PacoteTextoMixin"
+  ],
+  "client": [
+    "SaidaTextoMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

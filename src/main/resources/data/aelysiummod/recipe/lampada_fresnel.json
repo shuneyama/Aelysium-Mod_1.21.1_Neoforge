@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:redstone"
+    },
+    "b": {
+      "item": "aelysiummod:painel_de_vidro_fresnel"
+    },
+    "c": {
+      "item": "aelysiummod:vidro_fresnel"
+    },
+    "d": {
+      "item": "aelysiummod:lampada"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:lampada_fresnel",
+    "count": 1
+  }
+}

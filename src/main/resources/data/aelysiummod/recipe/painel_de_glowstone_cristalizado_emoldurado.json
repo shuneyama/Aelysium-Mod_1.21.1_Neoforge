@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "aelysiummod:glowstone_cristalizado_emoldurado"
+    }
+  },
+  "result": {
+    "id": "aelysiummod:painel_de_glowstone_cristalizado_emoldurado",
+    "count": 16
+  }
+}

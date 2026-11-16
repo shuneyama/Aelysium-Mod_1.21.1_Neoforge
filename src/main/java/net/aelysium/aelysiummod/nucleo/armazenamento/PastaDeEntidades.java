@@ -83,7 +83,6 @@ public class PastaDeEntidades {
             long gravados = stream.filter(p -> p.getFileName().toString().endsWith(EXTENSAO)).count();
             if (gravados >= esperados) {
                 Files.deleteIfExists(dat);
-                LOGGER.info("{} convertido para {} e apagado.", dat.getFileName(), pasta);
             } else {
                 LOGGER.error("{} nao foi apagado: so {} de {} arquivos foram gravados.", dat.getFileName(), gravados, esperados);
             }

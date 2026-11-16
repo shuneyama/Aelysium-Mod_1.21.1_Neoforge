@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "aelysiummod:block/decor/estrela_do_mar_rosa_2"
+    },
+    "facing=east": {
+      "model": "aelysiummod:block/decor/estrela_do_mar_rosa_2",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "aelysiummod:block/decor/estrela_do_mar_rosa_2",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "aelysiummod:block/decor/estrela_do_mar_rosa_2",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "aelysiummod:block/decor/estrela_do_mar_rosa_2",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "aelysiummod:block/decor/estrela_do_mar_rosa_2",
+      "x": 90
+    }
+  }
+}

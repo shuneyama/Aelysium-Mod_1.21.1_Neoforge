@@ -1,0 +1,10 @@
+{
+  "parent": "aelysiummod:custom/decor/lampiao_teto_acesa",
+  "textures": {
+    "all": "aelysiummod:block/decor/lampiao_ferro_1",
+    "particle": "aelysiummod:block/decor/lampiao_ferro_1",
+    "0": "aelysiummod:block/decor/lampiao_ferro_1",
+    "2": "aelysiummod:block/decor/lampiao_ferro_2_acesa"
+  },
+  "render_type": "cutout_mipped"
+}

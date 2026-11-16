@@ -44,7 +44,6 @@ public class ConfiguracaoBanimentoReceitas {
             }
         }
         migrarDoToml();
-        LOGGER.info("[RecipeBan] {} receitas removidas.", BLOCKED_ITEMS.size());
     }
 
     private static void lerArquivo(Path arquivo) {
@@ -84,7 +83,6 @@ public class ConfiguracaoBanimentoReceitas {
             for (String mod : mods) ok &= salvarMod(mod);
             if (ok) {
                 Files.deleteIfExists(toml);
-                LOGGER.info("[RecipeBan] receitas_banidas.toml convertido em {} arquivos e apagado.", mods.size());
             }
         } catch (Exception e) {
             LOGGER.error("[RecipeBan] Erro ao migrar receitas_banidas.toml: {}", e.getMessage());

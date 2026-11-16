@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_side_alt",
+  "textures": {
+    "particle": "aelysiummod:block/decor/prismarinho_cristal_bloco_liso_sem_ctm",
+    "pane": "aelysiummod:block/decor/prismarinho_cristal_bloco_liso_sem_ctm",
+    "edge": "aelysiummod:block/decor/prismarinho_cristal_bloco_liso_sem_ctm"
+  },
+  "render_type": "translucent"
+}

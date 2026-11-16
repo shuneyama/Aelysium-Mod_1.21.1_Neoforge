@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_teto"
+    },
+    "lit=true": {
+      "model": "aelysiummod:block/decor/lampiao_de_ferro_de_teto_ligada"
+    }
+  }
+}

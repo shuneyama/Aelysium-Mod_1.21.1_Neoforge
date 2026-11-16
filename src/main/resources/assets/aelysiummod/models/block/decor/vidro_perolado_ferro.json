@@ -1,0 +1,11 @@
+{
+  "parent": "block/grass_block",
+  "textures": {
+    "bottom": "aelysiummod:block/decor/vidro_perolado_ferro",
+    "top": "aelysiummod:block/decor/vidro_perolado_ferro",
+    "side": "aelysiummod:block/decor/vidro_perolado_painel_ferro",
+    "overlay": "aelysiummod:block/decor/vidro_perolado_painel_ferro",
+    "particle": "aelysiummod:block/decor/vidro_perolado_ferro"
+  },
+  "render_type": "solid"
+}

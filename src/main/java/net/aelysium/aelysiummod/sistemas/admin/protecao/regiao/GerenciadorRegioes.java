@@ -1,6 +1,5 @@
 package net.aelysium.aelysiummod.sistemas.admin.protecao.regiao;
 
-import com.mojang.logging.LogUtils;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.rede.PacoteSyncRegioesCliente;
 import net.minecraft.core.BlockPos;
 import net.aelysium.aelysiummod.nucleo.armazenamento.PastaDeEntidades;
@@ -13,7 +12,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.storage.LevelResource;
 import net.neoforged.neoforge.network.PacketDistributor;
-import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +20,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class GerenciadorRegioes {
 
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static GerenciadorRegioes instance;
 
     private final Map<String, Regiao> regioes = new ConcurrentHashMap<>();
@@ -162,8 +159,6 @@ public class GerenciadorRegioes {
             salvarRegioes();
             PastaDeEntidades.apagarDatMigrado(servidor.getWorldPath(LevelResource.ROOT).resolve(NOME_ARQUIVO), pasta(), tags.size());
         }
-
-        LOGGER.info("[AelysiumProtect] {} regiões carregadas.", regioes.size());
     }
 
     public void limparCache() {

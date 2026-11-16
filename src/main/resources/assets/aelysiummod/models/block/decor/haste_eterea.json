@@ -1,0 +1,9 @@
+{
+  "parent": "aelysiummod:custom/decor/haste_eterea",
+  "textures": {
+    "all": "aelysiummod:block/decor/eterea_haste",
+    "particle": "aelysiummod:block/decor/eterea_haste",
+    "2": "aelysiummod:block/decor/eterea_haste"
+  },
+  "render_type": "cutout_mipped"
+}

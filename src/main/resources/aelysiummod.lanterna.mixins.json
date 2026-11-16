@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.conteudo.item.lanterna.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "aelysiummod.refmap.json",
+  "client": [
+    "LuzBlocoLanternaMixin",
+    "LuzEntidadeLanternaMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

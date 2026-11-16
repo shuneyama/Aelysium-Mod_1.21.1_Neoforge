@@ -1,0 +1,10 @@
+{
+  "parent": "aelysiummod:custom/decor/lampiao_ferro",
+  "textures": {
+    "all": "aelysiummod:block/decor/lampiao_ferro_1",
+    "particle": "aelysiummod:block/decor/lampiao_ferro_1",
+    "0": "aelysiummod:block/decor/lampiao_ferro_1",
+    "1": "aelysiummod:block/decor/lampiao_ferro_2"
+  },
+  "render_type": "cutout_mipped"
+}

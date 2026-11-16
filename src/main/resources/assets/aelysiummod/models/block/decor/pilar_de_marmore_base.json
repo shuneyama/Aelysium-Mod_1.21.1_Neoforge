@@ -1,0 +1,11 @@
+{
+  "parent": "block/grass_block",
+  "textures": {
+    "bottom": "aelysiummod:block/decor/marmore_pilar_topo",
+    "top": "aelysiummod:block/decor/marmore_pilar_topo",
+    "side": "aelysiummod:block/decor/marmore_pilar_meio_base",
+    "overlay": "aelysiummod:block/decor/marmore_pilar_meio_base",
+    "particle": "aelysiummod:block/decor/marmore_pilar_topo"
+  },
+  "render_type": "solid"
+}

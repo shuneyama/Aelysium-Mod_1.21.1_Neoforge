@@ -7,10 +7,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 import java.util.Map;
 import java.util.UUID;
@@ -42,11 +45,17 @@ public class ManipuladorRecargaTeia {
                 event.setCancellationResult(InteractionResult.FAIL);
                 long restanteSeg = (restanteMs + 999) / 1000;
                 player.displayClientMessage(Component.translatableEscape("mensagem.aelysiummod.regras.aguarde_s_para_colocar_outra_teia", restanteSeg), true);
-                return;
             }
         }
+    }
 
-        ultimaColocacao.put(player.getUUID(), agora);
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+        if (!AelysiumGuarda.isAutorizado()) return;
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!event.getPlacedBlock().is(Blocks.COBWEB)) return;
+
+        ultimaColocacao.put(player.getUUID(), System.currentTimeMillis());
         player.getCooldowns().addCooldown(Items.COBWEB, COOLDOWN_TICKS);
     }
 

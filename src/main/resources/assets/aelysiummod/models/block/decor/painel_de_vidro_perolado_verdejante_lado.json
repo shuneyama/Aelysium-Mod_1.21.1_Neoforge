@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_side",
+  "textures": {
+    "particle": "aelysiummod:block/decor/vidro_perolado_painel_verdejante",
+    "pane": "aelysiummod:block/decor/vidro_perolado_painel_verdejante",
+    "edge": "aelysiummod:block/decor/vidro_perolado_painel_verdejante"
+  },
+  "render_type": "solid"
+}
