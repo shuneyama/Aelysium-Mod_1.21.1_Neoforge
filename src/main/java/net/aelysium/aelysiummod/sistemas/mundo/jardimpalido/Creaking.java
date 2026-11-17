@@ -36,6 +36,7 @@ public class Creaking extends Monster {
     public int tempoAtaque;
     public int tempoTorcer;
     private int esperaTorcer;
+    private boolean observadaCache;
 
     public Creaking(EntityType<? extends Creaking> tipo, Level mundo) {
         super(tipo, mundo);
@@ -126,7 +127,8 @@ public class Creaking extends Monster {
         if (tempoTorcer > 0) tempoTorcer--;
         if (esperaTorcer > 0) esperaTorcer--;
         if (this.level().isClientSide) return;
-        boolean observada = observada();
+        if (this.tickCount % 3 == 0) observadaCache = observada();
+        boolean observada = observadaCache;
         if (podeMover() == observada) {
             this.entityData.set(PODE_MOVER, !observada);
             this.playSound((observada ? SonsJardimPalido.CREAKING_CONGELAR : SonsJardimPalido.CREAKING_DESCONGELAR).get(), 1.0F, 1.0F);
