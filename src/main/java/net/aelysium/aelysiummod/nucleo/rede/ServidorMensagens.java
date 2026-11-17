@@ -33,6 +33,8 @@ public class ServidorMensagens {
         final PayloadRegistrar registrar = event.registrar(AelysiumMod.MOD_ID).versioned("1").optional();
 
         RegistroRedeJade.registrar(registrar);
+        net.aelysium.aelysiummod.sistemas.mundo.mochila.rede.RegistroRedeMochila.registrar(registrar);
+        net.aelysium.aelysiummod.conteudo.filhotes.clima.RegistroRedeClima.registrar(registrar);
         RegistroRedeBanimentos.registrar(registrar);
         RegistroRedeChat.registrar(registrar);
         RegistroRedeLua.registrar(registrar);

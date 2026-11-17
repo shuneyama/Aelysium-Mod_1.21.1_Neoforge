@@ -2,6 +2,8 @@
   "replace": false,
   "entries": [
     "aelysiummod:banned_item_reducer",
-    "aelysiummod:mod_cap_loot_reducer"
+    "aelysiummod:mod_cap_loot_reducer",
+    "aelysiummod:saddle_to_leather",
+    "aelysiummod:zombie_horse_mushroom"
   ]
 }

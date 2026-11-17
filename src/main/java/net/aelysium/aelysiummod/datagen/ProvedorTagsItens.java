@@ -1,6 +1,7 @@
 package net.aelysium.aelysiummod.datagen;
 
 import net.aelysium.aelysiummod.AelysiumMod;
+import net.aelysium.aelysiummod.sistemas.mundo.jardimpalido.ModJardimPalido;
 import net.aelysium.aelysiummod.registro.ModItens;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -39,6 +40,9 @@ public class ProvedorTagsItens extends ItemTagsProvider {
                 }
             }
         }
+        tag(ItemTags.SLABS).add(ModJardimPalido.LAJE_TIJOLOS_RESINA.get().asItem());
+        tag(ItemTags.STAIRS).add(ModJardimPalido.ESCADA_TIJOLOS_RESINA.get().asItem());
+        tag(ItemTags.WALLS).add(ModJardimPalido.MURO_TIJOLOS_RESINA.get().asItem());
         tag(ItemTags.PICKAXES)
                 .add(ModItens.CIANE_PICARETA.get());
         tag(ItemTags.AXES)
@@ -67,6 +71,9 @@ public class ProvedorTagsItens extends ItemTagsProvider {
                 .add(ModItens.CIANE_CALCINHA.get());
         tag(ItemTags.FOOT_ARMOR)
                 .add(ModItens.CIANE_BOTAS.get());
+
+        tag(ItemTags.PIGLIN_LOVED)
+                .add(net.aelysium.aelysiummod.registro.ModBlocos.DENTE_DE_LEAO_DOURADO.get().asItem());
 
         tag(ItemTags.TRIDENT_ENCHANTABLE)
                 .add(ModItens.TRIDENTE_CORAL.get());

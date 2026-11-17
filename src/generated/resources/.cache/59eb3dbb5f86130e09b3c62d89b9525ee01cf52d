@@ -1,8 +1,10 @@
-// 1.21.1	2026-11-08T16:50:21.9063668	Loot Tables
+// 1.21.1	2026-11-16T21:41:30.8619957	Loot Tables
 e1fe627940546b364bc98bc65748825eae39397f data/aelysiummod/loot_table/blocks/ciane_minerio.json
 1a3096b8ef7c52c12c0aff4e1bf06fa1d16ec1b5 data/aelysiummod/loot_table/blocks/cofre_com_painel.json
 052c30609022e4e004e9bdd013682c7a49b217bb data/aelysiummod/loot_table/blocks/dama_da_noite.json
+c5e35374bb164f8813fd147866a062d4105eacef data/aelysiummod/loot_table/blocks/dente_de_leao_dourado.json
 dc6463d482ef3f93f2f882f661f1247eacd36f0a data/aelysiummod/loot_table/blocks/fenda_kairos.json
 ac26f302ede658c3cd1344eb8fb8c9d5537a999f data/aelysiummod/loot_table/blocks/mini_farol.json
 9e95d2ffb6e02c25270dab89391fcdfd770af4f9 data/aelysiummod/loot_table/blocks/porta_um_painel.json
 8fbae60d909734e5ba66ba8e8f10298fdb57be4d data/aelysiummod/loot_table/blocks/potted_dama_da_noite.json
+7db2ec9ed8479ae479fa0193ddf63b3be5d6bf9d data/aelysiummod/loot_table/blocks/potted_dente_de_leao_dourado.json

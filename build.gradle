@@ -26,6 +26,7 @@ repositories {
         url = "https://cursemaven.com"
     }
     maven { url = "https://api.modrinth.com/maven" }
+    maven { url = "https://maven.caffeinemc.net/releases" }
     maven {
         name = "Curios"
         url = uri("https://maven.theillusivec4.top/")
@@ -136,6 +137,7 @@ configurations {
 
 dependencies {
 
+    compileOnly "net.caffeinemc:sodium-neoforge-api:0.8.13+mc1.21.1"
     runtimeOnly "curse.maven:collective-342584:6429221"
     implementation "maven.modrinth:jade:15.7.1+neoforge"
     compileOnly "curse.maven:collective-342584:6429221"

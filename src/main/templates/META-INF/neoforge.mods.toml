@@ -104,6 +104,12 @@ config="aelysiummod.articulacoes.cpm.mixins.json"
 [[mixins]]
 config="aelysiummod.articulacoes.animador.mixins.json"
 
+[[mixins]]
+config="aelysiummod.idade.mixins.json"
+
+[[mixins]]
+config="aelysiummod.atualizacoes.mixins.json"
+
 # The [[accessTransformers]] block allows you to declare where your AT file is.
 # If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
 #[[accessTransformers]]
@@ -156,3 +162,10 @@ side="CLIENT"
 # stop your mod loading on the server for example.
 #[features.aelysiummod]
 #openGLVersion="[3.2,)"
+
+[[dependencies.${mod_id}]]
+modId="sodium"
+type="optional"
+versionRange="[0.6,)"
+ordering="BEFORE"
+side="CLIENT"

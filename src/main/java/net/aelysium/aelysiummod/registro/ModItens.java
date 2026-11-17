@@ -410,6 +410,14 @@ public class ModItens {
             () -> new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<net.aelysium.aelysiummod.sistemas.mundo.porta.item.GazuaItem> GAZUA = ITEMS.register("gazua",
             () -> new net.aelysium.aelysiummod.sistemas.mundo.porta.item.GazuaItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<BannerPatternItem> FIELD_MASONED_BANNER_PATTERN = ITEMS.register("field_masoned_banner_pattern",
+            () -> new BannerPatternItem(net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.BANNER_PATTERN,
+                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "pattern_item/field_masoned")),
+                    new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<BannerPatternItem> BORDURE_INDENTED_BANNER_PATTERN = ITEMS.register("bordure_indented_banner_pattern",
+            () -> new BannerPatternItem(net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.BANNER_PATTERN,
+                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "pattern_item/bordure_indented")),
+                    new Item.Properties().stacksTo(1)));
 
 
 

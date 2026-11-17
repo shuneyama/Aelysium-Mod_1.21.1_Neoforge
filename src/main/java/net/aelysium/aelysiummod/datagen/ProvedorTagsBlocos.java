@@ -1,6 +1,7 @@
 package net.aelysium.aelysiummod.datagen;
 
 import net.aelysium.aelysiummod.AelysiumMod;
+import net.aelysium.aelysiummod.sistemas.mundo.jardimpalido.ModJardimPalido;
 import net.aelysium.aelysiummod.registro.ModBlocos;
 import net.aelysium.aelysiummod.registro.ModBlocosDecoracao;
 import net.aelysium.aelysiummod.registro.ModTags;
@@ -58,5 +59,20 @@ public class ProvedorTagsBlocos extends BlockTagsProvider {
                 }
             }
         }
+
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModJardimPalido.TABUAS.get(), ModJardimPalido.TORA.get(), ModJardimPalido.TORA_DESCASCADA.get(),
+                        ModJardimPalido.MADEIRA.get(), ModJardimPalido.MADEIRA_DESCASCADA.get(), ModJardimPalido.LAJE.get(),
+                        ModJardimPalido.ESCADA.get(), ModJardimPalido.CERCA.get(), ModJardimPalido.PORTEIRA.get(),
+                        ModJardimPalido.BOTAO.get(), ModJardimPalido.PLACA_PRESSAO.get(), ModJardimPalido.PORTA.get(),
+                        ModJardimPalido.ALCAPAO.get(), ModJardimPalido.CORACAO.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(ModJardimPalido.BLOCO_RESINA.get(), ModJardimPalido.TIJOLOS_RESINA.get(), ModJardimPalido.TIJOLOS_RESINA_CINZELADOS.get(),
+                        ModJardimPalido.LAJE_TIJOLOS_RESINA.get(), ModJardimPalido.ESCADA_TIJOLOS_RESINA.get(), ModJardimPalido.MURO_TIJOLOS_RESINA.get());
+        tag(BlockTags.MINEABLE_WITH_HOE)
+                .add(ModJardimPalido.FOLHAS.get(), ModJardimPalido.MUSGO_PALIDO.get(), ModJardimPalido.TAPETE_MUSGO_PALIDO.get(), ModJardimPalido.MUSGO_PENDENTE.get());
+        tag(BlockTags.SLABS).add(ModJardimPalido.LAJE_TIJOLOS_RESINA.get());
+        tag(BlockTags.STAIRS).add(ModJardimPalido.ESCADA_TIJOLOS_RESINA.get());
+        tag(BlockTags.WALLS).add(ModJardimPalido.MURO_TIJOLOS_RESINA.get());
     }
 }

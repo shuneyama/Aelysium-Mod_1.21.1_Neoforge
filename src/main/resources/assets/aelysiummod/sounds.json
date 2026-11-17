@@ -16,5 +16,1601 @@
     "sounds": [
       "aelysiummod:glock/pegando"
     ]
+  },
+  "spawner.quebrar": {
+    "sounds": [
+      "aelysiummod:spawner/break1",
+      "aelysiummod:spawner/break2",
+      "aelysiummod:spawner/break3",
+      "aelysiummod:spawner/break4"
+    ]
+  },
+  "spawner.passo": {
+    "sounds": [
+      "aelysiummod:spawner/step1",
+      "aelysiummod:spawner/step2",
+      "aelysiummod:spawner/step3",
+      "aelysiummod:spawner/step4",
+      "aelysiummod:spawner/step5"
+    ]
+  },
+  "bolha.estourar": {
+    "sounds": [
+      "aelysiummod:ui/hud_bubble"
+    ]
+  },
+  "mochila.insert_fail": {
+    "sounds": [
+      "aelysiummod:mochila/insert_fail"
+    ],
+    "subtitle": "subtitles.aelysiummod.mochila.insert_fail"
+  },
+  "block.leaf_litter.break": {
+    "sounds": [
+      "aelysiummod:block/leaf_litter/break1",
+      "aelysiummod:block/leaf_litter/break2",
+      "aelysiummod:block/leaf_litter/break3",
+      "aelysiummod:block/leaf_litter/break4",
+      "aelysiummod:block/leaf_litter/break5"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  }
+,
+  "block.leaf_litter.fall": {
+    "sounds": [
+      "aelysiummod:block/leaf_litter/step1",
+      "aelysiummod:block/leaf_litter/step2",
+      "aelysiummod:block/leaf_litter/step3",
+      "aelysiummod:block/leaf_litter/step4",
+      "aelysiummod:block/leaf_litter/step5",
+      "aelysiummod:block/leaf_litter/step6"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  }
+,
+  "block.leaf_litter.hit": {
+    "sounds": [
+      "aelysiummod:block/leaf_litter/step1",
+      "aelysiummod:block/leaf_litter/step2",
+      "aelysiummod:block/leaf_litter/step3",
+      "aelysiummod:block/leaf_litter/step4",
+      "aelysiummod:block/leaf_litter/step5",
+      "aelysiummod:block/leaf_litter/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  }
+,
+  "block.leaf_litter.place": {
+    "sounds": [
+      "aelysiummod:block/leaf_litter/place1",
+      "aelysiummod:block/leaf_litter/place2",
+      "aelysiummod:block/leaf_litter/place3",
+      "aelysiummod:block/leaf_litter/place4",
+      "aelysiummod:block/leaf_litter/place5"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  }
+,
+  "block.leaf_litter.step": {
+    "sounds": [
+      "aelysiummod:block/leaf_litter/step1",
+      "aelysiummod:block/leaf_litter/step2",
+      "aelysiummod:block/leaf_litter/step3",
+      "aelysiummod:block/leaf_litter/step4",
+      "aelysiummod:block/leaf_litter/step5",
+      "aelysiummod:block/leaf_litter/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+,
+  "block.cactus_flower.break": {
+    "sounds": [
+      "aelysiummod:block/cactus_flower/break1",
+      "aelysiummod:block/cactus_flower/break2",
+      "aelysiummod:block/cactus_flower/break3",
+      "aelysiummod:block/cactus_flower/break4",
+      "aelysiummod:block/cactus_flower/break5"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  }
+,
+  "block.cactus_flower.place": {
+    "sounds": [
+      "aelysiummod:block/cactus_flower/place1",
+      "aelysiummod:block/cactus_flower/place2",
+      "aelysiummod:block/cactus_flower/place3",
+      "aelysiummod:block/cactus_flower/place4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  }
+,
+  "block.firefly_bush.idle": {
+    "sounds": [
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush1",
+        "volume": 4.0
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush2",
+        "volume": 4.0
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush3",
+        "volume": 4.0
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush4",
+        "volume": 4.0
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush5",
+        "volume": 4.0
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush6",
+        "volume": 4.0
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush7",
+        "volume": 4.0,
+        "weight": 2
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush8",
+        "volume": 4.0,
+        "weight": 2
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush9",
+        "volume": 4.0,
+        "weight": 2
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush10",
+        "volume": 4.0,
+        "weight": 2
+      },
+      {
+        "name": "aelysiummod:block/firefly_bush/firefly_bush11",
+        "volume": 4.0
+      }
+    ],
+    "subtitle": "subtitles.block.firefly_bush.idle"
+  }
+,
+  "entity.wolf_angry.ambient": {
+    "sounds": [
+      "aelysiummod:mob/wolf/angry/bark1",
+      "aelysiummod:mob/wolf/angry/bark2",
+      "aelysiummod:mob/wolf/angry/bark3"
+    ],
+    "subtitle": "subtitles.entity.wolf.bark"
+  }
+,
+  "entity.wolf_angry.death": {
+    "sounds": [
+      "aelysiummod:mob/wolf/angry/death"
+    ],
+    "subtitle": "subtitles.entity.wolf.death"
+  }
+,
+  "entity.wolf_angry.growl": {
+    "sounds": [
+      "aelysiummod:mob/wolf/angry/growl1",
+      "aelysiummod:mob/wolf/angry/growl2",
+      "aelysiummod:mob/wolf/angry/growl3"
+    ],
+    "subtitle": "subtitles.entity.wolf.growl"
+  }
+,
+  "entity.wolf_angry.hurt": {
+    "sounds": [
+      "aelysiummod:mob/wolf/angry/hurt1",
+      "aelysiummod:mob/wolf/angry/hurt2",
+      "aelysiummod:mob/wolf/angry/hurt3"
+    ],
+    "subtitle": "subtitles.entity.wolf.hurt"
+  }
+,
+  "entity.wolf_angry.pant": {
+    "sounds": [
+      "aelysiummod:mob/wolf/angry/panting"
+    ],
+    "subtitle": "subtitles.entity.wolf.pant"
+  }
+,
+  "entity.wolf_angry.whine": {
+    "sounds": [
+      "aelysiummod:mob/wolf/angry/whine"
+    ],
+    "subtitle": "subtitles.entity.wolf.whine"
+  }
+,
+  "entity.wolf_big.ambient": {
+    "sounds": [
+      "aelysiummod:mob/wolf/big/bark1",
+      "aelysiummod:mob/wolf/big/bark2",
+      "aelysiummod:mob/wolf/big/bark3"
+    ],
+    "subtitle": "subtitles.entity.wolf.bark"
+  }
+,
+  "entity.wolf_big.death": {
+    "sounds": [
+      "aelysiummod:mob/wolf/big/death"
+    ],
+    "subtitle": "subtitles.entity.wolf.death"
+  }
+,
+  "entity.wolf_big.growl": {
+    "sounds": [
+      "aelysiummod:mob/wolf/big/growl1",
+      "aelysiummod:mob/wolf/big/growl2",
+      "aelysiummod:mob/wolf/big/growl3"
+    ],
+    "subtitle": "subtitles.entity.wolf.growl"
+  }
+,
+  "entity.wolf_big.hurt": {
+    "sounds": [
+      "aelysiummod:mob/wolf/big/hurt1",
+      "aelysiummod:mob/wolf/big/hurt2",
+      "aelysiummod:mob/wolf/big/hurt3"
+    ],
+    "subtitle": "subtitles.entity.wolf.hurt"
+  }
+,
+  "entity.wolf_big.pant": {
+    "sounds": [
+      "aelysiummod:mob/wolf/big/panting"
+    ],
+    "subtitle": "subtitles.entity.wolf.pant"
+  }
+,
+  "entity.wolf_big.whine": {
+    "sounds": [
+      "aelysiummod:mob/wolf/big/whine"
+    ],
+    "subtitle": "subtitles.entity.wolf.whine"
+  }
+,
+  "entity.wolf_cute.ambient": {
+    "sounds": [
+      "aelysiummod:mob/wolf/cute/bark1",
+      "aelysiummod:mob/wolf/cute/bark2",
+      "aelysiummod:mob/wolf/cute/bark3"
+    ],
+    "subtitle": "subtitles.entity.wolf.bark"
+  }
+,
+  "entity.wolf_cute.death": {
+    "sounds": [
+      "aelysiummod:mob/wolf/cute/death"
+    ],
+    "subtitle": "subtitles.entity.wolf.death"
+  }
+,
+  "entity.wolf_cute.growl": {
+    "sounds": [
+      "aelysiummod:mob/wolf/cute/growl1",
+      "aelysiummod:mob/wolf/cute/growl2",
+      "aelysiummod:mob/wolf/cute/growl3"
+    ],
+    "subtitle": "subtitles.entity.wolf.growl"
+  }
+,
+  "entity.wolf_cute.hurt": {
+    "sounds": [
+      "aelysiummod:mob/wolf/cute/hurt1",
+      "aelysiummod:mob/wolf/cute/hurt2",
+      "aelysiummod:mob/wolf/cute/hurt3"
+    ],
+    "subtitle": "subtitles.entity.wolf.hurt"
+  }
+,
+  "entity.wolf_cute.pant": {
+    "sounds": [
+      "aelysiummod:mob/wolf/cute/panting"
+    ],
+    "subtitle": "subtitles.entity.wolf.pant"
+  }
+,
+  "entity.wolf_cute.whine": {
+    "sounds": [
+      "aelysiummod:mob/wolf/cute/whine"
+    ],
+    "subtitle": "subtitles.entity.wolf.whine"
+  }
+,
+  "entity.wolf_grumpy.ambient": {
+    "sounds": [
+      "aelysiummod:mob/wolf/grumpy/bark1",
+      "aelysiummod:mob/wolf/grumpy/bark2",
+      "aelysiummod:mob/wolf/grumpy/bark3"
+    ],
+    "subtitle": "subtitles.entity.wolf.bark"
+  }
+,
+  "entity.wolf_grumpy.death": {
+    "sounds": [
+      "aelysiummod:mob/wolf/grumpy/death"
+    ],
+    "subtitle": "subtitles.entity.wolf.death"
+  }
+,
+  "entity.wolf_grumpy.growl": {
+    "sounds": [
+      "aelysiummod:mob/wolf/grumpy/growl1",
+      "aelysiummod:mob/wolf/grumpy/growl2",
+      "aelysiummod:mob/wolf/grumpy/growl3"
+    ],
+    "subtitle": "subtitles.entity.wolf.growl"
+  }
+,
+  "entity.wolf_grumpy.hurt": {
+    "sounds": [
+      "aelysiummod:mob/wolf/grumpy/hurt1",
+      "aelysiummod:mob/wolf/grumpy/hurt2",
+      "aelysiummod:mob/wolf/grumpy/hurt3"
+    ],
+    "subtitle": "subtitles.entity.wolf.hurt"
+  }
+,
+  "entity.wolf_grumpy.pant": {
+    "sounds": [
+      "aelysiummod:mob/wolf/grumpy/panting"
+    ],
+    "subtitle": "subtitles.entity.wolf.pant"
+  }
+,
+  "entity.wolf_grumpy.whine": {
+    "sounds": [
+      "aelysiummod:mob/wolf/grumpy/whine"
+    ],
+    "subtitle": "subtitles.entity.wolf.whine"
+  }
+,
+  "entity.wolf_puglin.ambient": {
+    "sounds": [
+      "aelysiummod:mob/wolf/puglin/bark1",
+      "aelysiummod:mob/wolf/puglin/bark2",
+      "aelysiummod:mob/wolf/puglin/bark3"
+    ],
+    "subtitle": "subtitles.entity.wolf.bark"
+  }
+,
+  "entity.wolf_puglin.death": {
+    "sounds": [
+      "aelysiummod:mob/wolf/puglin/death"
+    ],
+    "subtitle": "subtitles.entity.wolf.death"
+  }
+,
+  "entity.wolf_puglin.growl": {
+    "sounds": [
+      "aelysiummod:mob/wolf/puglin/growl1",
+      "aelysiummod:mob/wolf/puglin/growl2",
+      "aelysiummod:mob/wolf/puglin/growl3"
+    ],
+    "subtitle": "subtitles.entity.wolf.growl"
+  }
+,
+  "entity.wolf_puglin.hurt": {
+    "sounds": [
+      "aelysiummod:mob/wolf/puglin/hurt1",
+      "aelysiummod:mob/wolf/puglin/hurt2",
+      "aelysiummod:mob/wolf/puglin/hurt3"
+    ],
+    "subtitle": "subtitles.entity.wolf.hurt"
+  }
+,
+  "entity.wolf_puglin.pant": {
+    "sounds": [
+      "aelysiummod:mob/wolf/puglin/panting"
+    ],
+    "subtitle": "subtitles.entity.wolf.pant"
+  }
+,
+  "entity.wolf_puglin.whine": {
+    "sounds": [
+      "aelysiummod:mob/wolf/puglin/whine"
+    ],
+    "subtitle": "subtitles.entity.wolf.whine"
+  }
+,
+  "entity.wolf_sad.ambient": {
+    "sounds": [
+      "aelysiummod:mob/wolf/sad/bark1",
+      "aelysiummod:mob/wolf/sad/bark2",
+      "aelysiummod:mob/wolf/sad/bark3"
+    ],
+    "subtitle": "subtitles.entity.wolf.bark"
+  }
+,
+  "entity.wolf_sad.death": {
+    "sounds": [
+      "aelysiummod:mob/wolf/sad/death"
+    ],
+    "subtitle": "subtitles.entity.wolf.death"
+  }
+,
+  "entity.wolf_sad.growl": {
+    "sounds": [
+      "aelysiummod:mob/wolf/sad/growl1",
+      "aelysiummod:mob/wolf/sad/growl2",
+      "aelysiummod:mob/wolf/sad/growl3"
+    ],
+    "subtitle": "subtitles.entity.wolf.growl"
+  }
+,
+  "entity.wolf_sad.hurt": {
+    "sounds": [
+      "aelysiummod:mob/wolf/sad/hurt1",
+      "aelysiummod:mob/wolf/sad/hurt2",
+      "aelysiummod:mob/wolf/sad/hurt3"
+    ],
+    "subtitle": "subtitles.entity.wolf.hurt"
+  }
+,
+  "entity.wolf_sad.pant": {
+    "sounds": [
+      "aelysiummod:mob/wolf/sad/panting"
+    ],
+    "subtitle": "subtitles.entity.wolf.pant"
+  }
+,
+  "entity.wolf_sad.whine": {
+    "sounds": [
+      "aelysiummod:mob/wolf/sad/whine"
+    ],
+    "subtitle": "subtitles.entity.wolf.whine"
+  }
+,
+  "entity.baby_wolf.ambient": {
+    "sounds": [
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient1",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient2",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient3",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient4",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient5",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient6",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient7",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/ambient8",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.baby_wolf.ambient"
+  }
+,
+  "entity.baby_wolf.death": {
+    "sounds": [
+      {
+        "name": "aelysiummod:mob/wolf/baby/death",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.baby_wolf.death"
+  }
+,
+  "entity.baby_wolf.growl": {
+    "sounds": [
+      {
+        "name": "aelysiummod:mob/wolf/baby/angry1",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/angry2",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/angry3",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/angry4",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.baby_wolf.growl"
+  }
+,
+  "entity.baby_wolf.hurt": {
+    "sounds": [
+      {
+        "name": "aelysiummod:mob/wolf/baby/hurt1",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/hurt2",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/hurt3",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.baby_wolf.hurt"
+  }
+,
+  "entity.baby_wolf.pant": {
+    "sounds": [
+      {
+        "name": "aelysiummod:mob/wolf/baby/pant1",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/pant2",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/pant3",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.baby_wolf.pant"
+  }
+,
+  "entity.baby_wolf.step": {
+    "sounds": [
+      "aelysiummod:mob/wolf/baby/step1",
+      "aelysiummod:mob/wolf/baby/step2",
+      "aelysiummod:mob/wolf/baby/step3",
+      "aelysiummod:mob/wolf/baby/step4",
+      "aelysiummod:mob/wolf/baby/step5"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+,
+  "entity.baby_wolf.whine": {
+    "sounds": [
+      {
+        "name": "aelysiummod:mob/wolf/baby/whine1",
+        "pitch": 0.75
+      },
+      {
+        "name": "aelysiummod:mob/wolf/baby/whine2",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.baby_wolf.whine"
+  }
+,
+  "block.iron.break": {
+    "sounds": [
+      "aelysiummod:block/iron/break1",
+      "aelysiummod:block/iron/break2",
+      "aelysiummod:block/iron/break3",
+      "aelysiummod:block/iron/break4",
+      "aelysiummod:block/iron/break5",
+      "aelysiummod:block/iron/break6",
+      "aelysiummod:block/iron/break7",
+      "aelysiummod:block/iron/break8"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  }
+,
+  "block.iron.fall": {
+    "sounds": [
+      "aelysiummod:block/iron/step1",
+      "aelysiummod:block/iron/step2",
+      "aelysiummod:block/iron/step3",
+      "aelysiummod:block/iron/step4"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  }
+,
+  "block.iron.hit": {
+    "sounds": [
+      "aelysiummod:block/iron/step1",
+      "aelysiummod:block/iron/step2",
+      "aelysiummod:block/iron/step3",
+      "aelysiummod:block/iron/step4"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  }
+,
+  "block.iron.place": {
+    "sounds": [
+      "aelysiummod:block/iron/break1",
+      "aelysiummod:block/iron/break2",
+      "aelysiummod:block/iron/break3",
+      "aelysiummod:block/iron/break4",
+      "aelysiummod:block/iron/break5",
+      "aelysiummod:block/iron/break6",
+      "aelysiummod:block/iron/break7",
+      "aelysiummod:block/iron/break8"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  }
+,
+  "block.iron.step": {
+    "sounds": [
+      "aelysiummod:block/iron/step1",
+      "aelysiummod:block/iron/step2",
+      "aelysiummod:block/iron/step3",
+      "aelysiummod:block/iron/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "item.lead.break": {
+    "sounds": [
+      "aelysiummod:entity/leashknot/break"
+    ],
+    "subtitle": "subtitles.item.lead.break"
+  }
+,
+  "item.llama_carpet.unequip": {
+    "sounds": [
+      "aelysiummod:mob/llama/unequip"
+    ],
+    "subtitle": "subtitles.item.llama_carpet.unequip"
+  }
+,
+  "item.horse_armor.unequip": {
+    "sounds": [
+      "aelysiummod:mob/horse/armor_unequip"
+    ],
+    "subtitle": "subtitles.item.horse_armor.unequip"
+  }
+,
+  "item.saddle.unequip": {
+    "sounds": [
+      "aelysiummod:mob/horse/saddle_unequip"
+    ],
+    "subtitle": "subtitles.item.saddle.unequip"
+  }
+,
+  "music_disc.tears": {
+    "sounds": [
+      {
+        "name": "aelysiummod:records/tears",
+        "stream": true
+      }
+    ]
+  },
+  "item.shears.snip": {
+    "sounds": [
+      "aelysiummod:mob/sheep/shear"
+    ],
+    "subtitle": "subtitles.item.shears.snip"
+  }
+,
+  "item.lead.tied": {
+    "sounds": [
+      "aelysiummod:entity/leashknot/leash1",
+      "aelysiummod:entity/leashknot/leash2",
+      "aelysiummod:entity/leashknot/leash3"
+    ],
+    "subtitle": "subtitles.item.lead.tied"
+  }
+,
+  "item.lead.untied": {
+    "sounds": [
+      "aelysiummod:entity/leashknot/unleash1",
+      "aelysiummod:entity/leashknot/unleash2",
+      "aelysiummod:entity/leashknot/unleash3"
+    ],
+    "subtitle": "subtitles.item.lead.untied"
+  }
+  ,
+    "entity.baby_cat.ambient":  {
+                                    "subtitle":  "subtitles.entity.baby_cat.ambient",
+                                    "sounds":  [
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/ambient1",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/ambient2",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/ambient3",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/ambient4",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/ambient5",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/ambient6",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/ambient7",
+                                                       "pitch":  0.75
+                                                   }
+                                               ]
+                                },
+    "entity.baby_cat.beg_for_food":  {
+                                         "subtitle":  "subtitles.entity.baby_cat.beg_for_food",
+                                         "sounds":  [
+                                                        {
+                                                            "name":  "entity.baby_cat.ambient",
+                                                            "type":  "event"
+                                                        }
+                                                    ]
+                                     },
+    "entity.baby_cat.death":  {
+                                  "subtitle":  "subtitles.entity.baby_cat.death",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/death",
+                                                     "pitch":  0.75
+                                                 }
+                                             ]
+                              },
+    "entity.baby_cat.eat":  {
+                                "subtitle":  "subtitles.entity.baby_cat.eat",
+                                "sounds":  [
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/cat/eat1",
+                                                   "pitch":  2.0
+                                               },
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/cat/eat2",
+                                                   "pitch":  2.0
+                                               }
+                                           ]
+                            },
+    "entity.baby_cat.hiss":  {
+                                 "subtitle":  "subtitles.entity.baby_cat.hiss",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/cat/hiss1",
+                                                    "pitch":  2.0
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/cat/hiss2",
+                                                    "pitch":  2.0
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/cat/hiss3",
+                                                    "pitch":  2.0
+                                                }
+                                            ]
+                             },
+    "entity.baby_cat.hurt":  {
+                                 "subtitle":  "subtitles.entity.baby_cat.hurt",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/hurt1",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/hurt2",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/cat/baby_cat/hurt3",
+                                                    "pitch":  0.75
+                                                }
+                                            ]
+                             },
+    "entity.baby_cat.purr":  {
+                                 "subtitle":  "subtitles.entity.baby_cat.purr",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "entity.cat.purr",
+                                                    "type":  "event"
+                                                }
+                                            ]
+                             },
+    "entity.baby_cat.purreow":  {
+                                    "subtitle":  "subtitles.entity.baby_cat.ambient",
+                                    "sounds":  [
+                                                   {
+                                                       "name":  "entity.baby_cat.ambient",
+                                                       "type":  "event"
+                                                   }
+                                               ]
+                                },
+    "entity.baby_cat.stray_ambient":  {
+                                          "subtitle":  "subtitles.entity.baby_cat.ambient",
+                                          "sounds":  [
+                                                         {
+                                                             "name":  "entity.baby_cat.ambient",
+                                                             "type":  "event"
+                                                         }
+                                                     ]
+                                      },
+    "entity.baby_chicken.ambient":  {
+                                        "subtitle":  "subtitles.entity.baby_chicken.ambient",
+                                        "sounds":  [
+                                                       {
+                                                           "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/ambient1",
+                                                           "pitch":  0.75,
+                                                           "weight":  3
+                                                       },
+                                                       {
+                                                           "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/ambient2",
+                                                           "pitch":  0.75
+                                                       }
+                                                   ]
+                                    },
+    "entity.baby_chicken.death":  {
+                                      "subtitle":  "subtitles.entity.baby_chicken.death",
+                                      "sounds":  [
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/death",
+                                                         "pitch":  0.75
+                                                     }
+                                                 ]
+                                  },
+    "entity.baby_chicken.hurt":  {
+                                     "subtitle":  "subtitles.entity.baby_chicken.hurt",
+                                     "sounds":  [
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/hurt1",
+                                                        "pitch":  0.75
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/hurt2",
+                                                        "pitch":  0.75
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/hurt3",
+                                                        "pitch":  0.75
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/hurt4",
+                                                        "pitch":  0.75
+                                                    }
+                                                ]
+                                 },
+    "entity.baby_chicken.step":  {
+                                     "sounds":  [
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/chicken/baby_chicken/step"
+                                                    }
+                                                ]
+                                 },
+    "entity.baby_horse.ambient":  {
+                                      "subtitle":  "subtitles.entity.baby_horse.ambient",
+                                      "sounds":  [
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient1",
+                                                         "pitch":  0.75
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient2",
+                                                         "pitch":  0.75,
+                                                         "weight":  2
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient3",
+                                                         "pitch":  0.75,
+                                                         "weight":  3
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient4",
+                                                         "pitch":  0.75,
+                                                         "weight":  3
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient5",
+                                                         "pitch":  0.75
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient6",
+                                                         "pitch":  0.75
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient7",
+                                                         "pitch":  0.75
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient8",
+                                                         "pitch":  0.75
+                                                     }
+                                                 ]
+                                  },
+    "entity.baby_horse.angry":  {
+                                    "subtitle":  "subtitles.entity.baby_horse.angry",
+                                    "sounds":  [
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/angry",
+                                                       "pitch":  0.75
+                                                   }
+                                               ]
+                                },
+    "entity.baby_horse.breathe":  {
+                                      "subtitle":  "subtitles.entity.baby_horse.breathe",
+                                      "sounds":  [
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/ambient3"
+                                                     }
+                                                 ]
+                                  },
+    "entity.baby_horse.death":  {
+                                    "subtitle":  "subtitles.entity.baby_horse.death",
+                                    "sounds":  [
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/death",
+                                                       "pitch":  0.75
+                                                   }
+                                               ]
+                                },
+    "entity.baby_horse.eat":  {
+                                  "subtitle":  "subtitles.entity.baby_horse.eat",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/eat1",
+                                                     "pitch":  1.25
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/eat2",
+                                                     "pitch":  1.25
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/eat3",
+                                                     "pitch":  1.25
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/eat4",
+                                                     "pitch":  1.25
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/eat5"
+                                                 }
+                                             ]
+                              },
+    "entity.baby_horse.hurt":  {
+                                   "subtitle":  "subtitles.entity.baby_horse.hurt",
+                                   "sounds":  [
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/hurt1",
+                                                      "pitch":  0.5
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/hurt2",
+                                                      "pitch":  0.5
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/hurt3",
+                                                      "pitch":  0.5
+                                                  }
+                                              ]
+                               },
+    "entity.baby_horse.land":  {
+                                   "subtitle":  "subtitles.entity.generic.big_fall",
+                                   "sounds":  [
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/land",
+                                                      "pitch":  0.75,
+                                                      "volume":  0.5
+                                                  }
+                                              ]
+                               },
+    "entity.baby_horse.step":  {
+                                   "subtitle":  "subtitles.block.generic.footsteps",
+                                   "sounds":  [
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/step1",
+                                                      "pitch":  0.75
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/step2",
+                                                      "pitch":  0.75
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/step3",
+                                                      "pitch":  0.75
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/step4",
+                                                      "pitch":  0.75
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/step5",
+                                                      "pitch":  0.75
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/horse/baby_horse/step6",
+                                                      "pitch":  0.75
+                                                  }
+                                              ]
+                               },
+    "entity.baby_pig.ambient":  {
+                                    "subtitle":  "subtitles.entity.baby_pig.ambient",
+                                    "sounds":  [
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/ambient1",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/ambient2",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/ambient3",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/ambient4",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/ambient5",
+                                                       "pitch":  0.75
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/ambient6",
+                                                       "pitch":  0.75
+                                                   }
+                                               ]
+                                },
+    "entity.baby_pig.death":  {
+                                  "subtitle":  "subtitles.entity.baby_pig.death",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/death",
+                                                     "pitch":  0.75
+                                                 }
+                                             ]
+                              },
+    "entity.baby_pig.eat":  {
+                                "subtitle":  "subtitles.entity.baby_pig.eat",
+                                "sounds":  [
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/eat1"
+                                               },
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/eat2"
+                                               }
+                                           ]
+                            },
+    "entity.baby_pig.hurt":  {
+                                 "subtitle":  "subtitles.entity.baby_pig.hurt",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/hit1",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/hit2",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/hit3",
+                                                    "pitch":  0.75
+                                                }
+                                            ]
+                             },
+    "entity.baby_pig.step":  {
+                                 "subtitle":  "subtitles.block.generic.footsteps",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/step1",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/step2",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/step3",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/step4",
+                                                    "pitch":  0.75
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/baby_pig/step5",
+                                                    "pitch":  0.75
+                                                }
+                                            ]
+                             },
+    "entity.cat_royal.ambient":  {
+                                     "subtitle":  "subtitles.entity.cat.ambient",
+                                     "sounds":  [
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient1"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient2"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient3",
+                                                        "weight":  3
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient4"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient5"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient6",
+                                                        "weight":  3
+                                                    }
+                                                ]
+                                 },
+    "entity.cat_royal.beg_for_food":  {
+                                          "subtitle":  "subtitles.entity.cat.beg_for_food",
+                                          "sounds":  [
+                                                         {
+                                                             "name":  "entity.cat.beg_for_food",
+                                                             "type":  "event"
+                                                         }
+                                                     ]
+                                      },
+    "entity.cat_royal.death":  {
+                                   "subtitle":  "subtitles.entity.cat.death",
+                                   "sounds":  [
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/cat/royal/death"
+                                                  }
+                                              ]
+                               },
+    "entity.cat_royal.eat":  {
+                                 "subtitle":  "subtitles.entity.cat.eat",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "entity.cat.eat",
+                                                    "type":  "event"
+                                                }
+                                            ]
+                             },
+    "entity.cat_royal.hiss":  {
+                                  "subtitle":  "subtitles.entity.cat.hiss",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "entity.cat.hiss",
+                                                     "type":  "event"
+                                                 }
+                                             ]
+                              },
+    "entity.cat_royal.hurt":  {
+                                  "subtitle":  "subtitles.entity.cat.hurt",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cat/royal/hurt1"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cat/royal/hurt2"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cat/royal/hurt3"
+                                                 }
+                                             ]
+                              },
+    "entity.cat_royal.purr":  {
+                                  "subtitle":  "subtitles.entity.cat.purr",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "entity.cat.purr",
+                                                     "type":  "event"
+                                                 }
+                                             ]
+                              },
+    "entity.cat_royal.purreow":  {
+                                     "subtitle":  "subtitles.entity.cat.ambient",
+                                     "sounds":  [
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient1"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient4"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient5"
+                                                    }
+                                                ]
+                                 },
+    "entity.cat_royal.stray_ambient":  {
+                                           "subtitle":  "subtitles.entity.cat.ambient",
+                                           "sounds":  [
+                                                          {
+                                                              "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient1"
+                                                          },
+                                                          {
+                                                              "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient2"
+                                                          },
+                                                          {
+                                                              "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient3"
+                                                          },
+                                                          {
+                                                              "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient4"
+                                                          },
+                                                          {
+                                                              "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient5"
+                                                          },
+                                                          {
+                                                              "name":  "aelysiummod:atualizacoes/mob/cat/royal/ambient6"
+                                                          }
+                                                      ]
+                                       },
+    "entity.chicken_picky.ambient":  {
+                                         "subtitle":  "subtitles.entity.chicken.ambient",
+                                         "sounds":  [
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient1"
+                                                        },
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient2"
+                                                        },
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient3"
+                                                        },
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient4"
+                                                        },
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient5"
+                                                        },
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient6"
+                                                        },
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient7"
+                                                        },
+                                                        {
+                                                            "name":  "aelysiummod:atualizacoes/mob/chicken/picky/ambient8"
+                                                        }
+                                                    ]
+                                     },
+    "entity.chicken_picky.death":  {
+                                       "subtitle":  "subtitles.entity.chicken.death",
+                                       "sounds":  [
+                                                      {
+                                                          "name":  "aelysiummod:atualizacoes/mob/chicken/picky/death"
+                                                      }
+                                                  ]
+                                   },
+    "entity.chicken_picky.hurt":  {
+                                      "subtitle":  "subtitles.entity.chicken.hurt",
+                                      "sounds":  [
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/chicken/picky/hurt1"
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/chicken/picky/hurt2"
+                                                     },
+                                                     {
+                                                         "name":  "aelysiummod:atualizacoes/mob/chicken/picky/hurt3"
+                                                     }
+                                                 ]
+                                  },
+    "entity.chicken_picky.step":  {
+                                      "subtitle":  "subtitles.block.generic.footsteps",
+                                      "sounds":  [
+                                                     {
+                                                         "name":  "entity.chicken.step",
+                                                         "type":  "event"
+                                                     }
+                                                 ]
+                                  },
+    "entity.cow_moody.ambient":  {
+                                     "subtitle":  "subtitles.entity.cow.ambient",
+                                     "sounds":  [
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient1"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient2"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient3",
+                                                        "weight":  3
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient4"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient5",
+                                                        "weight":  3
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient6",
+                                                        "weight":  2
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient7"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient8"
+                                                    },
+                                                    {
+                                                        "name":  "aelysiummod:atualizacoes/mob/cow/moody/ambient9",
+                                                        "weight":  3
+                                                    }
+                                                ]
+                                 },
+    "entity.cow_moody.death":  {
+                                   "subtitle":  "subtitles.entity.cow.death",
+                                   "sounds":  [
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/cow/moody/death1"
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/cow/moody/death2"
+                                                  }
+                                              ]
+                               },
+    "entity.cow_moody.hurt":  {
+                                  "subtitle":  "subtitles.entity.cow.hurt",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/moody/hit1"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/moody/hit2"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/moody/hit3"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/moody/hit4"
+                                                 }
+                                             ]
+                              },
+    "entity.cow_moody.step":  {
+                                  "subtitle":  "subtitles.block.generic.footsteps",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/step1"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/step2"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/step3"
+                                                 },
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/cow/step4"
+                                                 }
+                                             ]
+                              },
+    "entity.pig_big.ambient":  {
+                                   "subtitle":  "subtitles.entity.pig.ambient",
+                                   "sounds":  [
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient1"
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient2"
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient3"
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient4"
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient5"
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient6"
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient7",
+                                                      "weight":  2
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient8",
+                                                      "weight":  2
+                                                  },
+                                                  {
+                                                      "name":  "aelysiummod:atualizacoes/mob/pig/big/ambient9"
+                                                  }
+                                              ]
+                               },
+    "entity.pig_big.death":  {
+                                 "subtitle":  "subtitles.entity.pig.death",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/big/death"
+                                                }
+                                            ]
+                             },
+    "entity.pig_big.eat":  {
+                               "subtitle":  "subtitles.entity.pig.eat",
+                               "sounds":  [
+                                              {
+                                                  "name":  "aelysiummod:atualizacoes/mob/pig/big/eat1"
+                                              },
+                                              {
+                                                  "name":  "aelysiummod:atualizacoes/mob/pig/big/eat2"
+                                              }
+                                          ]
+                           },
+    "entity.pig_big.hurt":  {
+                                "subtitle":  "subtitles.entity.pig.hurt",
+                                "sounds":  [
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/pig/big/hit1"
+                                               },
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/pig/big/hit2"
+                                               },
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/pig/big/hit3"
+                                               }
+                                           ]
+                            },
+    "entity.pig_mini.ambient":  {
+                                    "subtitle":  "subtitles.entity.pig.ambient",
+                                    "sounds":  [
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/mini/ambient1"
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/mini/ambient2"
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/mini/ambient3"
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/mini/ambient4"
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/mini/ambient5"
+                                                   },
+                                                   {
+                                                       "name":  "aelysiummod:atualizacoes/mob/pig/mini/ambient6"
+                                                   }
+                                               ]
+                                },
+    "entity.pig_mini.death":  {
+                                  "subtitle":  "subtitles.entity.pig.death",
+                                  "sounds":  [
+                                                 {
+                                                     "name":  "aelysiummod:atualizacoes/mob/pig/mini/death"
+                                                 }
+                                             ]
+                              },
+    "entity.pig_mini.eat":  {
+                                "subtitle":  "subtitles.entity.pig.eat",
+                                "sounds":  [
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/pig/mini/eat1"
+                                               },
+                                               {
+                                                   "name":  "aelysiummod:atualizacoes/mob/pig/mini/eat2"
+                                               }
+                                           ]
+                            },
+    "entity.pig_mini.hurt":  {
+                                 "subtitle":  "subtitles.entity.pig.hurt",
+                                 "sounds":  [
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/mini/hurt1"
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/mini/hurt2"
+                                                },
+                                                {
+                                                    "name":  "aelysiummod:atualizacoes/mob/pig/mini/hurt3"
+                                                }
+                                            ]
+                             }
+  ,
+  "block.note_block.trumpet": {
+    "sounds": [
+      "aelysiummod:atualizacoes/note/trumpet"
+    ],
+    "subtitle": "subtitles.block.note_block.note"
+  },
+  "block.note_block.trumpet_exposed": {
+    "sounds": [
+      "aelysiummod:atualizacoes/note/trumpet_exposed"
+    ],
+    "subtitle": "subtitles.block.note_block.note"
+  },
+  "block.note_block.trumpet_weathered": {
+    "sounds": [
+      "aelysiummod:atualizacoes/note/trumpet_weathered"
+    ],
+    "subtitle": "subtitles.block.note_block.note"
+  },
+  "block.note_block.trumpet_oxidized": {
+    "sounds": [
+      "aelysiummod:atualizacoes/note/trumpet_oxidized"
+    ],
+    "subtitle": "subtitles.block.note_block.note"
+  },
+  "entity.creaking.ambient": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_idle1","aelysiummod:jardim/mob/creaking_idle2","aelysiummod:jardim/mob/creaking_idle3","aelysiummod:jardim/mob/creaking_idle4","aelysiummod:jardim/mob/creaking_idle5","aelysiummod:jardim/mob/creaking_idle6"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.ambient"
+  },
+  "entity.creaking.attack": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_attack1","aelysiummod:jardim/mob/creaking_attack2","aelysiummod:jardim/mob/creaking_attack3","aelysiummod:jardim/mob/creaking_attack4"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.attack"
+  },
+  "entity.creaking.death": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_death"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.death"
+  },
+  "entity.creaking.freeze": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_freeze1","aelysiummod:jardim/mob/creaking_freeze2","aelysiummod:jardim/mob/creaking_freeze3","aelysiummod:jardim/mob/creaking_freeze4"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.freeze"
+  },
+  "entity.creaking.unfreeze": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_unfreeze1","aelysiummod:jardim/mob/creaking_unfreeze2","aelysiummod:jardim/mob/creaking_unfreeze3"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.unfreeze"
+  },
+  "entity.creaking.spawn": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_spawn"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.spawn"
+  },
+  "entity.creaking.step": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_step1","aelysiummod:jardim/mob/creaking_step2","aelysiummod:jardim/mob/creaking_step3","aelysiummod:jardim/mob/creaking_step4","aelysiummod:jardim/mob/creaking_step5"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.step"
+  },
+  "entity.creaking.sway": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_sway1","aelysiummod:jardim/mob/creaking_sway2","aelysiummod:jardim/mob/creaking_sway3","aelysiummod:jardim/mob/creaking_sway4"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.sway"
+  },
+  "entity.creaking.twitch": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_twitch"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.twitch"
+  },
+  "entity.creaking.activate": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_activate"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.activate"
+  },
+  "entity.creaking.deactivate": {
+    "sounds": ["aelysiummod:jardim/mob/creaking_deactivate"],
+    "subtitle": "subtitles.aelysiummod.entity.creaking.deactivate"
+  },
+  "block.creaking_heart.break": {
+    "sounds": ["aelysiummod:jardim/bloco/creaking_heart_break"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.break"
+  },
+  "block.creaking_heart.fall": {
+    "sounds": ["aelysiummod:jardim/bloco/creaking_heart_fall"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.fall"
+  },
+  "block.creaking_heart.hit": {
+    "sounds": ["aelysiummod:jardim/bloco/creaking_heart_hit1","aelysiummod:jardim/bloco/creaking_heart_hit2","aelysiummod:jardim/bloco/creaking_heart_hit3","aelysiummod:jardim/bloco/creaking_heart_hit4","aelysiummod:jardim/bloco/creaking_heart_hit5"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.hit"
+  },
+  "block.creaking_heart.hurt": {
+    "sounds": ["aelysiummod:jardim/bloco/trail1","aelysiummod:jardim/bloco/trail2","aelysiummod:jardim/bloco/trail3","aelysiummod:jardim/bloco/trail4","aelysiummod:jardim/bloco/trail5","aelysiummod:jardim/bloco/trail6","aelysiummod:jardim/bloco/trail7"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.hurt"
+  },
+  "block.creaking_heart.idle": {
+    "sounds": ["aelysiummod:jardim/bloco/creaking_heart_idle1","aelysiummod:jardim/bloco/creaking_heart_idle2","aelysiummod:jardim/bloco/creaking_heart_idle3","aelysiummod:jardim/bloco/creaking_heart_idle4"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.idle"
+  },
+  "block.creaking_heart.place": {
+    "sounds": ["aelysiummod:jardim/bloco/creaking_heart_place1","aelysiummod:jardim/bloco/creaking_heart_place2","aelysiummod:jardim/bloco/creaking_heart_place3","aelysiummod:jardim/bloco/creaking_heart_place4"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.place"
+  },
+  "block.creaking_heart.step": {
+    "sounds": ["aelysiummod:jardim/bloco/creaking_heart_step1","aelysiummod:jardim/bloco/creaking_heart_step2","aelysiummod:jardim/bloco/creaking_heart_step3","aelysiummod:jardim/bloco/creaking_heart_step4","aelysiummod:jardim/bloco/creaking_heart_step5","aelysiummod:jardim/bloco/creaking_heart_step6"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.step"
+  },
+  "block.creaking_heart.spawn": {
+    "sounds": ["aelysiummod:jardim/bloco/creaking_heart_spawnmob"],
+    "subtitle": "subtitles.aelysiummod.block.creaking_heart.spawn"
   }
 }

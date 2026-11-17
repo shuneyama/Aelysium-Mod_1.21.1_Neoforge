@@ -37,6 +37,10 @@ public class ProvedorTabelaLootBlocos extends BlockLootSubProvider {
         add(ModBlocos.POTTED_DAMA_DA_NOITE.get(),
                 block -> createPotFlowerItemTable(ModBlocos.DAMA_DA_NOITE.get()));
 
+        dropSelf(ModBlocos.DENTE_DE_LEAO_DOURADO.get());
+        add(ModBlocos.POTTED_DENTE_DE_LEAO_DOURADO.get(),
+                block -> createPotFlowerItemTable(ModBlocos.DENTE_DE_LEAO_DOURADO.get()));
+
         add(ModBlocos.FENDA_KAIROS.get(),
                 block -> createSingleItemTable(ModBlocos.FENDA_KAIROS.get()));
 

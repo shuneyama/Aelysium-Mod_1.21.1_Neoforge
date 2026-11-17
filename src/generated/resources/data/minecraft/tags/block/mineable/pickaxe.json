@@ -76,6 +76,12 @@
     "aelysiummod:perola_branca",
     "aelysiummod:perola_negra",
     "aelysiummod:ameijoa",
-    "aelysiummod:ameijoa_gigante"
+    "aelysiummod:ameijoa_gigante",
+    "aelysiummod:resin_block",
+    "aelysiummod:resin_bricks",
+    "aelysiummod:chiseled_resin_bricks",
+    "aelysiummod:resin_brick_slab",
+    "aelysiummod:resin_brick_stairs",
+    "aelysiummod:resin_brick_wall"
   ]
 }

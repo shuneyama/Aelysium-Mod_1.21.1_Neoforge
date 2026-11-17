@@ -1,5 +1,19 @@
 {
   "values": [
-    "aelysiummod:porta_um_painel"
+    "aelysiummod:porta_um_painel",
+    "aelysiummod:pale_oak_planks",
+    "aelysiummod:pale_oak_log",
+    "aelysiummod:stripped_pale_oak_log",
+    "aelysiummod:pale_oak_wood",
+    "aelysiummod:stripped_pale_oak_wood",
+    "aelysiummod:pale_oak_slab",
+    "aelysiummod:pale_oak_stairs",
+    "aelysiummod:pale_oak_fence",
+    "aelysiummod:pale_oak_fence_gate",
+    "aelysiummod:pale_oak_button",
+    "aelysiummod:pale_oak_pressure_plate",
+    "aelysiummod:pale_oak_door",
+    "aelysiummod:pale_oak_trapdoor",
+    "aelysiummod:creaking_heart"
   ]
 }

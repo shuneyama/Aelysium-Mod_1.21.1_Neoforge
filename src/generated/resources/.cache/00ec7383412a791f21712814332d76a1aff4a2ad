@@ -1,4 +1,4 @@
-// 1.21.1	2026-11-08T15:40:50.1869519	Tags for minecraft:item mod id aelysiummod
+// 1.21.1	2026-11-17T16:36:40.3412715	Tags for minecraft:item mod id aelysiummod
 944bf4d1c8dae8ae0592c2344913235df182477d data/aelysiummod/tags/item/enchantable/looting.json
 4475cc02762e60692270b8904c29a98e01b9973f data/minecraft/tags/item/axes.json
 ab18b4656b9d51ac48d6667647f11b15f31339f1 data/minecraft/tags/item/chest_armor.json
@@ -22,8 +22,9 @@ dd7093402cf6422540b5f00889a7bf9b778649f9 data/minecraft/tags/item/foot_armor.jso
 776a8c8f05cc4606c5a92f1ee2a302cbee3346aa data/minecraft/tags/item/hoes.json
 6a5b628b8c8aa5dc6f6dced60385ad600bf25d79 data/minecraft/tags/item/leg_armor.json
 dfda38b1166045e4e61f48237ac2156bd6ac4585 data/minecraft/tags/item/pickaxes.json
+8c10532a7ee0556619293d803c4719c32b8dc4e3 data/minecraft/tags/item/piglin_loved.json
 819891ef1b2ee8a8a3d0ef9ab35eabfa612373d2 data/minecraft/tags/item/shovels.json
-d48da37923d11f1cb50db61e1747f9b9494b3d81 data/minecraft/tags/item/slabs.json
-0cb765bd9274d88f4c20ad9552acdd833f720323 data/minecraft/tags/item/stairs.json
+0f38ef9dca5f2df085497f41ea7a168521c3848e data/minecraft/tags/item/slabs.json
+b701da88c4a90dae400c289a5d39bd8822ac651d data/minecraft/tags/item/stairs.json
 00b6745fcd27783daf1eb8a03b56edb655231736 data/minecraft/tags/item/swords.json
-d39addcc2578fc495b1d1d39c366a3f41c0db6dd data/minecraft/tags/item/walls.json
+0a4cdd0d8620f262fb99b9cc1fdf5ab275eba1c0 data/minecraft/tags/item/walls.json

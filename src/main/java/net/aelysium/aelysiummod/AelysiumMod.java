@@ -83,6 +83,14 @@ public class AelysiumMod {
     public AelysiumMod(IEventBus modEventBus, ModContainer modContainer) {
         if (!ShouldLoadCheck.shouldLoad(MOD_ID)) return;
 
+        net.aelysium.aelysiummod.sistemas.mundo.atualizacoes.RegrasAtualizadas.registrar();
+        net.aelysium.aelysiummod.sistemas.mundo.mochila.ModMochilas.registrar(modEventBus);
+        net.aelysium.aelysiummod.sistemas.mundo.flora.ModFlora.registrar(modEventBus);
+        net.aelysium.aelysiummod.sistemas.mundo.jardimpalido.ModJardimPalido.registrar(modEventBus);
+        net.aelysium.aelysiummod.sistemas.mundo.atualizacoes.AtributosNovos.registrar(modEventBus);
+        net.aelysium.aelysiummod.sistemas.mundo.flora.ModItensNovos.registrar(modEventBus);
+        net.aelysium.aelysiummod.sistemas.mundo.mochila.ReceitasMochila.registrar(modEventBus);
+        modContainer.registerConfig(net.neoforged.fml.config.ModConfig.Type.CLIENT, net.aelysium.aelysiummod.sistemas.mundo.atualizacoes.cliente.OpcoesAtualizadas.SPEC, "aelysiummod-atualizacoes-client.toml");
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
 
@@ -129,6 +137,7 @@ public class AelysiumMod {
         NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.sistemas.rp.morte.OuvinteMorte());
         NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.sistemas.rp.morte.LimiteTotens());
         NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.conteudo.efeito.ManipuladorChoqueRestricao());
+        NeoForge.EVENT_BUS.register(new net.aelysium.aelysiummod.sistemas.mundo.idade.TravaIdade());
 
 
         NeoForge.EVENT_BUS.register(new EventosBanimentoItem());
@@ -146,7 +155,9 @@ public class AelysiumMod {
         IntegracaoWaystones.registrar();
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocos.DAMA_DA_NOITE.getId(), ModBlocos.POTTED_DAMA_DA_NOITE);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocos.DENTE_DE_LEAO_DOURADO.getId(), ModBlocos.POTTED_DENTE_DE_LEAO_DOURADO);
             net.aelysium.aelysiummod.nucleo.comando.AelysiumOpcoesSeletor.registrar();
+            net.aelysium.aelysiummod.sistemas.mundo.jardimpalido.ModJardimPalido.configuracaoComum();
         });
     }
 

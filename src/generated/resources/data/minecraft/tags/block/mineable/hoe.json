@@ -1,5 +1,9 @@
 {
   "values": [
-    "aelysiummod:folhas_de_glicinia_ancia"
+    "aelysiummod:folhas_de_glicinia_ancia",
+    "aelysiummod:pale_oak_leaves",
+    "aelysiummod:pale_moss_block",
+    "aelysiummod:pale_moss_carpet",
+    "aelysiummod:pale_hanging_moss"
   ]
 }

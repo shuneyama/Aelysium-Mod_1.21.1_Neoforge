@@ -84,6 +84,13 @@ public class ModBlocos {
             () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, DAMA_DA_NOITE,
                     BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
 
+    public static final DeferredBlock<Block> DENTE_DE_LEAO_DOURADO = registerBlock("dente_de_leao_dourado",
+            () -> new FlowerBlock(MobEffects.SATURATION, 0.35F, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> POTTED_DENTE_DE_LEAO_DOURADO = BLOCKS.register("potted_dente_de_leao_dourado",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, DENTE_DE_LEAO_DOURADO,
+                    BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
+
     public static final DeferredBlock<net.aelysium.aelysiummod.sistemas.mundo.dificuldade.BlocoTeiaDificuldade> TEIA_DIFICULDADE = BLOCKS.register("teia_dificuldade",
             () -> new net.aelysium.aelysiummod.sistemas.mundo.dificuldade.BlocoTeiaDificuldade(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.WOOL)

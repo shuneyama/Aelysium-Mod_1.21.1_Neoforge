@@ -28,6 +28,15 @@ public class ProvedorReceitas extends RecipeProvider implements IConditionBuilde
     protected void buildRecipes(RecipeOutput recipeOutput) {
         List<ItemLike> CIANE_SMELTABLES = List.of(ModItens.CIANE_CRU);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, net.aelysium.aelysiummod.sistemas.mundo.mochila.ModMochilas.MOCHILA.get())
+                .pattern("-")
+                .pattern("#")
+                .define('-', Items.STRING)
+                .define('#', Items.LEATHER)
+                .unlockedBy("has_string", has(Items.STRING)).save(recipeOutput);
+        SpecialRecipeBuilder.special(net.aelysium.aelysiummod.sistemas.mundo.mochila.ReceitaTingirMochila::new)
+                .save(recipeOutput, "aelysiummod:mochila_tingir");
+
 
         oreSmelting(recipeOutput, CIANE_SMELTABLES, RecipeCategory.MISC, ModItens.CIANE_FRAGMENTO.get(), 0.3f, 200, "ciane");
         oreBlasting(recipeOutput, CIANE_SMELTABLES, RecipeCategory.MISC, ModItens.CIANE_FRAGMENTO.get(), 0.3f, 100, "ciane");
@@ -110,6 +119,20 @@ ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItens.CIANE_BARRA.get()
                 .requires(ModBlocos.DAMA_DA_NOITE)
                 .unlockedBy("has_dama_da_noite", has(ModBlocos.DAMA_DA_NOITE))
                 .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocos.DENTE_DE_LEAO_DOURADO.get())
+                .pattern("NNN")
+                .pattern("NDN")
+                .pattern("NNN")
+                .define('N', Items.GOLD_NUGGET)
+                .define('D', Items.DANDELION)
+                .unlockedBy("has_dandelion", has(Items.DANDELION))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.YELLOW_DYE, 1)
+                .requires(ModBlocos.DENTE_DE_LEAO_DOURADO)
+                .unlockedBy("has_dente_de_leao_dourado", has(ModBlocos.DENTE_DE_LEAO_DOURADO))
+                .save(recipeOutput, "aelysiummod:corante_amarelo_de_dente_de_leao_dourado");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItens.SERINGA_CURA.get(), 1)
                 .requires(ModItens.SERINGA)

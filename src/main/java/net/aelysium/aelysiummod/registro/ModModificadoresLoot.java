@@ -21,6 +21,12 @@ public class ModModificadoresLoot {
     public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<ModificadorLootModsDesativados>> MOD_CAP_LOOT_REDUCER =
             LOOT_MODIFIER_SERIALIZERS.register("mod_cap_loot_reducer", () -> ModificadorLootModsDesativados.CODEC);
 
+    public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<net.aelysium.aelysiummod.sistemas.admin.banimentos.ModificadorLootSela>> SADDLE_TO_LEATHER =
+            LOOT_MODIFIER_SERIALIZERS.register("saddle_to_leather", () -> net.aelysium.aelysiummod.sistemas.admin.banimentos.ModificadorLootSela.CODEC);
+
+    public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<net.aelysium.aelysiummod.sistemas.admin.banimentos.ModificadorLootCogumelo>> ZOMBIE_HORSE_MUSHROOM =
+            LOOT_MODIFIER_SERIALIZERS.register("zombie_horse_mushroom", () -> net.aelysium.aelysiummod.sistemas.admin.banimentos.ModificadorLootCogumelo.CODEC);
+
     public static void register(IEventBus eventBus) {
         LOOT_MODIFIER_SERIALIZERS.register(eventBus);
     }
