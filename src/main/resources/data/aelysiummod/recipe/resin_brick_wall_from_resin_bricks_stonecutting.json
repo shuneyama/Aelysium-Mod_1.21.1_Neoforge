@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {"item": "aelysiummod:resin_bricks"},
+  "result": {
+    "id": "aelysiummod:resin_brick_wall"
+  }
+}

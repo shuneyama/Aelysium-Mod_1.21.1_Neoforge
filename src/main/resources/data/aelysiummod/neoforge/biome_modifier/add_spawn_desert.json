@@ -1,0 +1,18 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:desert",
+  "spawners": [
+    {
+      "type": "minecraft:camel",
+      "weight": 1,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "minecraft:rabbit",
+      "weight": 8,
+      "minCount": 2,
+      "maxCount": 3
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:dandelion"
+    },
+    "N": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NDN",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "aelysiummod:dente_de_leao_dourado"
+  }
+}

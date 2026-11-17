@@ -1,0 +1,7 @@
+{
+  "parent": "aelysiummod:block/template_leaf_litter_1",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "texture": "aelysiummod:block/leaf_litter"
+  }
+}

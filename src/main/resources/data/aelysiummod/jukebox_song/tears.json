@@ -1,0 +1,10 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "jukebox_song.aelysiummod.tears"
+  },
+  "length_in_seconds": 175.0,
+  "sound_event": {
+    "sound_id": "aelysiummod:music_disc.tears"
+  }
+}

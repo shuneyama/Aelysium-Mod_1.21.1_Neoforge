@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "aelysiummod:block/pale_oak_slab"
+    },
+    "type=double": {
+      "model": "aelysiummod:block/pale_oak_planks"
+    },
+    "type=top": {
+      "model": "aelysiummod:block/pale_oak_slab_top"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_uv_locked_x",
+  "textures": {
+    "end": "aelysiummod:block/stripped_pale_oak_log_top",
+    "side": "aelysiummod:block/stripped_pale_oak_log"
+  }
+}

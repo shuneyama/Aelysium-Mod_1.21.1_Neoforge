@@ -1,0 +1,6 @@
+{
+  "parent": "aelysiummod:item/template_mochila_open_back",
+  "textures": {
+    "layer0": "aelysiummod:item/mochila/pink_open_back"
+  }
+}

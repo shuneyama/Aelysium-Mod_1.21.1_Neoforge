@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "aelysiummod:item/bordure_indented_banner_pattern"
+  }
+}

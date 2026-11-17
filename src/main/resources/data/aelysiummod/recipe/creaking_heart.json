@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","category":"building","key":{"L":{"tag":"aelysiummod:pale_oak_logs"},"R":{"item":"aelysiummod:resin_block"}},"pattern":["L","R","L"],"result":{"id":"aelysiummod:creaking_heart","count":1}}

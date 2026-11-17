@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "aelysiummod:dente_de_leao_dourado"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "aelysiummod:blocks/dente_de_leao_dourado"
+}

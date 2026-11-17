@@ -1,0 +1,16 @@
+{
+  "music.game": {
+    "replace": false,
+    "sounds": [
+      {"name": "aelysiummod:music/game/below_and_above", "stream": true, "volume": 0.4},
+      {"name": "aelysiummod:music/game/broken_clocks", "stream": true, "volume": 0.4},
+      {"name": "aelysiummod:music/game/fireflies", "stream": true, "volume": 0.4},
+      {"name": "aelysiummod:music/game/lilypad", "stream": true, "volume": 0.4},
+      {"name": "aelysiummod:music/game/os_piano", "stream": true, "volume": 0.4}
+    ]
+  },
+  "block.anvil.destroy": {"replace": true, "sounds": [{"name": "random/anvil_break", "volume": 0.5}]},
+  "block.anvil.land": {"replace": true, "sounds": [{"name": "random/anvil_land", "volume": 0.5}]},
+  "block.anvil.place": {"replace": true, "sounds": [{"name": "random/anvil_land", "volume": 0.5}]},
+  "block.anvil.use": {"replace": true, "sounds": [{"name": "random/anvil_use", "volume": 0.5}]}
+}

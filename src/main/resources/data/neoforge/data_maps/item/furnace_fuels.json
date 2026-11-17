@@ -1,0 +1,7 @@
+{
+  "values": {
+    "aelysiummod:leaf_litter": {"burn_time": 100},
+    "aelysiummod:short_dry_grass": {"burn_time": 100},
+    "aelysiummod:tall_dry_grass": {"burn_time": 100}
+  }
+}

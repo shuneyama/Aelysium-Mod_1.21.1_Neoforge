@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "tip=false": {
+      "model": "aelysiummod:block/pale_hanging_moss"
+    },
+    "tip=true": {
+      "model": "aelysiummod:block/pale_hanging_moss_tip"
+    }
+  }
+}

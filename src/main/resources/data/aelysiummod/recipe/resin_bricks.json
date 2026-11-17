@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {"item": "aelysiummod:resin_brick"}
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "id": "aelysiummod:resin_bricks"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "aelysiummod:block/stripped_pale_oak_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "aelysiummod:block/stripped_pale_oak_wood"
+    },
+    "axis=z": {
+      "model": "aelysiummod:block/stripped_pale_oak_wood",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "aelysiummod:block/resin_brick_slab"
+    },
+    "type=double": {
+      "model": "aelysiummod:block/resin_bricks"
+    },
+    "type=top": {
+      "model": "aelysiummod:block/resin_brick_slab_top"
+    }
+  }
+}

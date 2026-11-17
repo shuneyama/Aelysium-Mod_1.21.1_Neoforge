@@ -1,0 +1,17 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "minecraft:plains",
+    "minecraft:sunflower_plains",
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna",
+    "minecraft:snowy_plains"
+  ],
+  "spawners": {
+    "type": "minecraft:zombie_horse",
+    "weight": 5,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}
