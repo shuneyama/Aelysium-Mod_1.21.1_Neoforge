@@ -16,7 +16,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerRespawnPositionEvent;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID)
 public class ManipuladorDimensaoRenascimento {
 
     @SubscribeEvent

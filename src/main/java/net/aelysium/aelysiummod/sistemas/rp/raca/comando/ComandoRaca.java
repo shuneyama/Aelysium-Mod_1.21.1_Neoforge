@@ -46,6 +46,12 @@ public class ComandoRaca {
                                 .executes(ctx -> executeReset(ctx, EntityArgument.getPlayer(ctx, "jogador")))
                         )
                 )
+                .then(Commands.literal("selecao")
+                        .executes(ctx -> abrirSelecao(ctx, ctx.getSource().getPlayerOrException()))
+                        .then(Commands.argument("jogador", EntityArgument.player())
+                                .executes(ctx -> abrirSelecao(ctx, EntityArgument.getPlayer(ctx, "jogador")))
+                        )
+                )
                 .then(Commands.literal("ver")
                         .executes(ctx -> executeView(ctx, ctx.getSource().getPlayerOrException()))
                         .then(Commands.argument("jogador", EntityArgument.player())
@@ -103,6 +109,13 @@ public class ComandoRaca {
                 Component.translatableEscape("mensagem.aelysiummod.raca.perdeu_sua_raca", target.getName().getString()), true);
         target.sendSystemMessage(Component.translatable("mensagem.aelysiummod.raca.aelysium_sua_raca_foi_removida"));
 
+        return 1;
+    }
+
+    private static int abrirSelecao(CommandContext<CommandSourceStack> ctx, ServerPlayer target) {
+        net.aelysium.aelysiummod.sistemas.rp.raca.SelecaoRaca.abrir(target);
+        ctx.getSource().sendSuccess(() ->
+                Component.translatableEscape("mensagem.aelysiummod.raca.selecao_aberta", target.getName().getString()), true);
         return 1;
     }
 

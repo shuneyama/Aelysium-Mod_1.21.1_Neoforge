@@ -5,6 +5,7 @@ public enum TipoRaca {
     NONE("none", "Nenhuma"),
     HUMANO("humano", "Humano"),
     ELVARIN("elvarin", "Elvarin"),
+    FAUNARI("faunari", "Faunari"),
     DRACONO("dracono", "Dracono"),
     TIEFLING("tiefling", "Tiefling"),
     UNDYNE("undyne", "Undyne"),

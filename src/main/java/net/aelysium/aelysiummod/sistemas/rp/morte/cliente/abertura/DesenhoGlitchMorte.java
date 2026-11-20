@@ -58,7 +58,7 @@ public final class DesenhoGlitchMorte {
             float x = r.nextFloat() * w - bw * 0.3f;
             float y = r.nextFloat() * h - bh * 0.3f;
             float sorteio = r.nextFloat();
-            int cor = sorteio < 0.5f ? 0xFF000000 : sorteio < 0.8f ? 0xFFE00010 : sorteio < 0.9f ? 0xFFF0F0F0 : 0xFF4A0008;
+            int cor = sorteio < 0.5f ? 0xFF000000 : sorteio < 0.8f ? 0xFFEE2210 : sorteio < 0.9f ? 0xFFF0F0F0 : 0xFF4A0008;
             retangulo(vc, m, x, y, x + bw, y + bh, cor);
         }
 
@@ -70,7 +70,7 @@ public final class DesenhoGlitchMorte {
             float y1 = y0 + h * (0.4f + r.nextFloat() * 0.6f);
             for (float x = x0; x < x0 + largura; x += 1 + r.nextInt(3)) {
                 float sorteio = r.nextFloat();
-                int cor = sorteio < 0.45f ? 0xFFF4F4F4 : sorteio < 0.8f ? 0xFF000000 : 0xFFE00010;
+                int cor = sorteio < 0.45f ? 0xFFF4F4F4 : sorteio < 0.8f ? 0xFF000000 : 0xFFEE2210;
                 retangulo(vc, m, x, y0, x + 1, y1, cor);
             }
         }
@@ -81,7 +81,7 @@ public final class DesenhoGlitchMorte {
             float y0 = r.nextFloat() * h;
             int colunas = 10 + r.nextInt(25);
             int linhas = 8 + r.nextInt(17);
-            int cor = r.nextBoolean() ? 0xFFE00010 : 0xFFF0F0F0;
+            int cor = r.nextBoolean() ? 0xFFEE2210 : 0xFFF0F0F0;
             for (int yy = 0; yy < linhas; yy++) {
                 for (int xx = 0; xx < colunas; xx++) {
                     if ((xx + yy) % 2 != 0 || r.nextFloat() < 0.2f) continue;

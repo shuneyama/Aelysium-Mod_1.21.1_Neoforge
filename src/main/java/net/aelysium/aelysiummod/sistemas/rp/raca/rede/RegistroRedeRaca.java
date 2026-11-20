@@ -30,5 +30,19 @@ public class RegistroRedeRaca {
                         net.aelysium.aelysiummod.sistemas.rp.raca.AlternadorVisaoNoturna.alternar(player);
                     }
                 }));
+
+        registrar.playToClient(
+                net.aelysium.aelysiummod.sistemas.rp.raca.rede.PacoteAbrirSelecaoRaca.TYPE,
+                net.aelysium.aelysiummod.sistemas.rp.raca.rede.PacoteAbrirSelecaoRaca.CODEC,
+                (pacote, ctx) -> ctx.enqueueWork(() -> {
+                    if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
+                        net.aelysium.aelysiummod.sistemas.rp.raca.cliente.ManipuladorSelecaoRacaCliente.abrir(pacote);
+                    }
+                }));
+
+        registrar.playToServer(
+                net.aelysium.aelysiummod.sistemas.rp.raca.rede.PacoteEscolherRaca.TYPE,
+                net.aelysium.aelysiummod.sistemas.rp.raca.rede.PacoteEscolherRaca.CODEC,
+                net.aelysium.aelysiummod.sistemas.rp.raca.rede.PacoteEscolherRaca::handle);
     }
 }

@@ -39,6 +39,7 @@ public class GerenciadorRaca {
         }
 
         switch (race) {
+            case FAUNARI -> {}
             case HUMANO -> {
                 addMod(player, Attributes.MAX_HEALTH, MOD_HEALTH, 4.0);
                 addMod(player, Attributes.ARMOR_TOUGHNESS, MOD_ARMOR_TOUGH, 4.0);

@@ -34,7 +34,7 @@ import java.util.List;
 
 public class EventosAtualizacoes {
 
-    @EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = AelysiumMod.MOD_ID)
     public static class Mod {
 
         @SubscribeEvent

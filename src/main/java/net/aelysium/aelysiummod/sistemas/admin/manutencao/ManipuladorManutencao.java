@@ -9,7 +9,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.aelysium.aelysiummod.nucleo.jogador.PerfilJogador;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID)
 public class ManipuladorManutencao {
 
     private static final Component MENSAGEM_MANUTENCAO = Component.literal(

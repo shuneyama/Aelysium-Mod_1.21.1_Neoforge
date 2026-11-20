@@ -15,7 +15,7 @@ import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactori
 import java.util.ArrayList;
 import java.util.List;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID, value = Dist.CLIENT)
 public class RegistroModelosMochila {
 
     private static List<String> nomes() {

@@ -25,7 +25,7 @@ import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID, value = Dist.CLIENT)
 public class ClienteFlora {
 
     private static final ColorResolver FOLHAGEM_SECA = (bioma, x, z) ->

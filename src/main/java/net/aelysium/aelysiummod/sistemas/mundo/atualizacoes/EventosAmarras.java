@@ -163,7 +163,7 @@ public class EventosAmarras {
         for (Entity preso : amarradosA(jogador.level(), jogador)) ((Leashable) preso).dropLeash(true, true);
     }
 
-    @EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = AelysiumMod.MOD_ID)
     public static class Configuracao {
         @SubscribeEvent
         public static void dispensador(FMLCommonSetupEvent evento) {

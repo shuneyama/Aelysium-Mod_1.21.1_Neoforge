@@ -13,7 +13,7 @@ import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID, value = Dist.CLIENT)
 public class RegistroClienteArma {
 
     @SubscribeEvent(priority = EventPriority.LOW)

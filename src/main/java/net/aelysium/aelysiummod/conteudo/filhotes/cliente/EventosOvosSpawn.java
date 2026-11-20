@@ -13,7 +13,7 @@ import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID, value = Dist.CLIENT)
 public final class EventosOvosSpawn {
 
     private EventosOvosSpawn() {

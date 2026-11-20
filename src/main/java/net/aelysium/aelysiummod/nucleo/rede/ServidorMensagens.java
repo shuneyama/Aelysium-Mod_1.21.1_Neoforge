@@ -25,7 +25,7 @@ import net.aelysium.aelysiummod.sistemas.social.insignia.rede.RegistroRedeInsign
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.RegistroRedeMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.npc.rede.RegistroRedeNpc;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID)
 public class ServidorMensagens {
 
     @SubscribeEvent

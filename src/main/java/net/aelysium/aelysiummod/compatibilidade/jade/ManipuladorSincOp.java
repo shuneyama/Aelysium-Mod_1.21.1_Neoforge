@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@EventBusSubscriber(modid = "aelysiummod", bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = "aelysiummod")
 public class ManipuladorSincOp {
 
     private static int tickCounter = 0;

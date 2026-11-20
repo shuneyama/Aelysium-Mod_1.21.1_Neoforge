@@ -19,7 +19,7 @@ import net.neoforged.neoforge.event.CommandEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID)
 public class RetransmissorComandosDiscord {
 
     private static final ThreadLocal<Boolean> REENTRANT = ThreadLocal.withInitial(() -> false);

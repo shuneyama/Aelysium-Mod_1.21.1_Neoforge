@@ -108,6 +108,7 @@ public class TemporizadorRaca {
                     }
                 }
                 case DRACONO -> {}
+                case FAUNARI -> {}
                 case TIEFLING -> {}
                 case UNDYNE -> {
                     if (shouldRefreshEffects) {

@@ -15,7 +15,7 @@ import net.neoforged.neoforge.event.ServerChatEvent;
 import net.aelysium.aelysiummod.nucleo.jogador.PerfilJogador;
 import net.aelysium.aelysiummod.sistemas.social.chat.rede.RedeChat;
 
-@EventBusSubscriber(modid = "aelysiummod", bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = "aelysiummod")
 public class CorChat {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

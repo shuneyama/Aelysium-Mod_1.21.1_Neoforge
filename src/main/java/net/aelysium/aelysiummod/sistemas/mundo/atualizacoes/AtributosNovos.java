@@ -26,7 +26,7 @@ public final class AtributosNovos {
         ATRIBUTOS.register(barramento);
     }
 
-    @EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = AelysiumMod.MOD_ID)
     public static class Modificacao {
         @SubscribeEvent
         public static void adicionar(EntityAttributeModificationEvent evento) {

@@ -208,7 +208,7 @@ public final class ModJardimPalido {
         fogo.setFlammable(FLOR_OLHO_FECHADA.get(), 60, 100);
     }
 
-    @EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = AelysiumMod.MOD_ID)
     public static class Aba {
         @SubscribeEvent
         public static void aba(BuildCreativeModeTabContentsEvent evento) {

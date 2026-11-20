@@ -31,10 +31,11 @@ public class AnimacaoRevelacaoRaca {
     private static final Map<TipoRaca, Integer> RACE_COLORS = Map.of(
             TipoRaca.HUMANO,   0xE2A906,
             TipoRaca.ELVARIN,  0x22A902,
+            TipoRaca.FAUNARI,  0xFF8FC8,
             TipoRaca.DRACONO,  0x9224BF,
             TipoRaca.TIEFLING, 0xB22222,
             TipoRaca.UNDYNE,   0x02A9A9,
-            TipoRaca.VALKYRIA, 0xEFD90C,
+            TipoRaca.VALKYRIA, 0xFFEE22,
             TipoRaca.NONE,     0xAAAAAA
     );
 

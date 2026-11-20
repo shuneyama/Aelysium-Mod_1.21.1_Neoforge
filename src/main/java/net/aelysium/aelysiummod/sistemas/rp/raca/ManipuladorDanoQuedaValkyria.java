@@ -11,7 +11,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.aelysium.aelysiummod.nucleo.jogador.TipoRaca;
 
-@EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = AelysiumMod.MOD_ID)
 public class ManipuladorDanoQuedaValkyria {
 
     @SubscribeEvent(priority = EventPriority.HIGH)

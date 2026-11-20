@@ -44,7 +44,7 @@ public final class ModItensNovos {
         ITENS.register(barramento);
     }
 
-    @EventBusSubscriber(modid = AelysiumMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = AelysiumMod.MOD_ID)
     public static class Aba {
         @SubscribeEvent
         public static void aba(BuildCreativeModeTabContentsEvent evento) {
