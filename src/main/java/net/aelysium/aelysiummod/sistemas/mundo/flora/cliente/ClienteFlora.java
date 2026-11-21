@@ -43,6 +43,11 @@ public class ClienteFlora {
     }
 
     @SubscribeEvent
+    public static void resolvedoresCor(RegisterColorHandlersEvent.ColorResolvers evento) {
+        evento.register(FOLHAGEM_SECA);
+    }
+
+    @SubscribeEvent
     public static void coresBlocos(RegisterColorHandlersEvent.Block evento) {
         evento.register((estado, mundo, pos, indice) -> mundo != null && pos != null
                 ? mundo.getBlockTint(pos, FOLHAGEM_SECA) : CoresFolhagemSeca.PADRAO, ModFlora.FOLHAS_SECAS.get());

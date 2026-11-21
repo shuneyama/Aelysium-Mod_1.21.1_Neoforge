@@ -21,6 +21,7 @@ import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelaSelecaoRaca extends Screen {
@@ -44,6 +45,22 @@ public class TelaSelecaoRaca extends Screen {
     private static final int ABA_L = 59;
     private static final int INFO_X = 10;
     private static final int INFO_Y = 10;
+    private static final float ALTURA_TEXTO = 66.0F;
+    private static final int MENU_X0 = 7;
+    private static final int MENU_L = 23;
+    private static final int MENU_A = 9;
+    private static final int MENU_Y = 6;
+    private static final int MENU_ESP = 4;
+    private static final int DIV_Y = 17;
+    private static final int CONT_X = 7;
+    private static final int CONT_Y = 19;
+    private static final int CONT_A = 47;
+    private static final int CONT_L = 77;
+    private static final int ICONE = 24;
+    private static final ResourceLocation MOLDURA_EFEITO = ResourceLocation.withDefaultNamespace("hud/effect_background");
+    private static final int COR_DIVISOR = 0xFFAD84AD;
+    private static final int[] COR_MENU = {0xFF5CD65C, 0xFFE05C5C, 0xFF5CB8E8};
+    private int menuVerso;
     private static final int LER_X = 10, LER_Y = 49;
     private static final int CARD_X = 106;
     private static final int CARD_Y = 7;
@@ -164,6 +181,7 @@ public class TelaSelecaoRaca extends Screen {
     private void alternarVerso(boolean valor) {
         if (verMais == valor) return;
         verMais = valor;
+        rolagem = 0.0F;
         inicioBamboleio = System.nanoTime();
         Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.WOODEN_BUTTON_CLICK_ON, 0.75F, 0.8F));
     }
@@ -172,6 +190,7 @@ public class TelaSelecaoRaca extends Screen {
         int novo = Math.floorMod(indice, RACAS.size());
         if (novo == selecionada) return;
         selecionada = novo;
+        rolagem = 0.0F;
         verMais = false;
         inicioBamboleio = System.nanoTime();
         Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.WOODEN_BUTTON_CLICK_ON, 0.75F, 0.8F));
@@ -205,6 +224,18 @@ public class TelaSelecaoRaca extends Screen {
         mx /= escalaTela;
         my /= escalaTela;
         if (botao == 0) {
+            if (verMais) {
+                for (int i = 0; i < 3; i++) {
+                    if (sobreArte(mx, my, menuX(i), INFO_Y + MENU_Y, MENU_L, MENU_A)) {
+                        if (menuVerso != i) {
+                            menuVerso = i;
+                            rolagem = 0.0F;
+                            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        }
+                        return true;
+                    }
+                }
+            }
             if (sobreLerMais(mx, my)) {
                 lerMaisApertado = true;
                 alternarVerso(!verMais);
@@ -238,6 +269,10 @@ public class TelaSelecaoRaca extends Screen {
     public boolean mouseScrolled(double mx, double my, double dx, double dy) {
         mx /= escalaTela;
         my /= escalaTela;
+        if (verMais && dy != 0 && alturaTexto > CONT_A && sobreArte(mx, my, INFO_X, INFO_Y, 91, 72)) {
+            rolagem = Math.max(0.0F, Math.min(alturaTexto - CONT_A, rolagem - (float) dy * 30.0F * escalaTexto));
+            return true;
+        }
         if (dy != 0) {
             selecionar(selecionada + (dy < 0 ? 1 : -1));
             return true;
@@ -284,7 +319,12 @@ public class TelaSelecaoRaca extends Screen {
         g.blit(ELEM_CARD, CARD_X, CARD_Y, 0.0F, 0.0F, 39, 63, 39, 63);
         boolean sobreLer = sobreLerMais(mx, my);
         boolean apertado = sobreLer && lerMaisApertado;
-        g.blit(apertado ? LER_MAIS_CLIQUE : sobreLer ? LER_MAIS_SEL : LER_MAIS, CARD_X + LER_X, CARD_Y + LER_Y, 0.0F, 0.0F, 19, 8, 19, 8);
+        g.pose().pushPose();
+        g.pose().translate(CARD_X + 19.5F, CARD_Y + 31.5F, 0.0F);
+        g.pose().scale(sxCard, 1.0F, 1.0F);
+        g.pose().translate(LER_X - 19.5F, LER_Y - 31.5F, 0.0F);
+        g.blit(apertado ? LER_MAIS_CLIQUE : sobreLer ? LER_MAIS_SEL : LER_MAIS, 0, 0, 0.0F, 0.0F, 19, 8, 19, 8);
+        g.pose().popPose();
         sobreConfirmarAtual = sobreConfirmar(mx, my);
         g.blit(sobreConfirmarAtual ? ELEM_CONFIRMAR_SEL : ELEM_CONFIRMAR, CONF_X, CONF_Y, 0.0F, 0.0F, 39, 12, 39, 12);
         g.setColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -292,20 +332,41 @@ public class TelaSelecaoRaca extends Screen {
         float qc = qe / escArte;
 
         g.pose().pushPose();
-        g.pose().translate(INFO_X + 7, INFO_Y + 6, 0.0F);
-        g.pose().scale(qc, qc, 1.0F);
-        desenharTexto(g, (int) (77 * escArte / qe));
+        float qt = escalaTextoAjustada(qc);
+        boolean rolando = verMais && alturaTexto > CONT_A;
+        if (rolando) {
+            rolagem = Math.max(0.0F, Math.min(rolagem, alturaTexto - CONT_A));
+            double gs = minecraft.getWindow().getGuiScale();
+            g.enableScissor((int) Math.floor((infoXr + (INFO_X + CONT_X) * escArte) / gs), (int) Math.floor((infoYr + (INFO_Y + CONT_Y) * escArte) / gs), (int) Math.ceil((infoXr + (INFO_X + CONT_X + CONT_L) * escArte) / gs), (int) Math.ceil((infoYr + (INFO_Y + CONT_Y + CONT_A) * escArte) / gs));
+        }
+        if (verMais) {
+            g.pose().translate(fixar(INFO_X + CONT_X), fixar(INFO_Y + CONT_Y + (rolando ? -rolagem : (CONT_A - alturaTexto) / 2.0F)), 0.0F);
+        } else {
+            g.pose().translate(fixar(INFO_X + 7), fixar(INFO_Y + Math.max(2.0F, (72.0F - alturaTexto) / 2.0F)), 0.0F);
+        }
+        g.pose().scale(qt, qt, 1.0F);
+        desenharTexto(g, (int) (77 / qt));
         g.pose().popPose();
+        if (rolando) {
+            g.disableScissor();
+            float trilho = CONT_A;
+            float alca = Math.max(6.0F, trilho * CONT_A / alturaTexto);
+            int ay = INFO_Y + CONT_Y + Math.round((trilho - alca) * rolagem / (alturaTexto - CONT_A));
+            g.fill(INFO_X + CONT_X + CONT_L + 2, ay, INFO_X + CONT_X + CONT_L + 3, ay + Math.round(alca), COR_DIVISOR);
+        }
+        if (verMais) desenharMenus(g, mx, my, qt);
 
         g.pose().pushPose();
-        g.pose().translate(CONF_X + 19.5F, CONF_Y + (sobreConfirmarAtual ? 6.0F : 5.0F), 0.0F);
+        g.pose().translate(fixar(CONF_X + 19.5F), fixar(CONF_Y + (sobreConfirmarAtual ? 6.0F : 5.0F)), 0.0F);
         g.pose().scale(qc, qc, 1.0F);
         Component rotulo = Component.translatable("gui.aelysiummod.raca.escolher");
         g.drawString(font, rotulo, -font.width(rotulo) / 2, -4, sobreConfirmarAtual ? 0xFFFFFFFF : 0xFFE9DDC6, true);
         g.pose().popPose();
 
         g.pose().pushPose();
-        g.pose().translate(CARD_X + LER_X + 9.5F, CARD_Y + LER_Y + 4.3F, 0.0F);
+        g.pose().translate(CARD_X + 19.5F, CARD_Y + 31.5F, 0.0F);
+        g.pose().scale(sxCard, 1.0F, 1.0F);
+        g.pose().translate(LER_X - 10.0F, LER_Y - 27.2F, 0.0F);
         g.pose().scale(qc, qc, 1.0F);
         Component rotuloLer = Component.translatable("gui.aelysiummod.raca.ver_mais");
         g.drawString(font, rotuloLer, -font.width(rotuloLer) / 2, -4, sobreLer && !apertado ? 0xFF000000 : 0xFFE9DDC6, !(sobreLer && !apertado));
@@ -783,30 +844,128 @@ int a = (int) (alfa * 255.0);
         g.pose().popPose();
     }
 
-   private void desenharTexto(GuiGraphics g, int textoLargura) {
+   private String chaveTexto;
+    private float escalaTexto;
+    private float alturaTexto;
+    private float rolagem;
+    private float sxCard = 1.0F;
+
+    private float escalaTextoAjustada(float qc) {
+        String chave = racaAtual().id + verMais + menuVerso + qc + minecraft.getLanguageManager().getSelected();
+        if (chave.equals(chaveTexto)) return escalaTexto;
+        int k = Math.max(1, Math.round(qc * escArte));
+        float s = k / escArte;
+        while (!verMais && k > 1 && desenharTexto(null, (int) (77 / s)) * s > (verMais ? CONT_A : ALTURA_TEXTO)) {
+            k--;
+            s = k / escArte;
+        }
+        chaveTexto = chave;
+        escalaTexto = s;
+        alturaTexto = desenharTexto(null, (int) (77 / s)) * s;
+        return s;
+    }
+
+    private int desenharTexto(GuiGraphics g, int textoLargura) {
         TipoRaca raca = racaAtual();
         int cursor = 0;
         if (!verMais) {
-            escrever(g, Component.translatable("gui.aelysiummod.raca." + raca.id + ".descricao"), 0, cursor, textoLargura, 0xFFF0E4CF);
-            return;
+            return escrever(g, Component.translatable("gui.aelysiummod.raca." + raca.id + ".descricao"), 0, cursor, textoLargura, 0xFFF0E4CF);
         }
-        String[] secoes = {"buffs", "debuffs", "conforto", "habilidade"};
-        int[] cores = {0xFF7CE07C, 0xFFE07C7C, 0xFF7CC8E0, 0xFFC49CF0};
-        for (int i = 0; i < secoes.length; i++) {
-            g.drawString(font, Component.translatable("gui.aelysiummod.raca." + secoes[i]), 0, cursor, cores[i], false);
-            cursor += 11;
-            String chave = "gui.aelysiummod.raca." + raca.id + "." + secoes[i];
-            if (net.minecraft.client.resources.language.I18n.exists(chave)) {
-                cursor = escrever(g, Component.translatable(chave), 0, cursor, textoLargura, 0xFFE9DDC6);
+        return desenharItens(g, textoLargura * CONT_L / 77);
+    }
+
+    private List<String[]> itensMenu() {
+        TipoRaca raca = racaAtual();
+        List<String[]> itens = new ArrayList<>();
+        String[] secoes = menuVerso == 0 ? new String[]{"buffs"} : menuVerso == 1 ? new String[]{"debuffs"} : new String[]{"conforto", "habilidade"};
+        for (String secao : secoes) {
+            String chave = "gui.aelysiummod.raca." + raca.id + "." + secao;
+            if (!net.minecraft.client.resources.language.I18n.exists(chave)) continue;
+            for (String linha : net.minecraft.locale.Language.getInstance().getOrDefault(chave).split("\n")) {
+                String[] partes = linha.split("[|]", 3);
+                if (partes.length == 3) itens.add(partes);
             }
-            cursor += 6;
         }
+        return itens;
+    }
+
+    private static final int COR_VALOR = 0xFF8CF08C;
+    private static final java.util.regex.Pattern DESTAQUE = java.util.regex.Pattern.compile(
+            "[Rr]eduz(?:ido)? em \\d+(?:,\\d+)?%|[+-]?\\d+(?:,\\d+)?%(?: a mais| a menos| mais rápidos?)?|\\d+ (?:segundos|minutos|blocos?|corações?)|(?:Lentidão|Força|Velocidade|Regeneração|Sorte) \\d+|[Ii]munidade a \\p{L}+|imunes?|neve fofa|cacto|bagas|instantaneamente|sorte dupla|Velocidade de movimento|Visão Noturna|Wither|Veneno|Cegueira|Fortuna|Força");
+
+    private static Component destacar(String texto) {
+        net.minecraft.network.chat.MutableComponent resultado = Component.empty();
+        java.util.regex.Matcher m = DESTAQUE.matcher(texto);
+        int fim = 0;
+        while (m.find()) {
+            if (m.start() > fim) resultado.append(Component.literal(texto.substring(fim, m.start())));
+            resultado.append(Component.literal(m.group()).withColor(COR_VALOR));
+            fim = m.end();
+        }
+        if (fim < texto.length()) resultado.append(Component.literal(texto.substring(fim)));
+        return resultado;
+    }
+
+    private int desenharItens(GuiGraphics g, int larguraPx) {
+        int corTitulo = claro(cor(racaAtual()));
+        int textoX = ICONE + 5;
+        int largura = Math.max(20, larguraPx - textoX);
+        int y = 0;
+        for (String[] item : itensMenu()) {
+            if (g != null) {
+                g.blitSprite(MOLDURA_EFEITO, 0, y, ICONE, ICONE);
+                ItemStack pilha = new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.get(ResourceLocation.parse(item[0])));
+                g.renderItem(pilha, (ICONE - 16) / 2, y + (ICONE - 16) / 2);
+            }
+            int h = 0;
+            for (FormattedCharSequence linha : font.split(Component.literal(item[1]), largura)) {
+                if (g != null) g.drawString(font, linha, textoX, y + h, corTitulo, false);
+                h += 10;
+            }
+            for (FormattedCharSequence linha : font.split(menuVerso == 0 ? destacar(item[2]) : Component.literal(item[2]), largura)) {
+                if (g != null) g.drawString(font, linha, textoX, y + h, 0xFFE6CAE6, false);
+                h += 10;
+            }
+            y += Math.max(h, ICONE) + 6;
+        }
+        return Math.max(0, y - 6);
+    }
+
+    private void desenharMenus(GuiGraphics g, int mx, int my, float qt) {
+        String[] nomes = {"gui.aelysiummod.raca.buffs", "gui.aelysiummod.raca.debuffs", "gui.aelysiummod.raca.menu_habilidades"};
+        g.fill(INFO_X + 7, INFO_Y + DIV_Y, INFO_X + 84, INFO_Y + DIV_Y + 1, COR_DIVISOR);
+        for (int i = 0; i < 3; i++) {
+            int x = menuX(i);
+            int y = INFO_Y + MENU_Y;
+            boolean sel = i == menuVerso;
+            boolean sobre = sobreArte(mx, my, x, y, MENU_L, MENU_A);
+            int c = COR_MENU[i];
+            int fundo = escurecer(c, sel ? 0.55F : sobre ? 0.4F : 0.28F);
+            int borda = sel ? c : escurecer(c, 0.7F);
+            g.fill(x, y, x + MENU_L, y + MENU_A, fundo);
+            g.fill(x, y, x + MENU_L, y + 1, borda);
+            g.fill(x, y + MENU_A - 1, x + MENU_L, y + MENU_A, borda);
+            g.fill(x, y, x + 1, y + MENU_A, borda);
+            g.fill(x + MENU_L - 1, y, x + MENU_L, y + MENU_A, borda);
+            Component nome = Component.translatable(nomes[i]);
+            int kl = Math.max(1, Math.min(Math.round(qt * escArte), (int) ((MENU_L - 4) * escArte / font.width(nome))));
+            float ls = kl / escArte;
+            g.pose().pushPose();
+            g.pose().translate(fixar(x + MENU_L / 2.0F), fixar(y + MENU_A / 2.0F + 0.5F * ls), 0.0F);
+            g.pose().scale(ls, ls, 1.0F);
+            g.drawString(font, nome, -font.width(nome) / 2, -4, sel ? 0xFFFFFFFF : misturar(c, 0xFFFFFFFF, 0.55F), false);
+            g.pose().popPose();
+        }
+    }
+
+    private static int menuX(int i) {
+        return INFO_X + MENU_X0 + i * (MENU_L + MENU_ESP);
     }
 
     private int escrever(GuiGraphics g, Component texto, int x, int y, int largura, int cor) {
         List<FormattedCharSequence> linhas = font.split(texto, largura);
         for (FormattedCharSequence linha : linhas) {
-            g.drawString(font, linha, x, y, cor, false);
+            if (g != null) g.drawString(font, linha, x, y, cor, false);
             y += 10;
         }
         return y;
@@ -818,6 +977,10 @@ int a = (int) (alfa * 255.0);
 
    private int escalaConteudo() {
         return Math.max(1, (int) (escArte * 0.4F));
+    }
+
+    private float fixar(float unidades) {
+        return Math.round(unidades * escArte) / escArte;
     }
 
     private boolean sobreArte(double mx, double my, int x, int y, int w, int h) {
@@ -836,9 +999,9 @@ int a = (int) (alfa * 255.0);
 
     private static int coracoes(TipoRaca raca) {
         return switch (raca) {
-            case HUMANO, DRACONO -> 12;
-            case ELVARIN -> 10;
-            case TIEFLING, UNDYNE, VALKYRIA -> 8;
+            case HUMANO, VALKYRIA -> 13;
+            case FAUNARI, ELVARIN, TIEFLING -> 15;
+            case DRACONO, UNDYNE -> 17;
             default -> 10;
         };
     }
@@ -855,6 +1018,7 @@ int a = (int) (alfa * 255.0);
         double angulo = suave * Math.PI;
         boolean verso = angulo > Math.PI / 2.0;
         float sx = (float) Math.max(0.03, Math.abs(Math.cos(angulo)));
+        sxCard = sx;
 
        float qe = escalaConteudo();
         float qc = qe / escArte;
@@ -871,7 +1035,7 @@ int a = (int) (alfa * 255.0);
         int gh = (int) (55 * escArte / qe);
         glint(g, -gw / 2, -gh / 2, gw, gh, cor(raca));
         Component nomeRaca = Component.literal(raca.displayName);
-        float escNome = Math.min(1.7F, 64.0F / Math.max(1, font.width(nomeRaca)));
+        float escNome = Math.max(1, Math.min((int) (1.7F * qe), (int) (64.0F * qe / Math.max(1, font.width(nomeRaca))))) / qe;
         g.pose().pushPose();
         g.pose().translate(0.0F, -66.0F, 0.0F);
         g.pose().scale(escNome, escNome, 1.0F);
@@ -932,8 +1096,9 @@ int a = (int) (alfa * 255.0);
         float flutuaY = (float) (4.0 * Math.sin(t * 1.7 + 0.5) + 2.0 * Math.sin(t * 3.1 + 1.9) + 0.9 * Math.sin(t * 5.3));
         float balancoZ = (float) (7.0 * Math.sin(t * 1.9 + 0.3) + 3.0 * Math.sin(t * 3.7 + 2.0));
         float balancoY = (float) (14.0 * Math.sin(t * 1.1 + 1.0) + 6.0 * Math.sin(t * 2.3));
-        g.pose().translate(cx + flutuaX, cy + flutuaY, 150.0F);
-        g.pose().scale(66.0F, -66.0F, 66.0F);
+        float qpx = escalaConteudo();
+        g.pose().translate(cx + Math.round(flutuaX * qpx) / qpx, cy + Math.round(flutuaY * qpx) / qpx, 150.0F);
+        g.pose().scale(64.0F, -64.0F, 64.0F);
         g.pose().mulPose(Axis.ZP.rotationDegrees(inclinacao + balancoZ));
         g.pose().mulPose(Axis.YP.rotationDegrees(giro + balancoY));
         Lighting.setupFor3DItems();
