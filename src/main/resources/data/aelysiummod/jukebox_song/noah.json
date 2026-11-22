@@ -1,0 +1,10 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "jukebox_song.aelysiummod.noah"
+  },
+  "length_in_seconds": 129.1,
+  "sound_event": {
+    "sound_id": "aelysiummod:music_disc.noah"
+  }
+}

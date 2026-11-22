@@ -1,0 +1,10 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "jukebox_song.aelysiummod.capitao"
+  },
+  "length_in_seconds": 166.2,
+  "sound_event": {
+    "sound_id": "aelysiummod:music_disc.capitao"
+  }
+}

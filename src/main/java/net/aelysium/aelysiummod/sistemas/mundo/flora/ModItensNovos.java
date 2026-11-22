@@ -33,6 +33,18 @@ public final class ModItensNovos {
     public static final DeferredItem<Item> DISCO_TEARS = ITENS.register("music_disc_tears",
             () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(TEARS)));
 
+    public static final ResourceKey<JukeboxSong> CAPITAO = ResourceKey.create(Registries.JUKEBOX_SONG,
+            ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "capitao"));
+
+    public static final ResourceKey<JukeboxSong> NOAH = ResourceKey.create(Registries.JUKEBOX_SONG,
+            ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "noah"));
+
+    public static final DeferredItem<Item> DISCO_CAPITAO = ITENS.register("music_disc_capitao",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(CAPITAO)));
+
+    public static final DeferredItem<Item> DISCO_NOAH = ITENS.register("music_disc_noah",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(NOAH)));
+
     public static final DeferredItem<Item> ARMADURA_NETHERITE_CAVALO = ITENS.register("netherite_horse_armor",
             () -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false,
                     new Item.Properties().stacksTo(1).fireResistant()));
@@ -50,6 +62,8 @@ public final class ModItensNovos {
         public static void aba(BuildCreativeModeTabContentsEvent evento) {
             if (evento.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
                 evento.accept(DISCO_TEARS);
+                evento.accept(DISCO_CAPITAO);
+                evento.accept(DISCO_NOAH);
             }
             if (evento.getTabKey() == CreativeModeTabs.COMBAT) {
                 evento.accept(ARMADURA_NETHERITE_CAVALO);

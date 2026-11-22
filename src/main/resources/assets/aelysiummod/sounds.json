@@ -690,6 +690,22 @@
       }
     ]
   },
+  "music_disc.capitao": {
+    "sounds": [
+      {
+        "name": "aelysiummod:records/capitao",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.noah": {
+    "sounds": [
+      {
+        "name": "aelysiummod:records/noah",
+        "stream": true
+      }
+    ]
+  },
   "item.shears.snip": {
     "sounds": [
       "aelysiummod:mob/sheep/shear"
