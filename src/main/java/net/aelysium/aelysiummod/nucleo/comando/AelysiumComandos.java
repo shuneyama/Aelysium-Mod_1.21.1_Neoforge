@@ -333,6 +333,7 @@ public class AelysiumComandos {
         );
 
         net.aelysium.aelysiummod.sistemas.mundo.renascimento.ComandoSetWorldSpawn.registrar(event.getDispatcher());
+        net.aelysium.aelysiummod.sistemas.mundo.bordas.ComandoBorda.registrar(event.getDispatcher());
         ComandoBanidos.registrarExtras(event);
         ComandoHistorico.registrarDebug(event);
         com.mojang.brigadier.tree.CommandNode<net.minecraft.commands.CommandSourceStack> raizAelysium = event.getDispatcher().getRoot().getChild("aelysium");
@@ -344,4 +345,4 @@ public class AelysiumComandos {
         ComandoProtecao.registrarSubComandosLista(event.getDispatcher());
         ComandoNpc.registrarSubComandosAcoes(event.getDispatcher());
     }
-}
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "features": [
+      { "chance": 0.25, "feature": "aelysiummod:lithynor/talhao_cenoura" },
+      { "chance": 0.25, "feature": "aelysiummod:lithynor/talhao_batata" },
+      { "chance": 0.15, "feature": "aelysiummod:lithynor/talhao_beterraba" }
+    ],
+    "default": "aelysiummod:lithynor/talhao_trigo"
+  }
+}

@@ -25,6 +25,7 @@ public final class OpcoesAtualizadas {
     public static final ModConfigSpec.BooleanValue TELA_CHEIA_EXCLUSIVA = CONSTRUTOR.define("exclusiveFullscreen", false);
     public static final ModConfigSpec.IntValue RAIO_CLIMA = CONSTRUTOR.defineInRange("weatherRadius", 5, 3, 10);
     public static final ModConfigSpec.IntValue DENSIDADE_CHUVA = CONSTRUTOR.defineInRange("rainDensityPercent", 50, 10, 100);
+    public static final ModConfigSpec.IntValue DENSIDADE_NEVE = CONSTRUTOR.defineInRange("snowDensityPercent", 50, 10, 100);
 
     public static final ModConfigSpec.BooleanValue ESCONDER_SODIUM_F3 = CONSTRUTOR.define("hideSodiumDebugInfo", true);
 

@@ -195,6 +195,7 @@ public class EventosBanimentoItem {
     public void onLivingDrops(LivingDropsEvent event) {
         if (!AelysiumGuarda.isAutorizadoAgora()) return;
         if (event.getEntity().level().isClientSide()) return;
+        if (event.getEntity() instanceof net.minecraft.world.entity.player.Player) return;
 
         event.getDrops().removeIf(itemEntity -> {
             ResourceLocation id = BuiltInRegistries.ITEM.getKey(itemEntity.getItem().getItem());

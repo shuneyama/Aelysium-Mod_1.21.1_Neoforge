@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:max",
+  "argument1": {
+    "type": "minecraft:max",
+    "argument1": { "type": "minecraft:max", "argument1": "aelysiummod:lithynor/altura_comum", "argument2": "aelysiummod:lithynor/altura_plana" },
+    "argument2": "aelysiummod:lithynor/altura_picos"
+  },
+  "argument2": "aelysiummod:lithynor/altura_enormes"
+}

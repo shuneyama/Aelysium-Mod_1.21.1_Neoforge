@@ -57,6 +57,7 @@ neoForge {
     runs {
         client {
             client()
+            systemProperty 'aelysium.amostrador', '8765'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
@@ -80,6 +81,7 @@ neoForge {
         server {
             server()
             programArgument '--nogui'
+            systemProperty 'aelysium.amostrador', '8765'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 

@@ -1,0 +1,7 @@
+{
+  "placement": { "type": "minecraft:random_spread", "salt": 918273645, "separation": 3, "spacing": 9 },
+  "structures": [
+    { "structure": "aelysiummod:naufragio_lithynor", "weight": 2 },
+    { "structure": "aelysiummod:naufragio_praia_lithynor", "weight": 3 }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "aelysiummod:lithynor/ilha_floresta_nevada",
+    "aelysiummod:lithynor/ilha_temperada_nevada",
+    "aelysiummod:lithynor/ilha_temperada",
+    "aelysiummod:lithynor/ilha_floresta",
+    "aelysiummod:lithynor/ilha_selva",
+    "aelysiummod:lithynor/ilha_umida",
+    "aelysiummod:lithynor/ilha_taiga",
+    "aelysiummod:lithynor/ilha_taiga_nevada",
+    "aelysiummod:lithynor/ilha_taiga_antiga",
+    "aelysiummod:lithynor/ilha_nevada",
+    "aelysiummod:lithynor/ilha_espinhos_gelo",
+    "aelysiummod:lithynor/planalto_pedregoso",
+    "aelysiummod:lithynor/planalto_cultivado",
+    "aelysiummod:lithynor/planalto_florido",
+    "aelysiummod:lithynor/pico_rochoso",
+    "aelysiummod:lithynor/oceano_coral",
+    "aelysiummod:lithynor/ilha_taiga_densa",
+    "aelysiummod:lithynor/ilha_taiga_nevada_densa",
+    "aelysiummod:lithynor/ilha_taiga_antiga_densa",
+    "aelysiummod:lithynor/ilha_selva_densa",
+    "aelysiummod:lithynor/ilha_umida_densa"
+  ]
+}

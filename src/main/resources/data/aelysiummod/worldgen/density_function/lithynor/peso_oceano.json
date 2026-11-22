@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:mul",
+    "argument1": 14.0,
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": -0.12,
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": -1.0,
+        "argument2": "aelysiummod:lithynor/mascara_total"
+      }
+    }
+  },
+  "min": 0.0,
+  "max": 1.0
+}

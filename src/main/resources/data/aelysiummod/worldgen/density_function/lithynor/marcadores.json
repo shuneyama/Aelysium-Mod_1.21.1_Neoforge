@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:max",
+  "argument1": {
+    "type": "minecraft:max",
+    "argument1": "aelysiummod:lithynor/marcador_plano",
+    "argument2": "aelysiummod:lithynor/marcador_picos"
+  },
+  "argument2": "aelysiummod:lithynor/marcador_cogumelo"
+}

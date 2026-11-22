@@ -87,6 +87,7 @@ public class AelysiumMod {
         net.aelysium.aelysiummod.sistemas.mundo.mochila.ModMochilas.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.flora.ModFlora.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.jardimpalido.ModJardimPalido.registrar(modEventBus);
+        net.aelysium.aelysiummod.sistemas.mundo.lithynor.ModLithynor.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.atualizacoes.AtributosNovos.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.flora.ModItensNovos.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.mochila.ReceitasMochila.registrar(modEventBus);
@@ -187,6 +188,8 @@ public class AelysiumMod {
         ConfiguracaoModsDesativados.load();
         ConfiguracaoBanimentoReceitas.load();
         net.aelysium.aelysiummod.sistemas.mundo.renascimento.ConfiguracaoDimensaoRenascimento.load(event.getServer());
+        net.aelysium.aelysiummod.sistemas.mundo.renascimento.SpawnsIndividuais.load(event.getServer());
+        net.aelysium.aelysiummod.ferramentas.AmostradorMundo.iniciar(event.getServer());
         GerenciadorFiltroReceitas.setServer(event.getServer());
         GerenciadorFiltroReceitas.reapplyFilter(event.getServer());
         net.aelysium.aelysiummod.sistemas.admin.banimentos.AplicadorNerfs.aplicarConquistas(event.getServer());

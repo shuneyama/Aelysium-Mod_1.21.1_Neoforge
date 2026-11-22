@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:shipwreck",
+  "biomes": "#aelysiummod:has_structure/naufragio_praia_lithynor",
+  "is_beached": true,
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

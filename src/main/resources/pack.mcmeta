@@ -1,0 +1,15 @@
+{
+  "pack": {
+    "description": "Aelysium Mod",
+    "pack_format": 34,
+    "supported_formats": {
+      "min_inclusive": 34,
+      "max_inclusive": 48
+    }
+  },
+  "sodium": {
+    "ignored_shaders": [
+      "fog.glsl"
+    ]
+  }
+}

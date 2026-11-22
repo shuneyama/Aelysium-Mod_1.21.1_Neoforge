@@ -45,16 +45,20 @@ public class TelaSelecaoRaca extends Screen {
     private static final int ABA_L = 59;
     private static final int INFO_X = 10;
     private static final int INFO_Y = 10;
-    private static final float ALTURA_TEXTO = 66.0F;
+    private static final int DESC_X = 9;
+    private static final int DESC_Y = 5;
+    private static final int DESC_L = 73;
+    private static final int DESC_A = 62;
     private static final int MENU_X0 = 7;
-    private static final int MENU_L = 23;
-    private static final int MENU_A = 9;
-    private static final int MENU_Y = 6;
-    private static final int MENU_ESP = 4;
+    private static final int MENU_L = 19;
+    private static final int MENU_A = 8;
+    private static final int MENU_Y = 7;
+    private static final int MENU_ESP = 10;
     private static final int DIV_Y = 17;
     private static final int CONT_X = 7;
-    private static final int CONT_Y = 19;
-    private static final int CONT_A = 47;
+    private static final int CONT_Y = 21;
+    private static final int CONT_A = 45;
+    private static final ResourceLocation BOTAO_MENU = tex("painel/botao_menu");
     private static final int CONT_L = 77;
     private static final int ICONE = 24;
     private static final ResourceLocation MOLDURA_EFEITO = ResourceLocation.withDefaultNamespace("hud/effect_background");
@@ -225,8 +229,9 @@ public class TelaSelecaoRaca extends Screen {
         my /= escalaTela;
         if (botao == 0) {
             if (verMais) {
+                calcularBotoes();
                 for (int i = 0; i < 3; i++) {
-                    if (sobreArte(mx, my, menuX(i), INFO_Y + MENU_Y, MENU_L, MENU_A)) {
+                    if (sobreArte(mx, my, botaoX[i], INFO_Y + MENU_Y, botaoL[i], MENU_A)) {
                         if (menuVerso != i) {
                             menuVerso = i;
                             rolagem = 0.0F;
@@ -269,12 +274,8 @@ public class TelaSelecaoRaca extends Screen {
     public boolean mouseScrolled(double mx, double my, double dx, double dy) {
         mx /= escalaTela;
         my /= escalaTela;
-        if (verMais && dy != 0 && alturaTexto > CONT_A && sobreArte(mx, my, INFO_X, INFO_Y, 91, 72)) {
-            rolagem = Math.max(0.0F, Math.min(alturaTexto - CONT_A, rolagem - (float) dy * 30.0F * escalaTexto));
-            return true;
-        }
-        if (dy != 0) {
-            selecionar(selecionada + (dy < 0 ? 1 : -1));
+        if (dy != 0 && alturaTexto > alturaVisivel() && sobreArte(mx, my, INFO_X, INFO_Y, 91, 72)) {
+            rolagem = Math.max(0.0F, Math.min(alturaTexto - alturaVisivel(), rolagem - (float) dy * 30.0F * escalaTexto));
             return true;
         }
         return super.mouseScrolled(mx, my, dx, dy);
@@ -333,26 +334,32 @@ public class TelaSelecaoRaca extends Screen {
 
         g.pose().pushPose();
         float qt = escalaTextoAjustada(qc);
-        boolean rolando = verMais && alturaTexto > CONT_A;
+        int areaX = verMais ? INFO_X + CONT_X : INFO_X + DESC_X;
+        int areaY = verMais ? INFO_Y + CONT_Y : INFO_Y + DESC_Y;
+        int areaL = verMais ? CONT_L : DESC_L;
+        int areaA = alturaVisivel();
+        boolean rolando = alturaTexto > areaA;
         if (rolando) {
-            rolagem = Math.max(0.0F, Math.min(rolagem, alturaTexto - CONT_A));
-            double gs = minecraft.getWindow().getGuiScale();
-            g.enableScissor((int) Math.floor((infoXr + (INFO_X + CONT_X) * escArte) / gs), (int) Math.floor((infoYr + (INFO_Y + CONT_Y) * escArte) / gs), (int) Math.ceil((infoXr + (INFO_X + CONT_X + CONT_L) * escArte) / gs), (int) Math.ceil((infoYr + (INFO_Y + CONT_Y + CONT_A) * escArte) / gs));
+            rolagem = Math.max(0.0F, Math.min(rolagem, alturaTexto - areaA));
+            int rx1 = (int) Math.ceil(infoXr + areaX * escArte);
+            int rx2 = (int) Math.floor(infoXr + (areaX + areaL) * escArte);
+            int ry1 = (int) Math.ceil(infoYr + areaY * escArte);
+            int ry2 = (int) Math.floor(infoYr + (areaY + areaA) * escArte);
+            g.flush();
+            com.mojang.blaze3d.systems.RenderSystem.enableScissor(rx1, minecraft.getWindow().getHeight() - ry2, Math.max(0, rx2 - rx1), Math.max(0, ry2 - ry1));
         }
-        if (verMais) {
-            g.pose().translate(fixar(INFO_X + CONT_X), fixar(INFO_Y + CONT_Y + (rolando ? -rolagem : (CONT_A - alturaTexto) / 2.0F)), 0.0F);
-        } else {
-            g.pose().translate(fixar(INFO_X + 7), fixar(INFO_Y + Math.max(2.0F, (72.0F - alturaTexto) / 2.0F)), 0.0F);
-        }
+        g.pose().translate(fixar(areaX), fixar(areaY + (rolando ? -rolagem : (areaA - alturaTexto) / 2.0F)), 0.0F);
         g.pose().scale(qt, qt, 1.0F);
-        desenharTexto(g, (int) (77 / qt));
+        desenharTexto(g, (int) (areaL / qt));
         g.pose().popPose();
         if (rolando) {
-            g.disableScissor();
-            float trilho = CONT_A;
-            float alca = Math.max(6.0F, trilho * CONT_A / alturaTexto);
-            int ay = INFO_Y + CONT_Y + Math.round((trilho - alca) * rolagem / (alturaTexto - CONT_A));
-            g.fill(INFO_X + CONT_X + CONT_L + 2, ay, INFO_X + CONT_X + CONT_L + 3, ay + Math.round(alca), COR_DIVISOR);
+            g.flush();
+            com.mojang.blaze3d.systems.RenderSystem.disableScissor();
+            float trilho = areaA;
+            float alca = Math.max(6.0F, trilho * areaA / alturaTexto);
+            int ay = areaY + Math.round((trilho - alca) * rolagem / (alturaTexto - areaA));
+            int barraX = areaX + areaL + (verMais ? 1 : 2);
+            g.fill(barraX, ay, barraX + 1, ay + Math.round(alca), COR_DIVISOR);
         }
         if (verMais) desenharMenus(g, mx, my, qt);
 
@@ -855,14 +862,14 @@ int a = (int) (alfa * 255.0);
         if (chave.equals(chaveTexto)) return escalaTexto;
         int k = Math.max(1, Math.round(qc * escArte));
         float s = k / escArte;
-        while (!verMais && k > 1 && desenharTexto(null, (int) (77 / s)) * s > (verMais ? CONT_A : ALTURA_TEXTO)) {
-            k--;
-            s = k / escArte;
-        }
         chaveTexto = chave;
         escalaTexto = s;
-        alturaTexto = desenharTexto(null, (int) (77 / s)) * s;
+        alturaTexto = desenharTexto(null, (int) ((verMais ? CONT_L : DESC_L) / s)) * s;
         return s;
+    }
+
+    private int alturaVisivel() {
+        return verMais ? CONT_A : DESC_A;
     }
 
     private int desenharTexto(GuiGraphics g, int textoLargura) {
@@ -871,7 +878,7 @@ int a = (int) (alfa * 255.0);
         if (!verMais) {
             return escrever(g, Component.translatable("gui.aelysiummod.raca." + raca.id + ".descricao"), 0, cursor, textoLargura, 0xFFF0E4CF);
         }
-        return desenharItens(g, textoLargura * CONT_L / 77);
+        return desenharItens(g, textoLargura);
     }
 
     private List<String[]> itensMenu() {
@@ -891,7 +898,7 @@ int a = (int) (alfa * 255.0);
 
     private static final int COR_VALOR = 0xFF8CF08C;
     private static final java.util.regex.Pattern DESTAQUE = java.util.regex.Pattern.compile(
-            "[Rr]eduz(?:ido)? em \\d+(?:,\\d+)?%|[+-]?\\d+(?:,\\d+)?%(?: a mais| a menos| mais rápidos?)?|\\d+ (?:segundos|minutos|blocos?|corações?)|(?:Lentidão|Força|Velocidade|Regeneração|Sorte) \\d+|[Ii]munidade a \\p{L}+|imunes?|neve fofa|cacto|bagas|instantaneamente|sorte dupla|Velocidade de movimento|Visão Noturna|Wither|Veneno|Cegueira|Fortuna|Força");
+            "[Rr]eduz(?:ido)? em \\d+(?:,\\d+)?%|[+-]?\\d+(?:,\\d+)?%(?: a mais| a menos| mais rápidos?)?|\\d+ (?:segundos|minutos|blocos?|corações?)|(?:Lentidão|Força|Velocidade|Regeneração|Sorte) \\d+|[Ii]munidade a \\p{L}+|imunes?|neve fofa|cacto|bagas|instantaneamente|sorte dupla|Velocidade de movimento|Visão Noturna|Wither|Veneno|Cegueira|Fortuna|Força|[Rr]educed by \\d+(?:\\.\\d+)?%|[+-]?\\d+(?:\\.\\d+)?%(?: more| less| faster| slower)?|\\d+ (?:seconds|minutes|blocks?|hearts?)|(?:Slowness|Strength|Speed|Regeneration|Luck) \\d+|[Ii]mmun(?:e|ity) to \\p{L}+|powder snow|cacti|berry bushes|instantly|double luck|Movement speed|Night Vision|Blindness|Poison|Fortune");
 
     private static Component destacar(String texto) {
         net.minecraft.network.chat.MutableComponent resultado = Component.empty();
@@ -932,34 +939,60 @@ int a = (int) (alfa * 255.0);
     }
 
     private void desenharMenus(GuiGraphics g, int mx, int my, float qt) {
-        String[] nomes = {"gui.aelysiummod.raca.buffs", "gui.aelysiummod.raca.debuffs", "gui.aelysiummod.raca.menu_habilidades"};
+        calcularBotoes();
         g.fill(INFO_X + 7, INFO_Y + DIV_Y, INFO_X + 84, INFO_Y + DIV_Y + 1, COR_DIVISOR);
         for (int i = 0; i < 3; i++) {
-            int x = menuX(i);
+            int x = botaoX[i];
+            int w = botaoL[i];
             int y = INFO_Y + MENU_Y;
             boolean sel = i == menuVerso;
-            boolean sobre = sobreArte(mx, my, x, y, MENU_L, MENU_A);
+            boolean sobre = sobreArte(mx, my, x, y, w, MENU_A);
             int c = COR_MENU[i];
-            int fundo = escurecer(c, sel ? 0.55F : sobre ? 0.4F : 0.28F);
-            int borda = sel ? c : escurecer(c, 0.7F);
-            g.fill(x, y, x + MENU_L, y + MENU_A, fundo);
-            g.fill(x, y, x + MENU_L, y + 1, borda);
-            g.fill(x, y + MENU_A - 1, x + MENU_L, y + MENU_A, borda);
-            g.fill(x, y, x + 1, y + MENU_A, borda);
-            g.fill(x + MENU_L - 1, y, x + MENU_L, y + MENU_A, borda);
-            Component nome = Component.translatable(nomes[i]);
-            int kl = Math.max(1, Math.min(Math.round(qt * escArte), (int) ((MENU_L - 4) * escArte / font.width(nome))));
-            float ls = kl / escArte;
+            float brilho = sel ? 1.0F : sobre ? 0.85F : 0.62F;
+            g.setColor(brilho, brilho, brilho, 1.0F);
+            g.blit(BOTAO_MENU, x, y, BOTAO_CAP, MENU_A, 0.0F, 0.0F, BOTAO_CAP, MENU_A, MENU_L, MENU_A);
+            g.blit(BOTAO_MENU, x + BOTAO_CAP, y, w - 2 * BOTAO_CAP, MENU_A, (float) BOTAO_CAP, 0.0F, 1, MENU_A, MENU_L, MENU_A);
+            g.blit(BOTAO_MENU, x + w - BOTAO_CAP, y, BOTAO_CAP, MENU_A, (float) (BOTAO_CAP + 1), 0.0F, BOTAO_CAP, MENU_A, MENU_L, MENU_A);
+            g.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+            Component nome = Component.translatable(NOMES_MENU[i]);
+            float ls = botaoEscala / escArte;
             g.pose().pushPose();
-            g.pose().translate(fixar(x + MENU_L / 2.0F), fixar(y + MENU_A / 2.0F + 0.5F * ls), 0.0F);
+            g.pose().translate(fixar(x + w / 2.0F), fixar(y + MENU_A / 2.0F + 0.5F * ls), 0.0F);
             g.pose().scale(ls, ls, 1.0F);
-            g.drawString(font, nome, -font.width(nome) / 2, -4, sel ? 0xFFFFFFFF : misturar(c, 0xFFFFFFFF, 0.55F), false);
+            int corNome = i == 1 ? (sel ? 0xFFFF1A1A : 0xFFCC1111) : sel ? 0xFFFFFFFF : misturar(c, 0xFFFFFFFF, 0.55F);
+            g.drawString(font, nome, -font.width(nome) / 2, -4, corNome, false);
             g.pose().popPose();
         }
     }
 
-    private static int menuX(int i) {
-        return INFO_X + MENU_X0 + i * (MENU_L + MENU_ESP);
+    private static final String[] NOMES_MENU = {"gui.aelysiummod.raca.buffs", "gui.aelysiummod.raca.debuffs", "gui.aelysiummod.raca.menu_habilidades"};
+    private static final int BOTAO_CAP = MENU_L / 2;
+    private static final int BOTAO_PAD = 4;
+    private static final int MENU_FAIXA = 77;
+    private final int[] botaoX = new int[3];
+    private final int[] botaoL = new int[3];
+    private int botaoEscala = 1;
+
+    private void calcularBotoes() {
+        int kl = Math.max(1, Math.round(escalaTexto * escArte));
+        int soma;
+        while (true) {
+            soma = 0;
+            for (int i = 0; i < 3; i++) {
+                float tw = font.width(Component.translatable(NOMES_MENU[i])) * kl / escArte;
+                botaoL[i] = Math.max(MENU_L, (int) Math.ceil(tw) + 2 * BOTAO_PAD);
+                soma += botaoL[i];
+            }
+            if (soma + 2 <= MENU_FAIXA || kl == 1) break;
+            kl--;
+        }
+        botaoEscala = kl;
+        int folga = Math.max(0, Math.min(MENU_ESP, (MENU_FAIXA - soma) / 2));
+        int x = INFO_X + MENU_X0 + Math.max(0, (MENU_FAIXA - soma - 2 * folga) / 2);
+        for (int i = 0; i < 3; i++) {
+            botaoX[i] = x;
+            x += botaoL[i] + folga;
+        }
     }
 
     private int escrever(GuiGraphics g, Component texto, int x, int y, int largura, int cor) {

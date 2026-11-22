@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:range_choice",
+  "input": "aelysiummod:lithynor/picos",
+  "min_inclusive": 0.05,
+  "max_exclusive": 1000.0,
+  "when_in_range": 0.9,
+  "when_out_of_range": -1.05
+}

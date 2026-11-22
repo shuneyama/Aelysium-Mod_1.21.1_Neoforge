@@ -23,6 +23,7 @@ public class EventosLootModsDesativados {
     public void onLivingDrops(LivingDropsEvent event) {
         if (!AelysiumGuarda.isAutorizadoAgora()) return;
         if (event.getEntity().level().isClientSide()) return;
+        if (event.getEntity() instanceof net.minecraft.world.entity.player.Player) return;
 
         event.getDrops().removeIf(itemEntity -> itemDeModCapado(itemEntity.getItem()));
     }
@@ -40,6 +41,7 @@ public class EventosLootModsDesativados {
         if (event.getLevel().isClientSide()) return;
         if (event.loadedFromDisk()) return;
         if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
+        if (itemEntity.getOwner() instanceof net.minecraft.world.entity.player.Player) return;
 
         if (itemDeModCapado(itemEntity.getItem())) {
             event.setCanceled(true);

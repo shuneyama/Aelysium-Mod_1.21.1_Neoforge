@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:range_choice",
+  "input": "aelysiummod:lithynor/densidade_interpolada",
+  "min_inclusive": -0.45,
+  "max_exclusive": 0.45,
+  "when_in_range": "aelysiummod:lithynor/densidade_exata",
+  "when_out_of_range": "aelysiummod:lithynor/densidade_interpolada"
+}

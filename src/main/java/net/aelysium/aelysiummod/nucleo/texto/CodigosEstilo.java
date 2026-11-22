@@ -12,6 +12,7 @@ import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSink;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +98,67 @@ public final class CodigosEstilo {
         if ((c != '&' && c != '§') || i + 1 >= texto.length()) return false;
         char codigo = Character.toLowerCase(texto.charAt(i + 1));
         return CODIGOS_VANILLA.indexOf(codigo) >= 0 || (c == '&' && ehCodigoEstilo(codigo));
+    }
+
+    public static final class Preparado {
+        public final String texto;
+        private final int[] posicoes;
+        private final ResourceLocation[] fontes;
+
+        private Preparado(String texto, int[] posicoes, ResourceLocation[] fontes) {
+            this.texto = texto;
+            this.posicoes = posicoes;
+            this.fontes = fontes;
+        }
+
+        public FormattedCharSink envolver(FormattedCharSink destino) {
+            if (posicoes.length == 0) return destino;
+            return (posicao, estilo, codigo) -> {
+                ResourceLocation fonte = null;
+                for (int j = posicoes.length - 1; j >= 0; j--) {
+                    if (posicoes[j] < posicao) {
+                        fonte = fontes[j];
+                        break;
+                    }
+                }
+                return destino.accept(posicao, fonte != null ? estilo.withFont(fonte) : estilo, codigo);
+            };
+        }
+    }
+
+    public static Preparado preparar(String texto) {
+        if (texto == null || texto.indexOf('&') < 0) return new Preparado(texto, new int[0], new ResourceLocation[0]);
+        char[] letras = texto.toCharArray();
+        List<Integer> posicoes = new ArrayList<>();
+        List<ResourceLocation> fontes = new ArrayList<>();
+        boolean mudou = false;
+        for (int i = 0; i < letras.length - 1; i++) {
+            char c = letras[i];
+            if (c != '&' && c != '§') continue;
+            char codigo = Character.toLowerCase(letras[i + 1]);
+            if (c == '&' && ehCodigoEstilo(codigo)) {
+                posicoes.add(i);
+                fontes.add(fonte(codigo));
+                letras[i] = '§';
+                mudou = true;
+            } else if (c == '&' && CODIGOS_VANILLA.indexOf(codigo) >= 0) {
+                letras[i] = '§';
+                mudou = true;
+                if (codigo == 'r') {
+                    posicoes.add(i);
+                    fontes.add(null);
+                }
+            } else if (c == '§' && codigo == 'r') {
+                posicoes.add(i);
+                fontes.add(null);
+            } else if (c == '&') {
+                continue;
+            }
+            i++;
+        }
+        int[] vetor = new int[posicoes.size()];
+        for (int j = 0; j < vetor.length; j++) vetor[j] = posicoes.get(j);
+        return new Preparado(mudou ? new String(letras) : texto, vetor, fontes.toArray(new ResourceLocation[0]));
     }
 
     public static String semCodigos(String texto) {

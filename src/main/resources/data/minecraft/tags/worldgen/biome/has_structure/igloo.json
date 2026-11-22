@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "aelysiummod:lithynor/ilha_floresta_nevada",
+    "aelysiummod:lithynor/ilha_temperada_nevada",
+    "aelysiummod:lithynor/ilha_nevada",
+    "aelysiummod:lithynor/ilha_taiga_nevada",
+    "aelysiummod:lithynor/ilha_espinhos_gelo"
+  ]
+}

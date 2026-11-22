@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:add",
+  "argument1": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "aelysiummod:lithynor/enormes",
+      "points": [
+        { "location": -0.3, "value": 2.0, "derivative": 0.0 },
+        { "location": -0.2, "value": 20.0, "derivative": 0.0 },
+        { "location": -0.1, "value": 46.0, "derivative": 0.0 },
+        { "location": -0.03, "value": 60.0, "derivative": 0.0 },
+        { "location": 0.0, "value": 62.5, "derivative": 0.0 },
+        { "location": 0.04, "value": 65.0, "derivative": 0.0 },
+        { "location": 0.15, "value": 69.0, "derivative": 0.0 },
+        { "location": 0.5, "value": 72.0, "derivative": 0.0 }
+      ]
+    }
+  },
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": "aelysiummod:lithynor/marcador_interior",
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:add",
+        "argument1": { "type": "minecraft:mul", "argument1": 9.0, "argument2": "aelysiummod:lithynor/ruido_mega_relevo" },
+        "argument2": {
+          "type": "minecraft:mul",
+          "argument1": 38.0,
+          "argument2": {
+            "type": "minecraft:clamp",
+            "input": { "type": "minecraft:mul", "argument1": 3.0, "argument2": { "type": "minecraft:add", "argument1": "aelysiummod:lithynor/ruido_mega_picos", "argument2": -0.4 } },
+            "min": 0.0,
+            "max": 1.0
+          }
+        }
+      },
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": -16.0,
+        "argument2": {
+          "type": "minecraft:clamp",
+          "input": { "type": "minecraft:mul", "argument1": 4.0, "argument2": { "type": "minecraft:add", "argument1": "aelysiummod:lithynor/ruido_mega_lagos", "argument2": -0.3 } },
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    }
+  }
+}

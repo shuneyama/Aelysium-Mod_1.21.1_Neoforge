@@ -8,6 +8,7 @@ public final class CacheOpcoes {
     private static volatile boolean mipmapTodos = true;
     private static volatile boolean folhas = true;
     private static volatile int densidadeChuva = 50;
+    private static volatile int densidadeNeve = 50;
 
     private CacheOpcoes() {
     }
@@ -19,6 +20,7 @@ public final class CacheOpcoes {
         mipmapTodos = OpcoesAtualizadas.MIPMAP_TODOS.get();
         folhas = OpcoesAtualizadas.FOLHAS_TRANSPARENTES.get();
         densidadeChuva = OpcoesAtualizadas.DENSIDADE_CHUVA.get();
+        densidadeNeve = OpcoesAtualizadas.DENSIDADE_NEVE.get();
     }
 
     public static boolean mipmapTodos() {
@@ -29,6 +31,11 @@ public final class CacheOpcoes {
     public static boolean folhas() {
         atualizar();
         return folhas;
+    }
+
+    public static int densidadeNeve() {
+        atualizar();
+        return densidadeNeve;
     }
 
     public static int densidadeChuva() {

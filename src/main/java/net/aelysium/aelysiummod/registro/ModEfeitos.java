@@ -71,6 +71,9 @@ public class ModEfeitos {
     public static final DeferredHolder<MobEffect, ExaustaoAbismoEfeito> EXAUSTAO_ABISMO =
             MOB_EFFECTS.register("exaustao_abismo", ExaustaoAbismoEfeito::new);
 
+    public static final DeferredHolder<MobEffect, net.aelysium.aelysiummod.conteudo.efeito.CalorEfeito> CALOR =
+            MOB_EFFECTS.register("calor", net.aelysium.aelysiummod.conteudo.efeito.CalorEfeito::new);
+
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }

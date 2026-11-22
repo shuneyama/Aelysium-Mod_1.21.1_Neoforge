@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:add",
+  "argument1": "aelysiummod:lithynor/ruido_planas",
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": 2.0,
+    "argument2": { "type": "minecraft:add", "argument1": "aelysiummod:lithynor/porta_ilhas", "argument2": -1.0 }
+  }
+}

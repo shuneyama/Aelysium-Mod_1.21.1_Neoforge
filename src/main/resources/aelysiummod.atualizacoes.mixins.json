@@ -15,6 +15,7 @@
     "MixinMargemProjetil",
     "MixinPistaoQuebra",
     "MixinNeveEmPo",
+    "MixinAcumulacaoNeve",
     "MixinFogoDistante",
     "MixinLavaDistante",
     "MixinTiqueAleatorio",

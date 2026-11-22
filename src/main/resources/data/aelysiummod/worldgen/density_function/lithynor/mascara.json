@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:max",
+  "argument1": {
+    "type": "minecraft:max",
+    "argument1": {
+      "type": "minecraft:add",
+      "argument1": "aelysiummod:lithynor/ilhas_grandes",
+      "argument2": -0.7
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:mul",
+        "argument1": 0.8,
+        "argument2": "aelysiummod:lithynor/ilhas_pequenas"
+      },
+      "argument2": -0.68
+    }
+  },
+  "argument2": "aelysiummod:lithynor/cogumelo"
+}

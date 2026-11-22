@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:noise",
+  "noise": "aelysiummod:lithynor/ilhas_cogumelo",
+  "xz_scale": 1.0,
+  "y_scale": 0.0
+}

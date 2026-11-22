@@ -1,0 +1,73 @@
+{
+  "type": "minecraft:overworld",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "aelysiummod:lithynor",
+    "biome_source": {
+      "type": "aelysiummod:lithynor",
+      "source": {
+        "type": "minecraft:multi_noise",
+        "preset": "minecraft:overworld"
+      },
+      "flat_rocky": "aelysiummod:lithynor/planalto_pedregoso",
+      "flat_farm": "aelysiummod:lithynor/planalto_cultivado",
+      "flat_flowery": "aelysiummod:lithynor/planalto_florido",
+      "mushroom": "minecraft:mushroom_fields",
+      "rock_peaks": "aelysiummod:lithynor/pico_rochoso",
+      "central_ocean": "aelysiummod:lithynor/oceano_coral",
+      "central_radius": 200,
+      "far_radius": 3000,
+      "cold_temperature": -0.15,
+      "cold_replacements": [
+        {"from": "aelysiummod:lithynor/ilha_floresta", "to": "aelysiummod:lithynor/ilha_floresta_nevada"},
+        {"from": "aelysiummod:lithynor/ilha_temperada", "to": "aelysiummod:lithynor/ilha_temperada_nevada"}
+      ],
+      "far_replacements": [
+        {"from": "aelysiummod:lithynor/ilha_taiga", "to": "aelysiummod:lithynor/ilha_taiga_densa"},
+        {"from": "aelysiummod:lithynor/ilha_taiga_nevada", "to": "aelysiummod:lithynor/ilha_taiga_nevada_densa"},
+        {"from": "aelysiummod:lithynor/ilha_taiga_antiga", "to": "aelysiummod:lithynor/ilha_taiga_antiga_densa"},
+        {"from": "aelysiummod:lithynor/ilha_selva", "to": "aelysiummod:lithynor/ilha_selva_densa"},
+        {"from": "aelysiummod:lithynor/ilha_umida", "to": "aelysiummod:lithynor/ilha_umida_densa"}
+      ],
+      "replacements": [
+        { "from": "minecraft:plains", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:sunflower_plains", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:meadow", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:cherry_grove", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:windswept_hills", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:windswept_gravelly_hills", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:stony_peaks", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:river", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:savanna", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:savanna_plateau", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:windswept_savanna", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:desert", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:badlands", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:eroded_badlands", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:wooded_badlands", "to": "aelysiummod:lithynor/ilha_temperada" },
+        { "from": "minecraft:forest", "to": "aelysiummod:lithynor/ilha_floresta" },
+        { "from": "minecraft:flower_forest", "to": "aelysiummod:lithynor/ilha_floresta" },
+        { "from": "minecraft:birch_forest", "to": "aelysiummod:lithynor/ilha_floresta" },
+        { "from": "minecraft:old_growth_birch_forest", "to": "aelysiummod:lithynor/ilha_floresta" },
+        { "from": "minecraft:dark_forest", "to": "aelysiummod:lithynor/ilha_floresta" },
+        { "from": "minecraft:windswept_forest", "to": "aelysiummod:lithynor/ilha_floresta" },
+        { "from": "minecraft:jungle", "to": "aelysiummod:lithynor/ilha_selva" },
+        { "from": "minecraft:sparse_jungle", "to": "aelysiummod:lithynor/ilha_selva" },
+        { "from": "minecraft:bamboo_jungle", "to": "aelysiummod:lithynor/ilha_selva" },
+        { "from": "minecraft:swamp", "to": "aelysiummod:lithynor/ilha_umida" },
+        { "from": "minecraft:mangrove_swamp", "to": "aelysiummod:lithynor/ilha_umida" },
+        { "from": "minecraft:taiga", "to": "aelysiummod:lithynor/ilha_taiga" },
+        { "from": "minecraft:snowy_taiga", "to": "aelysiummod:lithynor/ilha_taiga_nevada" },
+        { "from": "minecraft:old_growth_pine_taiga", "to": "aelysiummod:lithynor/ilha_taiga_antiga" },
+        { "from": "minecraft:old_growth_spruce_taiga", "to": "aelysiummod:lithynor/ilha_taiga_antiga" },
+        { "from": "minecraft:snowy_plains", "to": "aelysiummod:lithynor/ilha_nevada" },
+        { "from": "minecraft:snowy_slopes", "to": "aelysiummod:lithynor/ilha_nevada" },
+        { "from": "minecraft:frozen_peaks", "to": "aelysiummod:lithynor/ilha_nevada" },
+        { "from": "minecraft:grove", "to": "aelysiummod:lithynor/ilha_nevada" },
+        { "from": "minecraft:jagged_peaks", "to": "aelysiummod:lithynor/ilha_nevada" },
+        { "from": "minecraft:frozen_river", "to": "aelysiummod:lithynor/ilha_nevada" },
+        { "from": "minecraft:ice_spikes", "to": "aelysiummod:lithynor/ilha_espinhos_gelo" }
+      ]
+    }
+  }
+}

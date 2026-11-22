@@ -27,13 +27,8 @@ public class ManipuladorDimensaoRenascimento {
                 || event.getOriginalDimensionTransition().missingRespawnBlock();
         if (!semPontoValido) return;
 
-        if (!ConfiguracaoDimensaoRenascimento.definido()) return;
-        ResourceKey<Level> alvo = ConfiguracaoDimensaoRenascimento.getDimensaoPadrao();
-
-        ServerLevel destino = player.getServer().getLevel(alvo);
-        if (destino == null) return;
-
-        event.setDimensionTransition(criarTransicao(destino, player));
+        DimensionTransition transicao = transicaoDeSpawn(player);
+        if (transicao != null) event.setDimensionTransition(transicao);
     }
 
     @SubscribeEvent
@@ -41,8 +36,6 @@ public class ManipuladorDimensaoRenascimento {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         if (player.getServer() == null) return;
 
-        if (!ConfiguracaoDimensaoRenascimento.definido()) return;
-        ResourceKey<Level> alvo = ConfiguracaoDimensaoRenascimento.getDimensaoPadrao();
         if (player.serverLevel().dimension() != Level.OVERWORLD) return;
         if (player.getRespawnPosition() != null) return;
 
@@ -50,20 +43,37 @@ public class ManipuladorDimensaoRenascimento {
                 .resolve(player.getStringUUID() + ".dat");
         if (Files.exists(arquivo)) return;
 
-        ServerLevel destino = player.getServer().getLevel(alvo);
-        if (destino == null) return;
+        DimensionTransition transicao = transicaoDeSpawn(player);
+        if (transicao == null) return;
 
-        player.getServer().execute(() ->
-                player.changeDimension(criarTransicao(destino, player))
-        );
+        player.getServer().execute(() -> player.changeDimension(transicao));
     }
 
-    private static DimensionTransition criarTransicao(ServerLevel destino, ServerPlayer player) {
+    private static DimensionTransition transicaoDeSpawn(ServerPlayer player) {
+        SpawnsIndividuais.Ponto individual = SpawnsIndividuais.obter(player.getUUID());
+        if (individual != null) {
+            ServerLevel destino = player.getServer().getLevel(individual.dimensao());
+            if (destino != null) {
+                return criarTransicao(destino, new Vec3(individual.x(), individual.y(), individual.z()), individual.angulo());
+            }
+        }
+
+        if (!ConfiguracaoDimensaoRenascimento.definido()) return null;
+        ResourceKey<Level> alvo = ConfiguracaoDimensaoRenascimento.getDimensaoPadrao();
+        ServerLevel destino = player.getServer().getLevel(alvo);
+        if (destino == null) return null;
+
+        return criarTransicao(destino,
+                new Vec3(ConfiguracaoDimensaoRenascimento.getX(), ConfiguracaoDimensaoRenascimento.getY(), ConfiguracaoDimensaoRenascimento.getZ()),
+                ConfiguracaoDimensaoRenascimento.getYaw());
+    }
+
+    private static DimensionTransition criarTransicao(ServerLevel destino, Vec3 posicao, float yaw) {
         return new DimensionTransition(
                 destino,
-                new Vec3(ConfiguracaoDimensaoRenascimento.getX(), ConfiguracaoDimensaoRenascimento.getY(), ConfiguracaoDimensaoRenascimento.getZ()),
+                posicao,
                 Vec3.ZERO,
-                ConfiguracaoDimensaoRenascimento.getYaw(),
+                yaw,
                 0.0F,
                 true,
                 DimensionTransition.DO_NOTHING
