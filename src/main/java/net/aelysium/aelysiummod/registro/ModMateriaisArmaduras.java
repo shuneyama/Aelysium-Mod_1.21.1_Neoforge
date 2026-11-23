@@ -21,12 +21,12 @@ import java.util.function.Supplier;
 public class ModMateriaisArmaduras {
     public static final Holder<ArmorMaterial> CIANE_ARMOR_MATERIAL = register("ciane",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-                attribute.put(ArmorItem.Type.BOOTS, 7);
-                attribute.put(ArmorItem.Type.LEGGINGS, 10);
-                attribute.put(ArmorItem.Type.CHESTPLATE, 12);
-                attribute.put(ArmorItem.Type.HELMET, 7);
+                attribute.put(ArmorItem.Type.BOOTS, 6);
+                attribute.put(ArmorItem.Type.LEGGINGS, 9);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 6);
                 attribute.put(ArmorItem.Type.BODY, 15);
-            }), 16, 5.5f, 0.15f, () -> ModItens.CIANE_BARRA.get());
+            }), 16, 5.0f, 0.2f, () -> ModItens.CIANE_BARRA.get());
 
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,

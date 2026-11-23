@@ -52,6 +52,14 @@ public class GerenciadorChat {
     }
 
     public static void enviarMensagemGlobal(ServerPlayer remetente, String mensagem) {
+        enviarAmplo(remetente, mensagem, new ArrayList<>(remetente.serverLevel().players()), "mensagem.aelysiummod.chat.global_2", "Regional");
+    }
+
+    public static void enviarMensagemMundo(ServerPlayer remetente, String mensagem) {
+        enviarAmplo(remetente, mensagem, new ArrayList<>(remetente.getServer().getPlayerList().getPlayers()), "mensagem.aelysiummod.chat.mundo_2", "Solaris");
+    }
+
+    private static void enviarAmplo(ServerPlayer remetente, String mensagem, List<ServerPlayer> receptores, String chaveTag, String rotulo) {
         if (PerfilJogador.habilidades().estaMudo(remetente.getUUID())) {
             remetente.sendSystemMessage(Component.translatable("mensagem.aelysiummod.chat.voce_esta_silenciado_e_nao_pode_enviar"));
             return;
@@ -62,9 +70,7 @@ public class GerenciadorChat {
             return;
         }
 
-        List<ServerPlayer> receptores = new ArrayList<>(remetente.getServer().getPlayerList().getPlayers());
-
-        MutableComponent msgFormatada = Component.translatable("mensagem.aelysiummod.chat.global_2");
+        MutableComponent msgFormatada = Component.translatable(chaveTag);
         MutableComponent badge = PerfilJogador.insignia().componente(remetente);
         if (badge != null) msgFormatada.append(badge).append(" ");
         msgFormatada.append(getStyledName(remetente)).append(Component.literal("§r: ")).append(CodigosEstilo.componente(mensagem));
@@ -73,10 +79,10 @@ public class GerenciadorChat {
             receptor.sendSystemMessage(msgFormatada);
         }
 
-        GerenciadorEspiaoSocial.enviarParaSocialspy(remetente, mensagem, "Global", receptores);
+        GerenciadorEspiaoSocial.enviarParaSocialspy(remetente, mensagem, rotulo, receptores);
 
-        LOGGER.info("[Chat-Global] {}: {}", remetente.getGameProfile().getName(), mensagem);
-        NeoForge.EVENT_BUS.post(new ChatEnviadoEvento(remetente, mensagem, "Global"));
+        LOGGER.info("[Chat-{}] {}: {}", rotulo, remetente.getGameProfile().getName(), mensagem);
+        NeoForge.EVENT_BUS.post(new ChatEnviadoEvento(remetente, mensagem, rotulo));
     }
 
     private static Component getStyledName(ServerPlayer player) {

@@ -27,6 +27,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.aelysium.aelysiummod.nucleo.guarda.AelysiumGuarda;
+import net.aelysium.aelysiummod.sistemas.social.chat.comando.ComandoChat;
 import net.aelysium.aelysiummod.sistemas.admin.historico.comando.ComandoAnotacao;
 import net.aelysium.aelysiummod.sistemas.admin.historico.comando.ComandoHistorico;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -115,46 +116,7 @@ public class AelysiumComandos {
 
                         .then(ComandoHabilidade.build())
 
-                        .then(Commands.literal("chat")
-                                .requires(source -> source.hasPermission(2))
-                                .then(Commands.literal("raio")
-                                        .then(Commands.literal("definir")
-                                                .then(Commands.argument("blocos", IntegerArgumentType.integer(1, 1000))
-                                                        .executes(ctx -> {
-                                                            int radius = IntegerArgumentType.getInteger(ctx, "blocos");
-                                                            ConfiguracaoChat.setLocalChatRadius(radius);
-                                                            ctx.getSource().sendSuccess(() ->
-                                                                            Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.raio_do_chat_local_definido_para", radius),
-                                                                    true
-                                                            );
-                                                            return 1;
-                                                        })
-                                                )
-                                        )
-                                )
-                                .then(Commands.literal("login")
-                                        .then(Commands.literal("ligar")
-                                                .executes(ctx -> {
-                                                    ConfiguracaoMod.setJoinLeaveMessagesEnabled(true);
-                                                    ctx.getSource().sendSuccess(() ->
-                                                                    Component.translatable("mensagem.aelysiummod.nucleo_comando.mensagens_de_login_logout_ativadas"),
-                                                            true
-                                                    );
-                                                    return 1;
-                                                })
-                                        )
-                                        .then(Commands.literal("desligar")
-                                                .executes(ctx -> {
-                                                    ConfiguracaoMod.setJoinLeaveMessagesEnabled(false);
-                                                    ctx.getSource().sendSuccess(() ->
-                                                                    Component.translatable("mensagem.aelysiummod.nucleo_comando.mensagens_de_login_logout_desativadas"),
-                                                            true
-                                                    );
-                                                    return 1;
-                                                })
-                                        )
-                                )
-                        )
+                        .then(ComandoChat.build())
 
                         .then(Commands.literal("balao")
                                 .executes(ctx -> {
@@ -304,33 +266,7 @@ public class AelysiumComandos {
                         )
         );
 
-        event.getDispatcher().register(
-                Commands.literal("g")
-                        .requires(source -> AelysiumGuarda.isAutorizado())
-                        .then(Commands.argument("mensagem", StringArgumentType.greedyString())
-                                .executes(ctx -> {
-                                    if (ctx.getSource().getEntity() instanceof ServerPlayer player) {
-                                        GerenciadorChat.enviarMensagemGlobal(player, StringArgumentType.getString(ctx, "mensagem"));
-                                        return 1;
-                                    }
-                                    return 0;
-                                })
-                        )
-        );
-
-        event.getDispatcher().register(
-                Commands.literal("global")
-                        .requires(source -> AelysiumGuarda.isAutorizado())
-                        .then(Commands.argument("mensagem", StringArgumentType.greedyString())
-                                .executes(ctx -> {
-                                    if (ctx.getSource().getEntity() instanceof ServerPlayer player) {
-                                        GerenciadorChat.enviarMensagemGlobal(player, StringArgumentType.getString(ctx, "mensagem"));
-                                        return 1;
-                                    }
-                                    return 0;
-                                })
-                        )
-        );
+        ComandoChat.registrarAtalhos(event.getDispatcher());
 
         net.aelysium.aelysiummod.sistemas.mundo.renascimento.ComandoSetWorldSpawn.registrar(event.getDispatcher());
         net.aelysium.aelysiummod.sistemas.mundo.bordas.ComandoBorda.registrar(event.getDispatcher());

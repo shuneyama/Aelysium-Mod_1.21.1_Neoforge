@@ -1,183 +1,122 @@
 package net.aelysium.aelysiummod.sistemas.rp.deus.comando;
 
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.brigadier.suggestion.SuggestionProvider;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.aelysium.aelysiummod.nucleo.comando.TextoComando;
+import net.aelysium.aelysiummod.nucleo.jogador.TipoDeus;
+import net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses;
 import net.aelysium.aelysiummod.sistemas.rp.deus.DadosDeus;
 import net.aelysium.aelysiummod.sistemas.rp.deus.FormaDivina;
-import net.aelysium.aelysiummod.nucleo.jogador.TipoDeus;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ComandoDeus {
-
-    private static final ResourceLocation MOD_HEALTH      = rl("deus_max_health");
-    private static final ResourceLocation MOD_ARMOR       = rl("deus_armor");
-    private static final ResourceLocation MOD_ARMOR_TOUGH = rl("deus_armor_toughness");
-    private static final ResourceLocation MOD_ATTACK      = rl("deus_attack_damage");
-    private static final ResourceLocation MOD_SPELL       = rl("deus_spell_power");
-    private static final ResourceLocation MOD_FLY         = rl("deus_creative_flight");
-
-    private static ResourceLocation rl(String path) {
-        return ResourceLocation.fromNamespaceAndPath("aelysiummod", path);
-    }
-
-    private static final SuggestionProvider<CommandSourceStack> DEUS_SUGGESTIONS =
-            (ctx, builder) -> {
-                for (TipoDeus d : TipoDeus.values()) {
-                    if (d != TipoDeus.NONE) builder.suggest(d.id);
-                }
-                builder.suggest("nenhum");
-                return builder.buildFuture();
-            };
+    private static final String P = "mensagem.aelysiummod.deus.";
 
     public static LiteralArgumentBuilder<CommandSourceStack> build() {
         return Commands.literal("deus")
                 .requires(src -> src.hasPermission(2))
                 .then(Commands.literal("definir")
-                        .then(Commands.argument("deus", StringArgumentType.string())
-                                .suggests(DEUS_SUGGESTIONS)
-                                .executes(ctx -> executeSet(ctx, ctx.getSource().getPlayerOrException()))
+                        .then(Commands.argument("deus", StringArgumentType.word())
+                                .suggests((ctx, construtor) -> SharedSuggestionProvider.suggest(
+                                        Arrays.stream(TipoDeus.values()).filter(d -> d != TipoDeus.NONE).map(d -> d.id), construtor))
+                                .executes(ctx -> definir(ctx, null))
                                 .then(Commands.argument("jogador", EntityArgument.player())
-                                        .executes(ctx -> executeSet(ctx, EntityArgument.getPlayer(ctx, "jogador")))
-                                )
-                        )
-                )
-                .then(Commands.literal("resetar")
-                        .executes(ctx -> executeReset(ctx, ctx.getSource().getPlayerOrException()))
+                                        .executes(ctx -> definir(ctx, EntityArgument.getPlayer(ctx, "jogador"))))))
+                .then(Commands.literal("remover")
+                        .executes(ctx -> remover(ctx, null))
                         .then(Commands.argument("jogador", EntityArgument.player())
-                                .executes(ctx -> executeReset(ctx, EntityArgument.getPlayer(ctx, "jogador")))
-                        )
-                );
+                                .executes(ctx -> remover(ctx, EntityArgument.getPlayer(ctx, "jogador")))))
+                .then(Commands.literal("status")
+                        .executes(ctx -> status(ctx, null))
+                        .then(Commands.argument("jogador", EntityArgument.player())
+                                .executes(ctx -> status(ctx, EntityArgument.getPlayer(ctx, "jogador")))))
+                .then(Commands.literal("listar")
+                        .executes(ComandoDeus::listar));
     }
 
-    private static int executeSet(CommandContext<CommandSourceStack> ctx, ServerPlayer player) throws CommandSyntaxException {
-        String deusId = StringArgumentType.getString(ctx, "deus");
-        TipoDeus deus = TipoDeus.fromId(deusId);
+    private static ServerPlayer alvo(CommandContext<CommandSourceStack> ctx, ServerPlayer informado) {
+        if (informado != null) return informado;
+        if (ctx.getSource().getEntity() instanceof ServerPlayer executor) return executor;
+        ctx.getSource().sendFailure(Component.translatable("mensagem.aelysiummod.nucleo_comando.apenas_jogadores_podem_usar_este"));
+        return null;
+    }
 
+    private static int definir(CommandContext<CommandSourceStack> ctx, ServerPlayer informado) throws CommandSyntaxException {
+        ServerPlayer jogador = alvo(ctx, informado);
+        if (jogador == null) return 0;
+        String id = StringArgumentType.getString(ctx, "deus");
+        TipoDeus deus = TipoDeus.fromId(id);
         if (deus == TipoDeus.NONE) {
-            return doReset(ctx, player);
+            String validos = Arrays.stream(TipoDeus.values()).filter(d -> d != TipoDeus.NONE).map(d -> d.id).collect(Collectors.joining(", "));
+            ctx.getSource().sendFailure(TextoComando.traduzir(P + "deus_invalido", ChatFormatting.RED, id, validos));
+            return 0;
         }
-
-        if (FormaDivina.estaAtiva(player)) {
-            FormaDivina.desativar(player);
-        }
-
-        removeDeusAttributes(player);
-        applyDeusAttributes(player);
-        player.setInvulnerable(true);
-
-        DadosDeus.get(player.serverLevel()).setDeus(player.getUUID(), deus);
-
-        String nome = player.getName().getString();
-        ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.deus.aelysium_deus_de_definido_como", nome, deus.displayName), false);
-
+        GerenciadorDeuses.definir(jogador, deus);
+        String nome = jogador.getName().getString();
+        ctx.getSource().sendSuccess(() -> TextoComando.traduzir(P + "aelysium_deus_de_definido_como", ChatFormatting.WHITE, nome, deus.displayName), false);
         return 1;
     }
 
-    private static int executeReset(CommandContext<CommandSourceStack> ctx, ServerPlayer player) throws CommandSyntaxException {
-        return doReset(ctx, player);
-    }
-
-    private static int doReset(CommandContext<CommandSourceStack> ctx, ServerPlayer player) {
-        if (FormaDivina.estaAtiva(player)) {
-            FormaDivina.desativar(player);
+    private static int remover(CommandContext<CommandSourceStack> ctx, ServerPlayer informado) {
+        ServerPlayer jogador = alvo(ctx, informado);
+        if (jogador == null) return 0;
+        String nome = jogador.getName().getString();
+        if (!GerenciadorDeuses.remover(jogador)) {
+            ctx.getSource().sendFailure(TextoComando.traduzir(P + "nao_e_deus", ChatFormatting.RED, nome));
+            return 0;
         }
-
-        removeDeusAttributes(player);
-        player.setInvulnerable(false);
-
-        if (!player.isCreative() && !player.isSpectator()) {
-            player.getAbilities().mayfly = false;
-            player.getAbilities().flying = false;
-            player.onUpdateAbilities();
-        }
-
-        float maxHp = (float) player.getMaxHealth();
-        if (player.getHealth() > maxHp) {
-            player.setHealth(maxHp);
-        }
-
-        DadosDeus.get(player.serverLevel()).setDeus(player.getUUID(), TipoDeus.NONE);
-
-        String nomeReset = player.getName().getString();
-        ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.deus.aelysium_deus_de_removido", nomeReset), false);
-
+        ctx.getSource().sendSuccess(() -> TextoComando.traduzir(P + "aelysium_deus_de_removido", ChatFormatting.WHITE, nome), false);
         return 1;
     }
 
-    private static void applyDeusAttributes(ServerPlayer player) {
-        addMod(player, Attributes.MAX_HEALTH, MOD_HEALTH, 180.0);
-        addMod(player, Attributes.ARMOR, MOD_ARMOR, 200.0);
-        addMod(player, Attributes.ARMOR_TOUGHNESS, MOD_ARMOR_TOUGH, 200.0);
-        addMod(player, Attributes.ATTACK_DAMAGE, MOD_ATTACK, 99.0);
-        addModSoft(player, "irons_spellbooks:spell_power", MOD_SPELL, 0.05);
-        addModSoft(player, "neoforge:creative_flight", MOD_FLY, 1.0);
-
-        player.getAbilities().mayfly = true;
-        player.onUpdateAbilities();
-
-        player.setHealth(player.getMaxHealth());
-    }
-
-    private static void removeDeusAttributes(ServerPlayer player) {
-        removeMod(player, Attributes.MAX_HEALTH, MOD_HEALTH);
-        removeMod(player, Attributes.ARMOR, MOD_ARMOR);
-        removeMod(player, Attributes.ARMOR_TOUGHNESS, MOD_ARMOR_TOUGH);
-        removeMod(player, Attributes.ATTACK_DAMAGE, MOD_ATTACK);
-        removeModSoft(player, "irons_spellbooks:spell_power", MOD_SPELL);
-        removeModSoft(player, "neoforge:creative_flight", MOD_FLY);
-    }
-
-    private static void addMod(ServerPlayer player, Holder<Attribute> attribute,
-                               ResourceLocation modId, double amount) {
-        AttributeInstance attr = player.getAttribute(attribute);
-        if (attr == null) return;
-        attr.removeModifier(modId);
-        attr.addPermanentModifier(new AttributeModifier(modId, amount, AttributeModifier.Operation.ADD_VALUE));
-    }
-
-    private static void addModSoft(ServerPlayer player, String attributeId,
-                                   ResourceLocation modId, double amount) {
-        Holder<Attribute> holder = getHolder(attributeId);
-        if (holder == null || !player.getAttributes().hasAttribute(holder)) return;
-        AttributeInstance attr = player.getAttribute(holder);
-        if (attr == null) return;
-        attr.removeModifier(modId);
-        attr.addPermanentModifier(new AttributeModifier(modId, amount, AttributeModifier.Operation.ADD_VALUE));
-    }
-
-    private static void removeMod(ServerPlayer player, Holder<Attribute> attribute, ResourceLocation modId) {
-        AttributeInstance attr = player.getAttribute(attribute);
-        if (attr != null) attr.removeModifier(modId);
-    }
-
-    private static void removeModSoft(ServerPlayer player, String attributeId, ResourceLocation modId) {
-        Holder<Attribute> holder = getHolder(attributeId);
-        if (holder == null || !player.getAttributes().hasAttribute(holder)) return;
-        AttributeInstance attr = player.getAttribute(holder);
-        if (attr != null) attr.removeModifier(modId);
-    }
-
-    private static Holder<Attribute> getHolder(String id) {
-        try {
-            return BuiltInRegistries.ATTRIBUTE
-                    .getHolder(ResourceLocation.parse(id))
-                    .orElse(null);
-        } catch (Exception e) {
-            return null;
+    private static int status(CommandContext<CommandSourceStack> ctx, ServerPlayer informado) {
+        ServerPlayer jogador = alvo(ctx, informado);
+        if (jogador == null) return 0;
+        String nome = jogador.getName().getString();
+        TipoDeus deus = DadosDeus.get(jogador.serverLevel()).getDeus(jogador.getUUID());
+        if (deus == TipoDeus.NONE) {
+            ctx.getSource().sendSuccess(() -> TextoComando.traduzir(P + "nao_e_deus", ChatFormatting.GRAY, nome), false);
+            return 1;
         }
+        boolean forma = FormaDivina.estaAtiva(jogador);
+        ctx.getSource().sendSuccess(() -> TextoComando.traduzir(P + "status_deus", ChatFormatting.GRAY, nome, deus.displayName), false);
+        ctx.getSource().sendSuccess(() -> TextoComando.traduzir(P + (forma ? "status_forma_ativa" : "status_forma_inativa"), ChatFormatting.GRAY), false);
+        return 1;
+    }
+
+    private static int listar(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack fonte = ctx.getSource();
+        ServerPlayer referencia = fonte.getEntity() instanceof ServerPlayer p ? p : fonte.getServer().getPlayerList().getPlayers().stream().findFirst().orElse(null);
+        if (referencia == null) {
+            fonte.sendSuccess(() -> Component.translatable(P + "listar_vazio"), false);
+            return 0;
+        }
+        Map<UUID, TipoDeus> todos = DadosDeus.get(referencia.serverLevel()).todos();
+        todos.values().removeIf(d -> d == TipoDeus.NONE);
+        if (todos.isEmpty()) {
+            fonte.sendSuccess(() -> Component.translatable(P + "listar_vazio"), false);
+            return 1;
+        }
+        fonte.sendSuccess(() -> TextoComando.traduzir(P + "listar_titulo", ChatFormatting.GOLD, Component.literal(String.valueOf(todos.size()))), false);
+        for (Map.Entry<UUID, TipoDeus> entrada : todos.entrySet()) {
+            String nome = fonte.getServer().getProfileCache().get(entrada.getKey())
+                    .map(perfil -> perfil.getName())
+                    .orElse(entrada.getKey().toString());
+            fonte.sendSuccess(() -> TextoComando.traduzir(P + "listar_linha", ChatFormatting.GRAY, nome, entrada.getValue().displayName), false);
+        }
+        return todos.size();
     }
 }

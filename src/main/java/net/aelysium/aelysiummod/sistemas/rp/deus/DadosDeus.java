@@ -25,8 +25,13 @@ public class DadosDeus extends DadosEmArquivos {
         return playerDeus.getOrDefault(uuid, TipoDeus.NONE);
     }
 
+    public Map<UUID, TipoDeus> todos() {
+        return new HashMap<>(playerDeus);
+    }
+
     public void setDeus(UUID uuid, TipoDeus deus) {
         playerDeus.put(uuid, deus);
+        UtilDeus.atualizar(uuid, deus != TipoDeus.NONE);
         setDirty();
     }
 

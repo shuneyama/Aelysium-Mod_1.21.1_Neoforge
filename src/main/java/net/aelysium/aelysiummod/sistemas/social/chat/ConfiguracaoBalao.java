@@ -11,7 +11,7 @@ public class ConfiguracaoBalao {
 
     public static final int MAX_BALLOON_WIDTH = 120;
 
-    public static final int MAX_BALLOONS_PER_PLAYER = 5;
+    public static final int MAX_BALLOONS_PER_PLAYER = 3;
 
     public static final int CHAR_DELAY_MS = 75;
 

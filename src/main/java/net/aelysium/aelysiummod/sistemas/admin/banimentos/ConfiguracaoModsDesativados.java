@@ -84,7 +84,7 @@ public class ConfiguracaoModsDesativados {
             Files.createDirectories(p.getParent());
             StringBuilder sb = new StringBuilder();
 
-            sb.append("# Sistema de \"nerf\" de mods por ID.\n");
+            sb.append("# Sistema de desativação de mods por ID.\n");
             sb.append("# Desativa partes inteiras de um mod (por id) sem precisar editar o mod em si.\n");
             sb.append("#\n");
             sb.append("# loot       = remove itens desse mod de: baús, vaults, barris, drops extras injetados\n");
@@ -97,7 +97,7 @@ public class ConfiguracaoModsDesativados {
             sb.append("#              em chunks que ainda não foram gerados.\n");
             sb.append("# conquistas = remove as conquistas (advancements) desse mod.\n");
             sb.append("#\n");
-            sb.append("# \"loot\" e \"receitas\" aplicam em tempo real (ou via /aelysium capar-mod reload).\n");
+            sb.append("# \"loot\" e \"receitas\" aplicam em tempo real (ou via /aelysium mod recarregar).\n");
             sb.append("# \"trocas\" e \"conquistas\" exigem /reload (datapack) ou reiniciar o servidor.\n");
             sb.append("# \"worldgen\" vale para chunks gerados a partir de agora.\n");
             sb.append("#\n");

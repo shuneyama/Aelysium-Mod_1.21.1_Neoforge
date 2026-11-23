@@ -257,16 +257,16 @@ public class ModItens {
 
     public static final DeferredItem<ArmorItem> CIANE_CAPACETE = ITEMS.register("ciane_capacete",
             () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties()
-                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.HELMET.getDurability(50))));
+                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.HELMET.getDurability(100))));
     public static final DeferredItem<ArmorItem> CIANE_PEITORAL = ITEMS.register("ciane_peitoral",
             () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties()
-                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.CHESTPLATE.getDurability(40))));
+                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.CHESTPLATE.getDurability(80))));
     public static final DeferredItem<ArmorItem> CIANE_CALCINHA = ITEMS.register("ciane_calcinha",
             () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties()
-                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(40))));
+                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(80))));
     public static final DeferredItem<ArmorItem> CIANE_BOTAS = ITEMS.register("ciane_botas",
             () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties()
-                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(40))));
+                    .stacksTo(1).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(80))));
 
     public static final DeferredItem<PickaxeItem> CIANE_PICARETA = ITEMS.register("ciane_picareta",
             () -> new PickaxeItem(ModNiveisFerramenta.CIANE, new Item.Properties()

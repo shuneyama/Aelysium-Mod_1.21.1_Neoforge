@@ -47,10 +47,6 @@ public class CorChat {
     }
 
     private static List<ServerPlayer> getRecipients(ServerPlayer sender) {
-        if (!ConfiguracaoChat.isLocalChatEnabled()) {
-            return sender.getServer().getPlayerList().getPlayers();
-        }
-
         double radius = ConfiguracaoChat.getLocalChatRadius();
         return sender.getServer().getPlayerList().getPlayers().stream()
                 .filter(player -> {
@@ -67,9 +63,7 @@ public class CorChat {
         MutableComponent badge = PerfilJogador.insignia().componente(player);
 
         MutableComponent tag = Component.literal("§7| ");
-        tag.append(ConfiguracaoChat.isLocalChatEnabled()
-                ? Component.translatable("mensagem.aelysiummod.chat.local")
-                : Component.translatable("mensagem.aelysiummod.chat.global"));
+        tag.append(Component.translatable("mensagem.aelysiummod.chat.local"));
         if (badge != null) {
             tag.append(badge).append(" ");
         }

@@ -17,8 +17,7 @@ public class ManipuladorDanoDeus {
         if (!AelysiumGuarda.isAutorizado()) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
-        TipoDeus deus = DadosDeus.get(player.serverLevel()).getDeus(player.getUUID());
-        if (deus == TipoDeus.NONE) return;
+        if (!UtilDeus.ehDeus(player)) return;
 
         event.setCanceled(true);
     }

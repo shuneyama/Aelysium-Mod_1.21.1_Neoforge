@@ -17,6 +17,32 @@ public class RegistroRedeDeus {
                     } catch (Exception e) { throw new RuntimeException(e); }
                 }));
 
+        registrar.playToServer(PacoteSolicitarDeuses.TYPE, PacoteSolicitarDeuses.STREAM_CODEC,
+                (pkt, ctx) -> ctx.enqueueWork(() -> {
+                    if (ctx.player() instanceof net.minecraft.server.level.ServerPlayer j)
+                        net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses.enviarLista(j);
+                }));
+
+        registrar.playToServer(PacoteEscolherDeus.TYPE, PacoteEscolherDeus.STREAM_CODEC,
+                (pkt, ctx) -> ctx.enqueueWork(() -> {
+                    if (ctx.player() instanceof net.minecraft.server.level.ServerPlayer j)
+                        net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses.escolher(j, pkt.id());
+                }));
+
+        registrar.playToServer(PacoteCriarDeus.TYPE, PacoteCriarDeus.STREAM_CODEC,
+                (pkt, ctx) -> ctx.enqueueWork(() -> {
+                    if (ctx.player() instanceof net.minecraft.server.level.ServerPlayer j)
+                        net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses.criar(j, pkt.nome(), pkt.cor());
+                }));
+
+        registrar.playToClient(PacoteListaDeuses.TYPE, PacoteListaDeuses.STREAM_CODEC,
+                (payload, ctx) -> ctx.enqueueWork(() -> {
+                    try {
+                        Class<?> h = Class.forName("net.aelysium.aelysiummod.sistemas.rp.deus.cliente.TelaDeuses");
+                        h.getMethod("receber", java.util.List.class, String.class).invoke(null, payload.deuses(), payload.atual());
+                    } catch (Exception e) { throw new RuntimeException(e); }
+                }));
+
         registrar.playToServer(PacoteAtivarFormaDivina.TYPE, PacoteAtivarFormaDivina.STREAM_CODEC,
                 (pkt, ctx) -> ctx.enqueueWork(() -> {
                     if (ctx.player() instanceof net.minecraft.server.level.ServerPlayer j)
