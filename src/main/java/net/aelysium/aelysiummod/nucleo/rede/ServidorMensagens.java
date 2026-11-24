@@ -37,6 +37,7 @@ public class ServidorMensagens {
         net.aelysium.aelysiummod.conteudo.filhotes.clima.RegistroRedeClima.registrar(registrar);
         RegistroRedeBanimentos.registrar(registrar);
         RegistroRedeChat.registrar(registrar);
+        net.aelysium.aelysiummod.sistemas.admin.atalhos.rede.RegistroRedeAtalhos.registrar(registrar);
         RegistroRedeLua.registrar(registrar);
         RegistroRedeApelido.registrar(registrar);
         RegistroRedeInsignia.registrar(registrar);

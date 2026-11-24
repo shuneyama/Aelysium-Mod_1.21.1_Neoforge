@@ -9,6 +9,7 @@ public enum ElementoMagico {
     SACRA("Sacra", "§6"),
     SANGUE("Sangue", "§4"),
     VAZIO("Vazio", "§5"),
+    ABISSAL("Abissal", "§1"),
     NENHUMA("Nenhuma", "§7");
 
     public final String nome;

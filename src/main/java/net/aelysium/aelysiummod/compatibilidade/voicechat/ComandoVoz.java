@@ -1,12 +1,10 @@
 package net.aelysium.aelysiummod.compatibilidade.voicechat;
 
 import com.mojang.authlib.GameProfile;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.aelysium.aelysiummod.compatibilidade.voicechat.ConfiguracaoVoz.TipoLista;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.GameProfileArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -23,48 +21,13 @@ public class ComandoVoz {
     private static final String JOGADORES = "jogadores";
     private static final String PREFIXO = "mensagem.aelysiummod.voz.";
 
-    public static LiteralArgumentBuilder<CommandSourceStack> build() {
-        return Commands.literal("voice")
-                .requires(source -> source.hasPermission(2))
-
-                .then(Commands.literal("microfone")
-                        .then(Commands.literal("mutar")
-                                .then(Commands.argument(JOGADORES, GameProfileArgument.gameProfile())
-                                        .executes(ComandoVoz::mutar)))
-                        .then(Commands.literal("desmutar")
-                                .then(Commands.argument(JOGADORES, GameProfileArgument.gameProfile())
-                                        .executes(ComandoVoz::desmutar)))
-                        .then(Commands.literal("lista")
-                                .executes(ctx -> listar(ctx, TipoLista.MUTADOS, "titulo_mutados"))))
-
-                .then(Commands.literal("global")
-                        .then(Commands.literal("adicionar")
-                                .then(Commands.argument(JOGADORES, GameProfileArgument.gameProfile())
-                                        .executes(ComandoVoz::globalAdicionar)))
-                        .then(Commands.literal("remover")
-                                .then(Commands.argument(JOGADORES, GameProfileArgument.gameProfile())
-                                        .executes(ComandoVoz::globalRemover)))
-                        .then(Commands.literal("lista")
-                                .executes(ctx -> listar(ctx, TipoLista.GLOBAL, "titulo_global"))))
-
-                .then(Commands.literal("whitelist")
-                        .then(Commands.literal("adicionar")
-                                .then(Commands.argument(JOGADORES, GameProfileArgument.gameProfile())
-                                        .executes(ComandoVoz::whitelistAdicionar)))
-                        .then(Commands.literal("remover")
-                                .then(Commands.argument(JOGADORES, GameProfileArgument.gameProfile())
-                                        .executes(ComandoVoz::whitelistRemover)))
-                        .then(Commands.literal("lista")
-                                .executes(ctx -> listar(ctx, TipoLista.WHITELIST, "titulo_whitelist"))));
-    }
-
     private static boolean verificarVoicechat(CommandContext<CommandSourceStack> ctx) {
         if (ConfiguracaoVoz.voicechatCarregado()) return true;
         ctx.getSource().sendFailure(Component.translatable(PREFIXO + "nao_instalado"));
         return false;
     }
 
-    private static int mutar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    public static int mutar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!verificarVoicechat(ctx)) return 0;
 
         List<String> mutados = new ArrayList<>();
@@ -87,7 +50,7 @@ public class ComandoVoz {
         return mutados.size();
     }
 
-    private static int desmutar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    public static int desmutar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!verificarVoicechat(ctx)) return 0;
 
         List<String> desmutados = new ArrayList<>();
@@ -106,7 +69,7 @@ public class ComandoVoz {
         return desmutados.size();
     }
 
-    private static int globalAdicionar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    public static int globalAdicionar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!verificarVoicechat(ctx)) return 0;
 
         List<String> adicionados = new ArrayList<>();
@@ -125,7 +88,7 @@ public class ComandoVoz {
         return adicionados.size();
     }
 
-    private static int globalRemover(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    public static int globalRemover(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!verificarVoicechat(ctx)) return 0;
 
         List<String> removidos = new ArrayList<>();
@@ -144,7 +107,7 @@ public class ComandoVoz {
         return removidos.size();
     }
 
-    private static int whitelistAdicionar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    public static int whitelistAdicionar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!verificarVoicechat(ctx)) return 0;
 
         List<String> adicionados = new ArrayList<>();
@@ -162,7 +125,7 @@ public class ComandoVoz {
         return adicionados.size();
     }
 
-    private static int whitelistRemover(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+    public static int whitelistRemover(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         if (!verificarVoicechat(ctx)) return 0;
 
         List<String> removidos = new ArrayList<>();
@@ -180,7 +143,7 @@ public class ComandoVoz {
         return removidos.size();
     }
 
-    private static int listar(CommandContext<CommandSourceStack> ctx, TipoLista tipo, String chaveTitulo) {
+    public static int listar(CommandContext<CommandSourceStack> ctx, TipoLista tipo, String chaveTitulo) {
         if (!verificarVoicechat(ctx)) return 0;
 
         Map<UUID, String> entradas = ConfiguracaoVoz.obter(tipo);

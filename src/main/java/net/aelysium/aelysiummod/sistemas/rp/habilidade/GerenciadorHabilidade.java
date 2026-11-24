@@ -82,6 +82,14 @@ public class GerenciadorHabilidade {
         }
     }
 
+    public static boolean definirMudo(UUID uuid, boolean mudo) {
+        return mudo ? mudoAtivo.add(uuid) : mudoAtivo.remove(uuid);
+    }
+
+    public static java.util.List<UUID> silenciados() {
+        return new java.util.ArrayList<>(mudoAtivo);
+    }
+
     public static boolean estaMudo(UUID uuid) {
         return mudoAtivo.contains(uuid);
     }

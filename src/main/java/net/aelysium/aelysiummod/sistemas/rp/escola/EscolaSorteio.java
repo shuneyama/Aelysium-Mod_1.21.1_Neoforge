@@ -14,6 +14,11 @@ public class EscolaSorteio {
             ElementoMagico.SANGUE, ElementoMagico.VAZIO, ElementoMagico.NENHUMA
     };
 
+    public static final ElementoMagico[] ORDEM_PORCENTAGEM = {
+            ElementoMagico.NATUREZA, ElementoMagico.RAIO, ElementoMagico.FOGO, ElementoMagico.GELO, ElementoMagico.SANGUE,
+            ElementoMagico.SACRA, ElementoMagico.VAZIO, ElementoMagico.ABISSAL, ElementoMagico.NENHUMA
+    };
+
     private static final ElementoMagico[] OUTROS_VALKYRIA = {
             ElementoMagico.RAIO, ElementoMagico.NATUREZA, ElementoMagico.GELO, ElementoMagico.FOGO
     };
@@ -28,6 +33,19 @@ public class EscolaSorteio {
             }
             return sb.toString();
         }
+    }
+
+    public static int rolarD100() {
+        return 1 + RANDOM.nextInt(100);
+    }
+
+    public static Resultado sortearPorPesos(int[] pesos, int d100) {
+        int acumulado = 0;
+        for (int i = 0; i < pesos.length; i++) {
+            acumulado += pesos[i];
+            if (d100 <= acumulado) return new Resultado(List.of(ORDEM_PORCENTAGEM[i]));
+        }
+        return new Resultado(List.of(ElementoMagico.NENHUMA));
     }
 
     public static Resultado sortear(TipoRaca raca) {

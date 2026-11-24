@@ -3,6 +3,8 @@ package net.aelysium.aelysiummod.sistemas.admin.atalhos.cliente;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.aelysium.aelysiummod.AelysiumMod;
+import net.aelysium.aelysiummod.sistemas.admin.atalhos.EstadoEspiao;
+import net.aelysium.aelysiummod.sistemas.admin.atalhos.rede.PacoteAlternarEspiao;
 import net.aelysium.aelysiummod.sistemas.rp.deus.cliente.TelaDeuses;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -18,9 +20,13 @@ import net.minecraft.sounds.SoundEvents;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.List;
+import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 
 @EventBusSubscriber(modid = AelysiumMod.MOD_ID, value = Dist.CLIENT)
 public final class BotoesAdminCliente {
@@ -30,14 +36,21 @@ public final class BotoesAdminCliente {
     private static final int FOLGA = 4;
     private static final int BRILHO_HOVER = 22;
 
-    private record Atalho(ResourceLocation normal, ResourceLocation pressionado, String dica, Runnable acao) {
+    private record Atalho(ResourceLocation normal, ResourceLocation pressionado, Supplier<Component> dica, Runnable acao, IntSupplier nivel, ResourceLocation total) {
     }
 
     private static final List<Atalho> ATALHOS = List.of(
-            new Atalho(textura("botao_deus"), textura("botao_deus_pressionado"), "gui.aelysiummod.admin.botao_deuses",
-                    BotoesAdminCliente::abrirDeuses),
-            new Atalho(textura("botao_personagem"), textura("botao_personagem_pressionado"), "gui.aelysiummod.admin.botao_personagens",
-                    BotoesAdminCliente::abrirPersonagens)
+            new Atalho(textura("botao_deus"), textura("botao_deus_pressionado"), () -> Component.translatable("gui.aelysiummod.admin.botao_deuses"),
+                    BotoesAdminCliente::abrirDeuses, () -> 0, null),
+            new Atalho(textura("botao_personagem"), textura("botao_personagem_pressionado"), () -> Component.translatable("gui.aelysiummod.admin.botao_personagens"),
+                    BotoesAdminCliente::abrirPersonagens, () -> 0, null),
+            new Atalho(textura("botao_espiar"), textura("botao_espiar_pressionado"),
+                    () -> Component.translatable("gui.aelysiummod.admin.botao_espiar_" + switch (EstadoEspiao.nivel()) {
+                        case 1 -> "privado";
+                        case 2 -> "tudo";
+                        default -> "desligado";
+                    }),
+                    BotoesAdminCliente::alternarEspiao, EstadoEspiao::nivel, textura("botao_espiar_total"))
     );
 
     private static int pressionado = -1;
@@ -59,6 +72,10 @@ public final class BotoesAdminCliente {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null) mc.player.closeContainer();
         mc.setScreen(new net.aelysium.aelysiummod.sistemas.rp.personagem.cliente.TelaPersonagens());
+    }
+
+    private static void alternarEspiao() {
+        PacketDistributor.sendToServer(new PacoteAlternarEspiao());
     }
 
     private static boolean ativo(Screen tela) {
@@ -88,6 +105,12 @@ public final class BotoesAdminCliente {
     }
 
     @SubscribeEvent
+    public static void aoSair(ClientPlayerNetworkEvent.LoggingOut evento) {
+        EstadoEspiao.definir(0);
+        pressionado = -1;
+    }
+
+    @SubscribeEvent
     public static void aoRenderizar(ScreenEvent.Render.Post evento) {
         if (!ativo(evento.getScreen()) || !(evento.getScreen() instanceof AbstractContainerScreen<?> tela)) return;
         GuiGraphics g = evento.getGuiGraphics();
@@ -96,9 +119,11 @@ public final class BotoesAdminCliente {
             Atalho atalho = ATALHOS.get(i);
             int x = posX(tela);
             int y = posY(tela, i);
-            ResourceLocation textura = pressionado == i && sob == i ? atalho.pressionado() : atalho.normal();
+            int nivel = atalho.nivel().getAsInt();
+            boolean afundado = nivel > 0 || (pressionado == i && sob == i);
+            ResourceLocation textura = nivel >= 2 && atalho.total() != null ? atalho.total() : afundado ? atalho.pressionado() : atalho.normal();
             g.blit(textura, x, y, 0, 0, TAMANHO, TAMANHO, TAMANHO, TAMANHO);
-            if (sob == i && pressionado != i) {
+            if (sob == i && !afundado) {
                 RenderSystem.enableBlend();
                 RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
                 g.setColor(1.0F, 1.0F, 1.0F, BRILHO_HOVER / 100.0F);
@@ -110,7 +135,7 @@ public final class BotoesAdminCliente {
         }
         if (sob >= 0) {
             Font fonte = Minecraft.getInstance().font;
-            Component dica = Component.translatable(ATALHOS.get(sob).dica());
+            Component dica = ATALHOS.get(sob).dica().get();
             int x = posX(tela);
             int y = posY(tela, sob);
             g.renderTooltip(fonte, dica, x - 16 - fonte.width(dica) - 4, y + TAMANHO / 2 + 8);

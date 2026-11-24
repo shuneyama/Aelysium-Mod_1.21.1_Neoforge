@@ -31,10 +31,22 @@ public class ComandoHistorico {
     public static LiteralArgumentBuilder<CommandSourceStack> build() {
         return Commands.literal("historico")
                 .requires(src -> src.hasPermission(2))
-                .then(Commands.literal("visualizar")
-                        .executes(ctx -> mostrarLista(ctx.getSource(), 1))
-                        .then(Commands.argument("pagina", IntegerArgumentType.integer(1))
-                                .executes(ctx -> mostrarLista(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "pagina")))
+                .then(Commands.literal("@a")
+                        .then(Commands.literal("visualizar")
+                                .executes(ctx -> mostrarLista(ctx.getSource(), 1))
+                                .then(Commands.argument("pagina", IntegerArgumentType.integer(1))
+                                        .executes(ctx -> mostrarLista(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "pagina")))
+                                )
+                        )
+                )
+                .then(Commands.argument("alvo", StringArgumentType.string())
+                        .suggests((ctx, construtor) -> {
+                            construtor.suggest("@a");
+                            for (String nome : DadosHistorico.getNomesTodos()) construtor.suggest(nome);
+                            return construtor.buildFuture();
+                        })
+                        .then(Commands.literal("visualizar")
+                                .executes(ctx -> mostrarJogador(ctx.getSource(), StringArgumentType.getString(ctx, "alvo")))
                         )
                 )
                 .then(Commands.literal("exportar")
@@ -97,12 +109,19 @@ public class ComandoHistorico {
         }
 
         for (int i = inicio; i < fim; i++) {
-            UUID uuid = jogadores.get(i);
+            enviarLinhaJogador(source, i + 1, jogadores.get(i));
+        }
+
+        source.sendSystemMessage(separador());
+        source.sendSystemMessage(navegacao(paginaAtual, totalPaginas, "/aelysium historico @a visualizar"));
+        return 1;
+    }
+
+    private static void enviarLinhaJogador(CommandSourceStack source, int posicao, UUID uuid) {
             String nome = DadosHistorico.getNome(uuid);
             double horas = DadosHistorico.getTotalHoras(uuid);
             int sessoes = DadosHistorico.getTotalSessoes(uuid);
-
-            source.sendSystemMessage(Component.translatableEscape("mensagem.aelysiummod.historico.sess", (i + 1), nome, formatarHoras(horas), sessoes));
+            source.sendSystemMessage(Component.translatableEscape("mensagem.aelysiummod.historico.sess", posicao, nome, formatarHoras(horas), sessoes));
 
             MutableComponent botoes = Component.literal("     ");
             botoes.append(botaoClicavel(Component.translatable("mensagem.aelysiummod.historico.botao_sessoes"),
@@ -117,10 +136,19 @@ public class ComandoHistorico {
                     "/debug historico anotacoes " + nome,
                     Component.translatableEscape("mensagem.aelysiummod.historico.ver_anotacoes_de", nome)));
             source.sendSystemMessage(botoes);
-        }
+    }
 
+    private static int mostrarJogador(CommandSourceStack source, String identificador) {
+        UUID uuid = DadosHistorico.resolverIdentificador(identificador);
+        if (uuid == null) {
+            source.sendFailure(Component.translatableEscape("mensagem.aelysiummod.historico.jogador_nao_encontrado_no_historico", identificador));
+            return 0;
+        }
         source.sendSystemMessage(separador());
-        source.sendSystemMessage(navegacao(paginaAtual, totalPaginas, "/aelysium historico visualizar"));
+        source.sendSystemMessage(Component.translatableEscape("mensagem.aelysiummod.historico.historico_de_jogadores", 1, 1));
+        source.sendSystemMessage(separador());
+        enviarLinhaJogador(source, 1, uuid);
+        source.sendSystemMessage(separador());
         return 1;
     }
 

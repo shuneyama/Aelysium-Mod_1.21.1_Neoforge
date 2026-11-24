@@ -143,7 +143,7 @@ public class ConfiguracaoDiscord {
             StringBuilder sb = new StringBuilder();
 
             sb.append("# Configuração do relay Discord do Aelysium Mod.\n");
-            sb.append("# Edite e execute /aelysium discord recarregar para aplicar.\n");
+            sb.append("# Edite e execute /discord recarregar para aplicar.\n");
             sb.append("ativo = ").append(data.ativo).append("\n\n");
 
             sb.append("# ==================== WEBHOOKS ====================\n");

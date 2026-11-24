@@ -4,7 +4,6 @@ import net.aelysium.aelysiummod.nucleo.texto.SemConversao;
 import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import net.aelysium.aelysiummod.compatibilidade.voicechat.ComandoVoz;
 import net.aelysium.aelysiummod.sistemas.social.chat.GerenciadorChat;
 import net.aelysium.aelysiummod.sistemas.midia.cinematica.comando.ComandoCinematica;
 import net.aelysium.aelysiummod.sistemas.midia.tocar.comando.ComandoTocar;
@@ -26,6 +25,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.aelysium.aelysiummod.nucleo.guarda.AelysiumGuarda;
 import net.aelysium.aelysiummod.sistemas.social.chat.comando.ComandoChat;
+import net.aelysium.aelysiummod.sistemas.mundo.dimensao.ComandoDimensao;
 import net.aelysium.aelysiummod.sistemas.admin.historico.comando.ComandoAnotacao;
 import net.aelysium.aelysiummod.sistemas.admin.historico.comando.ComandoHistorico;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -43,8 +43,8 @@ import net.aelysium.aelysiummod.sistemas.admin.proibicao.comando.ComandoProibir;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.comando.ComandoProtecao;
 import net.aelysium.aelysiummod.sistemas.midia.holograma.comando.ComandoHolograma;
 import net.aelysium.aelysiummod.sistemas.mundo.teleporte.comando.ComandoTeleporte;
-import net.aelysium.aelysiummod.sistemas.rp.escola.comando.ComandoEscola;
-import net.aelysium.aelysiummod.sistemas.rp.habilidade.comando.ComandoHabilidade;
+import net.aelysium.aelysiummod.sistemas.rp.escola.comando.ComandoAfinidade;
+import net.aelysium.aelysiummod.sistemas.admin.jogador.comando.ComandoJogador;
 import net.aelysium.aelysiummod.sistemas.rp.morte.comando.ComandoMorte;
 import net.aelysium.aelysiummod.sistemas.rp.raca.comando.ComandoRaca;
 import net.aelysium.aelysiummod.sistemas.rp.vidas.comando.ComandoVidas;
@@ -61,8 +61,6 @@ public class AelysiumComandos {
         event.getDispatcher().register(
                 Commands.literal("aelysium")
                         .requires(source -> AelysiumGuarda.isAutorizado())
-
-                        .then(ComandoVoz.build())
 
                         .then(ComandoApelido.build())
 
@@ -84,13 +82,11 @@ public class AelysiumComandos {
 
                         .then(ComandoProibir.build())
 
-                        .then(ComandoEscola.build())
+                        .then(ComandoAfinidade.build())
 
                         .then(ComandosBanimentoCriacao.build().requires(source -> source.hasPermission(2)))
 
                         .then(ComandoNpc.build().requires(source -> source.hasPermission(2)))
-
-                        .then(ComandoDiscord.build())
 
                         .then(ComandoCinematica.build())
 
@@ -111,7 +107,7 @@ public class AelysiumComandos {
 
                         .then(net.aelysium.aelysiummod.sistemas.rp.personagem.comando.ComandoPersonagem.build())
 
-                        .then(ComandoHabilidade.build())
+                        .then(ComandoJogador.build())
 
                         .then(ComandoChat.build())
 
@@ -133,22 +129,6 @@ public class AelysiumComandos {
                                     ctx.getSource().sendSuccess(() -> Component.translatable(vermelha
                                             ? "mensagem.aelysiummod.lua.vermelha_ativada"
                                             : "mensagem.aelysiummod.lua.voltou_ao_normal"), true);
-                                    return 1;
-                                })
-                        )
-
-                        .then(Commands.literal("socialspy")
-                                .requires(source -> source.hasPermission(2))
-                                .executes(ctx -> {
-                                    if (!(ctx.getSource().getEntity() instanceof ServerPlayer player)) {
-                                        ctx.getSource().sendFailure(Component.translatable("mensagem.aelysiummod.nucleo_comando.apenas_jogadores_podem_usar_este"));
-                                        return 0;
-                                    }
-                                    boolean ativo = GerenciadorEspiaoSocial.toggle(player.getUUID());
-                                    Component status = Component.translatable(ativo
-                                            ? "mensagem.aelysiummod.comum.ativado"
-                                            : "mensagem.aelysiummod.comum.desativado");
-                                    ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.socialspy", status), false);
                                     return 1;
                                 })
                         )
@@ -198,26 +178,11 @@ public class AelysiumComandos {
                                 )
                         )
 
-                        .then(Commands.literal("dimensao")
-                                .requires(source -> source.hasPermission(2))
-                                .then(Commands.argument("dimensao", DimensionArgument.dimension())
-                                        .executes(ctx -> {
-                                            ServerLevel targetLevel = DimensionArgument.getDimension(ctx, "dimensao");
-                                            ResourceKey<?> dimKey = targetLevel.dimension();
-                                            String dimId = dimKey.location().toString();
-
-                                            MinecraftServer server = ctx.getSource().getServer();
-                                            server.getCommands().performPrefixedCommand(
-                                                    ctx.getSource(),
-                                                    "execute in " + dimId + " run tp @s 0 128 0 180 0"
-                                            );
-                                            return 1;
-                                        })
-                                )
-                        )
+                        .then(ComandoDimensao.build())
         );
 
         ComandoChat.registrarAtalhos(event.getDispatcher());
+        event.getDispatcher().register(ComandoDiscord.build());
 
         net.aelysium.aelysiummod.sistemas.mundo.renascimento.ComandoSetWorldSpawn.registrar(event.getDispatcher());
         net.aelysium.aelysiummod.sistemas.mundo.bordas.ComandoBorda.registrar(event.getDispatcher());
