@@ -31,7 +31,7 @@ public class DadosDeus extends DadosEmArquivos {
 
     public void setDeus(UUID uuid, TipoDeus deus) {
         playerDeus.put(uuid, deus);
-        UtilDeus.atualizar(uuid, deus != TipoDeus.NONE);
+        UtilDeus.atualizar(uuid, deus);
         setDirty();
     }
 

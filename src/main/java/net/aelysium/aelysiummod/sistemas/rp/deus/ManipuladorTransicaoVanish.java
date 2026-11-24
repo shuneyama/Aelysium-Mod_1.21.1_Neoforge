@@ -38,6 +38,8 @@ public class ManipuladorTransicaoVanish {
     public static void startTransition(ServerPlayer player, TipoDeus deus) {
         UUID id = player.getUUID();
 
+        if (!deus.tem(TipoDeus.PARTICULA)) return;
+
         if (activeTransitions.containsKey(id)) return;
 
         GameType current = player.gameMode.getGameModeForPlayer();

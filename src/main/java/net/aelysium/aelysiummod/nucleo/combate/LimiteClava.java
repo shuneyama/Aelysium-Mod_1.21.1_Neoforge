@@ -1,6 +1,7 @@
 package net.aelysium.aelysiummod.nucleo.combate;
 
 import net.aelysium.aelysiummod.AelysiumMod;
+import net.aelysium.aelysiummod.nucleo.jogador.TipoDeus;
 import net.aelysium.aelysiummod.sistemas.rp.deus.UtilDeus;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MaceItem;
@@ -20,7 +21,7 @@ public final class LimiteClava {
     public static void aoReceberDano(LivingDamageEvent.Pre evento) {
         ItemStack arma = evento.getSource().getWeaponItem();
         if (arma == null || !(arma.getItem() instanceof MaceItem)) return;
-        if (UtilDeus.ehDeus(evento.getSource().getEntity())) return;
+        if (UtilDeus.poder(evento.getSource().getEntity(), TipoDeus.DANO_MORTAL)) return;
         if (evento.getNewDamage() > DANO_MAXIMO) {
             evento.setNewDamage(DANO_MAXIMO);
         }

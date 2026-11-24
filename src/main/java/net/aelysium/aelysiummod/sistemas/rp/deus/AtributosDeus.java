@@ -1,6 +1,7 @@
 package net.aelysium.aelysiummod.sistemas.rp.deus;
 
 import net.aelysium.aelysiummod.AelysiumMod;
+import net.aelysium.aelysiummod.nucleo.jogador.TipoDeus;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -28,20 +29,34 @@ public final class AtributosDeus {
         return ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, caminho);
     }
 
-    public static void aplicar(ServerPlayer jogador) {
+    public static void aplicar(ServerPlayer jogador, TipoDeus deus, boolean reiniciarEstado) {
         limparAntigos(jogador);
-        ajustarVida(jogador);
-        AttributeInstance voo = atributo(jogador, ATRIBUTO_VOO);
-        if (voo != null) {
-            voo.removeModifier(MOD_VOO);
-            voo.addPermanentModifier(new AttributeModifier(MOD_VOO, 1.0, AttributeModifier.Operation.ADD_VALUE));
+        AttributeInstance vida = jogador.getAttribute(Attributes.MAX_HEALTH);
+        if (deus.tem(TipoDeus.VIDA_ALTA)) {
+            ajustarVida(jogador);
+        } else if (vida != null) {
+            vida.removeModifier(MOD_VIDA);
         }
-        jogador.getAbilities().mayfly = true;
+        AttributeInstance voo = atributo(jogador, ATRIBUTO_VOO);
+        if (voo != null) voo.removeModifier(MOD_VOO);
+        if (deus.tem(TipoDeus.VOO)) {
+            if (voo != null) voo.addPermanentModifier(new AttributeModifier(MOD_VOO, 1.0, AttributeModifier.Operation.ADD_VALUE));
+            jogador.getAbilities().mayfly = true;
+        } else if (!jogador.isCreative() && !jogador.isSpectator()) {
+            jogador.getAbilities().mayfly = false;
+            jogador.getAbilities().flying = false;
+        }
         jogador.onUpdateAbilities();
-        jogador.setHealth(jogador.getMaxHealth());
-        jogador.getFoodData().setFoodLevel(20);
-        jogador.getFoodData().setSaturation(20.0F);
-        jogador.getFoodData().setExhaustion(0.0F);
+        if (reiniciarEstado) {
+            jogador.setHealth(jogador.getMaxHealth());
+            if (deus.tem(TipoDeus.SEM_FOME)) {
+                jogador.getFoodData().setFoodLevel(20);
+                jogador.getFoodData().setSaturation(20.0F);
+                jogador.getFoodData().setExhaustion(0.0F);
+            }
+        } else if (jogador.getHealth() > jogador.getMaxHealth()) {
+            jogador.setHealth(jogador.getMaxHealth());
+        }
     }
 
     public static void remover(ServerPlayer jogador) {

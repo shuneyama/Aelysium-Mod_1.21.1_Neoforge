@@ -45,6 +45,8 @@ public class ServidorMensagens {
         RegistroRedeGlock.registrar(registrar);
         RegistroRedeNpc.registrar(registrar);
         RegistroRedeDeus.registrar(registrar);
+        net.aelysium.aelysiummod.sistemas.rp.personagem.rede.RegistroRedePersonagens.registrar(registrar);
+        net.aelysium.aelysiummod.sistemas.rp.skin.rede.RegistroRedeSkin.registrar(registrar);
         RegistroRedeGuarda.registrar(registrar);
         RegistroRedeCarteira.registrar(registrar);
         RegistroRedeProtecao.registrar(registrar);

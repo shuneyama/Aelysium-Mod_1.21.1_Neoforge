@@ -1,210 +1,145 @@
 package net.aelysium.aelysiummod.sistemas.admin.listabranca;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.authlib.GameProfile;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.players.UserWhiteList;
+import net.minecraft.server.players.UserWhiteListEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.UUID;
+import java.util.regex.Pattern;
 
-public class GerenciadorListaBrancaOffline {
+public final class GerenciadorListaBrancaOffline {
     private static final Logger LOGGER = LoggerFactory.getLogger(GerenciadorListaBrancaOffline.class);
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final String WHITELIST_FILE = "whitelist.json";
+    private static final Pattern NOME_VALIDO = Pattern.compile("[A-Za-z0-9_]{3,16}");
 
-    private static File whitelistFile;
     private static MinecraftServer server;
+
+    public record Entrada(String nome, UUID uuid) {
+        public UUID uuidEsperado() {
+            return gerarUUIDOffline(nome);
+        }
+
+        public boolean consistente() {
+            return uuid.equals(uuidEsperado());
+        }
+    }
+
+    public enum Tipo {
+        ADICIONADO,
+        JA_EXISTE,
+        ERRO
+    }
+
+    public record Resultado(Tipo tipo, Entrada entrada) {
+    }
+
+    private GerenciadorListaBrancaOffline() {
+    }
 
     public static void inicializar(MinecraftServer mcServer) {
         server = mcServer;
-        whitelistFile = server.getServerDirectory().resolve(WHITELIST_FILE).toFile();
-        if (!whitelistFile.exists()) {
-            try {
-                whitelistFile.createNewFile();
-                salvarLista(new JsonArray());
-                LOGGER.info("[Aelysium-Whitelist] Arquivo whitelist.json criado");
-            } catch (IOException e) {
-                LOGGER.error("[Aelysium-Whitelist] Erro ao criar whitelist.json", e);
-            }
-        }
     }
 
-    public static boolean adicionar(String nome) {
-        try {
-            JsonArray whitelist = carregarLista();
-            UUID uuidOffline = gerarUUIDOffline(nome);
-
-            for (int i = 0; i < whitelist.size(); i++) {
-                JsonObject entry = whitelist.get(i).getAsJsonObject();
-                String existingName = entry.get("name").getAsString();
-                if (existingName.equalsIgnoreCase(nome)) {
-                    return false;
-                }
-            }
-
-            JsonObject newEntry = new JsonObject();
-            newEntry.addProperty("uuid", uuidOffline.toString());
-            newEntry.addProperty("name", nome);
-            whitelist.add(newEntry);
-
-            salvarLista(whitelist);
-            recarregarWhitelistVanilla();
-            garantirEntradaVanilla(nome);
-            LOGGER.info("[Aelysium-Whitelist] Jogador adicionado: {} (UUID: {})", nome, uuidOffline);
-            return true;
-        } catch (IOException e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao adicionar jogador", e);
-            return false;
-        }
-    }
-
-    public static boolean remover(String nome) {
-        try {
-            JsonArray whitelist = carregarLista();
-            boolean removido = false;
-
-            for (int i = 0; i < whitelist.size(); i++) {
-                JsonObject entry = whitelist.get(i).getAsJsonObject();
-                String existingName = entry.get("name").getAsString();
-                if (existingName.equalsIgnoreCase(nome)) {
-                    whitelist.remove(i);
-                    removido = true;
-                    break;
-                }
-            }
-
-            if (removido) {
-                salvarLista(whitelist);
-                recarregarWhitelistVanilla();
-                LOGGER.info("[Aelysium-Whitelist] Jogador removido: {}", nome);
-                return true;
-            }
-            return false;
-        } catch (IOException e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao remover jogador", e);
-            return false;
-        }
-    }
-
-    public static boolean estaWhitelistado(String nome) {
-        try {
-            JsonArray whitelist = carregarLista();
-            for (int i = 0; i < whitelist.size(); i++) {
-                JsonObject entry = whitelist.get(i).getAsJsonObject();
-                String existingName = entry.get("name").getAsString();
-                if (existingName.equalsIgnoreCase(nome)) {
-                    return true;
-                }
-            }
-            return false;
-        } catch (IOException e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao verificar whitelist", e);
-            return false;
-        }
-    }
-
-    public static List<String> listar() {
-        try {
-            JsonArray whitelist = carregarLista();
-            List<String> nomes = new ArrayList<>();
-            for (int i = 0; i < whitelist.size(); i++) {
-                JsonObject entry = whitelist.get(i).getAsJsonObject();
-                nomes.add(entry.get("name").getAsString());
-            }
-            Collections.sort(nomes);
-            return nomes;
-        } catch (IOException e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao listar whitelist", e);
-            return new ArrayList<>();
-        }
-    }
-
-    public static int tamanho() {
-        try {
-            JsonArray whitelist = carregarLista();
-            return whitelist.size();
-        } catch (IOException e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao obter tamanho da whitelist", e);
-            return 0;
-        }
-    }
-
-    public static void limpar() {
-        try {
-            salvarLista(new JsonArray());
-            recarregarWhitelistVanilla();
-            LOGGER.info("[Aelysium-Whitelist] Whitelist limpa!");
-        } catch (IOException e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao limpar whitelist", e);
-        }
+    public static boolean nomeValido(String nome) {
+        return nome != null && NOME_VALIDO.matcher(nome).matches();
     }
 
     public static UUID gerarUUIDOffline(String nome) {
         return UUID.nameUUIDFromBytes(("OfflinePlayer:" + nome).getBytes(StandardCharsets.UTF_8));
     }
 
-    public static String getInfo(String nome) {
+    private static UserWhiteList lista() {
+        return server.getPlayerList().getWhiteList();
+    }
+
+    public static synchronized List<Entrada> entradas() {
+        List<Entrada> resultado = new ArrayList<>();
+        if (server == null) return resultado;
+        Path arquivo = server.getServerDirectory().resolve("whitelist.json");
+        if (!Files.exists(arquivo)) return resultado;
         try {
-            JsonArray whitelist = carregarLista();
-            for (int i = 0; i < whitelist.size(); i++) {
-                JsonObject entry = whitelist.get(i).getAsJsonObject();
-                String existingName = entry.get("name").getAsString();
-                if (existingName.equalsIgnoreCase(nome)) {
-                    String uuid = entry.get("uuid").getAsString();
-                    return String.format("Nome: %s | UUID Offline: %s", existingName, uuid);
+            JsonArray array = new Gson().fromJson(Files.readString(arquivo, StandardCharsets.UTF_8), JsonArray.class);
+            if (array != null) {
+                for (JsonElement elemento : array) {
+                    JsonObject objeto = elemento.getAsJsonObject();
+                    if (!objeto.has("uuid")) continue;
+                    String nome = objeto.has("name") ? objeto.get("name").getAsString() : "?";
+                    resultado.add(new Entrada(nome, UUID.fromString(objeto.get("uuid").getAsString())));
                 }
             }
-            return null;
-        } catch (IOException e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao obter info", e);
-            return null;
+        } catch (Exception e) {
+            LOGGER.error("[Aelysium-Whitelist] Erro ao ler whitelist.json", e);
+        }
+        resultado.sort(Comparator.comparing((Entrada e) -> e.nome().toLowerCase()).thenComparing(Entrada::nome));
+        return resultado;
+    }
+
+    public static List<String> nomes() {
+        List<String> nomes = new ArrayList<>();
+        for (Entrada e : entradas()) nomes.add(e.nome());
+        return nomes;
+    }
+
+    public static synchronized List<Entrada> procurar(String nome) {
+        UUID esperado = gerarUUIDOffline(nome);
+        List<Entrada> encontradas = new ArrayList<>();
+        for (Entrada e : entradas()) {
+            if (e.nome().equalsIgnoreCase(nome) || e.uuid().equals(esperado)) encontradas.add(e);
+        }
+        return encontradas;
+    }
+
+    public static synchronized Resultado adicionar(String nome) {
+        if (server == null || !nomeValido(nome)) return new Resultado(Tipo.ERRO, null);
+        UUID uuid = gerarUUIDOffline(nome);
+        for (Entrada e : entradas()) {
+            if (e.uuid().equals(uuid) && e.nome().equals(nome)) return new Resultado(Tipo.JA_EXISTE, e);
+        }
+        try {
+            for (Entrada e : entradas()) {
+                if (e.nome().equals(nome) && !e.consistente()) {
+                    lista().remove(new GameProfile(e.uuid(), e.nome()));
+                }
+            }
+            lista().add(new UserWhiteListEntry(new GameProfile(uuid, nome)));
+            LOGGER.info("[Aelysium-Whitelist] Jogador adicionado: {} (UUID: {})", nome, uuid);
+            return new Resultado(Tipo.ADICIONADO, new Entrada(nome, uuid));
+        } catch (Exception e) {
+            LOGGER.error("[Aelysium-Whitelist] Erro ao adicionar jogador", e);
+            return new Resultado(Tipo.ERRO, null);
         }
     }
 
-    private static JsonArray carregarLista() throws IOException {
-        if (!whitelistFile.exists()) {
-            return new JsonArray();
-        }
-        try (FileReader reader = new FileReader(whitelistFile)) {
-            JsonArray array = GSON.fromJson(reader, JsonArray.class);
-            return array != null ? array : new JsonArray();
-        }
-    }
-
-    private static void salvarLista(JsonArray whitelist) throws IOException {
-        try (FileWriter writer = new FileWriter(whitelistFile)) {
-            GSON.toJson(whitelist, writer);
-        }
-    }
-
-    private static void recarregarWhitelistVanilla() {
-        if (server != null) {
-            try {
-                server.getPlayerList().reloadWhiteList();
-            } catch (Exception e) {
-                LOGGER.error("[Aelysium-Whitelist] Erro ao recarregar whitelist vanilla", e);
+    public static synchronized Entrada remover(String nome) {
+        if (server == null) return null;
+        UUID esperado = gerarUUIDOffline(nome);
+        Entrada alvo = null;
+        for (Entrada e : entradas()) {
+            if (e.nome().equals(nome) || e.uuid().equals(esperado)) {
+                alvo = e;
+                break;
             }
         }
-    }
-
-    public static void garantirEntradaVanilla(String nome) {
-        if (server == null) return;
+        if (alvo == null) return null;
         try {
-            UUID uuid = gerarUUIDOffline(nome);
-            var whitelist = server.getPlayerList().getWhiteList();
-            com.mojang.authlib.GameProfile profile = new com.mojang.authlib.GameProfile(uuid, nome);
-            net.minecraft.server.players.UserWhiteListEntry entry = new net.minecraft.server.players.UserWhiteListEntry(profile);
-            whitelist.add(entry);
+            lista().remove(new GameProfile(alvo.uuid(), alvo.nome()));
+            LOGGER.info("[Aelysium-Whitelist] Jogador removido: {} (UUID: {})", alvo.nome(), alvo.uuid());
+            return alvo;
         } catch (Exception e) {
-            LOGGER.error("[Aelysium-Whitelist] Erro ao garantir entrada vanilla", e);
+            LOGGER.error("[Aelysium-Whitelist] Erro ao remover jogador", e);
+            return null;
         }
     }
 }

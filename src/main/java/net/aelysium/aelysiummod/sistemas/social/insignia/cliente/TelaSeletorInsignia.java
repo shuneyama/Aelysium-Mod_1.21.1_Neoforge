@@ -28,11 +28,17 @@ public class TelaSeletorInsignia extends Screen {
     private int rolagem = 0;
     private int rolagemMaxima = 0;
     private final Consumer<String> onSelect;
+    private final boolean comAutomatico;
 
     public TelaSeletorInsignia(Screen parent, Consumer<String> onSelect) {
+        this(parent, onSelect, true);
+    }
+
+    public TelaSeletorInsignia(Screen parent, Consumer<String> onSelect, boolean comAutomatico) {
         super(Component.translatable("gui.aelysiummod.insignia.escolher_badge"));
         this.parent = parent;
         this.onSelect = onSelect;
+        this.comAutomatico = comAutomatico;
     }
 
     @Override
@@ -44,13 +50,17 @@ public class TelaSeletorInsignia extends Screen {
         grade.clear();
         baseY.clear();
         rolagem = 0;
-        addRenderableWidget(Button.builder(Component.translatable("gui.aelysiummod.insignia.automatico_raca"), btn -> select(ConsultaInsignia.AUTOMATICA))
-                .bounds(centerX - 100, startY, 200, 20).build());
+        int deslocamento = 0;
+        if (comAutomatico) {
+            addRenderableWidget(Button.builder(Component.translatable("gui.aelysiummod.insignia.automatico_raca"), btn -> select(ConsultaInsignia.AUTOMATICA))
+                    .bounds(centerX - 100, startY, 200, 20).build());
+            deslocamento = 24;
+        }
 
         addRenderableWidget(Button.builder(Component.translatable("gui.aelysiummod.insignia.nenhum"), btn -> select(""))
-                .bounds(centerX - 100, startY + 24, 200, 20).build());
+                .bounds(centerX - 100, startY + deslocamento, 200, 20).build());
 
-        int gridY = startY + 56;
+        int gridY = startY + deslocamento + 32;
         gridTop = gridY - 4;
 
         TipoInsignia[] badges = TipoInsignia.values();
@@ -122,6 +132,11 @@ public class TelaSeletorInsignia extends Screen {
     public boolean mouseScrolled(double mx, double my, double sx, double sy) {
         rolagem = Math.max(0, Math.min(rolagemMaxima, rolagem - (int) Math.signum(sy) * 24));
         return true;
+    }
+
+    @Override
+    public void onClose() {
+        this.minecraft.setScreen(parent);
     }
 
     @Override

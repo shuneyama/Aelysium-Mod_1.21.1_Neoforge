@@ -35,7 +35,9 @@ public final class BotoesAdminCliente {
 
     private static final List<Atalho> ATALHOS = List.of(
             new Atalho(textura("botao_deus"), textura("botao_deus_pressionado"), "gui.aelysiummod.admin.botao_deuses",
-                    BotoesAdminCliente::abrirDeuses)
+                    BotoesAdminCliente::abrirDeuses),
+            new Atalho(textura("botao_personagem"), textura("botao_personagem_pressionado"), "gui.aelysiummod.admin.botao_personagens",
+                    BotoesAdminCliente::abrirPersonagens)
     );
 
     private static int pressionado = -1;
@@ -51,6 +53,12 @@ public final class BotoesAdminCliente {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null) mc.player.closeContainer();
         mc.setScreen(new TelaDeuses());
+    }
+
+    private static void abrirPersonagens() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null) mc.player.closeContainer();
+        mc.setScreen(new net.aelysium.aelysiummod.sistemas.rp.personagem.cliente.TelaPersonagens());
     }
 
     private static boolean ativo(Screen tela) {

@@ -185,6 +185,9 @@ public class AelysiumMod {
         net.aelysium.aelysiummod.sistemas.admin.historico.ConfiguracaoRegrasMods.inicializar(event.getServer());
         net.aelysium.aelysiummod.nucleo.configuracao.ConfiguracaoChat.carregar(event.getServer());
         net.aelysium.aelysiummod.sistemas.rp.deus.RegistroDeuses.carregar(event.getServer());
+        net.aelysium.aelysiummod.sistemas.rp.personagem.RegistroPersonagens.carregar(event.getServer());
+        net.aelysium.aelysiummod.sistemas.rp.skin.RegistroSkins.carregar(event.getServer());
+        net.aelysium.aelysiummod.sistemas.rp.personagem.AtributosPersonagem.carregar(event.getServer());
         ConfiguracaoListaBanimentos.load(event.getServer());
         ConfiguracaoDiscord.load();
         ConfiguracaoModsDesativados.load();

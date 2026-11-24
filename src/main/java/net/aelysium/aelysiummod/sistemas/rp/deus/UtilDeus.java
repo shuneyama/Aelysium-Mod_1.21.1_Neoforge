@@ -10,24 +10,29 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @EventBusSubscriber(modid = AelysiumMod.MOD_ID)
 public final class UtilDeus {
-    private static final Set<UUID> DEUSES = ConcurrentHashMap.newKeySet();
+    private static final Map<UUID, TipoDeus> DEUSES = new ConcurrentHashMap<>();
 
     private UtilDeus() {
     }
 
     public static boolean ehDeus(Entity entidade) {
-        return entidade instanceof ServerPlayer jogador && DEUSES.contains(jogador.getUUID());
+        return entidade instanceof ServerPlayer jogador && DEUSES.containsKey(jogador.getUUID());
     }
 
-    public static void atualizar(UUID uuid, boolean deus) {
-        if (deus) {
-            DEUSES.add(uuid);
+    public static boolean poder(Entity entidade, int poder) {
+        if (!(entidade instanceof ServerPlayer jogador)) return false;
+        TipoDeus deus = DEUSES.get(jogador.getUUID());
+        return deus != null && deus.tem(poder);
+    }
+
+    public static void atualizar(UUID uuid, TipoDeus deus) {
+        if (deus != null && deus != TipoDeus.NONE) {
+            DEUSES.put(uuid, deus);
         } else {
             DEUSES.remove(uuid);
         }
@@ -37,7 +42,7 @@ public final class UtilDeus {
     public static void aoIniciarServidor(ServerStartedEvent evento) {
         DEUSES.clear();
         for (Map.Entry<UUID, TipoDeus> entrada : DadosDeus.get(evento.getServer().overworld()).todos().entrySet()) {
-            if (entrada.getValue() != TipoDeus.NONE) DEUSES.add(entrada.getKey());
+            if (entrada.getValue() != TipoDeus.NONE) DEUSES.put(entrada.getKey(), entrada.getValue());
         }
     }
 

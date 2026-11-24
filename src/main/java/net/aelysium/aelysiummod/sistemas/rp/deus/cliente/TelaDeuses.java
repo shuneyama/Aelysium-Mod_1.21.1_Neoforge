@@ -7,6 +7,7 @@ import net.aelysium.aelysiummod.sistemas.rp.deus.rede.PacoteSolicitarDeuses;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
@@ -24,6 +25,7 @@ public class TelaDeuses extends Screen {
     private static final int LISTA_ALTURA = LINHAS_VISIVEIS * LINHA + 4;
     private static final int BARRA_LARGURA = 7;
     private static final String SEM_DEUS = "none";
+    private static final int ICONE = 12;
 
     private List<PacoteListaDeuses.Entrada> deuses = List.of();
     private String atual = SEM_DEUS;
@@ -79,6 +81,7 @@ public class TelaDeuses extends Screen {
         g.drawString(font, title, x0 + (LARGURA - font.width(title)) / 2, y0 + 8, 0xFF404040, false);
         desenharLista(g, mouseX, mouseY);
         desenharBarra(g);
+        dicaIcone(g, mouseX, mouseY);
     }
 
     private void desenharLista(GuiGraphics g, int mouseX, int mouseY) {
@@ -105,12 +108,64 @@ public class TelaDeuses extends Screen {
                 g.fill(x, y, x + 2, y + LINHA - 2, borda);
                 g.fill(x + l - 2, y, x + l, y + LINHA - 2, borda);
             }
-            int quadrado = y + (LINHA - 2 - 8) / 2;
-            g.fill(x + 5, quadrado, x + 13, quadrado + 8, 0xFF000000);
-            g.fill(x + 6, quadrado + 1, x + 12, quadrado + 7, 0xFF000000 | deus.cor());
-            PainelGui.textoContorno(g, font, deus.nome(), x + 19, y + (LINHA - 2 - 8) / 2, deus.cor());
+            g.drawString(font, deus.nome(), x + 6, y + (LINHA - 2 - 8) / 2, 0xFF000000 | deus.cor(), true);
+            desenharIcone(g, iconeEditarX(), iconeY(i), "E", 0xFFFFFF, mouseX, mouseY);
+            desenharIcone(g, iconeExcluirX(), iconeY(i), "X", 0xFF5555, mouseX, mouseY);
         }
         g.disableScissor();
+    }
+
+    private int linhaY(int i) {
+        return listaY() + 2 + i * LINHA - rolagem;
+    }
+
+    private int iconeY(int i) {
+        return linhaY(i) + (LINHA - 2 - ICONE) / 2;
+    }
+
+    private int iconeEditarX() {
+        return listaX() + listaLargura() - 2 - 2 * (ICONE + 2);
+    }
+
+    private int iconeExcluirX() {
+        return listaX() + listaLargura() - 2 - (ICONE + 2);
+    }
+
+    private boolean dentro(double mx, double my, int x, int y, int l, int a) {
+        return mx >= x && mx < x + l && my >= y && my < y + a;
+    }
+
+    private boolean naLista(double mx, double my) {
+        return dentro(mx, my, listaX() + 1, listaY() + 1, listaLargura() - 2, LISTA_ALTURA - 2);
+    }
+
+    private void desenharIcone(GuiGraphics g, int x, int y, String letra, int cor, int mouseX, int mouseY) {
+        boolean sobre = naLista(mouseX, mouseY) && dentro(mouseX, mouseY, x, y, ICONE, ICONE);
+        g.fill(x, y, x + ICONE, y + ICONE, 0xFF000000);
+        g.fill(x + 1, y + 1, x + ICONE - 1, y + ICONE - 1, sobre ? 0xFF707070 : 0xFF505050);
+        g.drawString(font, letra, x + (ICONE - font.width(letra)) / 2 + 1, y + 2, 0xFF000000 | cor, false);
+    }
+
+    private void dicaIcone(GuiGraphics g, int mouseX, int mouseY) {
+        if (!naLista(mouseX, mouseY)) return;
+        for (int i = 0; i < deuses.size(); i++) {
+            if (dentro(mouseX, mouseY, iconeEditarX(), iconeY(i), ICONE, ICONE)) {
+                g.renderTooltip(font, Component.translatable("gui.aelysiummod.deuses.editar"), mouseX, mouseY);
+                return;
+            }
+            if (dentro(mouseX, mouseY, iconeExcluirX(), iconeY(i), ICONE, ICONE)) {
+                g.renderTooltip(font, Component.translatable("gui.aelysiummod.deuses.excluir"), mouseX, mouseY);
+                return;
+            }
+        }
+    }
+
+    private void confirmarExclusao(PacoteListaDeuses.Entrada deus) {
+        minecraft.setScreen(new ConfirmScreen(confirmado -> {
+            if (confirmado) PacketDistributor.sendToServer(new net.aelysium.aelysiummod.sistemas.rp.deus.rede.PacoteExcluirDeus(deus.id()));
+            minecraft.setScreen(this);
+        }, Component.translatable("gui.aelysiummod.deuses.excluir_titulo"),
+                Component.translatable("gui.aelysiummod.deuses.excluir_mensagem", deus.nome())));
     }
 
     private void desenharBarra(GuiGraphics g) {
@@ -164,6 +219,16 @@ public class TelaDeuses extends Screen {
                 int indice = (int) ((mouseY - listaY() - 2 + rolagem) / LINHA);
                 if (indice >= 0 && indice < deuses.size()) {
                     PacoteListaDeuses.Entrada deus = deuses.get(indice);
+                    if (dentro(mouseX, mouseY, iconeEditarX(), iconeY(indice), ICONE, ICONE)) {
+                        minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        minecraft.setScreen(new TelaCriarDeus(deus.id(), deus.nome(), deus.cor(), deus.badge(), deus.corParticula(), deus.pronomes(), deus.poderes()));
+                        return true;
+                    }
+                    if (dentro(mouseX, mouseY, iconeExcluirX(), iconeY(indice), ICONE, ICONE)) {
+                        minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        confirmarExclusao(deus);
+                        return true;
+                    }
                     if (!deus.id().equalsIgnoreCase(atual)) {
                         minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                         PacketDistributor.sendToServer(new PacoteEscolherDeus(deus.id()));
@@ -194,6 +259,12 @@ public class TelaDeuses extends Screen {
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
         rolagem = Mth.clamp(rolagem - (int) (scrollY * (LINHA / 2.0)), 0, rolagemMaxima());
         return true;
+    }
+
+    @Override
+    public void onClose() {
+        if (minecraft.player != null) minecraft.setScreen(new net.minecraft.client.gui.screens.inventory.InventoryScreen(minecraft.player));
+        else super.onClose();
     }
 
     @Override

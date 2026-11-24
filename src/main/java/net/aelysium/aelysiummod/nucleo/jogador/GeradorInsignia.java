@@ -1,10 +1,18 @@
 package net.aelysium.aelysiummod.nucleo.jogador;
 
+import net.aelysium.aelysiummod.AelysiumMod;
+import org.slf4j.LoggerFactory;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.CRC32;
 import java.util.zip.Deflater;
 
@@ -28,35 +36,6 @@ public final class GeradorInsignia {
         ".SSS.SSSS.SSS."
     };
 
-    private static final String[] LETRAS = {
-        ".WW./WssW/WWWW/WssW/W..W/s..s",
-        "WWW./WssW/WWWs/WssW/WWWs/sss.",
-        ".WW./WssW/W..s/W..W/sWWs/.ss.",
-        "WWW./WssW/W..W/W..W/WWWs/sss.",
-        "WWWW/Wsss/WWW./Wss./WWWW/ssss",
-        "WWWW/Wsss/WWW./Wss./W.../s...",
-        ".WWW/Wsss/W.WW/W.sW/sWWW/.sss",
-        "W..W/W..W/WWWW/WssW/W..W/s..s",
-        "W/W/W/W/W/s",
-        "WWWW/ssWs/..W./W.W./sWs./.s..",
-        "W..W/W.Ws/WWs./WsW./W.sW/s..s",
-        "W../W../W../W../WWW/sss",
-        "W...W/WW.WW/WsWsW/W.s.W/W...W/s...s",
-        "W..W/WW.W/WsWW/W.sW/W..W/s..s",
-        ".WW./WssW/W..W/W..W/sWWs/.ss.",
-        "WWW./WssW/WWWs/Wss./W.../s...",
-        ".WW./WssW/W..W/W.Ws/sWsW/.s.s",
-        "WWW./WssW/WWWs/WssW/W..W/s..s",
-        ".WWW/Wsss/sWW./.ssW/WWWs/sss.",
-        "WWW/sWs/.W./.W./.W./.s.",
-        "W..W/W..W/W..W/W..W/sWWs/.ss.",
-        "W.W/W.W/W.W/sWs/.W./.s.",
-        "W.W.W/W.W.W/W.W.W/sWsWs/.W.W./.s.s.",
-        "W.W/W.W/sWs/WsW/W.W/s.s",
-        "W.W/W.W/sWs/.W./.W./.s.",
-        "WWWW/sssW/.WWs/Wss./WWWW/ssss"
-    };
-
     private GeradorInsignia() {}
 
     public static String normalizar(String bruto) {
@@ -74,9 +53,38 @@ public final class GeradorInsignia {
         return sb.toString().trim();
     }
 
+    private record Glifo(int largura, int altura, int[] pixels) {}
+
+    private static final Map<Character, Glifo> GLIFOS = new ConcurrentHashMap<>();
+
+    private static Glifo glifo(char c) {
+        return GLIFOS.computeIfAbsent(c, GeradorInsignia::carregarGlifo);
+    }
+
+    private static Glifo carregarGlifo(char c) {
+        String caminho = "/assets/aelysiummod/textures/font/badges/letras/" + Character.toLowerCase(c) + ".png";
+        try (InputStream entrada = GeradorInsignia.class.getResourceAsStream(caminho)) {
+            if (entrada != null) {
+                BufferedImage imagem = ImageIO.read(entrada);
+                if (imagem != null) {
+                    int w = imagem.getWidth();
+                    int h = Math.min(imagem.getHeight(), ALTURA - 4);
+                    int[] pixels = new int[w * h];
+                    for (int y = 0; y < h; y++) {
+                        for (int x = 0; x < w; x++) pixels[y * w + x] = imagem.getRGB(x, y);
+                    }
+                    return new Glifo(w, h, pixels);
+                }
+            }
+        } catch (Exception e) {
+            LoggerFactory.getLogger(AelysiumMod.MOD_ID).error("Erro ao carregar letra da tag " + c + ": ", e);
+        }
+        return new Glifo(3, 0, new int[0]);
+    }
+
     private static int larguraLetra(char c) {
         if (c == ' ') return LARGURA_ESPACO;
-        return LETRAS[c - 'A'].split("/")[0].length();
+        return glifo(c).largura();
     }
 
     public static int larguraTexto(String texto) {
@@ -131,18 +139,19 @@ public final class GeradorInsignia {
                 cursor += LARGURA_ESPACO;
                 continue;
             }
-            String[] linhas = LETRAS[letra - 'A'].split("/");
-            for (int ly = 0; ly < linhas.length; ly++) {
-                String linhaGlifo = linhas[ly];
-                for (int lx = 0; lx < linhaGlifo.length(); lx++) {
-                    char p = linhaGlifo.charAt(lx);
+            Glifo g = glifo(letra);
+            for (int ly = 0; ly < g.altura(); ly++) {
+                for (int lx = 0; lx < g.largura(); lx++) {
+                    int argb = g.pixels()[ly * g.largura() + lx];
+                    int alfa = argb >>> 24;
+                    if (alfa < 128) continue;
                     int px = cursor + lx;
                     int py = 3 + ly;
-                    if (p == 'W') pixels[py * largura + px] = 0xFFFFFFFF;
-                    else if (p == 's') pixels[py * largura + px] = sombraLetra;
+                    int brilhoLetra = (((argb >> 16) & 255) + ((argb >> 8) & 255) + (argb & 255)) / 3;
+                    pixels[py * largura + px] = brilhoLetra >= 240 ? 0xFFFFFFFF : escurecer(corRgb, brilhoLetra / 255f);
                 }
             }
-            cursor += linhas[0].length();
+            cursor += g.largura();
         }
 
         return new Imagem(largura, ALTURA, pixels);

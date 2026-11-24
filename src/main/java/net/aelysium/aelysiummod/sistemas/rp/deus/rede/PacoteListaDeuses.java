@@ -11,7 +11,7 @@ import java.util.List;
 
 public record PacoteListaDeuses(List<Entrada> deuses, String atual) implements CustomPacketPayload {
 
-    public record Entrada(String id, String nome, int cor) {
+    public record Entrada(String id, String nome, int cor, boolean personalizado, String badge, int corParticula, String pronomes, int poderes) {
     }
 
     public static final Type<PacoteListaDeuses> TYPE =
@@ -24,6 +24,11 @@ public record PacoteListaDeuses(List<Entrada> deuses, String atual) implements C
                     buf.writeUtf(entrada.id(), 64);
                     buf.writeUtf(entrada.nome(), 64);
                     buf.writeInt(entrada.cor());
+                    buf.writeBoolean(entrada.personalizado());
+                    buf.writeUtf(entrada.badge(), 64);
+                    buf.writeInt(entrada.corParticula());
+                    buf.writeUtf(entrada.pronomes(), 64);
+                    buf.writeInt(entrada.poderes());
                 }
                 buf.writeUtf(pkt.atual(), 64);
             },
@@ -31,7 +36,7 @@ public record PacoteListaDeuses(List<Entrada> deuses, String atual) implements C
                 int total = buf.readVarInt();
                 List<Entrada> entradas = new ArrayList<>(total);
                 for (int i = 0; i < total; i++) {
-                    entradas.add(new Entrada(buf.readUtf(64), buf.readUtf(64), buf.readInt()));
+                    entradas.add(new Entrada(buf.readUtf(64), buf.readUtf(64), buf.readInt(), buf.readBoolean(), buf.readUtf(64), buf.readInt(), buf.readUtf(64), buf.readInt()));
                 }
                 return new PacoteListaDeuses(entradas, buf.readUtf(64));
             });

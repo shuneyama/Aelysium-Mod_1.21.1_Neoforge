@@ -81,6 +81,9 @@ config="aelysiummod.efeito.mixins.json"
 config="aelysiummod.tocar.mixins.json"
 
 [[mixins]]
+config="aelysiummod.skin.mixins.json"
+
+[[mixins]]
 config="aelysiummod.npc.mixins.json"
 
 [[mixins]]

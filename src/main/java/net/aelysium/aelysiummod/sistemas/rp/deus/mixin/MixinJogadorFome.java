@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.rp.deus.mixin;
 
+import net.aelysium.aelysiummod.nucleo.jogador.TipoDeus;
 import net.aelysium.aelysiummod.sistemas.rp.deus.UtilDeus;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +13,7 @@ public class MixinJogadorFome {
 
     @Inject(method = "causeFoodExhaustion", at = @At("HEAD"), cancellable = true)
     private void aelysium_semFomeParaDeus(float exaustao, CallbackInfo ci) {
-        if (UtilDeus.ehDeus((Player) (Object) this)) {
+        if (UtilDeus.poder((Player) (Object) this, TipoDeus.SEM_FOME)) {
             ci.cancel();
         }
     }

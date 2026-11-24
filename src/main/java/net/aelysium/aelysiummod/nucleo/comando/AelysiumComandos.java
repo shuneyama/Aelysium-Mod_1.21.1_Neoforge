@@ -11,12 +11,10 @@ import net.aelysium.aelysiummod.sistemas.midia.tocar.comando.ComandoTocar;
 import net.aelysium.aelysiummod.sistemas.admin.discord.comando.ComandoDiscord;
 import net.aelysium.aelysiummod.nucleo.configuracao.ConfiguracaoChat;
 import net.aelysium.aelysiummod.nucleo.configuracao.ConfiguracaoMod;
-import net.aelysium.aelysiummod.sistemas.rp.deus.comando.ComandoDeus;
-import net.aelysium.aelysiummod.sistemas.rp.deus.comando.ComandoVanish;
 import net.aelysium.aelysiummod.sistemas.mundo.lua.GerenciadorLua;
 import net.aelysium.aelysiummod.sistemas.mundo.lua.TipoLua;
 import net.aelysium.aelysiummod.sistemas.social.chat.GerenciadorEspiaoSocial;
-import net.aelysium.aelysiummod.sistemas.admin.listabranca.GerenciadorListaBrancaOffline;
+import net.aelysium.aelysiummod.sistemas.admin.listabranca.comando.ComandoListaBranca;
 import net.aelysium.aelysiummod.sistemas.rp.habilidade.GerenciadorHabilidade;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.DimensionArgument;
@@ -106,13 +104,12 @@ public class AelysiumComandos {
 
                         .then(ComandoProtecao.build())
 
-                        .then(ComandoVanish.build())
-
                         .then(ComandoRaca.build())
 
-                        .then(ComandoDeus.build())
 
                         .then(ComandoAtributos.build())
+
+                        .then(net.aelysium.aelysiummod.sistemas.rp.personagem.comando.ComandoPersonagem.build())
 
                         .then(ComandoHabilidade.build())
 
@@ -181,53 +178,7 @@ public class AelysiumComandos {
                                 })
                         )
 
-                        .then(Commands.literal("whitelist")
-                                .requires(source -> source.hasPermission(2))
-                                .then(Commands.literal("adicionar")
-                                        .then(Commands.argument("nome", StringArgumentType.word())
-                                                .executes(ctx -> {
-                                                    String nome = StringArgumentType.getString(ctx, "nome");
-                                                    if (GerenciadorListaBrancaOffline.adicionar(nome)) {
-                                                        UUID uuid = GerenciadorListaBrancaOffline.gerarUUIDOffline(nome);
-                                                        ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.jogador_adicionado_a_whitelist_uuid", nome, uuid), true);
-                                                        return 1;
-                                                    } else {
-                                                        ctx.getSource().sendFailure(Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.jogador_ja_esta_na_whitelist", nome));
-                                                        return 0;
-                                                    }
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("remover")
-                                        .then(Commands.argument("nome", StringArgumentType.word())
-                                                .executes(ctx -> {
-                                                    String nome = StringArgumentType.getString(ctx, "nome");
-                                                    if (GerenciadorListaBrancaOffline.remover(nome)) {
-                                                        ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.jogador_removido_da_whitelist", nome), true);
-                                                        return 1;
-                                                    } else {
-                                                        ctx.getSource().sendFailure(Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.jogador_nao_encontrado_na_whitelist", nome));
-                                                        return 0;
-                                                    }
-                                                })
-                                        )
-                                )
-                                .then(Commands.literal("procurar")
-                                        .then(Commands.argument("nome", StringArgumentType.word())
-                                                .executes(ctx -> {
-                                                    String nome = StringArgumentType.getString(ctx, "nome");
-                                                    String info = GerenciadorListaBrancaOffline.getInfo(nome);
-                                                    if (info == null) {
-                                                        ctx.getSource().sendFailure(Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.jogador_nao_encontrado_na_whitelist", nome));
-                                                        return 0;
-                                                    }
-                                                    UUID uuid = GerenciadorListaBrancaOffline.gerarUUIDOffline(nome);
-                                                    ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.nucleo_comando.whitelist_nome_uuid_offline", nome, uuid), false);
-                                                    return 1;
-                                                })
-                                        )
-                                )
-                        )
+                        .then(ComandoListaBranca.build())
 
                         .then(Commands.literal("anunciar")
                                 .requires(source -> source.hasPermission(2))

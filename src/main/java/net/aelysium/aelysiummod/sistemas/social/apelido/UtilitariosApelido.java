@@ -38,6 +38,10 @@ public class UtilitariosApelido {
 
         Style baseStyle = applyFormat(Style.EMPTY, formatFlags);
 
+        if (text.indexOf('&') >= 0) {
+            return net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.componente(text).withStyle(baseStyle.withColor(TextColor.fromRgb(cor1)));
+        }
+
         if (text.length() == 1 || cor2 == -1) {
             return Component.literal(text).withStyle(baseStyle.withColor(TextColor.fromRgb(cor1)));
         }
@@ -61,6 +65,9 @@ public class UtilitariosApelido {
     public static MutableComponent renderSingleColor(String text, int cor, int formatFlags) {
         if (text == null || text.isEmpty()) return Component.empty();
         Style style = applyFormat(Style.EMPTY.withColor(TextColor.fromRgb(cor)), formatFlags);
+        if (text.indexOf('&') >= 0) {
+            return net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.componente(text).withStyle(style);
+        }
         return Component.literal(text).withStyle(style);
     }
-}
+}

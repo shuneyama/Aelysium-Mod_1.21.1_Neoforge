@@ -42,17 +42,18 @@ public class TemporizadorVanish {
             Vec3 pos = player.position();
 
             DustParticleOptions particle = createDust(data.deus);
+            boolean comParticulas = data.deus.tem(TipoDeus.PARTICULA);
 
             switch (data.phase) {
                 case GATHERING -> {
-                    spawnGatheringParticles(level, pos, data, particle);
+                    if (comParticulas) spawnGatheringParticles(level, pos, data, particle);
                     if (data.tickCount >= GATHER_TICKS) {
                         data.phase = ManipuladorTransicaoVanish.Fase.WAITING;
                         data.tickCount = 0;
                     }
                 }
                 case WAITING -> {
-                    spawnColumnParticles(level, pos, particle);
+                    if (comParticulas) spawnColumnParticles(level, pos, particle);
                     if (data.tickCount >= WAIT_TICKS) {
                         if (data.goingToSpectator) {
                             player.setGameMode(GameType.SPECTATOR);
@@ -68,7 +69,7 @@ public class TemporizadorVanish {
                     data.tickCount = 0;
                 }
                 case DISPERSING -> {
-                    spawnDispersingParticles(level, pos, data, particle);
+                    if (comParticulas) spawnDispersingParticles(level, pos, data, particle);
                     if (data.tickCount >= DISPERSE_TICKS) {
                         iter.remove();
                     }
@@ -77,12 +78,23 @@ public class TemporizadorVanish {
         }
     }
 
+    public static Vector3f vetorCor(int c) {
+        return new Vector3f(((c >> 16) & 0xFF) / 255f, ((c >> 8) & 0xFF) / 255f, (c & 0xFF) / 255f);
+    }
+
+    public static DustParticleOptions variada(DustParticleOptions base) {
+        java.util.concurrent.ThreadLocalRandom rng = java.util.concurrent.ThreadLocalRandom.current();
+        float escurecer = 0.75f + rng.nextFloat() * 0.25f;
+        float clarear = rng.nextFloat() * 0.25f;
+        Vector3f c = base.getColor();
+        return new DustParticleOptions(new Vector3f(
+                c.x() * escurecer * (1f - clarear) + clarear,
+                c.y() * escurecer * (1f - clarear) + clarear,
+                c.z() * escurecer * (1f - clarear) + clarear), base.getScale());
+    }
+
     private static DustParticleOptions createDust(TipoDeus deus) {
-        int c = deus.color;
-        float r = ((c >> 16) & 0xFF) / 255f;
-        float g = ((c >> 8) & 0xFF) / 255f;
-        float b = (c & 0xFF) / 255f;
-        return new DustParticleOptions(new Vector3f(r, g, b), 1.0f);
+        return new DustParticleOptions(vetorCor(deus.corParticula), 1.0f);
     }
 
     private static void spawnGatheringParticles(ServerLevel level, Vec3 base,
@@ -122,7 +134,7 @@ public class TemporizadorVanish {
             double vy = (endY - py) * 0.03;
             double vz = (endZ - pz) * 0.03;
 
-            level.sendParticles(particle, px, py, pz, 1, vx, vy, vz, 0.0);
+            level.sendParticles(variada(particle), px, py, pz, 1, vx, vy, vz, 0.0);
         }
     }
 
@@ -141,7 +153,7 @@ public class TemporizadorVanish {
             double vy = (rng.nextDouble() - 0.5) * 0.01;
             double vz = (rng.nextDouble() - 0.5) * 0.01;
 
-            level.sendParticles(particle, x, y, z, 1, vx, vy, vz, 0.0);
+            level.sendParticles(variada(particle), x, y, z, 1, vx, vy, vz, 0.0);
         }
     }
 
@@ -165,7 +177,7 @@ public class TemporizadorVanish {
             double vy = (rng.nextDouble() - 0.3) * 0.03;
             double vz = Math.sin(bodyAngle) * (0.05 + rng.nextDouble() * 0.04);
 
-            level.sendParticles(particle, startX, startY, startZ, 1, vx, vy, vz, 0.0);
+            level.sendParticles(variada(particle), startX, startY, startZ, 1, vx, vy, vz, 0.0);
         }
     }
 

@@ -1,98 +1,153 @@
 package net.aelysium.aelysiummod.sistemas.rp.deus.cliente;
 
+import net.aelysium.aelysiummod.nucleo.cliente.InsigniasPersonalizadasCliente;
 import net.aelysium.aelysiummod.nucleo.cliente.PainelGui;
+import net.aelysium.aelysiummod.nucleo.jogador.ConsultaInsignia;
+import net.aelysium.aelysiummod.nucleo.jogador.TipoDeus;
+import net.aelysium.aelysiummod.nucleo.jogador.TipoInsignia;
 import net.aelysium.aelysiummod.sistemas.rp.deus.RegistroDeuses;
 import net.aelysium.aelysiummod.sistemas.rp.deus.rede.PacoteCriarDeus;
+import net.aelysium.aelysiummod.sistemas.rp.deus.rede.PacoteEditarDeus;
+import net.aelysium.aelysiummod.sistemas.rp.personagem.cliente.TelaSeletorCor;
+import net.aelysium.aelysiummod.sistemas.social.insignia.cliente.TelaSeletorInsignia;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.aelysium.aelysiummod.sistemas.social.apelido.Pronome;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.network.chat.TextColor;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 public class TelaCriarDeus extends Screen {
-    private static final int LARGURA = 196;
-    private static final int ALTURA = 178;
-    private static final int COLUNAS = 8;
-    private static final int AMOSTRA_L = 18;
-    private static final int AMOSTRA_A = 12;
-    private static final int AMOSTRA_ESP = 4;
-    private static final int[] PALETA = {
-            0xFF5555, 0xFF8C00, 0xFFD700, 0xF5F56B, 0x32CD32, 0x55FF99, 0x00CED1, 0x87CEEB,
-            0x3C78FF, 0x6A5ACD, 0x8B008B, 0xD65CFF, 0xFF69B4, 0xFF9AA2, 0xC0392B, 0x8B4513,
-            0xF0F0F0, 0xC8C8C8, 0x909090, 0x606060, 0x303030, 0x1A1A1A, 0x006994, 0x7FDBFF
-    };
+    private static final int LARGURA = 216;
+    private static final int ALTURA = 220;
+    private static final int COR_TEXTO = 0xFF404040;
 
+    private final String idEdicao;
+    private String nome;
+    private int cor;
+    private String badge;
+    private int corParticula;
+    private String pronomes;
+    private int poderes;
     private int x0;
     private int y0;
-    private int cor = 0x7FDBFF;
     private EditBox campoNome;
-    private EditBox campoCor;
     private Button botaoCriar;
-    private boolean atualizando;
 
     public TelaCriarDeus() {
-        super(Component.translatable("gui.aelysiummod.deuses.criar_titulo"));
+        this(null, "", 0x7FDBFF, TipoInsignia.DEUS.id, -1, "", 0);
+    }
+
+    public TelaCriarDeus(String idEdicao, String nome, int cor, String badge, int corParticula, String pronomes, int poderes) {
+        super(Component.translatable(idEdicao == null ? "gui.aelysiummod.deuses.criar_titulo" : "gui.aelysiummod.deuses.editar_titulo"));
+        this.idEdicao = idEdicao;
+        this.poderes = poderes;
+        this.nome = nome;
+        this.cor = cor & 0xFFFFFF;
+        this.pronomes = pronomes == null ? "" : pronomes;
+        this.corParticula = corParticula < 0 ? this.cor : corParticula & 0xFFFFFF;
+        this.badge = badge == null || ConsultaInsignia.AUTOMATICA.equals(badge) ? TipoInsignia.DEUS.id : badge;
     }
 
     @Override
     protected void init() {
         x0 = (width - LARGURA) / 2;
         y0 = (height - ALTURA) / 2;
-        campoNome = new EditBox(font, x0 + 10, y0 + 32, LARGURA - 20, 18, Component.translatable("gui.aelysiummod.deuses.nome"));
+        campoNome = new EditBox(font, x0 + 20, y0 + 32, 150, 18, Component.translatable("gui.aelysiummod.deuses.nome"));
         campoNome.setMaxLength(RegistroDeuses.TAMANHO_MAXIMO_NOME);
-        campoNome.setResponder(texto -> validar());
+        campoNome.setFilter(texto -> texto.chars().noneMatch(Character::isWhitespace));
+        campoNome.setValue(nome);
+        campoNome.setResponder(texto -> {
+            nome = texto;
+            validar();
+        });
         addRenderableWidget(campoNome);
-        campoCor = new EditBox(font, x0 + 10, y0 + 68, 64, 18, Component.translatable("gui.aelysiummod.deuses.cor"));
-        campoCor.setMaxLength(7);
-        campoCor.setFilter(texto -> texto.matches("#?[0-9a-fA-F]{0,6}"));
-        campoCor.setValue(formatarHex(cor));
-        campoCor.setResponder(this::aoDigitarCor);
-        addRenderableWidget(campoCor);
-        int larguraBotao = (LARGURA - 20 - 4) / 2;
+
+        amostra(x0 + 20 + 150 + 8, y0 + 32);
+
+        addRenderableWidget(Button.builder(textoBadge(), b ->
+                minecraft.setScreen(new TelaSeletorInsignia(this, selecionada -> badge = selecionada, false))
+        ).bounds(x0 + 20, y0 + 60, 176, 20).build());
+
+        addRenderableWidget(Button.builder(textoPronomes(), b -> {
+            pronomes = Pronome.proximoId(pronomes);
+            b.setMessage(textoPronomes());
+        }).bounds(x0 + 20, y0 + 84, 176, 20).build());
+
+        addRenderableWidget(Button.builder(Component.translatable("gui.aelysiummod.poderes.botao"),
+                b -> minecraft.setScreen(new TelaPoderes(this, poderes, valor -> poderes = valor)))
+                .bounds(x0 + 20, y0 + 108, 176, 20).build());
+
+        Button botaoSkin = addRenderableWidget(Button.builder(Component.translatable("gui.aelysiummod.skin.botao"),
+                b -> minecraft.setScreen(new net.aelysium.aelysiummod.sistemas.rp.skin.cliente.TelaSkin(this,
+                        net.aelysium.aelysiummod.sistemas.rp.skin.RegistroSkins.TIPO_DEUS, idEdicao)))
+                .bounds(x0 + 20, y0 + 132, 176, 20).build());
+        botaoSkin.active = idEdicao != null;
+        if (idEdicao == null) botaoSkin.setTooltip(net.minecraft.client.gui.components.Tooltip.create(Component.translatable("gui.aelysiummod.skin.salvar_antes")));
+
+        int larguraBotao = 100;
         int y = y0 + ALTURA - 30;
-        botaoCriar = addRenderableWidget(Button.builder(Component.translatable("gui.aelysiummod.deuses.confirmar"), b -> criar())
-                .bounds(x0 + 10, y, larguraBotao, 20).build());
+        botaoCriar = addRenderableWidget(Button.builder(Component.translatable(idEdicao == null ? "gui.aelysiummod.deuses.confirmar" : "gui.aelysiummod.deuses.salvar"), b -> criar())
+                .bounds(x0 + LARGURA / 2 - 102, y, larguraBotao, 20).build());
         addRenderableWidget(Button.builder(Component.translatable("gui.aelysiummod.deuses.cancelar"), b -> onClose())
-                .bounds(x0 + 10 + larguraBotao + 4, y, larguraBotao, 20).build());
+                .bounds(x0 + LARGURA / 2 + 2, y, larguraBotao, 20).build());
         setInitialFocus(campoNome);
         validar();
     }
 
-    private void aoDigitarCor(String texto) {
-        if (atualizando) return;
-        String limpo = texto.startsWith("#") ? texto.substring(1) : texto;
-        if (limpo.length() == 6) {
-            cor = Integer.parseInt(limpo, 16);
+    private void amostra(int x, int y) {
+        addRenderableWidget(new Button(x, y, 18, 18, Component.empty(), b ->
+                minecraft.setScreen(new TelaSeletorCorDupla(this, cor, corParticula, nome, (poderes & TipoDeus.PARTICULA) != 0, (c1, c2) -> {
+                    cor = c1;
+                    corParticula = c2;
+                })), supplier -> supplier.get()) {
+            @Override
+            protected void renderWidget(GuiGraphics g, int mouseX, int mouseY, float parcial) {
+                g.fill(getX(), getY(), getX() + 18, getY() + 18, isHoveredOrFocused() ? 0xFFFFFFFF : 0xFF000000);
+                g.fill(getX() + 1, getY() + 1, getX() + 17, getY() + 17, 0xFF000000);
+                g.fill(getX() + 2, getY() + 2, getX() + 16, getY() + 16, 0xFF000000 | cor);
+            }
+        });
+    }
+
+    private Component textoPronomes() {
+        Pronome p = Pronome.deId(pronomes);
+        Component valor = p == null
+                ? Component.translatable("gui.aelysiummod.apelido.badge_nenhum")
+                : Component.literal(p.texto).withStyle(e -> e.withColor(TextColor.fromRgb(p.cor)));
+        return Component.translatableEscape("gui.aelysiummod.apelido.pronomes_botao", valor);
+    }
+
+    private Component textoBadge() {
+        Component valor;
+        if (badge == null || badge.isEmpty() || badge.equals(ConsultaInsignia.AUTOMATICA)) {
+            valor = Component.translatable("gui.aelysiummod.apelido.badge_nenhum");
+        } else {
+            TipoInsignia tipo = TipoInsignia.fromId(badge);
+            var personalizada = InsigniasPersonalizadasCliente.porId(badge);
+            if (tipo != null) valor = Component.literal(tipo.id);
+            else if (personalizada != null) valor = Component.literal(personalizada.dados().texto());
+            else valor = Component.translatable("gui.aelysiummod.apelido.badge_nenhum");
         }
-        validar();
+        return Component.translatableEscape("gui.aelysiummod.personagens.badge", valor);
     }
 
     private void validar() {
         if (botaoCriar == null) return;
-        String limpo = campoCor.getValue().startsWith("#") ? campoCor.getValue().substring(1) : campoCor.getValue();
-        botaoCriar.active = !campoNome.getValue().trim().isEmpty()
-                && !RegistroDeuses.gerarId(campoNome.getValue()).isEmpty()
-                && limpo.length() == 6;
+        botaoCriar.active = !nome.trim().isEmpty() && !RegistroDeuses.gerarId(nome).isEmpty();
     }
 
     private void criar() {
-        PacketDistributor.sendToServer(new PacoteCriarDeus(campoNome.getValue().trim(), cor));
+        String limpo = nome.trim();
+        String insignia = badge == null ? "" : badge;
+        if (idEdicao == null) {
+            PacketDistributor.sendToServer(new PacoteCriarDeus(limpo, cor, insignia, corParticula, pronomes, poderes));
+        } else {
+            PacketDistributor.sendToServer(new PacoteEditarDeus(idEdicao, limpo, cor, insignia, corParticula, pronomes, poderes));
+        }
         minecraft.setScreen(new TelaDeuses());
-    }
-
-    private static String formatarHex(int rgb) {
-        return String.format("#%06X", rgb & 0xFFFFFF);
-    }
-
-    private int amostraX(int i) {
-        return x0 + 10 + (i % COLUNAS) * (AMOSTRA_L + AMOSTRA_ESP);
-    }
-
-    private int amostraY(int i) {
-        return y0 + 96 + (i / COLUNAS) * (AMOSTRA_A + AMOSTRA_ESP);
     }
 
     @Override
@@ -104,42 +159,12 @@ public class TelaCriarDeus extends Screen {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float parcial) {
         super.render(g, mouseX, mouseY, parcial);
-        g.drawString(font, title, x0 + (LARGURA - font.width(title)) / 2, y0 + 8, 0xFF404040, false);
-        g.drawString(font, Component.translatable("gui.aelysiummod.deuses.nome"), x0 + 10, y0 + 22, 0xFF404040, false);
-        g.drawString(font, Component.translatable("gui.aelysiummod.deuses.cor"), x0 + 10, y0 + 58, 0xFF404040, false);
-        g.fill(x0 + 80, y0 + 68, x0 + 98, y0 + 86, 0xFF000000);
-        g.fill(x0 + 81, y0 + 69, x0 + 97, y0 + 85, 0xFF000000 | cor);
-        String nome = campoNome.getValue().trim();
-        String previa = nome.isEmpty() ? Component.translatable("gui.aelysiummod.deuses.previa").getString() : nome;
-        PainelGui.textoContorno(g, font, previa, x0 + 104, y0 + 73, cor);
-        for (int i = 0; i < PALETA.length; i++) {
-            int ax = amostraX(i);
-            int ay = amostraY(i);
-            boolean escolhida = (PALETA[i] & 0xFFFFFF) == (cor & 0xFFFFFF);
-            boolean sobre = mouseX >= ax && mouseX < ax + AMOSTRA_L && mouseY >= ay && mouseY < ay + AMOSTRA_A;
-            g.fill(ax - 1, ay - 1, ax + AMOSTRA_L + 1, ay + AMOSTRA_A + 1, escolhida ? 0xFFFFFFFF : (sobre ? 0xFFC6C6C6 : 0xFF000000));
-            g.fill(ax, ay, ax + AMOSTRA_L, ay + AMOSTRA_A, 0xFF000000 | PALETA[i]);
-        }
-    }
-
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int botao) {
-        if (botao == 0) {
-            for (int i = 0; i < PALETA.length; i++) {
-                int ax = amostraX(i);
-                int ay = amostraY(i);
-                if (mouseX >= ax && mouseX < ax + AMOSTRA_L && mouseY >= ay && mouseY < ay + AMOSTRA_A) {
-                    minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-                    cor = PALETA[i];
-                    atualizando = true;
-                    campoCor.setValue(formatarHex(cor));
-                    atualizando = false;
-                    validar();
-                    return true;
-                }
-            }
-        }
-        return super.mouseClicked(mouseX, mouseY, botao);
+        g.drawString(font, title, x0 + (LARGURA - font.width(title)) / 2, y0 + 8, COR_TEXTO, false);
+        g.drawString(font, Component.translatable("gui.aelysiummod.deuses.nome"), x0 + 20, y0 + 22, COR_TEXTO, false);
+        Component rotuloCor = Component.translatable("gui.aelysiummod.personagens.cor");
+        g.drawString(font, rotuloCor, x0 + 20 + 150 + 8, y0 + 22, COR_TEXTO, false);
+        String previa = nome.trim().isEmpty() ? Component.translatable("gui.aelysiummod.deuses.previa").getString() : nome.trim();
+        g.drawString(font, previa, x0 + (LARGURA - font.width(previa)) / 2, y0 + 164, 0xFF000000 | cor, true);
     }
 
     @Override

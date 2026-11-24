@@ -39,7 +39,7 @@ public class FormaDivina {
 
         if (estaAtiva(player)) {
             desativar(player);
-        } else {
+        } else if (deus.tem(TipoDeus.PARTICULA)) {
             ativar(player, deus);
         }
     }
@@ -51,7 +51,7 @@ public class FormaDivina {
                 MobEffects.INVISIBILITY, Integer.MAX_VALUE, 0, false, false, false), null);
 
         PacketDistributor.sendToAllPlayers(
-                new PacoteFormaDivina(player.getUUID(), true, deus.id, deus.color));
+                new PacoteFormaDivina(player.getUUID(), true, deus.id, deus.tem(TipoDeus.PARTICULA) ? deus.corParticula : -1));
     }
 
     public static void desativar(ServerPlayer player) {

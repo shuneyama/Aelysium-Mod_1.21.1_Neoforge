@@ -27,13 +27,9 @@ public class RenderizadorFormaDivina {
             if (!CacheFormaDivina.isActive(uuid)) continue;
 
             CacheFormaDivina.EstadoDivina state = CacheFormaDivina.get(uuid);
-            if (state == null) continue;
+            if (state == null || state.cor() < 0) continue;
 
-            float r = ((state.cor() >> 16) & 0xFF) / 255f;
-            float g = ((state.cor() >> 8) & 0xFF) / 255f;
-            float b = (state.cor() & 0xFF) / 255f;
-
-            DustParticleOptions dust = new DustParticleOptions(new Vector3f(r, g, b), 0.6f);
+            DustParticleOptions dust = new DustParticleOptions(net.aelysium.aelysiummod.sistemas.rp.deus.TemporizadorVanish.vetorCor(state.cor()), 0.6f);
 
             double cx = player.getX();
             double cy = player.getY() + 0.8;
@@ -44,7 +40,7 @@ public class RenderizadorFormaDivina {
                 double oy = (rng.nextDouble() - 0.5) * 0.9;
                 double oz = (rng.nextDouble() - 0.5) * 0.35;
 
-                mc.level.addParticle(dust,
+                mc.level.addParticle(net.aelysium.aelysiummod.sistemas.rp.deus.TemporizadorVanish.variada(dust),
                         cx + ox, cy + oy, cz + oz,
                         (rng.nextDouble() - 0.5) * 0.005,
                         0.01 + rng.nextDouble() * 0.01,
@@ -57,7 +53,7 @@ public class RenderizadorFormaDivina {
                 double rx = Math.cos(a) * 0.3;
                 double rz = Math.sin(a) * 0.3;
 
-                mc.level.addParticle(dust,
+                mc.level.addParticle(net.aelysium.aelysiummod.sistemas.rp.deus.TemporizadorVanish.variada(dust),
                         cx + rx, cy + Math.sin(player.tickCount * 0.15 + i) * 0.2, cz + rz,
                         0, 0.005, 0);
             }

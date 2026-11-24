@@ -32,7 +32,19 @@ public class RegistroRedeDeus {
         registrar.playToServer(PacoteCriarDeus.TYPE, PacoteCriarDeus.STREAM_CODEC,
                 (pkt, ctx) -> ctx.enqueueWork(() -> {
                     if (ctx.player() instanceof net.minecraft.server.level.ServerPlayer j)
-                        net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses.criar(j, pkt.nome(), pkt.cor());
+                        net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses.criar(j, pkt.nome(), pkt.cor(), pkt.badge(), pkt.corParticula(), pkt.pronomes(), pkt.poderes());
+                }));
+
+        registrar.playToServer(PacoteEditarDeus.TYPE, PacoteEditarDeus.STREAM_CODEC,
+                (pkt, ctx) -> ctx.enqueueWork(() -> {
+                    if (ctx.player() instanceof net.minecraft.server.level.ServerPlayer j)
+                        net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses.editar(j, pkt.id(), pkt.nome(), pkt.cor(), pkt.badge(), pkt.corParticula(), pkt.pronomes(), pkt.poderes());
+                }));
+
+        registrar.playToServer(PacoteExcluirDeus.TYPE, PacoteExcluirDeus.STREAM_CODEC,
+                (pkt, ctx) -> ctx.enqueueWork(() -> {
+                    if (ctx.player() instanceof net.minecraft.server.level.ServerPlayer j)
+                        net.aelysium.aelysiummod.sistemas.rp.deus.GerenciadorDeuses.excluir(j, pkt.id());
                 }));
 
         registrar.playToClient(PacoteListaDeuses.TYPE, PacoteListaDeuses.STREAM_CODEC,
