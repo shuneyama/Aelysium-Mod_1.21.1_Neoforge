@@ -632,6 +632,7 @@
   "gui.aelysiummod.deuses.confirmar": "Create",
   "gui.aelysiummod.deuses.cancelar": "Cancel",
   "gui.aelysiummod.admin.botao_personagens": "Characters",
+  "gui.aelysiummod.admin.botao_pasta": "Gods and Characters",
   "gui.aelysiummod.admin.botao_espiar_privado": "Spy: private messages",
   "gui.aelysiummod.admin.botao_espiar_tudo": "Spy: private and distant chat",
   "gui.aelysiummod.admin.botao_espiar_desligado": "Spy: off",

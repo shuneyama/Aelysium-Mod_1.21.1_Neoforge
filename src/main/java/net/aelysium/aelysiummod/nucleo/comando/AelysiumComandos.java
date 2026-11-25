@@ -36,7 +36,6 @@ import java.util.UUID;
 import net.aelysium.aelysiummod.sistemas.admin.atributos.comando.ComandoAtributos;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.comando.ComandoBanidos;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.comando.ComandosBanimentoCriacao;
-import net.aelysium.aelysiummod.sistemas.admin.banimentos.comando.ComandosModsDesativados;
 import net.aelysium.aelysiummod.sistemas.admin.discord.comando.ComandoTicket;
 import net.aelysium.aelysiummod.sistemas.admin.proibicao.comando.ComandoProibir;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.comando.ComandoProtecao;
@@ -75,8 +74,6 @@ public class AelysiumComandos {
 
                         .then(ComandoTocar.build())
 
-
-                        .then(ComandosModsDesativados.build())
 
                         .then(ComandoProibir.build())
 

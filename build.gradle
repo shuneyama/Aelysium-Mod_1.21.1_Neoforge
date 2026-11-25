@@ -141,7 +141,7 @@ dependencies {
 
     compileOnly "net.caffeinemc:sodium-neoforge-api:0.8.13+mc1.21.1"
     runtimeOnly "curse.maven:collective-342584:6429221"
-    implementation "maven.modrinth:jade:15.7.1+neoforge"
+    implementation "maven.modrinth:jade:15.10.6+neoforge"
     compileOnly "curse.maven:collective-342584:6429221"
 
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1"

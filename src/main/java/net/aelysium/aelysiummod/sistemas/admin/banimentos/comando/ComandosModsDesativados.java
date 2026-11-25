@@ -6,6 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.ConfiguracaoModsDesativados;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.ConfiguracaoModsDesativados.ModDesativado;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.GerenciadorFiltroReceitas;
+import net.aelysium.aelysiummod.nucleo.servico.RegistroServicos;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -31,7 +32,7 @@ public class ComandosModsDesativados {
     private static final String PREFIXO = "mensagem.aelysiummod.banimentos.";
 
     public static LiteralArgumentBuilder<CommandSourceStack> build() {
-        return Commands.literal("mod")
+        return Commands.literal("conteudo")
                 .requires(source -> source.hasPermission(2))
                 .then(Commands.literal("desativar")
                         .then(Commands.argument("mod_id", StringArgumentType.word())
@@ -112,6 +113,17 @@ public class ComandosModsDesativados {
         return 1;
     }
 
+    public static int alternarProibicao(CommandContext<CommandSourceStack> ctx) {
+        String modId = StringArgumentType.getString(ctx, "mod_id").toLowerCase();
+        boolean removeu = RegistroServicos.listaNegraMods().alternar(modId);
+        if (removeu) {
+            ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.proibicao.mod_nao_esta_mais_proibido", modId), true);
+        } else {
+            ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.proibicao.mod_agora_esta_proibido_no_servidor", modId), true);
+        }
+        return 1;
+    }
+
     private static int listar(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack fonte = ctx.getSource();
         Map<String, ModDesativado> todos = ConfiguracaoModsDesativados.getAll();
@@ -150,7 +162,7 @@ public class ComandosModsDesativados {
 
     private static MutableComponent botao(String modId, String parte, boolean desativada) {
         String acao = desativada ? "reativar" : "desativar";
-        String comando = "/aelysium mod " + acao + " " + modId + " " + parte;
+        String comando = "/aelysium restringir conteudo " + acao + " " + modId + " " + parte;
         Style estilo = Style.EMPTY
                 .withColor(desativada ? ChatFormatting.RED : ChatFormatting.GREEN)
                 .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, comando))
@@ -189,14 +201,14 @@ public class ComandosModsDesativados {
         return Stream.concat(PARTES.stream(), Stream.of(TUDO)).toList();
     }
 
-    private static Stream<String> idsInstalados() {
+    public static Stream<String> idsInstalados() {
         return ModList.get().getMods().stream()
                 .map(IModInfo::getModId)
                 .filter(id -> !IDS_PROTEGIDOS.contains(id))
                 .distinct();
     }
 
-    private static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> sugerir(
+    public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> sugerir(
             Stream<String> ids, com.mojang.brigadier.suggestion.SuggestionsBuilder construtor) {
         String digitado = construtor.getRemainingLowerCase();
         ids.filter(id -> id.contains(digitado)).sorted().forEach(construtor::suggest);

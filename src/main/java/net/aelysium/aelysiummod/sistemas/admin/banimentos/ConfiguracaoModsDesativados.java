@@ -97,7 +97,7 @@ public class ConfiguracaoModsDesativados {
             sb.append("#              em chunks que ainda não foram gerados.\n");
             sb.append("# conquistas = remove as conquistas (advancements) desse mod.\n");
             sb.append("#\n");
-            sb.append("# \"loot\" e \"receitas\" aplicam em tempo real (ou via /aelysium mod recarregar).\n");
+            sb.append("# \"loot\" e \"receitas\" aplicam em tempo real (ou via /aelysium restringir conteudo recarregar).\n");
             sb.append("# \"trocas\" e \"conquistas\" exigem /reload (datapack) ou reiniciar o servidor.\n");
             sb.append("# \"worldgen\" vale para chunks gerados a partir de agora.\n");
             sb.append("#\n");

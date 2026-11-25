@@ -3,6 +3,7 @@ package net.aelysium.aelysiummod.sistemas.admin.proibicao.comando;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import net.aelysium.aelysiummod.sistemas.admin.banimentos.comando.ComandosModsDesativados;
 import net.aelysium.aelysiummod.sistemas.admin.proibicao.MensagemFalhaFalsa;
 import net.aelysium.aelysiummod.sistemas.admin.proibicao.DadosProibicao;
 import net.minecraft.commands.CommandSourceStack;
@@ -13,21 +14,23 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
-import net.aelysium.aelysiummod.nucleo.servico.RegistroServicos;
 
 public class ComandoProibir {
 
     public static LiteralArgumentBuilder<CommandSourceStack> build() {
-        return Commands.literal("proibir")
+        return Commands.literal("restringir")
                 .requires(source -> source.hasPermission(2))
+
+                .then(Commands.literal("mod")
+                        .then(Commands.argument("mod_id", StringArgumentType.word())
+                                .suggests((ctx, construtor) -> ComandosModsDesativados.sugerir(ComandosModsDesativados.idsInstalados(), construtor))
+                                .executes(ComandosModsDesativados::alternarProibicao)))
+
+                .then(ComandosModsDesativados.build())
 
                 .then(Commands.literal("jogador")
                         .then(Commands.argument("nome", StringArgumentType.word())
                                 .executes(ComandoProibir::toggleJogador)))
-
-                .then(Commands.literal("mod")
-                        .then(Commands.argument("mod_id", StringArgumentType.word())
-                                .executes(ComandoProibir::toggleMod)))
 
                 .then(Commands.literal("dimensao")
                         .then(Commands.argument("dimensao", DimensionArgument.dimension())
@@ -66,17 +69,6 @@ public class ComandoProibir {
         } else {
             data.proibirDimensao(id);
             ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.proibicao.a_dimensao_agora_esta_proibida_so_e", id), true);
-        }
-        return 1;
-    }
-
-    private static int toggleMod(CommandContext<CommandSourceStack> ctx) {
-        String modId = StringArgumentType.getString(ctx, "mod_id").toLowerCase();
-        boolean removeu = RegistroServicos.listaNegraMods().alternar(modId);
-        if (removeu) {
-            ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.proibicao.mod_nao_esta_mais_proibido", modId), true);
-        } else {
-            ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.proibicao.mod_agora_esta_proibido_no_servidor", modId), true);
         }
         return 1;
     }
