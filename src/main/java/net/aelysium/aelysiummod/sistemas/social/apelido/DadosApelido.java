@@ -49,7 +49,7 @@ public class DadosApelido extends DadosEmArquivos {
                 );
                 data.nicknames.put(uuid, entry);
                 if (!entry.nick.isEmpty()) {
-                    data.nickToUUID.put(entry.nick.toLowerCase(Locale.ROOT), uuid);
+                    data.nickToUUID.put(chave(entry.nick), uuid);
                 }
             } catch (Exception ignored) {}
         }
@@ -129,12 +129,12 @@ public class DadosApelido extends DadosEmArquivos {
     public void setNickname(UUID uuid, EntradaApelido entry) {
         EntradaApelido old = nicknames.get(uuid);
         if (old != null && !old.nick.isEmpty()) {
-            nickToUUID.remove(old.nick.toLowerCase(Locale.ROOT));
+            nickToUUID.remove(chave(old.nick));
         }
         nicknames.put(uuid, entry);
         notificarHistorico(uuid);
         if (!entry.nick.isEmpty()) {
-            nickToUUID.put(entry.nick.toLowerCase(Locale.ROOT), uuid);
+            nickToUUID.put(chave(entry.nick), uuid);
         }
         setDirty();
     }
@@ -156,7 +156,7 @@ public class DadosApelido extends DadosEmArquivos {
         EntradaApelido old = nicknames.remove(uuid);
         notificarHistorico(uuid);
         if (old != null && !old.nick.isEmpty()) {
-            nickToUUID.remove(old.nick.toLowerCase(Locale.ROOT));
+            nickToUUID.remove(chave(old.nick));
         }
         setDirty();
     }
@@ -169,8 +169,12 @@ public class DadosApelido extends DadosEmArquivos {
         return nicknames.containsKey(uuid);
     }
 
+    private static String chave(String nick) {
+        return net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(nick).toLowerCase(Locale.ROOT);
+    }
+
     public UUID releasePreviousOwner(String nick, UUID excludeUUID) {
-        UUID existing = nickToUUID.get(nick.toLowerCase(Locale.ROOT));
+        UUID existing = nickToUUID.get(chave(nick));
         if (existing != null && !existing.equals(excludeUUID)) {
             removeNickname(existing);
             return existing;
@@ -179,7 +183,7 @@ public class DadosApelido extends DadosEmArquivos {
     }
 
     public UUID getUUIDByNick(String nick) {
-        return nickToUUID.get(nick.toLowerCase(Locale.ROOT));
+        return nickToUUID.get(chave(nick));
     }
 
     public Map<UUID, EntradaApelido> getAllNicknames() {

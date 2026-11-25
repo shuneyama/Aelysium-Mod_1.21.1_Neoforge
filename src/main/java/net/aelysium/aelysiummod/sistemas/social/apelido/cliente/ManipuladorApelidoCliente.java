@@ -19,7 +19,7 @@ public class ManipuladorApelidoCliente {
                            String suffix, int suffixCor1, int suffixCor2, int suffixFormat) {
         CacheApelido old = NICKNAME_MAP.get(uuid);
         if (old != null && !old.nick.isEmpty()) {
-            NICK_TO_UUID.remove(old.nick.toLowerCase(Locale.ROOT));
+            NICK_TO_UUID.remove(chave(old.nick));
         }
 
         CacheApelido cache = new CacheApelido(prefix, prefixCor1, prefixCor2, prefixFormat,
@@ -27,14 +27,18 @@ public class ManipuladorApelidoCliente {
                 suffix, suffixCor1, suffixCor2, suffixFormat);
         NICKNAME_MAP.put(uuid, cache);
         if (!nick.isEmpty()) {
-            NICK_TO_UUID.put(nick.toLowerCase(Locale.ROOT), uuid);
+            NICK_TO_UUID.put(chave(nick), uuid);
         }
+    }
+
+    private static String chave(String nick) {
+        return net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(nick).toLowerCase(Locale.ROOT);
     }
 
     public static void remove(UUID uuid) {
         CacheApelido old = NICKNAME_MAP.remove(uuid);
         if (old != null && !old.nick.isEmpty()) {
-            NICK_TO_UUID.remove(old.nick.toLowerCase(Locale.ROOT));
+            NICK_TO_UUID.remove(chave(old.nick));
         }
     }
 
@@ -81,13 +85,13 @@ public class ManipuladorApelidoCliente {
     public static Collection<String> getAllNicknames() {
         List<String> nicks = new ArrayList<>();
         for (CacheApelido c : NICKNAME_MAP.values()) {
-            if (!c.nick.isEmpty()) nicks.add(c.nick);
+            if (!c.nick.isEmpty()) nicks.add(net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(c.nick));
         }
         return nicks;
     }
 
     public static UUID getUUIDByNick(String nick) {
-        return NICK_TO_UUID.get(nick.toLowerCase(Locale.ROOT));
+        return NICK_TO_UUID.get(chave(nick));
     }
 
     public static void clear() {

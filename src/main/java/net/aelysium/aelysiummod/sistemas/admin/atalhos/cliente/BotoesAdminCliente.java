@@ -44,6 +44,8 @@ public final class BotoesAdminCliente {
                     BotoesAdminCliente::abrirDeuses, () -> 0, null),
             new Atalho(textura("botao_personagem"), textura("botao_personagem_pressionado"), () -> Component.translatable("gui.aelysiummod.admin.botao_personagens"),
                     BotoesAdminCliente::abrirPersonagens, () -> 0, null),
+            new Atalho(textura("botao_itens"), textura("botao_itens_pressionado"), () -> Component.translatable("gui.aelysiummod.admin.botao_itens"),
+                    BotoesAdminCliente::abrirItens, () -> 0, null),
             new Atalho(textura("botao_espiar"), textura("botao_espiar_pressionado"),
                     () -> Component.translatable("gui.aelysiummod.admin.botao_espiar_" + switch (EstadoEspiao.nivel()) {
                         case 1 -> "privado";
@@ -72,6 +74,12 @@ public final class BotoesAdminCliente {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null) mc.player.closeContainer();
         mc.setScreen(new net.aelysium.aelysiummod.sistemas.rp.personagem.cliente.TelaPersonagens());
+    }
+
+    private static void abrirItens() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null) mc.player.closeContainer();
+        mc.setScreen(new net.aelysium.aelysiummod.sistemas.admin.banimentos.cliente.TelaItensBanidos());
     }
 
     private static void alternarEspiao() {

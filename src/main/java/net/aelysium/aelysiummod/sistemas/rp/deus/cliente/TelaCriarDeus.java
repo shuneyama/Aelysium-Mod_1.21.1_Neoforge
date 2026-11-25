@@ -37,7 +37,7 @@ public class TelaCriarDeus extends Screen {
     private Button botaoCriar;
 
     public TelaCriarDeus() {
-        this(null, "", 0x7FDBFF, TipoInsignia.DEUS.id, -1, "", 0);
+        this(null, "&l", 0x7FDBFF, TipoInsignia.DEUS.id, -1, "", 0);
     }
 
     public TelaCriarDeus(String idEdicao, String nome, int cor, String badge, int corParticula, String pronomes, int poderes) {
@@ -56,7 +56,7 @@ public class TelaCriarDeus extends Screen {
         x0 = (width - LARGURA) / 2;
         y0 = (height - ALTURA) / 2;
         campoNome = new EditBox(font, x0 + 20, y0 + 32, 150, 18, Component.translatable("gui.aelysiummod.deuses.nome"));
-        campoNome.setMaxLength(RegistroDeuses.TAMANHO_MAXIMO_NOME);
+        campoNome.setMaxLength(RegistroDeuses.TAMANHO_MAXIMO_NOME * 2);
         campoNome.setFilter(texto -> texto.chars().noneMatch(Character::isWhitespace));
         campoNome.setValue(nome);
         campoNome.setResponder(texto -> {
@@ -136,7 +136,7 @@ public class TelaCriarDeus extends Screen {
 
     private void validar() {
         if (botaoCriar == null) return;
-        botaoCriar.active = !nome.trim().isEmpty() && !RegistroDeuses.gerarId(nome).isEmpty();
+        botaoCriar.active = !net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(nome).trim().isEmpty() && net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(nome).length() <= RegistroDeuses.TAMANHO_MAXIMO_NOME && !RegistroDeuses.gerarId(nome).isEmpty();
     }
 
     private void criar() {

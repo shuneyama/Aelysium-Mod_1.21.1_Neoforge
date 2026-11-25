@@ -27,7 +27,7 @@ public abstract class ProvedorSugestoesClienteMixin {
             if (ManipuladorApelidoCliente.hasNickname(uuid)) {
                 realNamesToHide.add(info.getProfile().getName());
                 String nick = ManipuladorApelidoCliente.getRawNick(uuid);
-                if (nick != null && !nick.isEmpty()) onlineNicknames.add(nick);
+                if (nick != null && !nick.isEmpty()) onlineNicknames.add(net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(nick));
             }
         }
 

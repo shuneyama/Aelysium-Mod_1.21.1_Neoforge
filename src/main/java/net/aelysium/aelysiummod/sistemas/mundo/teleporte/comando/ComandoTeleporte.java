@@ -30,7 +30,7 @@ public class ComandoTeleporte {
                                 .suggests((ctx, builder) -> {
                                     for (TipoDeus d : TipoDeus.values()) {
                                         if (d == TipoDeus.NONE) continue;
-                                        builder.suggest(d.displayName);
+                                        builder.suggest(net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(d.displayName));
                                     }
                                     return builder.buildFuture();
                                 })
@@ -68,7 +68,7 @@ public class ComandoTeleporte {
                                 Coordinates rotacao) {
         TipoDeus deus = TipoDeus.NONE;
         for (TipoDeus d : TipoDeus.values()) {
-            if (d.displayName.equalsIgnoreCase(deusNome) || d.id.equalsIgnoreCase(deusNome)) {
+            if (net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(d.displayName).equalsIgnoreCase(deusNome) || d.displayName.equalsIgnoreCase(deusNome) || d.id.equalsIgnoreCase(deusNome)) {
                 deus = d;
                 break;
             }
@@ -102,7 +102,7 @@ public class ComandoTeleporte {
                     pos.x, pos.y, pos.z, destYaw, destPitch, true);
 
             String nomeJogador = jogador.getName().getString();
-            String nomeDeus = deus.displayName;
+            String nomeDeus = net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(deus.displayName);
             source.sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.teleporte.teleportando_com_efeito_de", nomeJogador, nomeDeus), true);
         }
 

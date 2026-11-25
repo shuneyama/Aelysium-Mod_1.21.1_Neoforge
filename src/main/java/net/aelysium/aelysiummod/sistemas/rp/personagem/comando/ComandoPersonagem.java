@@ -35,8 +35,8 @@ public final class ComandoPersonagem {
                 .requires(cs -> cs.hasPermission(PERMISSAO))
                 .then(Commands.argument("personagem", StringArgumentType.word())
                         .suggests((ctx, construtor) -> SharedSuggestionProvider.suggest(
-                                java.util.stream.Stream.concat(RegistroPersonagens.todos().stream().map(Personagem::nome),
-                                        java.util.Arrays.stream(TipoDeus.values()).filter(d -> d != TipoDeus.NONE).map(d -> d.displayName.replace(" ", ""))), construtor))
+                                java.util.stream.Stream.concat(RegistroPersonagens.todos().stream().map(p -> net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(p.nome()).replace(" ", "")),
+                                        java.util.Arrays.stream(TipoDeus.values()).filter(d -> d != TipoDeus.NONE).map(d -> net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(d.displayName).replace(" ", ""))), construtor))
                         .then(Commands.literal("atributos")
                                 .then(Commands.literal("listar").executes(ComandoPersonagem::listar))
                                 .then(Commands.literal("limpar").executes(ComandoPersonagem::limpar))
@@ -75,7 +75,7 @@ public final class ComandoPersonagem {
         Personagem p = RegistroPersonagens.buscar(nome);
         if (p == null) {
             for (Personagem candidato : RegistroPersonagens.todos()) {
-                if (candidato.nome().equalsIgnoreCase(nome)) {
+                if ((net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(candidato.nome()).equalsIgnoreCase(nome) || candidato.nome().equalsIgnoreCase(nome))) {
                     p = candidato;
                     break;
                 }
@@ -83,7 +83,7 @@ public final class ComandoPersonagem {
         }
         if (p != null) return new Alvo(p.id(), p.nome());
         for (TipoDeus deus : TipoDeus.values()) {
-            if (deus != TipoDeus.NONE && (deus.id.equalsIgnoreCase(nome) || deus.displayName.equalsIgnoreCase(nome) || deus.displayName.replace(" ", "").equalsIgnoreCase(nome))) {
+            if (deus != TipoDeus.NONE && (deus.id.equalsIgnoreCase(nome) || net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(deus.displayName).equalsIgnoreCase(nome) || deus.displayName.equalsIgnoreCase(nome) || net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(deus.displayName).replace(" ", "").equalsIgnoreCase(nome))) {
                 return new Alvo(AtributosPersonagem.chaveDeus(deus.id), deus.displayName);
             }
         }

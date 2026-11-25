@@ -153,7 +153,7 @@ public final class RegistroDeuses {
     }
 
     public static String gerarId(String nome) {
-        String normalizado = Normalizer.normalize(nome, Normalizer.Form.NFD);
+        String normalizado = Normalizer.normalize(net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(nome), Normalizer.Form.NFD);
         StringBuilder id = new StringBuilder();
         for (char c : normalizado.toCharArray()) {
             if (Character.getType(c) == Character.NON_SPACING_MARK) continue;

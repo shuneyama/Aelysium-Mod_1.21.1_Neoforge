@@ -73,7 +73,7 @@ public class ResolvedorArgumentoApelido {
         DadosApelido data = DadosApelido.get(server);
         for (DadosApelido.EntradaApelido entry : data.getAllNicknames().values()) {
             if (!entry.nick().isEmpty()) {
-                names.add(entry.nick());
+                names.add(net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(entry.nick()));
             }
         }
 

@@ -188,7 +188,7 @@ public final class GerenciadorDeuses {
     public static void criar(ServerPlayer jogador, String nome, int cor, String badge, int corParticula, String pronomes, int poderes) {
         if (!jogador.hasPermissions(PERMISSAO)) return;
         String limpo = nome == null ? "" : nome.replaceAll("\\s+", "");
-        if (limpo.isEmpty() || limpo.length() > RegistroDeuses.TAMANHO_MAXIMO_NOME || RegistroDeuses.gerarId(limpo).isEmpty()) {
+        if (limpo.isEmpty() || net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(limpo).length() > RegistroDeuses.TAMANHO_MAXIMO_NOME || limpo.length() > RegistroDeuses.TAMANHO_MAXIMO_NOME * 2 || RegistroDeuses.gerarId(limpo).isEmpty()) {
             jogador.sendSystemMessage(Component.translatable("mensagem.aelysiummod.deus.nome_invalido").withStyle(ChatFormatting.RED));
         } else if (RegistroDeuses.criar(limpo, cor & 0xFFFFFF, badge, corParticula, pronomes, poderes) == null) {
             jogador.sendSystemMessage(Component.translatableEscape("mensagem.aelysiummod.deus.deus_ja_existe", limpo).withStyle(ChatFormatting.RED));
@@ -204,7 +204,7 @@ public final class GerenciadorDeuses {
             enviarLista(jogador);
             return;
         }
-        if (limpo.isEmpty() || limpo.length() > RegistroDeuses.TAMANHO_MAXIMO_NOME || RegistroDeuses.gerarId(limpo).isEmpty()) {
+        if (limpo.isEmpty() || net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.semCodigos(limpo).length() > RegistroDeuses.TAMANHO_MAXIMO_NOME || limpo.length() > RegistroDeuses.TAMANHO_MAXIMO_NOME * 2 || RegistroDeuses.gerarId(limpo).isEmpty()) {
             jogador.sendSystemMessage(Component.translatable("mensagem.aelysiummod.deus.nome_invalido").withStyle(ChatFormatting.RED));
             enviarLista(jogador);
             return;

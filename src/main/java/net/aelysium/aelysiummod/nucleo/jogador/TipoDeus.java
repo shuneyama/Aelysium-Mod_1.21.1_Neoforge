@@ -76,7 +76,7 @@ public final class TipoDeus {
     }
 
     private static TipoDeus interno(String id, String displayName, int color, int corParticula) {
-        TipoDeus deus = new TipoDeus(id, displayName, color, false, corParticula);
+        TipoDeus deus = new TipoDeus(id, "none".equals(id) ? displayName : "&l" + displayName, color, false, corParticula);
         REGISTRO.add(deus);
         ORIGINAIS.add(deus);
         return deus;

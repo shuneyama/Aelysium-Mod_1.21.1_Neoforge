@@ -108,7 +108,7 @@ public class TelaDeuses extends Screen {
                 g.fill(x, y, x + 2, y + LINHA - 2, borda);
                 g.fill(x + l - 2, y, x + l, y + LINHA - 2, borda);
             }
-            g.drawString(font, deus.nome(), x + 6, y + (LINHA - 2 - 8) / 2, 0xFF000000 | deus.cor(), true);
+            g.drawString(font, net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo.componente(deus.nome()).withStyle(st -> st.withColor(deus.cor())), x + 6, y + (LINHA - 2 - 8) / 2, 0xFF000000 | deus.cor(), true);
             desenharIcone(g, iconeEditarX(), iconeY(i), "E", 0xFFFFFF, mouseX, mouseY);
             desenharIcone(g, iconeExcluirX(), iconeY(i), "X", 0xFF5555, mouseX, mouseY);
         }
