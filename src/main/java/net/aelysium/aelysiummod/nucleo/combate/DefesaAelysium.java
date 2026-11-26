@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.damagesource.DamageContainer;
@@ -39,7 +40,7 @@ public final class DefesaAelysium {
         return a / (a + arm);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void aoReceberDano(LivingIncomingDamageEvent evento) {
         DamageSource fonte = evento.getSource();
         if (fonte.is(DamageTypeTags.BYPASSES_ARMOR)) return;

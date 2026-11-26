@@ -1,22 +1,15 @@
 package net.aelysium.aelysiummod.sistemas.social.maozinha;
 
-import net.aelysium.aelysiummod.AelysiumMod;
-import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteDeslocamentoMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteEstadoMaozinha;
-import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacotePuloMaozinha;
-import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteVooMaozinha;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetPassengersPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.ArrayList;
@@ -39,14 +32,10 @@ public class GerenciadorMaozinha {
 
     public record Oferta(UUID ofertante, UUID alvo, int expiraEm) {}
 
-    private static final ResourceLocation ID_DEGRAU =
-            ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, "maozinha_degrau");
-
     private static final Map<UUID, Oferta> ofertas = new HashMap<>();
     private static final Map<UUID, UUID> segurandoPorLider = new HashMap<>();
     private static final Map<UUID, UUID> liderPorSeguidor = new HashMap<>();
     private static final Set<UUID> teleportesPendentes = new HashSet<>();
-    private static final Map<UUID, Boolean> voandoPorLider = new HashMap<>();
 
     public static void acionar(ServerPlayer jogador, int alvoId) {
         UUID id = jogador.getUUID();
@@ -162,7 +151,7 @@ public class GerenciadorMaozinha {
         segurandoPorLider.put(idLider, idSeguidor);
         liderPorSeguidor.put(idSeguidor, idLider);
         transmitir(idLider, idSeguidor, FaseMaozinha.SEGURANDO);
-        aplicarDegrau(seguidor);
+        montar(seguidor, lider);
 
         Component tecla = Component.keybind("key.aelysiummod.maozinha");
         lider.displayClientMessage(Component.translatable("mensagem.aelysiummod.maozinha.aceita_lider", seguidor.getDisplayName(), tecla), true);
@@ -170,18 +159,6 @@ public class GerenciadorMaozinha {
 
         som(lider, SoundEvents.AMETHYST_BLOCK_RESONATE, 1.0F, 1.4F);
         som(seguidor, SoundEvents.AMETHYST_BLOCK_RESONATE, 1.0F, 1.4F);
-    }
-
-    private static void aplicarDegrau(ServerPlayer seguidor) {
-        AttributeInstance degrau = seguidor.getAttribute(Attributes.STEP_HEIGHT);
-        if (degrau == null) return;
-        degrau.addOrUpdateTransientModifier(new AttributeModifier(ID_DEGRAU,
-                ConstantesMaozinha.DEGRAU_EXTRA_SEGUIDOR, AttributeModifier.Operation.ADD_VALUE));
-    }
-
-    private static void removerDegrau(ServerPlayer seguidor) {
-        AttributeInstance degrau = seguidor.getAttribute(Attributes.STEP_HEIGHT);
-        if (degrau != null) degrau.removeModifier(ID_DEGRAU);
     }
 
     private static void retirarOfertasDe(UUID ofertante) {
@@ -205,12 +182,16 @@ public class GerenciadorMaozinha {
         UUID seguidor = segurandoPorLider.remove(lider);
         if (seguidor == null) return;
         liderPorSeguidor.remove(seguidor);
-        voandoPorLider.remove(lider);
-        transmitir(lider, seguidor, FaseMaozinha.DESFEITA);
 
         ServerPlayer jogadorLider = servidor.getPlayerList().getPlayer(lider);
         ServerPlayer jogadorSeguidor = servidor.getPlayerList().getPlayer(seguidor);
-        if (jogadorSeguidor != null) removerDegrau(jogadorSeguidor);
+        if (jogadorSeguidor != null && jogadorLider != null && jogadorSeguidor.getVehicle() == jogadorLider) {
+            FormacaoMaozinha.marcarSoltura(seguidor);
+            jogadorSeguidor.stopRiding();
+            FormacaoMaozinha.consumirSoltura(seguidor);
+            avisarVeiculo(jogadorLider);
+        }
+        transmitir(lider, seguidor, FaseMaozinha.DESFEITA);
         notificarSoltura(jogadorLider, jogadorSeguidor, participante.equals(lider), motivo);
         notificarSoltura(jogadorSeguidor, jogadorLider, participante.equals(seguidor), motivo);
 
@@ -242,7 +223,7 @@ public class GerenciadorMaozinha {
         segurandoPorLider.clear();
         liderPorSeguidor.clear();
         teleportesPendentes.clear();
-        voandoPorLider.clear();
+        FormacaoMaozinha.limparServidor();
     }
 
     public static void sincronizar(ServerPlayer jogador) {
@@ -254,20 +235,14 @@ public class GerenciadorMaozinha {
         }
     }
 
-    public static void retransmitirDeslocamento(ServerPlayer seguidor, PacoteDeslocamentoMaozinha pacote) {
-        if (!liderPorSeguidor.containsKey(seguidor.getUUID())) return;
-        double limite = ConstantesMaozinha.DESLOCAMENTO_MAXIMO_ACEITO;
-        double tamanho = pacote.x() * pacote.x() + pacote.y() * pacote.y() + pacote.z() * pacote.z();
-        if (!Double.isFinite(tamanho) || tamanho > limite * limite) return;
-
-        PacketDistributor.sendToPlayersTrackingEntity(seguidor,
-                new PacoteDeslocamentoMaozinha(seguidor.getUUID(), pacote.x(), pacote.y(), pacote.z()));
-    }
-
     public static ServerPlayer parceiroDe(ServerPlayer jogador) {
         UUID id = jogador.getUUID();
         UUID parceiro = segurandoPorLider.containsKey(id) ? segurandoPorLider.get(id) : liderPorSeguidor.get(id);
         return parceiro != null ? jogador.server.getPlayerList().getPlayer(parceiro) : null;
+    }
+
+    public static UUID liderDe(UUID seguidor) {
+        return liderPorSeguidor.get(seguidor);
     }
 
     public static boolean estaSegurando(UUID id) {
@@ -310,13 +285,6 @@ public class GerenciadorMaozinha {
         if (dx * dx + dz * dz < 1.0E-4) return false;
         float direcao = (float) (Mth.atan2(-dx, dz) * Mth.RAD_TO_DEG);
         return Math.abs(Mth.wrapDegrees(direcao - ofertante.getYRot())) > ConstantesMaozinha.LIMITE_ANGULO_OFERTA_GRAUS;
-    }
-
-    public static void notificarPulo(ServerPlayer lider) {
-        UUID idSeguidor = segurandoPorLider.get(lider.getUUID());
-        if (idSeguidor == null) return;
-        ServerPlayer seguidor = lider.server.getPlayerList().getPlayer(idSeguidor);
-        if (seguidor != null) PacketDistributor.sendToPlayer(seguidor, new PacotePuloMaozinha());
     }
 
     private static void lembrarOfertas(MinecraftServer servidor, int agora) {
@@ -388,17 +356,28 @@ public class GerenciadorMaozinha {
                 continue;
             }
 
+            if (lider.isPassenger() || (seguidor.isPassenger() && seguidor.getVehicle() != lider)) {
+                desfazer(servidor, idLider, Motivo.ESTADO);
+                continue;
+            }
+
+            if (seguidor.getVehicle() != lider && !montar(seguidor, lider)) {
+                desfazer(servidor, idLider, Motivo.ESTADO);
+                continue;
+            }
+
             seguidor.resetFallDistance();
-            sincronizarVoo(lider, seguidor);
         }
     }
 
-    private static void sincronizarVoo(ServerPlayer lider, ServerPlayer seguidor) {
-        boolean voando = lider.getAbilities().flying;
-        Boolean anterior = voandoPorLider.put(lider.getUUID(), voando);
-        if (anterior == null ? voando : anterior != voando) {
-            PacketDistributor.sendToPlayer(seguidor, new PacoteVooMaozinha(voando));
-        }
+    private static boolean montar(ServerPlayer seguidor, ServerPlayer lider) {
+        if (!seguidor.startRiding(lider, true)) return false;
+        avisarVeiculo(lider);
+        return true;
+    }
+
+    private static void avisarVeiculo(ServerPlayer lider) {
+        lider.connection.send(new ClientboundSetPassengersPacket(lider));
     }
 
     private static boolean podeContinuar(ServerPlayer jogador) {

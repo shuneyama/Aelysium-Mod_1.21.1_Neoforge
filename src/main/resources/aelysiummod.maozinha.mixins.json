@@ -4,10 +4,15 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "refmap": "aelysiummod.refmap.json",
+  "mixins": [
+    "EntidadePassageiroMaozinhaMixin",
+    "JogadorPassageiroMaozinhaMixin",
+    "EntidadeVivaAnimacaoMaozinhaMixin"
+  ],
   "client": [
     "ModeloJogadorMixin",
-    "DespachanteRenderizacaoEntidadeMixin",
-    "TelaInventarioMixin"
+    "TelaInventarioMixin",
+    "InterfaceAvisoMontariaMaozinhaMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -5,7 +5,6 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
@@ -29,13 +28,6 @@ public class ManipuladorEventosMaozinha {
     public void aoMorrer(LivingDeathEvent event) {
         if (event.getEntity() instanceof ServerPlayer jogador) {
             GerenciadorMaozinha.limparJogador(jogador, GerenciadorMaozinha.Motivo.ESTADO);
-        }
-    }
-
-    @SubscribeEvent
-    public void aoPular(LivingEvent.LivingJumpEvent event) {
-        if (event.getEntity() instanceof ServerPlayer jogador) {
-            GerenciadorMaozinha.notificarPulo(jogador);
         }
     }
 

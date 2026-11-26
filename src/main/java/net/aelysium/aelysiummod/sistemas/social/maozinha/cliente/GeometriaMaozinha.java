@@ -25,24 +25,18 @@ public class GeometriaMaozinha {
         return new Vec3(jogador.getX() - jogador.xo, 0.0, jogador.getZ() - jogador.zo);
     }
 
-    public static Vec3 basePredita(Player lider) {
-        return lider.position().add(velocidade(lider).scale(ConstantesMaozinha.TICKS_PREDICAO));
-    }
-
-    public static Vec3 baseVisual(Player lider, float parcial) {
-        Vec3 posicao = lider.getPosition(parcial);
-        if (lider.isLocalPlayer()) return posicao;
-        return posicao.add(velocidade(lider).scale(ConstantesMaozinha.TICKS_PREDICAO));
-    }
-
     public static Vec3 posicao(Player jogador, float parcial) {
-        return jogador.getPosition(parcial).add(SuavizadorPosicaoMaozinha.deslocamento(jogador));
+        return jogador.getPosition(parcial);
     }
 
     public static Vec3 ombro(Player jogador, float parcial, boolean esquerdo) {
+        return ombroEm(jogador, posicao(jogador, parcial), parcial, esquerdo);
+    }
+
+    public static Vec3 ombroEm(Player jogador, Vec3 posicao, float parcial, boolean esquerdo) {
         double altura = jogador.isCrouching() ? ConstantesMaozinha.ALTURA_OMBRO_AGACHADO : ConstantesMaozinha.ALTURA_OMBRO;
         double lado = esquerdo ? ConstantesMaozinha.DESLOCAMENTO_OMBRO : -ConstantesMaozinha.DESLOCAMENTO_OMBRO;
-        return posicao(jogador, parcial)
+        return posicao
                 .add(0.0, altura, 0.0)
                 .add(esquerda(corpo(jogador, parcial)).scale(lado));
     }
@@ -54,27 +48,14 @@ public class GeometriaMaozinha {
         double metade = ombroLider.distanceTo(ombroSeguidor) * 0.5;
         double braco = ConstantesMaozinha.COMPRIMENTO_BRACO;
         double queda = metade < braco ? Math.sqrt(braco * braco - metade * metade) : 0.0;
-        return meio.subtract(0.0, queda, 0.0);
-    }
 
-    public static Vec3 ancoraSeguidor(Player lider, Player seguidor) {
-        float yaw = OrientacaoLiderMaozinha.yaw(lider, 1.0F);
-        Vec3 base = basePredita(lider);
-
-        Vec3 aoLado = base
-                .add(esquerda(yaw).scale(ConstantesMaozinha.AFASTAMENTO_LATERAL))
-                .subtract(frente(yaw).scale(ConstantesMaozinha.AFASTAMENTO_ATRAS));
-        if (livre(seguidor, aoLado)) return aoLado;
-
-        Vec3 atras = base.subtract(frente(yaw).scale(ConstantesMaozinha.AFASTAMENTO_ATRAS_ALTERNATIVO));
-        if (livre(seguidor, atras)) return atras;
-
-        return aoLado;
-    }
-
-    public static boolean livre(Player jogador, Vec3 posicao) {
-        Vec3 deslocamento = posicao.subtract(jogador.position());
-        return jogador.level().noCollision(jogador, jogador.getBoundingBox().move(deslocamento.x, deslocamento.y + 0.05, deslocamento.z));
+        double distancia = ombroLider.distanceTo(ombroSeguidor);
+        double porDistancia = Mth.clamp((distancia - ConstantesMaozinha.LEVANTE_DISTANCIA_INICIO)
+                / (ConstantesMaozinha.LEVANTE_DISTANCIA_PLENO - ConstantesMaozinha.LEVANTE_DISTANCIA_INICIO), 0.0, 1.0);
+        double porVelocidade = Mth.clamp(velocidade(lider).length() / ConstantesMaozinha.LEVANTE_VELOCIDADE_PLENA, 0.0, 1.0);
+        double levante = Math.min(ConstantesMaozinha.LEVANTE_MAXIMO,
+                porDistancia * ConstantesMaozinha.LEVANTE_PESO_DISTANCIA + porVelocidade * ConstantesMaozinha.LEVANTE_PESO_VELOCIDADE);
+        return meio.subtract(0.0, queda * (1.0 - levante), 0.0);
     }
 
     public static boolean estaNaFrente(Player jogador, Vec3 ponto, float parcial) {

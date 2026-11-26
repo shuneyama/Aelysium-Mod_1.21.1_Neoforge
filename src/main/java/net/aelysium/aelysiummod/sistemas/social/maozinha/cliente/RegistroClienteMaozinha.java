@@ -1,6 +1,7 @@
 package net.aelysium.aelysiummod.sistemas.social.maozinha.cliente;
 
 import net.aelysium.aelysiummod.AelysiumMod;
+import net.aelysium.aelysiummod.sistemas.social.maozinha.FormacaoMaozinha;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -15,15 +16,12 @@ public class RegistroClienteMaozinha {
     public static void aoConfigurarCliente(FMLClientSetupEvent event) {
         NeoForge.EVENT_BUS.register(new OrientacaoLiderMaozinha());
         NeoForge.EVENT_BUS.register(new ManipuladorPuxaoCliente());
-        NeoForge.EVENT_BUS.register(new ManipuladorArrastoLiderCliente());
-        NeoForge.EVENT_BUS.register(new ManipuladorVooLiderCliente());
-        NeoForge.EVENT_BUS.register(new SuavizadorPosicaoMaozinha());
         NeoForge.EVENT_BUS.addListener(RegistroClienteMaozinha::aoSairDoMundo);
     }
 
     private static void aoSairDoMundo(ClientPlayerNetworkEvent.LoggingOut event) {
         CacheMaozinha.limpar();
-        SuavizadorPosicaoMaozinha.limpar();
         AnimacaoBracoMaozinha.limpar();
+        FormacaoMaozinha.limparCliente();
     }
 }

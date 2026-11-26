@@ -2,6 +2,15 @@
   "silencio": {
     "sounds": []
   },
+  "flecha.bloco": {
+    "subtitle": "subtitles.entity.arrow.hit",
+    "sounds": [
+      {"name": "minecraft:random/bowhit1", "attenuation_distance": 4},
+      {"name": "minecraft:random/bowhit2", "attenuation_distance": 4},
+      {"name": "minecraft:random/bowhit3", "attenuation_distance": 4},
+      {"name": "minecraft:random/bowhit4", "attenuation_distance": 4}
+    ]
+  },
   "bateria.choque": {
     "sounds": [
       "aelysiummod:bateria/choque"

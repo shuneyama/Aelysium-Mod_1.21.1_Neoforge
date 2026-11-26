@@ -1,11 +1,12 @@
 package net.aelysium.aelysiummod.sistemas.social.maozinha.cliente;
 
-import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteDeslocamentoMaozinha;
 import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteEstadoMaozinha;
-import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacotePuloMaozinha;
-import net.aelysium.aelysiummod.sistemas.social.maozinha.rede.PacoteVooMaozinha;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+
+import java.util.UUID;
 
 public class ManipuladoresMaozinhaCliente {
 
@@ -14,21 +15,19 @@ public class ManipuladoresMaozinhaCliente {
             switch (payload.fase()) {
                 case OFERTA -> CacheMaozinha.ofertar(payload.lider(), payload.alvo());
                 case SEGURANDO -> CacheMaozinha.ligar(payload.lider(), payload.alvo());
-                case DESFEITA -> CacheMaozinha.desfazer(payload.lider(), payload.alvo());
+                case DESFEITA -> {
+                    soltar(payload.lider(), payload.alvo());
+                    CacheMaozinha.desfazer(payload.lider(), payload.alvo());
+                }
             }
         });
     }
 
-    public static void handlePulo(PacotePuloMaozinha payload, IPayloadContext context) {
-        context.enqueueWork(ManipuladorPuxaoCliente::solicitarPulo);
-    }
-
-    public static void handleVoo(PacoteVooMaozinha payload, IPayloadContext context) {
-        context.enqueueWork(() -> ManipuladorPuxaoCliente.definirLiderVoando(payload.voando()));
-    }
-
-    public static void handleDeslocamento(PacoteDeslocamentoMaozinha payload, IPayloadContext context) {
-        context.enqueueWork(() -> SuavizadorPosicaoMaozinha.receber(payload.seguidor(),
-                new Vec3(payload.x(), payload.y(), payload.z())));
+    private static void soltar(UUID idLider, UUID idSeguidor) {
+        ClientLevel nivel = Minecraft.getInstance().level;
+        if (nivel == null) return;
+        Player lider = nivel.getPlayerByUUID(idLider);
+        Player seguidor = nivel.getPlayerByUUID(idSeguidor);
+        if (lider != null && seguidor != null && seguidor.getVehicle() == lider) seguidor.stopRiding();
     }
 }

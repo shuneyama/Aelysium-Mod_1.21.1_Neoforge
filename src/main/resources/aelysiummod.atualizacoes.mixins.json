@@ -36,7 +36,11 @@
     "MixinVacaSons",
     "MixinGalinhaSons",
     "MixinCavaloSons",
-    "MixinCavaloBaseSons"
+    "MixinCavaloBaseSons",
+    "MixinNivelEncantamento",
+    "MixinSeletoresExtras",
+    "MixinOrdemReducaoDano",
+    "MixinSomFlechaBloco"
   ],
   "client": [
     "MixinBrilhoEscudo",

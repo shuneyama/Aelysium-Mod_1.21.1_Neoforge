@@ -11,6 +11,7 @@ public final class SonsAtualizados {
     public static final SoundEvent SPAWNER_PASSO = evento("spawner.passo");
     public static final SoundEvent BOLHA_ESTOURAR = evento("bolha.estourar");
     public static final SoundEvent MOCHILA_FALHA = evento("mochila.insert_fail");
+    public static final SoundEvent FLECHA_BLOCO = evento("flecha.bloco");
 
     public static final SoundType SPAWNER = new SoundType(1.0F, 1.0F, SPAWNER_QUEBRAR, SPAWNER_PASSO, SPAWNER_QUEBRAR, SPAWNER_PASSO, SPAWNER_PASSO);
 

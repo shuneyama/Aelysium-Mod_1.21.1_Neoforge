@@ -4,6 +4,7 @@ import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.regiao.FlagRegiao;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.regiao.GerenciadorRegioes;
 import net.aelysium.aelysiummod.sistemas.admin.protecao.regiao.Regiao;
+import net.aelysium.aelysiummod.sistemas.social.maozinha.GerenciadorMaozinha;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
@@ -84,6 +85,9 @@ public class ControleRegiaoJogador {
     }
 
     private static void devolver(ServerPlayer jogador, Vec3 destino, String chaveMensagem) {
+        if (GerenciadorMaozinha.estaSegurando(jogador.getUUID())) {
+            GerenciadorMaozinha.desfazer(jogador.server, jogador.getUUID(), GerenciadorMaozinha.Motivo.ESTADO);
+        }
         if (jogador.isPassenger()) jogador.stopRiding();
         jogador.teleportTo(destino.x, destino.y, destino.z);
         jogador.setDeltaMovement(Vec3.ZERO);
