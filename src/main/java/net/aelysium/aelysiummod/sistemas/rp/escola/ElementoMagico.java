@@ -1,5 +1,7 @@
 package net.aelysium.aelysiummod.sistemas.rp.escola;
 
+import java.util.Locale;
+
 public enum ElementoMagico {
 
     FOGO("Fogo", "§c"),
@@ -22,5 +24,16 @@ public enum ElementoMagico {
 
     public String colorido() {
         return cor + nome + "§r";
+    }
+
+    public String id() {
+        return name().toLowerCase(Locale.ROOT);
+    }
+
+    public static ElementoMagico doId(String id) {
+        for (ElementoMagico elemento : values()) {
+            if (elemento.id().equalsIgnoreCase(id)) return elemento;
+        }
+        return null;
     }
 }

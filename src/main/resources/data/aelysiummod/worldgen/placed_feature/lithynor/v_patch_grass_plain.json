@@ -1,5 +1,5 @@
 {
-  "feature": "minecraft:patch_grass",
+  "feature": "aelysiummod:lithynor/vanilla/patch_grass",
   "placement": [
     {
       "type": "minecraft:noise_threshold_count",

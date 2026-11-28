@@ -8,9 +8,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class AbaCriativo {
@@ -24,59 +27,7 @@ public class AbaCriativo {
                     .title(Component.translatable("creativetab.aelysiummod.aelysium_itens"))
                     .displayItems((itemDisplayParameters, output) -> {
                         if (!net.aelysium.aelysiummod.nucleo.guarda.AelysiumGuarda.isAutorizadoAgora()) return;
-
-                        output.accept(ModItens.AEDA_COBRE);
-                        output.accept(ModItens.AEDA_PRATA);
-                        output.accept(ModItens.AEDA_OURO);
-                        output.accept(ModItens.AEDA_RUBI);
-                        output.accept(ModItens.AEDA_CIANE);
-                        output.accept(ModItens.AEDA_AMETISTA);
-                        output.accept(ModItens.VINEDA);
-                        ModItens.AEDAS_CASSINO.forEach(output::accept);
-
-                        output.accept(ModItens.CHAVERACHA1);
-                        output.accept(ModItens.CHAVERACHA2);
-                        output.accept(ModItens.CHAVERACHA3);
-                        output.accept(ModItens.CHAVERACHA4);
-                        output.accept(ModItens.CHAVERACHA5);
-                        output.accept(ModItens.CHAVERACHA6);
-                        output.accept(ModItens.CHAVERACHA7);
-                        output.accept(ModItens.CHAVERACHA8);
-                        output.accept(ModItens.CHAVE_QUE_NAO_VAI);
-
-                        output.accept(ModItens.ELEMENTO_FOGO);
-                        output.accept(ModItens.ELEMENTO_GELO);
-                        output.accept(ModItens.ELEMENTO_NATUREZA);
-                        output.accept(ModItens.ELEMENTO_RAIO);
-                        output.accept(ModItens.ELEMENTO_SACRA);
-                        output.accept(ModItens.ELEMENTO_SANGUE);
-                        output.accept(ModItens.ELEMENTO_VAZIO);
-
-                        output.accept(ModItens.CIANE_BARRA);
-                        output.accept(ModItens.CIANE_CRU);
-                        output.accept(ModItens.CIANE_FRAGMENTO);
-
-                        output.accept(ModItens.POEIRA_LUNAR);
-
-                        output.accept(ModItens.CRIADOR_NPC);
-                        output.accept(ModItens.REGISTRO_NPC);
-                        output.accept(ModItens.VARINHA_PROTECAO);
-                        output.accept(ModItens.CARTEIRA);
-                        output.accept(ModItens.CIGARRO);
-                        output.accept(ModItens.ISQUEIRO);
-                        output.accept(ModItens.BATERIA);
-                        output.accept(ModItens.BALA_GLOCK);
-                        output.accept(ModItens.CARTAO_CIANO);
-                        output.accept(ModItens.CARTAO_ROXO);
-                        output.accept(ModItens.CARTAO_VERDE);
-                        output.accept(ModItens.CARTAO_VERMELHO);
-                        output.accept(ModItens.CARTAO_MESTRE);
-                        output.accept(ModItens.GAZUA);
-                        output.accept(ModItens.LANTERNA);
-                        output.accept(ModItens.MEDKIT);
-                        output.accept(ModItens.SERINGA);
-                        output.accept(ModItens.SERINGA_CURA);
-                        output.accept(ModItens.SERINGA_SANGUE);
+                        conteudoItens().forEach(output::accept);
                     }).build());
 
 
@@ -87,16 +38,7 @@ public class AbaCriativo {
                     .title(Component.translatable("creativetab.aelysiummod.aelysium_blocos"))
                     .displayItems((itemDisplayParameters, output) -> {
                         if (!net.aelysium.aelysiummod.nucleo.guarda.AelysiumGuarda.isAutorizadoAgora()) return;
-
-                        output.accept(ModBlocos.BLOCO_AR);
-                        ModBlocos.MANCHAS_SANGUE.forEach(output::accept);
-                        ModBlocos.MANCHAS_SANGUE_GRANDES.forEach(output::accept);
-                        output.accept(ModBlocos.CIANE_MINERIO);
-                        output.accept(ModBlocos.DAMA_DA_NOITE);
-                        output.accept(ModBlocos.FENDA_KAIROS);
-                        output.accept(ModBlocos.PORTA_UM_PAINEL);
-                        output.accept(ModBlocos.COFRE_COM_PAINEL);
-                        output.accept(ModBlocos.MINI_FAROL);
+                        conteudoBlocos().forEach(output::accept);
                     }).build());
 
 
@@ -114,44 +56,121 @@ public class AbaCriativo {
                     .title(Component.translatable("creativetab.aelysiummod.aelysium_armas"))
                     .displayItems((itemDisplayParameters, output) -> {
                         if (!net.aelysium.aelysiummod.nucleo.guarda.AelysiumGuarda.isAutorizadoAgora()) return;
-
-                        output.accept(ModItens.CIANE_CAPACETE);
-                        output.accept(ModItens.CIANE_PEITORAL);
-                        output.accept(ModItens.CIANE_CALCINHA);
-                        output.accept(ModItens.CIANE_BOTAS);
-
-                        output.accept(ModItens.CIANE_ESPADA);
-                        output.accept(ModItens.CIANE_PICARETA);
-                        output.accept(ModItens.CIANE_MACHADO);
-                        output.accept(ModItens.CIANE_PA);
-                        output.accept(ModItens.CIANE_ENXADA);
-
-                        output.accept(ModItens.CANO);
-                        output.accept(ModItens.PARAR);
-                        output.accept(ModItens.ESPADA_ADM);
-                        output.accept(ModItens.SLYNDOR_SYLVAN);
-                        output.accept(ModItens.AMBROSE);
-                        output.accept(ModItens.PURPLE_MOON);
-                        output.accept(ModItens.GLOCK);
-                        output.accept(ModItens.EXPERIMENTO_646);
-                        output.accept(ModItens.PROTOCOLO_GENESIS);
-                        output.accept(ModItens.ESPADA_ESPECIAL);
-
-                        output.accept(ModItens.DARK_JUDGMENT);
-                        output.accept(ModItens.DIVINE_SILENCE);
-                        output.accept(ModItens.FULMENS_FANG);
-                        output.accept(ModItens.ALVORADA_CELESTE);
-                        output.accept(ModItens.AURORA_HIBERNA);
-                        output.accept(ModItens.LUZ_DA_ULTIMA_FENIX);
-                        output.accept(ModItens.AEON);
-                        output.accept(ModItens.KLAUS_ENTROPY);
-
-                        output.accept(ModItens.TRIDENTE_CORAL);
-                        output.accept(ModItens.TRIFORME);
-                        output.accept(ModItens.ULTIMO_SUSPIRO);
-                        output.accept(ModItens.ESCUDO_ABISMO);
+                        conteudoArmas().forEach(output::accept);
                     }).build());
 
+
+    public static List<ItemLike> conteudoItens() {
+        List<ItemLike> conteudo = new ArrayList<>();
+        conteudo.add(ModItens.AEDA_COBRE);
+        conteudo.add(ModItens.AEDA_PRATA);
+        conteudo.add(ModItens.AEDA_OURO);
+        conteudo.add(ModItens.AEDA_RUBI);
+        conteudo.add(ModItens.AEDA_CIANE);
+        conteudo.add(ModItens.AEDA_AMETISTA);
+        conteudo.add(ModItens.VINEDA);
+        conteudo.addAll(ModItens.AEDAS_CASSINO);
+
+        conteudo.add(ModItens.CHAVERACHA1);
+        conteudo.add(ModItens.CHAVERACHA2);
+        conteudo.add(ModItens.CHAVERACHA3);
+        conteudo.add(ModItens.CHAVERACHA4);
+        conteudo.add(ModItens.CHAVERACHA5);
+        conteudo.add(ModItens.CHAVERACHA6);
+        conteudo.add(ModItens.CHAVERACHA7);
+        conteudo.add(ModItens.CHAVERACHA8);
+        conteudo.add(ModItens.CHAVE_QUE_NAO_VAI);
+
+        conteudo.add(ModItens.ELEMENTO_FOGO);
+        conteudo.add(ModItens.ELEMENTO_GELO);
+        conteudo.add(ModItens.ELEMENTO_NATUREZA);
+        conteudo.add(ModItens.ELEMENTO_RAIO);
+        conteudo.add(ModItens.ELEMENTO_SACRA);
+        conteudo.add(ModItens.ELEMENTO_SANGUE);
+        conteudo.add(ModItens.ELEMENTO_VAZIO);
+
+        conteudo.add(ModItens.CIANE_BARRA);
+        conteudo.add(ModItens.CIANE_CRU);
+        conteudo.add(ModItens.CIANE_FRAGMENTO);
+
+        conteudo.add(ModItens.POEIRA_LUNAR);
+
+        conteudo.add(ModItens.CRIADOR_NPC);
+        conteudo.add(ModItens.REGISTRO_NPC);
+        conteudo.add(ModItens.VARINHA_PROTECAO);
+        conteudo.add(ModItens.CARTEIRA);
+        conteudo.add(ModItens.CIGARRO);
+        conteudo.add(ModItens.ISQUEIRO);
+        conteudo.add(ModItens.BATERIA);
+        conteudo.add(ModItens.BALA_GLOCK);
+        conteudo.add(ModItens.CARTAO_CIANO);
+        conteudo.add(ModItens.CARTAO_ROXO);
+        conteudo.add(ModItens.CARTAO_VERDE);
+        conteudo.add(ModItens.CARTAO_VERMELHO);
+        conteudo.add(ModItens.CARTAO_MESTRE);
+        conteudo.add(ModItens.GAZUA);
+        conteudo.add(ModItens.LANTERNA);
+        conteudo.add(ModItens.MEDKIT);
+        conteudo.add(ModItens.SERINGA);
+        conteudo.add(ModItens.SERINGA_CURA);
+        conteudo.add(ModItens.SERINGA_SANGUE);
+        return conteudo;
+    }
+
+    public static List<ItemLike> conteudoBlocos() {
+        List<ItemLike> conteudo = new ArrayList<>();
+        conteudo.add(ModBlocos.BLOCO_AR);
+        conteudo.addAll(ModBlocos.MANCHAS_SANGUE);
+        conteudo.addAll(ModBlocos.MANCHAS_SANGUE_GRANDES);
+        conteudo.add(ModBlocos.CIANE_MINERIO);
+        conteudo.add(ModBlocos.DAMA_DA_NOITE);
+        conteudo.add(ModBlocos.FENDA_KAIROS);
+        conteudo.add(ModBlocos.PORTA_UM_PAINEL);
+        conteudo.add(ModBlocos.COFRE_COM_PAINEL);
+        conteudo.add(ModBlocos.MINI_FAROL);
+        return conteudo;
+    }
+
+    public static List<ItemLike> conteudoArmas() {
+        return List.of(
+                ModItens.CIANE_CAPACETE,
+                ModItens.CIANE_PEITORAL,
+                ModItens.CIANE_CALCINHA,
+                ModItens.CIANE_BOTAS,
+                ModItens.CUECA_PREFEITO,
+
+                ModItens.CIANE_ESPADA,
+                ModItens.CIANE_PICARETA,
+                ModItens.CIANE_MACHADO,
+                ModItens.CIANE_PA,
+                ModItens.CIANE_ENXADA,
+
+                ModItens.CANO,
+                ModItens.PARAR,
+                ModItens.ESPADA_ADM,
+                ModItens.SLYNDOR_SYLVAN,
+                ModItens.AMBROSE,
+                ModItens.PURPLE_MOON,
+                ModItens.GLOCK,
+                ModItens.EXPERIMENTO_646,
+                ModItens.PROTOCOLO_GENESIS,
+                ModItens.ESPADA_ESPECIAL,
+
+                ModItens.DARK_JUDGMENT,
+                ModItens.DIVINE_SILENCE,
+                ModItens.FULMENS_FANG,
+                ModItens.ALVORADA_CELESTE,
+                ModItens.AURORA_HIBERNA,
+                ModItens.LUZ_DA_ULTIMA_FENIX,
+                ModItens.AEON,
+                ModItens.KLAUS_ENTROPY,
+
+                ModItens.TRIDENTE_CORAL,
+                ModItens.TRIFORME,
+                ModItens.ULTIMO_SUSPIRO,
+                ModItens.ESCUDO_ABISMO
+        );
+    }
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TAB.register(eventBus);

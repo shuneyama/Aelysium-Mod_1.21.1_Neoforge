@@ -1,7 +1,7 @@
 {
   "type": "minecraft:random_selector",
   "config": {
-    "features": [ { "chance": 0.33, "feature": "minecraft:pine_checked" } ],
+    "features": [ { "chance": 0.33, "feature": "aelysiummod:lithynor/vanilla/pine_checked" } ],
     "default": "minecraft:spruce_checked"
   }
 }

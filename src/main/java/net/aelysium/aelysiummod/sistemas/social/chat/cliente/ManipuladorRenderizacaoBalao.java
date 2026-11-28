@@ -47,12 +47,12 @@ public class ManipuladorRenderizacaoBalao {
         for (AbstractClientPlayer player : mc.level.players()) {
             if (player.isInvisible() || !player.isAlive() || player.isSpectator()) continue;
 
-            if (player != localPlayer && !temLinhaDeVisao(localPlayer, player, partialTick)) continue;
-
             IJogadorAelysium playerMixin = (IJogadorAelysium) player;
             List<IJogadorAelysium.MensagemBalao> balloons = playerMixin.aelysium$getBalloons();
 
             if (balloons == null || balloons.isEmpty()) continue;
+
+            if (player != localPlayer && !temLinhaDeVisao(localPlayer, player, partialTick)) continue;
 
             event.getPoseStack().pushPose();
 

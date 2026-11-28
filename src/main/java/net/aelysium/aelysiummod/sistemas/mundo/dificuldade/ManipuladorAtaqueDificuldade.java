@@ -44,11 +44,11 @@ public class ManipuladorAtaqueDificuldade {
     @SubscribeEvent
     public static void aoTickVex(EntityTickEvent.Post evento) {
         if (!(evento.getEntity() instanceof Mob vex) || vex.level().isClientSide()) return;
-        if (!ConfiguracaoDificuldade.vexConfigurado(BuiltInRegistries.ENTITY_TYPE.getKey(vex.getType()))) return;
-
         LivingEntity alvo = vex.getTarget();
+        if (alvo == null) return;
         int nivel = AplicadorDificuldade.nivelAplicado(vex);
-        if (alvo == null || nivel <= 0) return;
+        if (nivel <= 0) return;
+        if (!ConfiguracaoDificuldade.vexConfigurado(BuiltInRegistries.ENTITY_TYPE.getKey(vex.getType()))) return;
 
         Vec3 direcao = alvo.getEyePosition().subtract(vex.position()).normalize();
         vex.setDeltaMovement(vex.getDeltaMovement().add(direcao.scale(PerfilDificuldade.aceleracaoVex(nivel))));

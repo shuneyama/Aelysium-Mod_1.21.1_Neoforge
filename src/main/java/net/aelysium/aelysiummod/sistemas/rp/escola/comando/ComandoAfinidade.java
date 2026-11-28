@@ -7,6 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.aelysium.aelysiummod.nucleo.jogador.PerfilJogador;
 import net.aelysium.aelysiummod.nucleo.jogador.TipoRaca;
+import net.aelysium.aelysiummod.sistemas.rp.escola.DadosEscola;
 import net.aelysium.aelysiummod.sistemas.rp.escola.ElementoMagico;
 import net.aelysium.aelysiummod.sistemas.rp.escola.EscolaSorteio;
 import net.minecraft.commands.CommandSourceStack;
@@ -16,6 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ComandoAfinidade {
     private static final String JOGADORES = "jogadores";
@@ -29,7 +31,9 @@ public class ComandoAfinidade {
                         .then(Commands.literal("escola")
                                 .executes(ComandoAfinidade::porEscola))
                         .then(Commands.literal("porcentagem")
-                                .then(cadeiaPorcentagem())));
+                                .then(cadeiaPorcentagem()))
+                        .then(Commands.literal("ver")
+                                .executes(ComandoAfinidade::ver)));
     }
 
     private static ArgumentBuilder<CommandSourceStack, ?> cadeiaPorcentagem() {
@@ -47,7 +51,11 @@ public class ComandoAfinidade {
     }
 
     private static String nome(ElementoMagico elemento) {
-        return elemento.name().toLowerCase();
+        return elemento.id();
+    }
+
+    private static void registrar(ServerPlayer alvo, EscolaSorteio.Resultado resultado) {
+        DadosEscola.get(alvo.getServer()).definir(alvo.getUUID(), resultado.elementos());
     }
 
     private static int porEscola(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
@@ -60,6 +68,7 @@ public class ComandoAfinidade {
                 continue;
             }
             EscolaSorteio.Resultado resultado = EscolaSorteio.sortear(raca);
+            registrar(alvo, resultado);
             String nome = alvo.getName().getString();
             ctx.getSource().sendSuccess(() -> Component.translatableEscape(P + "jogador_tem_aptidao_magica_em", nome, resultado.textoColorido()), true);
             sucesso++;
@@ -82,9 +91,28 @@ public class ComandoAfinidade {
         for (ServerPlayer alvo : alvos) {
             int d100 = EscolaSorteio.rolarD100();
             EscolaSorteio.Resultado resultado = EscolaSorteio.sortearPorPesos(pesos, d100);
+            registrar(alvo, resultado);
             String nome = alvo.getName().getString();
             ctx.getSource().sendSuccess(() -> Component.translatableEscape(P + "jogador_tem_aptidao_magica_rolagem", nome, resultado.textoColorido(), d100), true);
         }
         return alvos.size();
+    }
+
+    private static int ver(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        Collection<ServerPlayer> alvos = EntityArgument.getPlayers(ctx, JOGADORES);
+        int ultimo = 0;
+        for (ServerPlayer alvo : alvos) {
+            List<ElementoMagico> elementos = DadosEscola.get(alvo.getServer()).elementos(alvo.getUUID());
+            String nome = alvo.getName().getString();
+            if (elementos.isEmpty()) {
+                ctx.getSource().sendSuccess(() -> Component.translatableEscape(P + "jogador_sem_escola", nome), false);
+                ultimo = 0;
+                continue;
+            }
+            String texto = new EscolaSorteio.Resultado(elementos).textoColorido();
+            ctx.getSource().sendSuccess(() -> Component.translatableEscape(P + "jogador_escola_atual", nome, texto), false);
+            ultimo = elementos.get(0).ordinal() + 1;
+        }
+        return ultimo;
     }
 }

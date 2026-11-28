@@ -126,7 +126,7 @@ public class ComandoRaca {
             ctx.getSource().sendSuccess(() ->
                     Component.translatableEscape("mensagem.aelysiummod.raca.e_da_raca", target.getName().getString(), race.displayName), false);
 
-            return 1;
+            return race.ordinal();
         } catch (Exception e) {
             ctx.getSource().sendFailure(Component.translatableEscape("mensagem.aelysiummod.raca.erro", e.getMessage()));
             return 0;

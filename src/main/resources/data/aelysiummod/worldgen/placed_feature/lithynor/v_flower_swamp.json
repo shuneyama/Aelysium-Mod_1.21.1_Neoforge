@@ -1,5 +1,5 @@
 {
-  "feature": "minecraft:flower_swamp",
+  "feature": "aelysiummod:lithynor/vanilla/flower_swamp",
   "placement": [
     {
       "type": "minecraft:rarity_filter",

@@ -7,11 +7,13 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.aelysium.aelysiummod.registro.ModComponentesDados;
 import net.aelysium.aelysiummod.registro.ModItens;
+import net.aelysium.aelysiummod.sistemas.admin.vip.DadosVipJogadores;
 import net.aelysium.aelysiummod.sistemas.admin.vip.GerenciadorVips;
 import net.aelysium.aelysiummod.sistemas.admin.vip.MenuEdicaoVip;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -21,7 +23,9 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class ComandoVip {
 
@@ -35,7 +39,13 @@ public class ComandoVip {
                 .then(Commands.literal("editar")
                         .then(argumentoVipExistente().executes(ComandoVip::executarEditar)))
                 .then(Commands.literal("remover")
-                        .then(argumentoVipExistente().executes(ComandoVip::executarRemover)));
+                        .then(argumentoVipExistente().executes(ComandoVip::executarRemover)))
+                .then(Commands.literal("revogar")
+                        .then(Commands.argument("jogadores", EntityArgument.players())
+                                .then(argumentoVipExistente().executes(ComandoVip::executarRevogar))))
+                .then(Commands.literal("ver")
+                        .then(Commands.argument("jogador", EntityArgument.player())
+                                .executes(ComandoVip::executarVer)));
     }
 
     private static RequiredArgumentBuilder<CommandSourceStack, String> argumentoVipExistente() {
@@ -72,6 +82,7 @@ public class ComandoVip {
         if (!jogador.getInventory().add(sacola)) {
             jogador.drop(sacola, false);
         }
+        DadosVipJogadores.get(servidor).conceder(jogador.getUUID(), nome);
 
         ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.vip.vip_adquirido", nome), true);
         return 1;
@@ -130,6 +141,32 @@ public class ComandoVip {
 
         ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.vip.vip_removido", nome), true);
         return 1;
+    }
+
+    private static int executarRevogar(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        Collection<ServerPlayer> alvos = EntityArgument.getPlayers(ctx, "jogadores");
+        DadosVipJogadores dados = DadosVipJogadores.get(ctx.getSource().getServer());
+        String nome = nomeVip(ctx);
+        int revogados = 0;
+        for (ServerPlayer alvo : alvos) {
+            if (dados.revogar(alvo.getUUID(), nome)) revogados++;
+        }
+        int total = revogados;
+        ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.vip.vip_revogado", nome, total), true);
+        return total;
+    }
+
+    private static int executarVer(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer alvo = EntityArgument.getPlayer(ctx, "jogador");
+        Set<String> vips = DadosVipJogadores.get(ctx.getSource().getServer()).vips(alvo.getUUID());
+        String nomeJogador = alvo.getName().getString();
+        if (vips.isEmpty()) {
+            ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.vip.jogador_sem_vip", nomeJogador), false);
+        } else {
+            String lista = String.join(", ", vips);
+            ctx.getSource().sendSuccess(() -> Component.translatableEscape("mensagem.aelysiummod.vip.vips_do_jogador", nomeJogador, lista), false);
+        }
+        return vips.size();
     }
 
     private static void abrirEditor(ServerPlayer jogador, String nome, SimpleContainer container) {

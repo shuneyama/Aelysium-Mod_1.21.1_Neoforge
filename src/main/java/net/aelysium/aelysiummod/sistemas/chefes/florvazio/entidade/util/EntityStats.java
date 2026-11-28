@@ -1,0 +1,21 @@
+package net.aelysium.aelysiummod.sistemas.chefes.florvazio.entidade.util;
+
+import net.minecraft.world.entity.LivingEntity;
+
+public class EntityStats implements IEntityStats{
+    final LivingEntity livingEntity;
+
+    public EntityStats(LivingEntity livingEntity){
+        this.livingEntity = livingEntity;
+    }
+
+    @Override
+    public float getMaxHealth() {
+        return livingEntity.getMaxHealth();
+    }
+
+    @Override
+    public float getHealth() {
+        return livingEntity.getHealth();
+    }
+}

@@ -1,7 +1,7 @@
 {
   "type": "minecraft:random_selector",
   "config": {
-    "features": [ { "chance": 0.2, "feature": "minecraft:fancy_oak_checked" }, { "chance": 0.15, "feature": "minecraft:birch_checked" } ],
-    "default": "minecraft:oak_checked"
+    "features": [ { "chance": 0.2, "feature": "minecraft:fancy_oak_checked" }, { "chance": 0.15, "feature": "aelysiummod:lithynor/vanilla/birch_checked" } ],
+    "default": "aelysiummod:lithynor/vanilla/oak_checked"
   }
 }

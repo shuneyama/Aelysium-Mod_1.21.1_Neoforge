@@ -1,1 +1,22 @@
-{ "type": "aelysiummod:distancia_central", "start": 3000.0, "end": 3100.0 }
+{
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:mul",
+      "argument1": 1000.0,
+      "argument2": { "type": "aelysiummod:distancia_central", "start": 0.0, "end": 100000.0 }
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": -30.5,
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": 1.5,
+        "argument2": { "type": "minecraft:noise", "noise": "aelysiummod:lithynor/borda_territorio", "xz_scale": 1.0, "y_scale": 0.0 }
+      }
+    }
+  },
+  "min": 0.0,
+  "max": 1.0
+}

@@ -1,1 +1,22 @@
-{ "type": "aelysiummod:gradiente_z", "start": -800.0, "end": -1200.0 }
+{
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:mul",
+      "argument1": 250.0,
+      "argument2": { "type": "aelysiummod:gradiente_z", "start": 0.0, "end": -100000.0 }
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": -2.0,
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": 1.25,
+        "argument2": { "type": "minecraft:noise", "noise": "aelysiummod:lithynor/borda_norte", "xz_scale": 1.0, "y_scale": 0.0 }
+      }
+    }
+  },
+  "min": 0.0,
+  "max": 1.0
+}

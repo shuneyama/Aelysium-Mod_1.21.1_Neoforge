@@ -1,5 +1,6 @@
 package net.aelysium.aelysiummod.sistemas.mundo.atualizacoes.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.Util;
 import net.minecraft.client.Camera;
@@ -89,6 +90,11 @@ public abstract class MixinNevoaAtualizada {
         if (!aelysium$atmosfera || !aelysium$terreno) return fim;
         if (aelysium$nevoaMundo) return Math.min(fim, Math.min(96.0F, aelysium$distancia));
         return Math.max(Math.min(96.0F, fim), fim - 256.0F * aelysium$reducao());
+    }
+
+    @ModifyExpressionValue(method = "setupColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F"))
+    private static float aelysium$semRealceVisaoNoturna(float original) {
+        return 0.0F;
     }
 
     @Inject(method = "levelFogColor", at = @At("RETURN"))

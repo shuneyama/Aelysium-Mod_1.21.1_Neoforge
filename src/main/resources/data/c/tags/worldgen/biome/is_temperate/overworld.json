@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "aelysiummod:lithynor/vanilla/beach",
+    "aelysiummod:lithynor/vanilla/deep_ocean",
+    "aelysiummod:lithynor/vanilla/ocean"
+  ]
+}

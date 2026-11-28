@@ -4,6 +4,7 @@
     "aelysiummod:banned_item_reducer",
     "aelysiummod:mod_cap_loot_reducer",
     "aelysiummod:saddle_to_leather",
-    "aelysiummod:zombie_horse_mushroom"
+    "aelysiummod:zombie_horse_mushroom",
+    "aelysiummod:lithynor_treasure_map_reducer"
   ]
 }

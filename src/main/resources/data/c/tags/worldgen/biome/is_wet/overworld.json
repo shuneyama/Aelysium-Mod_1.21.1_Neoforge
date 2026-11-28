@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "aelysiummod:lithynor/vanilla/beach",
+    "aelysiummod:lithynor/vanilla/dripstone_caves",
+    "aelysiummod:lithynor/vanilla/lush_caves"
+  ]
+}

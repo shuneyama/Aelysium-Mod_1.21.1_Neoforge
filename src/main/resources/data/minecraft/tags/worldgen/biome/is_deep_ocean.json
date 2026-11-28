@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "aelysiummod:lithynor/vanilla/deep_cold_ocean",
+    "aelysiummod:lithynor/vanilla/deep_frozen_ocean",
+    "aelysiummod:lithynor/vanilla/deep_lukewarm_ocean",
+    "aelysiummod:lithynor/vanilla/deep_ocean"
+  ]
+}

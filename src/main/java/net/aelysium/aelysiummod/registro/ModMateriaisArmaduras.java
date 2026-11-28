@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.EnumMap;
@@ -28,12 +29,26 @@ public class ModMateriaisArmaduras {
                 attribute.put(ArmorItem.Type.BODY, 15);
             }), 16, 5.0f, 0.2f, () -> ModItens.CIANE_BARRA.get());
 
+    public static final Holder<ArmorMaterial> CUECA_PREFEITO_ARMOR_MATERIAL = register("cueca_prefeito",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 0);
+                attribute.put(ArmorItem.Type.LEGGINGS, 1);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 0);
+                attribute.put(ArmorItem.Type.HELMET, 0);
+                attribute.put(ArmorItem.Type.BODY, 0);
+            }), 15, 0.0f, 0.0f, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Items.STRING);
+
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
                                                   int enchantability, float toughness, float knockbackResistance,
                                                   Supplier<Item> ingredientItem) {
+        return register(name, typeProtection, enchantability, toughness, knockbackResistance, SoundEvents.ARMOR_EQUIP_NETHERITE, ingredientItem);
+    }
+
+    private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
+                                                  int enchantability, float toughness, float knockbackResistance,
+                                                  Holder<SoundEvent> equipSound, Supplier<Item> ingredientItem) {
         ResourceLocation location = ResourceLocation.fromNamespaceAndPath(AelysiumMod.MOD_ID, name);
-        Holder<SoundEvent> equipSound = SoundEvents.ARMOR_EQUIP_NETHERITE;
         Supplier<Ingredient> ingredient = () -> Ingredient.of(ingredientItem.get());
         List<ArmorMaterial.Layer> layers = List.of(new ArmorMaterial.Layer(location));
 

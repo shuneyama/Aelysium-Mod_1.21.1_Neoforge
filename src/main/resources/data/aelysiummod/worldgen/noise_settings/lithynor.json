@@ -1,5 +1,5 @@
 {
-  "aquifers_enabled": false,
+  "aquifers_enabled": true,
   "default_block": {
     "Name": "minecraft:stone"
   },
@@ -18,15 +18,15 @@
     "size_vertical": 2
   },
   "noise_router": {
-    "barrier": 0.0,
+    "barrier": { "type": "minecraft:noise", "noise": "minecraft:aquifer_barrier", "xz_scale": 1.0, "y_scale": 0.5 },
     "continents": "aelysiummod:lithynor/continents",
     "depth": "aelysiummod:lithynor/depth",
-    "erosion": "minecraft:overworld/erosion",
+    "erosion": "aelysiummod:lithynor/vanilla/overworld/erosion",
     "final_density": "aelysiummod:lithynor/densidade",
-    "fluid_level_floodedness": 0.0,
-    "fluid_level_spread": 0.0,
+    "fluid_level_floodedness": { "type": "minecraft:noise", "noise": "aelysiummod:lithynor/vanilla/aquifer_fluid_level_floodedness", "xz_scale": 1.0, "y_scale": 0.67 },
+    "fluid_level_spread": { "type": "minecraft:noise", "noise": "aelysiummod:lithynor/vanilla/aquifer_fluid_level_spread", "xz_scale": 1.0, "y_scale": 0.7142857142857143 },
     "initial_density_without_jaggedness": "aelysiummod:lithynor/densidade_grossa",
-    "lava": 0.0,
+    "lava": { "type": "minecraft:noise", "noise": "aelysiummod:lithynor/vanilla/aquifer_lava", "xz_scale": 1.0, "y_scale": 1.0 },
     "ridges": "minecraft:overworld/ridges",
     "temperature": "aelysiummod:lithynor/temperatura",
     "vegetation": "aelysiummod:lithynor/vegetacao",
@@ -689,8 +689,8 @@
                       "if_true": {
                         "type": "minecraft:biome",
                         "biome_is": [
-                          "minecraft:frozen_ocean",
-                          "minecraft:deep_frozen_ocean"
+                          "aelysiummod:lithynor/vanilla/frozen_ocean",
+                          "aelysiummod:lithynor/vanilla/deep_frozen_ocean"
                         ]
                       },
                       "then_run": {
@@ -1017,7 +1017,7 @@
                               "if_true": {
                                 "type": "minecraft:biome",
                                 "biome_is": [
-                                  "minecraft:stony_shore"
+                                  "aelysiummod:lithynor/vanilla/stony_shore"
                                 ]
                               },
                               "then_run": {
@@ -1097,10 +1097,10 @@
                               "if_true": {
                                 "type": "minecraft:biome",
                                 "biome_is": [
-                                  "minecraft:warm_ocean",
+                                  "aelysiummod:lithynor/vanilla/warm_ocean",
                                   "aelysiummod:lithynor/oceano_coral",
-                                  "minecraft:beach",
-                                  "minecraft:snowy_beach"
+                                  "aelysiummod:lithynor/vanilla/beach",
+                                  "aelysiummod:lithynor/vanilla/snowy_beach"
                                 ]
                               },
                               "then_run": {
@@ -1172,7 +1172,7 @@
                               "if_true": {
                                 "type": "minecraft:biome",
                                 "biome_is": [
-                                  "minecraft:dripstone_caves"
+                                  "aelysiummod:lithynor/vanilla/dripstone_caves"
                                 ]
                               },
                               "then_run": {
@@ -1452,7 +1452,7 @@
                           "if_true": {
                             "type": "minecraft:biome",
                             "biome_is": [
-                              "minecraft:mushroom_fields"
+                              "aelysiummod:lithynor/vanilla/mushroom_fields"
                             ]
                           },
                           "then_run": {
@@ -1525,8 +1525,8 @@
                       "if_true": {
                         "type": "minecraft:biome",
                         "biome_is": [
-                          "minecraft:frozen_ocean",
-                          "minecraft:deep_frozen_ocean"
+                          "aelysiummod:lithynor/vanilla/frozen_ocean",
+                          "aelysiummod:lithynor/vanilla/deep_frozen_ocean"
                         ]
                       },
                       "then_run": {
@@ -1796,7 +1796,7 @@
                               "if_true": {
                                 "type": "minecraft:biome",
                                 "biome_is": [
-                                  "minecraft:stony_shore"
+                                  "aelysiummod:lithynor/vanilla/stony_shore"
                                 ]
                               },
                               "then_run": {
@@ -1876,10 +1876,10 @@
                               "if_true": {
                                 "type": "minecraft:biome",
                                 "biome_is": [
-                                  "minecraft:warm_ocean",
+                                  "aelysiummod:lithynor/vanilla/warm_ocean",
                                   "aelysiummod:lithynor/oceano_coral",
-                                  "minecraft:beach",
-                                  "minecraft:snowy_beach"
+                                  "aelysiummod:lithynor/vanilla/beach",
+                                  "aelysiummod:lithynor/vanilla/snowy_beach"
                                 ]
                               },
                               "then_run": {
@@ -1951,7 +1951,7 @@
                               "if_true": {
                                 "type": "minecraft:biome",
                                 "biome_is": [
-                                  "minecraft:dripstone_caves"
+                                  "aelysiummod:lithynor/vanilla/dripstone_caves"
                                 ]
                               },
                               "then_run": {
@@ -2123,10 +2123,10 @@
                     "if_true": {
                       "type": "minecraft:biome",
                       "biome_is": [
-                        "minecraft:warm_ocean",
+                        "aelysiummod:lithynor/vanilla/warm_ocean",
                         "aelysiummod:lithynor/oceano_coral",
-                        "minecraft:beach",
-                        "minecraft:snowy_beach"
+                        "aelysiummod:lithynor/vanilla/beach",
+                        "aelysiummod:lithynor/vanilla/snowy_beach"
                       ]
                     },
                     "then_run": {
@@ -2207,10 +2207,10 @@
                     "if_true": {
                       "type": "minecraft:biome",
                       "biome_is": [
-                        "minecraft:warm_ocean",
+                        "aelysiummod:lithynor/vanilla/warm_ocean",
                         "aelysiummod:lithynor/oceano_coral",
-                        "minecraft:lukewarm_ocean",
-                        "minecraft:deep_lukewarm_ocean"
+                        "aelysiummod:lithynor/vanilla/lukewarm_ocean",
+                        "aelysiummod:lithynor/vanilla/deep_lukewarm_ocean"
                       ]
                     },
                     "then_run": {

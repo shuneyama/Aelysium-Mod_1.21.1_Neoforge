@@ -51,6 +51,9 @@ import net.aelysium.aelysiummod.sistemas.mundo.dificuldade.comando.ComandoDificu
 import net.aelysium.aelysiummod.sistemas.social.apelido.comando.ComandoApelido;
 import net.aelysium.aelysiummod.sistemas.social.npc.comando.ComandoNpc;
 import net.aelysium.aelysiummod.sistemas.social.chat.rede.RedeChat;
+import net.aelysium.aelysiummod.nucleo.comando.condicao.CondicoesExecute;
+import net.aelysium.aelysiummod.nucleo.comando.condicao.CondicoesJogador;
+import net.aelysium.aelysiummod.nucleo.comando.condicao.CondicoesMundo;
 
 public class AelysiumComandos {
 
@@ -191,5 +194,10 @@ public class AelysiumComandos {
         ComandoHolograma.register(event.getDispatcher());
         ComandoProtecao.registrarSubComandosLista(event.getDispatcher());
         ComandoNpc.registrarSubComandosAcoes(event.getDispatcher());
+        CondicoesExecute.registrar(event.getDispatcher(), ComandoProtecao::condicoes);
+        CondicoesExecute.registrar(event.getDispatcher(), CondicoesJogador::condicoes);
+        CondicoesExecute.registrar(event.getDispatcher(), CondicoesMundo::lua);
+        CondicoesExecute.registrar(event.getDispatcher(), CondicoesMundo::manutencao);
+        CondicoesExecute.registrar(event.getDispatcher(), CondicoesMundo::dificuldade);
     }
 }

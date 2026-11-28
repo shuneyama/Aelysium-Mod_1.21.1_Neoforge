@@ -26,6 +26,12 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.List;
 import net.aelysium.aelysiummod.nucleo.jogador.PerfilJogador;
+import net.aelysium.aelysiummod.nucleo.comando.condicao.CondicoesExecute;
+import net.aelysium.aelysiummod.nucleo.comando.condicao.CriteriosJogador;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.arguments.RangeArgument;
+import net.minecraft.world.entity.Entity;
+import java.util.Collection;
 
 public class ComandoProtecao {
 
@@ -332,5 +338,22 @@ public class ComandoProtecao {
         String nick = PerfilJogador.apelido().apelido(jogador.server, jogador.getUUID());
         if (nick != null && !nick.isEmpty()) return nick;
         return jogador.getName().getString();
+    }
+
+    public static LiteralArgumentBuilder<CommandSourceStack> condicoes(CondicoesExecute.Ramo ramo) {
+        return Commands.literal("protecao").then(Commands.argument("regiao", StringArgumentType.string())
+                .suggests(SUGESTOES_REGIOES)
+                .then(Commands.literal("contem").then(ramo.condicao(Commands.argument("alvos", EntityArgument.entities()), ctx -> {
+                    String nome = StringArgumentType.getString(ctx, "regiao");
+                    Collection<? extends Entity> alvos = EntityArgument.getOptionalEntities(ctx, "alvos");
+                    return !alvos.isEmpty() && alvos.stream().allMatch(entidade -> CriteriosJogador.regiao(entidade, nome));
+                })))
+                .then(Commands.literal("jogadores").then(ramo.condicao(Commands.argument("faixa", RangeArgument.intRange()), ctx -> {
+                    String nome = StringArgumentType.getString(ctx, "regiao");
+                    long dentro = ctx.getSource().getServer().getPlayerList().getPlayers().stream()
+                            .filter(jogador -> CriteriosJogador.regiao(jogador, nome))
+                            .count();
+                    return RangeArgument.Ints.getRange(ctx, "faixa").matches((int) dentro);
+                }))));
     }
 }

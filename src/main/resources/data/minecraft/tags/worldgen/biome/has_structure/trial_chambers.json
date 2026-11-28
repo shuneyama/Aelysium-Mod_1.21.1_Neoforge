@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "aelysiummod:lithynor/vanilla/beach",
+    "aelysiummod:lithynor/vanilla/cold_ocean",
+    "aelysiummod:lithynor/vanilla/deep_cold_ocean",
+    "aelysiummod:lithynor/vanilla/deep_frozen_ocean",
+    "aelysiummod:lithynor/vanilla/deep_lukewarm_ocean",
+    "aelysiummod:lithynor/vanilla/deep_ocean",
+    "aelysiummod:lithynor/vanilla/dripstone_caves",
+    "aelysiummod:lithynor/vanilla/frozen_ocean",
+    "aelysiummod:lithynor/vanilla/lukewarm_ocean",
+    "aelysiummod:lithynor/vanilla/lush_caves",
+    "aelysiummod:lithynor/vanilla/mushroom_fields",
+    "aelysiummod:lithynor/vanilla/ocean",
+    "aelysiummod:lithynor/vanilla/snowy_beach",
+    "aelysiummod:lithynor/vanilla/stony_shore",
+    "aelysiummod:lithynor/vanilla/warm_ocean"
+  ]
+}

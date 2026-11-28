@@ -13,6 +13,7 @@ public abstract class CodigoEComercialMixin {
 
     @WrapMethod(method = "iterateFormatted(Ljava/lang/String;ILnet/minecraft/network/chat/Style;Lnet/minecraft/network/chat/Style;Lnet/minecraft/util/FormattedCharSink;)Z")
     private static boolean aelysium$codigos(String texto, int pular, Style inicio, Style reinicio, FormattedCharSink destino, Operation<Boolean> original) {
+        if (texto == null || texto.indexOf('&') < 0) return original.call(texto, pular, inicio, reinicio, destino);
         CodigosEstilo.Preparado preparado = CodigosEstilo.preparar(texto);
         return original.call(preparado.texto, pular, inicio, reinicio, preparado.envolver(destino));
     }

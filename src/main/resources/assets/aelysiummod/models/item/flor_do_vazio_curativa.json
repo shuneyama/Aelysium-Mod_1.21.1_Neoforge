@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "aelysiummod:block/chefes/flor_do_vazio_curativa"
+  }
+}

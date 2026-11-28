@@ -1,6 +1,17 @@
 {
-  "type": "minecraft:noise",
-  "noise": "aelysiummod:lithynor/ilhas_grandes",
-  "xz_scale": 1.0,
-  "y_scale": 0.0
+  "type": "minecraft:add",
+  "argument1": {
+    "type": "minecraft:mul",
+    "argument1": { "type": "minecraft:noise", "noise": "aelysiummod:lithynor/ilhas_grandes", "xz_scale": 2.0, "y_scale": 0.0 },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": 1.0,
+      "argument2": { "type": "minecraft:mul", "argument1": -1.0, "argument2": "aelysiummod:lithynor/porta_frequencia_territorio" }
+    }
+  },
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": { "type": "minecraft:noise", "noise": "aelysiummod:lithynor/ilhas_grandes", "xz_scale": 1.0, "y_scale": 0.0 },
+    "argument2": "aelysiummod:lithynor/porta_frequencia_territorio"
+  }
 }

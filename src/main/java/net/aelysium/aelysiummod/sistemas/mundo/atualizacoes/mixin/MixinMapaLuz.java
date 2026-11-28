@@ -120,13 +120,17 @@ public abstract class MixinMapaLuz {
         } else {
             visaoNoturna = 0.0F;
         }
-        float visaoCor = 0.6F * visaoNoturna;
+        float visaoCor = 0.45F * visaoNoturna;
         float baseR = Math.max(ambienteR, visaoCor);
         float baseG = Math.max(ambienteG, visaoCor);
         float baseB = Math.max(ambienteB, visaoCor);
+        ceuR = Mth.lerp(visaoNoturna, ceuR, 1.0F);
+        ceuG = Mth.lerp(visaoNoturna, ceuG, 1.0F);
+        ceuB = Mth.lerp(visaoNoturna, ceuB, 1.0F);
         float fatorBloco = this.blockLightRedFlicker + 1.4F;
         float escurecer = this.renderer.getDarkenWorldAmount(parcial);
         float brilho = Math.max(0.0F, this.minecraft.options.gamma().get().floatValue() - gamaEscuridao);
+        brilho = Mth.lerp(visaoNoturna, brilho, Math.max(brilho, 1.0F));
 
         for (int ceu = 0; ceu < 16; ceu++) {
             for (int bloco = 0; bloco < 16; bloco++) {

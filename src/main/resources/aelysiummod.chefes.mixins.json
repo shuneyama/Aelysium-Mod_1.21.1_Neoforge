@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.sistemas.chefes.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "InvocadorFormaVoxelArray",
+    "MixinCaixaMultiparte",
+    "MixinEntidadeMultiparte",
+    "MixinFormaVoxelMultiparte",
+    "MixinFormasMultiparte",
+    "MixinProjetilMultiparte"
+  ],
+  "client": [
+    "MixinBarraChefeFlorVazio",
+    "MixinModoJogoMultiparte"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

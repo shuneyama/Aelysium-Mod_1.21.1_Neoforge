@@ -1,7 +1,6 @@
 package net.aelysium.aelysiummod.nucleo.texto.mixin;
 
-import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.aelysium.aelysiummod.nucleo.texto.CodigosEstilo;
 import net.aelysium.aelysiummod.nucleo.texto.EfeitosTexto;
 import net.minecraft.network.chat.Style;
@@ -10,6 +9,9 @@ import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(targets = "net.minecraft.client.gui.Font$StringRenderOutput")
 public abstract class SaidaTextoMixin {
@@ -36,18 +38,24 @@ public abstract class SaidaTextoMixin {
     @Final
     private float dimFactor;
 
-    @WrapMethod(method = "accept")
-    private boolean aelysium$efeito(int posicao, Style estilo, int codigo, Operation<Boolean> original) {
+    @Unique
+    private boolean aelysium$deslocado;
+
+    @Unique
+    private float aelysium$dx;
+
+    @Unique
+    private float aelysium$yInicial;
+
+    @ModifyVariable(method = "accept", at = @At("HEAD"), argsOnly = true)
+    private Style aelysium$efeito(Style estilo) {
         ResourceLocation fonte = estilo.getFont();
-        if (fonte == null || !"aelysiummod".equals(fonte.getNamespace())) {
-            return original.call(posicao, estilo, codigo);
-        }
+        if (!"aelysiummod".equals(fonte.getNamespace())) return estilo;
         int efeito = CodigosEstilo.indiceEfeito(fonte);
-        if (efeito < 0) return original.call(posicao, estilo, codigo);
+        if (efeito < 0) return estilo;
 
         double t = EfeitosTexto.segundos();
         float xInicial = this.x;
-        float yInicial = this.y;
         float dx = EfeitosTexto.deslocamentoX(efeito, t, xInicial);
         float dy = EfeitosTexto.deslocamentoY(efeito, t, xInicial);
 
@@ -66,14 +74,20 @@ public abstract class SaidaTextoMixin {
             aplicado = estilo.withColor(EfeitosTexto.cor(efeito, t, xInicial, base));
         }
 
+        aelysium$deslocado = true;
+        aelysium$dx = dx;
+        aelysium$yInicial = this.y;
         this.x = xInicial + dx;
-        this.y = yInicial + dy;
-        boolean continuar;
-        try {
-            continuar = original.call(posicao, aplicado, codigo);
-        } finally {
-            this.x -= dx;
-            this.y = yInicial;
+        this.y = this.y + dy;
+        return aplicado;
+    }
+
+    @ModifyReturnValue(method = "accept", at = @At("RETURN"))
+    private boolean aelysium$restaurar(boolean continuar) {
+        if (aelysium$deslocado) {
+            aelysium$deslocado = false;
+            this.x -= aelysium$dx;
+            this.y = aelysium$yInicial;
         }
         return continuar;
     }

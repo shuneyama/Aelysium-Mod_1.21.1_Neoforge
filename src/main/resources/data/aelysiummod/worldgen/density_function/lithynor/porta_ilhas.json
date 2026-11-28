@@ -1,1 +1,13 @@
-{ "type": "aelysiummod:distancia_central", "start": 100.0, "end": 200.0 }
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": "aelysiummod:lithynor/distancia_centro_ondulada",
+    "points": [
+      { "location": 0.1, "value": 0.0, "derivative": 0.0 },
+      { "location": 0.12, "value": 0.86, "derivative": 2.5 },
+      { "location": 0.16, "value": 0.94, "derivative": 1.2 },
+      { "location": 0.22, "value": 0.985, "derivative": 0.4 },
+      { "location": 0.28, "value": 1.0, "derivative": 0.0 }
+    ]
+  }
+}

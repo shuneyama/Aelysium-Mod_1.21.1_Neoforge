@@ -5,10 +5,10 @@
   "flecha.bloco": {
     "subtitle": "subtitles.entity.arrow.hit",
     "sounds": [
-      {"name": "minecraft:random/bowhit1", "attenuation_distance": 4},
-      {"name": "minecraft:random/bowhit2", "attenuation_distance": 4},
-      {"name": "minecraft:random/bowhit3", "attenuation_distance": 4},
-      {"name": "minecraft:random/bowhit4", "attenuation_distance": 4}
+      {"name": "minecraft:random/bowhit1", "attenuation_distance": 8},
+      {"name": "minecraft:random/bowhit2", "attenuation_distance": 8},
+      {"name": "minecraft:random/bowhit3", "attenuation_distance": 8},
+      {"name": "minecraft:random/bowhit4", "attenuation_distance": 8}
     ]
   },
   "bateria.choque": {
@@ -1637,5 +1637,131 @@
   "block.creaking_heart.spawn": {
     "sounds": ["aelysiummod:jardim/bloco/creaking_heart_spawnmob"],
     "subtitle": "subtitles.aelysiummod.block.creaking_heart.spawn"
+  },
+  "flor_vazio.espinho": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.espinho",
+    "category": "hostile",
+    "sounds": ["aelysiummod:chefes/flor_vazio/void_blossom_spike"]
+  },
+  "flor_vazio.esporo_impacto": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.esporo_impacto",
+    "category": "hostile",
+    "sounds": ["aelysiummod:chefes/flor_vazio/spore_impact"]
+  },
+  "flor_vazio.lamina_petala": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.lamina_petala",
+    "category": "hostile",
+    "sounds": ["aelysiummod:chefes/flor_vazio/petal_blade"]
+  },
+  "flor_vazio.enterrar": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.enterrar",
+    "category": "hostile",
+    "sounds": ["aelysiummod:chefes/flor_vazio/void_blossom_burrow"]
+  },
+  "flor_vazio.esporo_preparar": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.esporo_preparar",
+    "category": "hostile",
+    "sounds": ["aelysiummod:chefes/flor_vazio/spore_prepare"]
+  },
+  "flor_vazio.onda_aviso": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.onda_aviso",
+    "sounds": ["aelysiummod:chefes/flor_vazio/wave_indicator"]
+  },
+  "flor_vazio.esporo_pouso": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.esporo_pouso",
+    "category": "hostile",
+    "sounds": ["minecraft:mob/slime/big1", "minecraft:mob/slime/big2", "minecraft:mob/slime/big3", "minecraft:mob/slime/big4"]
+  },
+  "flor_vazio.espinho_aviso": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.espinho_aviso",
+    "sounds": ["aelysiummod:chefes/flor_vazio/spike_indicator"]
+  },
+  "flor_vazio.ferida": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.ferida",
+    "sounds": ["minecraft:block/vine/climb1", "minecraft:block/vine/climb2", "minecraft:block/vine/climb3", "minecraft:block/vine/climb4", "minecraft:block/vine/climb5"]
+  },
+  "flor_vazio.queda": {
+    "subtitle": "subtitles.aelysiummod.flor_vazio.ferida",
+    "sounds": ["aelysiummod:chefes/flor_vazio/void_blossom_fall"]
+  },
+  "frostmaw.roar": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.rugido",
+    "sounds": ["aelysiummod:chefes/frostmaw/roar"]
+  },
+  "frostmaw.whoosh": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.golpe",
+    "sounds": ["aelysiummod:chefes/frostmaw/whoosh"]
+  },
+  "frostmaw.icebreath": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.sopro",
+    "sounds": [{"name": "aelysiummod:chefes/frostmaw/icebreath", "stream": true}]
+  },
+  "frostmaw.icebreathstart": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.sopro_inicio",
+    "sounds": ["aelysiummod:chefes/frostmaw/icebreathstart"]
+  },
+  "frostmaw.iceballcharge": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.bola_carregar",
+    "sounds": ["aelysiummod:chefes/frostmaw/iceballcharge"]
+  },
+  "frostmaw.iceballshoot": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.bola_disparar",
+    "sounds": ["aelysiummod:chefes/frostmaw/iceballshoot"]
+  },
+  "frostmaw.frozencrash": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.gelo_quebrar",
+    "sounds": ["aelysiummod:chefes/frostmaw/icecrash"]
+  },
+  "frostmaw.step": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.passo",
+    "sounds": ["aelysiummod:chefes/frostmaw/step"]
+  },
+  "frostmaw.land": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.pouso",
+    "sounds": ["aelysiummod:chefes/frostmaw/land"]
+  },
+  "frostmaw.attack1": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.ataque",
+    "sounds": ["aelysiummod:chefes/frostmaw/attack1"]
+  },
+  "frostmaw.attack2": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.ataque",
+    "sounds": ["aelysiummod:chefes/frostmaw/attack2"]
+  },
+  "frostmaw.attack3": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.ataque",
+    "sounds": ["aelysiummod:chefes/frostmaw/attack3"]
+  },
+  "frostmaw.attack4": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.ataque",
+    "sounds": ["aelysiummod:chefes/frostmaw/attack4"]
+  },
+  "frostmaw.breath1": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.respiracao",
+    "sounds": ["aelysiummod:chefes/frostmaw/breath"]
+  },
+  "frostmaw.breath2": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.respiracao",
+    "sounds": ["aelysiummod:chefes/frostmaw/breath2"]
+  },
+  "frostmaw.living1": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.rosnado",
+    "sounds": ["aelysiummod:chefes/frostmaw/living1"]
+  },
+  "frostmaw.living2": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.rosnado",
+    "sounds": ["aelysiummod:chefes/frostmaw/living2"]
+  },
+  "frostmaw.wakeup": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.despertar",
+    "sounds": ["aelysiummod:chefes/frostmaw/wakeup"]
+  },
+  "frostmaw.die": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.morte",
+    "sounds": ["aelysiummod:chefes/frostmaw/die"]
+  },
+  "frostmaw.undamaged": {
+    "subtitle": "subtitles.aelysiummod.frostmaw.sem_dano",
+    "sounds": ["minecraft:random/anvil_land"]
   }
 }

@@ -68,7 +68,8 @@ public class ProvedorTagsItens extends ItemTagsProvider {
         tag(ItemTags.CHEST_ARMOR)
                 .add(ModItens.CIANE_PEITORAL.get());
         tag(ItemTags.LEG_ARMOR)
-                .add(ModItens.CIANE_CALCINHA.get());
+                .add(ModItens.CIANE_CALCINHA.get())
+                .add(ModItens.CUECA_PREFEITO.get());
         tag(ItemTags.FOOT_ARMOR)
                 .add(ModItens.CIANE_BOTAS.get());
 
@@ -93,6 +94,7 @@ public class ProvedorTagsItens extends ItemTagsProvider {
                 .add(ModItens.CIANE_CAPACETE.get())
                 .add(ModItens.CIANE_PEITORAL.get())
                 .add(ModItens.CIANE_CALCINHA.get())
+                .add(ModItens.CUECA_PREFEITO.get())
                 .add(ModItens.CIANE_BOTAS.get());
 
         tag(ItemTags.VANISHING_ENCHANTABLE)
@@ -104,12 +106,14 @@ public class ProvedorTagsItens extends ItemTagsProvider {
                 .add(ModItens.CIANE_CAPACETE.get())
                 .add(ModItens.CIANE_PEITORAL.get())
                 .add(ModItens.CIANE_CALCINHA.get())
+                .add(ModItens.CUECA_PREFEITO.get())
                 .add(ModItens.CIANE_BOTAS.get());
 
         tag(ItemTags.EQUIPPABLE_ENCHANTABLE)
                 .add(ModItens.CIANE_CAPACETE.get())
                 .add(ModItens.CIANE_PEITORAL.get())
                 .add(ModItens.CIANE_CALCINHA.get())
+                .add(ModItens.CUECA_PREFEITO.get())
                 .add(ModItens.CIANE_BOTAS.get());
 
         tag(ItemTags.SWORD_ENCHANTABLE)
@@ -169,6 +173,7 @@ public class ProvedorTagsItens extends ItemTagsProvider {
                 .add(ModItens.CIANE_CAPACETE.get())
                 .add(ModItens.CIANE_PEITORAL.get())
                 .add(ModItens.CIANE_CALCINHA.get())
+                .add(ModItens.CUECA_PREFEITO.get())
                 .add(ModItens.CIANE_BOTAS.get());
 
         tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
@@ -178,7 +183,8 @@ public class ProvedorTagsItens extends ItemTagsProvider {
                 .add(ModItens.CIANE_PEITORAL.get());
 
         tag(ItemTags.LEG_ARMOR_ENCHANTABLE)
-                .add(ModItens.CIANE_CALCINHA.get());
+                .add(ModItens.CIANE_CALCINHA.get())
+                .add(ModItens.CUECA_PREFEITO.get());
 
         tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
                 .add(ModItens.CIANE_BOTAS.get());

@@ -1,5 +1,13 @@
 {
-  "type": "minecraft:add",
-  "argument1": "aelysiummod:lithynor/ilhas_picos",
-  "argument2": -0.78
+  "type": "minecraft:max",
+  "argument1": {
+    "type": "minecraft:add",
+    "argument1": "aelysiummod:lithynor/ilhas_picos",
+    "argument2": -0.78
+  },
+  "argument2": {
+    "type": "minecraft:add",
+    "argument1": "aelysiummod:lithynor/ilhas_picos_largos",
+    "argument2": -0.84
+  }
 }

@@ -88,6 +88,7 @@ public class AelysiumMod {
         net.aelysium.aelysiummod.sistemas.mundo.flora.ModFlora.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.jardimpalido.ModJardimPalido.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.lithynor.ModLithynor.registrar(modEventBus);
+        net.aelysium.aelysiummod.sistemas.chefes.ModChefes.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.atualizacoes.AtributosNovos.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.flora.ModItensNovos.registrar(modEventBus);
         net.aelysium.aelysiummod.sistemas.mundo.mochila.ReceitasMochila.registrar(modEventBus);

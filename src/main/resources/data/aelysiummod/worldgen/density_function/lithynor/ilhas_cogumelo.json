@@ -1,9 +1,17 @@
 {
   "type": "minecraft:add",
-  "argument1": "aelysiummod:lithynor/ruido_cogumelo",
+  "argument1": {
+    "type": "minecraft:add",
+    "argument1": "aelysiummod:lithynor/ruido_cogumelo",
+    "argument2": {
+      "type": "minecraft:mul",
+      "argument1": 2.0,
+      "argument2": { "type": "minecraft:add", "argument1": "aelysiummod:lithynor/porta_ilhas", "argument2": -1.0 }
+    }
+  },
   "argument2": {
     "type": "minecraft:mul",
-    "argument1": 2.0,
-    "argument2": { "type": "minecraft:add", "argument1": "aelysiummod:lithynor/porta_ilhas", "argument2": -1.0 }
+    "argument1": 0.028,
+    "argument2": "aelysiummod:lithynor/porta_frequencia"
   }
 }

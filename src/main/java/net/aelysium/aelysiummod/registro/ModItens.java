@@ -267,6 +267,9 @@ public class ModItens {
     public static final DeferredItem<ArmorItem> CIANE_BOTAS = ITEMS.register("ciane_botas",
             () -> new ArmorItem(ModMateriaisArmaduras.CIANE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties()
                     .stacksTo(1).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(80))));
+    public static final DeferredItem<ArmorItem> CUECA_PREFEITO = ITEMS.register("cueca_prefeito",
+            () -> new ArmorItem(ModMateriaisArmaduras.CUECA_PREFEITO_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties()
+                    .stacksTo(1).durability(ArmorItem.Type.LEGGINGS.getDurability(5))));
 
     public static final DeferredItem<PickaxeItem> CIANE_PICARETA = ITEMS.register("ciane_picareta",
             () -> new PickaxeItem(ModNiveisFerramenta.CIANE, new Item.Properties()

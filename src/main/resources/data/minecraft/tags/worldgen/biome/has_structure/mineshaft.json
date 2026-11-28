@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "aelysiummod:lithynor/vanilla/dripstone_caves",
+    "aelysiummod:lithynor/vanilla/lush_caves",
+    "aelysiummod:lithynor/vanilla/mushroom_fields",
+    "aelysiummod:lithynor/vanilla/stony_shore"
+  ]
+}

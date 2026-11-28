@@ -58,5 +58,6 @@ public class ServidorMensagens {
         RegistroRedeMaozinha.registrar(registrar);
         net.aelysium.aelysiummod.sistemas.mundo.minifarol.rede.RegistroRedeMiniFarol.registrar(registrar);
         net.aelysium.aelysiummod.sistemas.admin.cabeca.rede.RegistroRedeCabeca.registrar(registrar);
+        net.aelysium.aelysiummod.sistemas.chefes.rede.RedeChefes.registrar(registrar);
     }
 }

@@ -13,8 +13,12 @@
     "type": "minecraft:mul",
     "argument1": {
       "type": "minecraft:add",
-      "argument1": 0.85,
-      "argument2": { "type": "minecraft:mul", "argument1": -1.7, "argument2": "aelysiummod:lithynor/norte_oceano" }
+      "argument1": {
+        "type": "minecraft:add",
+        "argument1": 0.85,
+        "argument2": { "type": "minecraft:mul", "argument1": -1.7, "argument2": "aelysiummod:lithynor/norte_oceano" }
+      },
+      "argument2": "aelysiummod:lithynor/variacao_oceano"
     },
     "argument2": "aelysiummod:lithynor/peso_oceano"
   }

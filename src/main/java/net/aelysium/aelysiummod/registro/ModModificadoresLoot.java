@@ -3,6 +3,7 @@ package net.aelysium.aelysiummod.registro;
 import com.mojang.serialization.MapCodec;
 import net.aelysium.aelysiummod.AelysiumMod;
 import net.aelysium.aelysiummod.sistemas.admin.banimentos.ModificadorLootModsDesativados;
+import net.aelysium.aelysiummod.sistemas.mundo.lithynor.ModificadorLootMapasLithynor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -26,6 +27,9 @@ public class ModModificadoresLoot {
 
     public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<net.aelysium.aelysiummod.sistemas.admin.banimentos.ModificadorLootCogumelo>> ZOMBIE_HORSE_MUSHROOM =
             LOOT_MODIFIER_SERIALIZERS.register("zombie_horse_mushroom", () -> net.aelysium.aelysiummod.sistemas.admin.banimentos.ModificadorLootCogumelo.CODEC);
+
+    public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<ModificadorLootMapasLithynor>> MAPAS_TESOURO_LITHYNOR =
+            LOOT_MODIFIER_SERIALIZERS.register("lithynor_treasure_map_reducer", () -> ModificadorLootMapasLithynor.CODEC);
 
     public static void register(IEventBus eventBus) {
         LOOT_MODIFIER_SERIALIZERS.register(eventBus);

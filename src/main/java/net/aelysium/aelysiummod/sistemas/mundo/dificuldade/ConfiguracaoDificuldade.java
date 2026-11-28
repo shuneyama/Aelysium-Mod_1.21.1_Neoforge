@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfiguracaoDificuldade {
 
@@ -36,6 +37,7 @@ public class ConfiguracaoDificuldade {
 
     private static volatile Map<String, Object> valores = new HashMap<>();
     private static volatile Map<String, List<String>> listas = new HashMap<>();
+    private static volatile Map<String, Map<ResourceLocation, Boolean>> cacheListas = new ConcurrentHashMap<>();
 
     static {
         entrada("geral.bloquear_drop_equipamento", true, "Impede que mobs afetados dropem armaduras, armas e ferramentas.");
@@ -209,6 +211,7 @@ public class ConfiguracaoDificuldade {
 
         valores = lidos;
         listas = listasLidas;
+        cacheListas = new ConcurrentHashMap<>();
     }
 
     private static Map<String, Object> lerExistentes(Path caminho) {
@@ -243,6 +246,22 @@ public class ConfiguracaoDificuldade {
     }
 
     public static boolean listaContem(String chave, ResourceLocation id) {
+        Map<String, Map<ResourceLocation, Boolean>> caches = cacheListas;
+        Map<ResourceLocation, Boolean> cache = caches.get(chave);
+        if (cache == null) {
+            cache = new ConcurrentHashMap<>();
+            Map<ResourceLocation, Boolean> anterior = caches.putIfAbsent(chave, cache);
+            if (anterior != null) cache = anterior;
+        }
+        Boolean resultado = cache.get(id);
+        if (resultado == null) {
+            resultado = calcularListaContem(chave, id);
+            cache.put(id, resultado);
+        }
+        return resultado;
+    }
+
+    private static boolean calcularListaContem(String chave, ResourceLocation id) {
         List<String> itens = listas.get(chave);
         if (itens == null) return false;
         String completo = id.toString();

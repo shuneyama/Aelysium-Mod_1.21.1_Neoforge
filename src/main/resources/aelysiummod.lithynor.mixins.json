@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "net.aelysium.aelysiummod.sistemas.mundo.lithynor.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "AcessorFonteMultiRuido",
+    "MixinGeradorChunkLithynor",
+    "MixinChecagemEstruturaLithynor",
+    "MixinEstadoEstruturasLithynor",
+    "MixinFeatureLithynor",
+    "MixinTabelaLootLithynor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

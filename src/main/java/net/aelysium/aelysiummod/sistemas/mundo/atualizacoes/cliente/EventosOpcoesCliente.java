@@ -41,14 +41,17 @@ public class EventosOpcoesCliente {
                 valor, aoMudar);
     }
 
+    public static OptionInstance<Double> volumeInterface() {
+        return new OptionInstance<>("soundCategory.ui", OptionInstance.noTooltip(),
+                (legenda, valor) -> Component.translatable("options.percent_value", legenda, (int) (valor * 100.0D)),
+                OptionInstance.UnitDouble.INSTANCE, OpcoesAtualizadas.VOLUME_UI.get(),
+                valor -> salvar(() -> OpcoesAtualizadas.VOLUME_UI.set(valor)));
+    }
+
     @SubscribeEvent
     public static void tela(ScreenEvent.Init.Post evento) {
         if (!(evento.getScreen() instanceof OptionsSubScreen tela) || tela.list == null) return;
         if (tela instanceof SoundOptionsScreen) {
-            OptionInstance<Double> volumeUi = new OptionInstance<>("soundCategory.ui", OptionInstance.noTooltip(),
-                    (legenda, valor) -> Component.translatable("options.percent_value", legenda, (int) (valor * 100.0D)),
-                    OptionInstance.UnitDouble.INSTANCE, OpcoesAtualizadas.VOLUME_UI.get(),
-                    valor -> salvar(() -> OpcoesAtualizadas.VOLUME_UI.set(valor)));
             OpcoesAtualizadas.FrequenciaMusica[] valores = OpcoesAtualizadas.FrequenciaMusica.values();
             OptionInstance<OpcoesAtualizadas.FrequenciaMusica> frequencia = new OptionInstance<>("options.music_frequency",
                     OptionInstance.cachedConstantTooltip(Component.translatable("options.music_frequency.tooltip")),
@@ -58,8 +61,7 @@ public class EventosOpcoesCliente {
             OptionInstance<Boolean> aviso = OptionInstance.createBoolean("options.showNowPlayingToast",
                     OptionInstance.cachedConstantTooltip(Component.translatable("options.showNowPlayingToast.tooltip")),
                     OpcoesAtualizadas.AVISO_MUSICA.get(), valor -> salvar(() -> OpcoesAtualizadas.AVISO_MUSICA.set(valor)));
-            tela.list.addSmall(volumeUi, frequencia);
-            tela.list.addSmall(aviso);
+            tela.list.addSmall(frequencia, aviso);
         } else if (tela instanceof VideoSettingsScreen) {
             videoAtualizado(tela);
         } else if (tela instanceof MouseSettingsScreen) {

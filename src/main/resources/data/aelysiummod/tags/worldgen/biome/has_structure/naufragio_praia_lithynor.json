@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "aelysiummod:lithynor/ilha_floresta_nevada",
     "aelysiummod:lithynor/ilha_temperada_nevada",
@@ -20,6 +21,18 @@
     "aelysiummod:lithynor/planalto_pedregoso",
     "aelysiummod:lithynor/planalto_cultivado",
     "aelysiummod:lithynor/planalto_florido",
-    "minecraft:stony_shore"
+    "aelysiummod:lithynor/territorio_temperado",
+    "aelysiummod:lithynor/territorio_temperado_nevado",
+    "aelysiummod:lithynor/territorio_florestal",
+    "aelysiummod:lithynor/territorio_florestal_nevado",
+    "aelysiummod:lithynor/territorio_nevado",
+    "aelysiummod:lithynor/territorio_espinhos_gelo",
+    "aelysiummod:lithynor/territorio_taiga",
+    "aelysiummod:lithynor/territorio_taiga_nevada",
+    "aelysiummod:lithynor/territorio_taiga_antiga",
+    "aelysiummod:lithynor/territorio_selva",
+    "aelysiummod:lithynor/territorio_umido",
+    "minecraft:stony_shore",
+    "aelysiummod:lithynor/vanilla/stony_shore"
   ]
 }

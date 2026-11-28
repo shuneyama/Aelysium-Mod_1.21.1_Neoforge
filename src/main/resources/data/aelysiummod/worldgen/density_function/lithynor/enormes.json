@@ -2,8 +2,12 @@
   "type": "minecraft:add",
   "argument1": {
     "type": "minecraft:add",
-    "argument1": "aelysiummod:lithynor/ruido_enormes",
-    "argument2": -0.3
+    "argument1": {
+      "type": "minecraft:add",
+      "argument1": "aelysiummod:lithynor/ruido_enormes",
+      "argument2": -0.3
+    },
+    "argument2": { "type": "minecraft:mul", "argument1": 0.06, "argument2": "aelysiummod:lithynor/porta_frequencia_territorio" }
   },
   "argument2": {
     "type": "minecraft:mul",
